@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>TH.Utils4Umbraco.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>TH.Utils4Umbraco.dll</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>TH.ForceSSL</name>
+      <version>v1.0</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+      <url>http://our.umbraco.org/projects/force-ssl</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Thomas Höhler</name>
+      <website>http://blog.thoehler.com</website>
+    </author>
+    <readme><![CDATA[With Force SSL you be able to add a simple property to each umbraco node where you can define if the node has to have a secure call (HTTPS), an unsecure call (HTTP) or if it can use both. If another protocol is needed it will do a simple redirect with an replace of the http to https.]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes>
+    <DataType Name="ForceSSL" Id="a74ea9c9-8e18-4d2a-8cf6-73c6206c5da6" Definition="645e3e24-0d01-49b9-877d-cc29df64df24">
+      <PreValues>
+        <PreValue Id="86" Value="UseBoth" />
+        <PreValue Id="87" Value="ForceHttps" />
+        <PreValue Id="88" Value="ForceHttp" />
+      </PreValues>
+    </DataType>
+  </DataTypes>
+</umbPackage>

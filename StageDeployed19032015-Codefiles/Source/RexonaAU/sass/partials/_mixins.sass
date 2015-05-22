@@ -1,0 +1,34 @@
+// animations
+// put this on the parent element, e.g. if you want .foo to animate on hover,
+// this mixin goes on the .foo element, not .foo:hover
+// use like this: +animate(color, 300ms)
+@mixin animate($property, $time)
+	-webkit-transition: $property, $time
+	-moz-transition: $property, $time
+	-transition: $property, $time
+
+// breakpoints
+// use this for per-element responsive rules
+
+// so e.g. for a heading that drops in size on small screens,
+// h1
+// font-size: 12px
+// +at($small)
+//		font-size: 10px
+
+$small: 420px
+$abovesmall: 960px
+$medium: 1080px
+$large: 1140px
+$abovelarge: 1440px
+@mixin at($width)
+	@media screen and (max-width: $width)
+		@content
+
+
+// clearfix mixin
+@mixin clearfix
+	&:after
+		content: ""
+		display: table
+		clear: both

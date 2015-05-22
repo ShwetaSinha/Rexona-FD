@@ -1,0 +1,326 @@
+2014-12-12 18:15:10,306 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Determining hash of code files on disk
+2014-12-12 18:15:10,411 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Hash determined (took 78ms)
+2014-12-12 18:15:10,440 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-12-12 18:15:10,584 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 139ms)
+2014-12-12 18:15:10,857 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-12-12 18:15:10,860 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 3ms)
+2014-12-12 18:15:10,869 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-12-12 18:15:10,874 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 4ms)
+2014-12-12 18:15:10,874 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-12-12 18:15:10,876 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 1ms)
+2014-12-12 18:15:10,948 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-12-12 18:15:10,950 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 1ms)
+2014-12-12 18:15:10,951 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-12-12 18:15:10,952 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 1ms)
+2014-12-12 18:15:12,117 [7] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 1] Initializing Examine and binding to business logic events
+2014-12-12 18:15:13,833 [7] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 1] Adding examine event handlers for index providers: 3
+2014-12-12 18:15:14,050 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.IApplication
+2014-12-12 18:15:14,052 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 1ms)
+2014-12-12 18:15:14,215 [7] ERROR Umbraco.Core.PluginManager - [Thread 1] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:15:14,250 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:15:14,254 [7] INFO  Umbraco.Core.PluginManager - [Thread 1] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 3ms)
+2014-12-12 18:15:14,423 [7] ERROR Umbraco.Core.PluginManager - [Thread 1] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:15:16,171 [7] INFO  umbraco.content - [Thread 8] Loading content from disk cache...
+2014-12-12 18:15:25,804 [7] INFO  Umbraco.Core.PluginManager - [Thread 8] Starting resolution types of umbraco.cms.businesslogic.macro.IMacroEngine
+2014-12-12 18:15:25,805 [7] INFO  Umbraco.Core.PluginManager - [Thread 8] Completed resolution of types of umbraco.cms.businesslogic.macro.IMacroEngine, found 4 (took 1ms)
+2014-12-12 18:15:28,846 [7] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of umbraco.interfaces.IDataType
+2014-12-12 18:15:28,849 [7] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of umbraco.interfaces.IDataType, found 82 (took 3ms)
+2014-12-12 18:15:29,039 [7] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:15:29,040 [7] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 0ms)
+2014-12-12 18:15:41,525 [7] INFO  Umbraco.Core.PluginManager - [Thread 10] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-12-12 18:15:41,528 [7] INFO  Umbraco.Core.PluginManager - [Thread 10] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 2ms)
+2014-12-12 18:15:43,884 [7] INFO  umbraco.presentation.publishingService - [Thread 10] sendEmails has been called with response: False
+2014-12-12 18:15:45,886 [7] INFO  umbraco.presentation.publishingService - [Thread 10] sendTractionEmails has been called with response: False
+2014-12-12 18:15:47,890 [7] INFO  umbraco.presentation.publishingService - [Thread 10] refreshSocialContent has been called with response: False
+2014-12-12 18:15:49,887 [7] INFO  umbraco.presentation.publishingService - [Thread 10] approveSocialContent has been called with response: False
+2014-12-12 18:16:43,665 [7] INFO  umbraco.presentation.publishingService - [Thread 16] sendEmails has been called with response: False
+2014-12-12 18:16:45,671 [7] INFO  umbraco.presentation.publishingService - [Thread 16] sendTractionEmails has been called with response: False
+2014-12-12 18:17:08,067 [7] INFO  umbraco.BusinessLogic.Log - [Thread 16] Log scrubbed.  Removed all items older than 2014-10-13 18:17:08
+2014-12-12 18:17:08,070 [7] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 16] Application shutdown. Reason: ConfigurationChange
+2014-12-12 18:17:11,274 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Determining hash of code files on disk
+2014-12-12 18:17:11,283 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Hash determined (took 3ms)
+2014-12-12 18:17:11,288 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-12-12 18:17:11,304 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 15ms)
+2014-12-12 18:17:11,306 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-12-12 18:17:11,306 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 0ms)
+2014-12-12 18:17:11,306 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-12-12 18:17:11,308 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 1ms)
+2014-12-12 18:17:11,308 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-12-12 18:17:11,308 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 0ms)
+2014-12-12 18:17:11,309 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-12-12 18:17:11,309 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 0ms)
+2014-12-12 18:17:11,309 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-12-12 18:17:11,309 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 0ms)
+2014-12-12 18:17:11,396 [7] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 14] Initializing Examine and binding to business logic events
+2014-12-12 18:17:11,496 [7] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 14] Adding examine event handlers for index providers: 3
+2014-12-12 18:17:11,501 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.IApplication
+2014-12-12 18:17:11,502 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 0ms)
+2014-12-12 18:17:11,526 [7] ERROR Umbraco.Core.PluginManager - [Thread 14] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:17:11,526 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:17:11,528 [7] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 1ms)
+2014-12-12 18:17:11,531 [7] ERROR Umbraco.Core.PluginManager - [Thread 14] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:17:11,635 [7] INFO  umbraco.content - [Thread 11] Loading content from disk cache...
+2014-12-12 18:17:41,409 [7] INFO  Umbraco.Core.PluginManager - [Thread 16] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-12-12 18:17:41,411 [7] INFO  Umbraco.Core.PluginManager - [Thread 16] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 2ms)
+2014-12-12 18:17:43,642 [7] INFO  umbraco.presentation.publishingService - [Thread 16] sendEmails has been called with response: False
+2014-12-12 18:17:45,652 [7] INFO  umbraco.presentation.publishingService - [Thread 16] sendTractionEmails has been called with response: False
+2014-12-12 18:17:47,657 [7] INFO  umbraco.presentation.publishingService - [Thread 16] refreshSocialContent has been called with response: False
+2014-12-12 18:17:49,651 [7] INFO  umbraco.presentation.publishingService - [Thread 16] approveSocialContent has been called with response: False
+2014-12-12 18:18:14,015 [7] INFO  umbraco.BusinessLogic.Log - [Thread 10] Log scrubbed.  Removed all items older than 2014-10-13 18:18:13
+2014-12-12 18:18:14,019 [7] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 10] Application shutdown. Reason: ConfigurationChange
+2014-12-12 18:18:41,502 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Determining hash of code files on disk
+2014-12-12 18:18:41,505 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Hash determined (took 2ms)
+2014-12-12 18:18:41,511 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-12-12 18:18:41,527 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 14ms)
+2014-12-12 18:18:41,529 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-12-12 18:18:41,529 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 0ms)
+2014-12-12 18:18:41,529 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-12-12 18:18:41,531 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 1ms)
+2014-12-12 18:18:41,531 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-12-12 18:18:41,531 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 0ms)
+2014-12-12 18:18:41,531 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-12-12 18:18:41,532 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 0ms)
+2014-12-12 18:18:41,532 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-12-12 18:18:41,532 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 0ms)
+2014-12-12 18:18:41,619 [21] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 14] Initializing Examine and binding to business logic events
+2014-12-12 18:18:41,717 [21] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 14] Adding examine event handlers for index providers: 3
+2014-12-12 18:18:41,721 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.IApplication
+2014-12-12 18:18:41,722 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 0ms)
+2014-12-12 18:18:41,748 [21] ERROR Umbraco.Core.PluginManager - [Thread 14] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:18:41,749 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:18:41,750 [21] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 1ms)
+2014-12-12 18:18:41,754 [21] ERROR Umbraco.Core.PluginManager - [Thread 14] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:18:50,063 [21] INFO  umbraco.BasePages.BasePage - [Thread 26] User admin (Id: 0) logged in
+2014-12-12 18:18:50,220 [21] INFO  Umbraco.Core.PluginManager - [Thread 24] Starting resolution types of umbraco.BusinessLogic.Actions.IActionHandler
+2014-12-12 18:18:50,221 [21] INFO  Umbraco.Core.PluginManager - [Thread 24] Completed resolution of types of umbraco.BusinessLogic.Actions.IActionHandler, found 1 (took 0ms)
+2014-12-12 18:18:50,553 [21] INFO  Umbraco.Core.PluginManager - [Thread 24] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:18:50,553 [21] INFO  Umbraco.Core.PluginManager - [Thread 24] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 0ms)
+2014-12-12 18:18:54,863 [21] INFO  Umbraco.Core.PluginManager - [Thread 26] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-12-12 18:18:54,863 [21] INFO  Umbraco.Core.PluginManager - [Thread 26] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 0ms)
+2014-12-12 18:19:13,584 [21] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-12-12 18:19:15,590 [21] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-12-12 18:19:17,597 [21] INFO  umbraco.presentation.publishingService - [Thread 24] refreshSocialContent has been called with response: False
+2014-12-12 18:19:19,617 [21] INFO  umbraco.presentation.publishingService - [Thread 24] approveSocialContent has been called with response: False
+2014-12-12 18:19:22,022 [21] INFO  umbraco.content - [Thread 27] Loading content from disk cache...
+2014-12-12 18:19:22,098 [21] ERROR Umbraco.Core.UmbracoApplicationBase - [Thread 27] An unhandled exception occurred
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Umbraco.Web.Routing.ContentFinderByLegacy404.TryFindContent(PublishedContentRequest pcr)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.HandlePageNotFound(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.TryFindContent(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.HandlePublishedContent()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.FindPublishedContentAndTemplate()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.PrepareRequest()
+   at Umbraco.Web.UmbracoModule.ProcessRequest(HttpContextBase httpContext)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-12-12 18:19:37,805 [21] INFO  umbraco.BusinessLogic.Log - [Thread 27] Log scrubbed.  Removed all items older than 2014-10-13 18:19:37
+2014-12-12 18:19:37,807 [21] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 27] Application shutdown. Reason: ConfigurationChange
+2014-12-12 18:19:40,221 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Determining hash of code files on disk
+2014-12-12 18:19:40,223 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Hash determined (took 2ms)
+2014-12-12 18:19:40,230 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-12-12 18:19:40,247 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 15ms)
+2014-12-12 18:19:40,251 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-12-12 18:19:40,252 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 0ms)
+2014-12-12 18:19:40,252 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-12-12 18:19:40,253 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 1ms)
+2014-12-12 18:19:40,253 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-12-12 18:19:40,253 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 0ms)
+2014-12-12 18:19:40,254 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-12-12 18:19:40,254 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 0ms)
+2014-12-12 18:19:40,254 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-12-12 18:19:40,255 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 0ms)
+2014-12-12 18:19:40,339 [12] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 18] Initializing Examine and binding to business logic events
+2014-12-12 18:19:40,437 [12] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 18] Adding examine event handlers for index providers: 3
+2014-12-12 18:19:40,442 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of umbraco.interfaces.IApplication
+2014-12-12 18:19:40,443 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 0ms)
+2014-12-12 18:19:40,467 [12] ERROR Umbraco.Core.PluginManager - [Thread 18] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:19:40,469 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:19:40,471 [12] INFO  Umbraco.Core.PluginManager - [Thread 18] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 1ms)
+2014-12-12 18:19:40,475 [12] ERROR Umbraco.Core.PluginManager - [Thread 18] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-12-12 18:19:40,594 [12] INFO  umbraco.content - [Thread 5] Loading content from disk cache...
+2014-12-12 18:19:40,695 [12] ERROR Umbraco.Core.UmbracoApplicationBase - [Thread 5] An unhandled exception occurred
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Umbraco.Web.Routing.ContentFinderByLegacy404.TryFindContent(PublishedContentRequest pcr)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.HandlePageNotFound(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.TryFindContent(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.HandlePublishedContent()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.FindPublishedContentAndTemplate()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.PrepareRequest()
+   at Umbraco.Web.UmbracoModule.ProcessRequest(HttpContextBase httpContext)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-12-12 18:19:57,904 [12] ERROR Umbraco.Core.UmbracoApplicationBase - [Thread 26] An unhandled exception occurred
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at Umbraco.Web.Routing.ContentFinderByLegacy404.TryFindContent(PublishedContentRequest pcr)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.HandlePageNotFound(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.ContentLastChanceFinderByNotFoundHandlers.TryFindContent(PublishedContentRequest docRequest)
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.HandlePublishedContent()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.FindPublishedContentAndTemplate()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.PrepareRequest()
+   at Umbraco.Web.UmbracoModule.ProcessRequest(HttpContextBase httpContext)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2014-12-12 18:20:10,303 [12] INFO  Umbraco.Core.PluginManager - [Thread 28] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-12-12 18:20:10,306 [12] INFO  Umbraco.Core.PluginManager - [Thread 28] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 2ms)
+2014-12-12 18:20:12,487 [12] INFO  umbraco.presentation.publishingService - [Thread 28] sendEmails has been called with response: False
+2014-12-12 18:20:14,482 [12] INFO  umbraco.presentation.publishingService - [Thread 28] sendTractionEmails has been called with response: False
+2014-12-12 18:20:16,492 [12] INFO  umbraco.presentation.publishingService - [Thread 28] refreshSocialContent has been called with response: False
+2014-12-12 18:20:18,497 [12] INFO  umbraco.presentation.publishingService - [Thread 28] approveSocialContent has been called with response: False
+2014-12-12 18:20:35,443 [12] INFO  Umbraco.Core.PluginManager - [Thread 26] Starting resolution types of umbraco.cms.businesslogic.macro.IMacroEngine
+2014-12-12 18:20:35,443 [12] INFO  Umbraco.Core.PluginManager - [Thread 26] Completed resolution of types of umbraco.cms.businesslogic.macro.IMacroEngine, found 4 (took 0ms)
+2014-12-12 18:20:36,996 [12] INFO  Umbraco.Core.PluginManager - [Thread 24] Starting resolution types of umbraco.interfaces.IDataType
+2014-12-12 18:20:37,000 [12] INFO  Umbraco.Core.PluginManager - [Thread 24] Completed resolution of types of umbraco.interfaces.IDataType, found 82 (took 3ms)
+2014-12-12 18:20:37,026 [12] INFO  Umbraco.Core.PluginManager - [Thread 24] Starting resolution types of umbraco.interfaces.ITree
+2014-12-12 18:20:37,027 [12] INFO  Umbraco.Core.PluginManager - [Thread 24] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 1ms)
+2014-12-12 18:21:12,430 [12] INFO  umbraco.presentation.publishingService - [Thread 35] sendEmails has been called with response: False
+2014-12-12 18:21:14,442 [12] INFO  umbraco.presentation.publishingService - [Thread 35] sendTractionEmails has been called with response: False
+2014-12-12 18:22:12,494 [12] INFO  umbraco.presentation.publishingService - [Thread 27] sendEmails has been called with response: False
+2014-12-12 18:22:14,520 [12] INFO  umbraco.presentation.publishingService - [Thread 27] sendTractionEmails has been called with response: False
+2014-12-12 18:23:12,508 [12] INFO  umbraco.presentation.publishingService - [Thread 11] sendEmails has been called with response: False
+2014-12-12 18:23:14,547 [12] INFO  umbraco.presentation.publishingService - [Thread 11] sendTractionEmails has been called with response: False
+2014-12-12 18:24:12,508 [12] INFO  umbraco.presentation.publishingService - [Thread 28] sendEmails has been called with response: False
+2014-12-12 18:24:14,514 [12] INFO  umbraco.presentation.publishingService - [Thread 28] sendTractionEmails has been called with response: False
+2014-12-12 18:25:12,544 [12] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-12-12 18:25:14,576 [12] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-12-12 18:26:12,523 [12] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-12-12 18:26:14,562 [12] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-12-12 18:27:12,568 [12] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2014-12-12 18:27:14,602 [12] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2014-12-12 18:28:12,544 [12] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2014-12-12 18:28:14,579 [12] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2014-12-12 18:29:12,572 [12] INFO  umbraco.presentation.publishingService - [Thread 22] sendEmails has been called with response: False
+2014-12-12 18:29:14,604 [12] INFO  umbraco.presentation.publishingService - [Thread 22] sendTractionEmails has been called with response: False
+2014-12-12 18:30:12,594 [12] INFO  umbraco.presentation.publishingService - [Thread 33] sendEmails has been called with response: False
+2014-12-12 18:30:14,628 [12] INFO  umbraco.presentation.publishingService - [Thread 33] sendTractionEmails has been called with response: False
+2014-12-12 18:31:12,601 [12] INFO  umbraco.presentation.publishingService - [Thread 34] sendEmails has been called with response: False
+2014-12-12 18:31:14,632 [12] INFO  umbraco.presentation.publishingService - [Thread 34] sendTractionEmails has been called with response: False
+2014-12-12 18:32:12,617 [12] INFO  umbraco.presentation.publishingService - [Thread 38] sendEmails has been called with response: False
+2014-12-12 18:32:14,666 [12] INFO  umbraco.presentation.publishingService - [Thread 38] sendTractionEmails has been called with response: False
+2014-12-12 18:33:12,535 [12] INFO  umbraco.presentation.publishingService - [Thread 25] sendEmails has been called with response: False
+2014-12-12 18:33:14,570 [12] INFO  umbraco.presentation.publishingService - [Thread 25] sendTractionEmails has been called with response: False

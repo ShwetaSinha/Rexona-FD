@@ -1,0 +1,90 @@
+@using System.Net.Mail;
+@using umbraco.cms.businesslogic.web;
+@using umbraco.NodeFactory;
+@using RexonaAU;
+@using umbraco;
+@using System.Configuration;
+@{
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+    var hashTag = ConfigurationManager.AppSettings["hashTag"];
+    var InstaGramAccessToken = ConfigurationManager.AppSettings["InstaGramAccessToken"];
+    var InstaGramURL = ConfigurationManager.AppSettings["InstaGramUrl"];
+}
+
+@*<script type="text/javascript" src="@urlHelper.Content("~/js/app.js")"></script>*@
+<script type="text/javascript" src="@urlHelper.Content("~/js/knockout-2.1.0.js")"></script>
+<script type="text/javascript" src="@urlHelper.Content("~/js/ViewModel.js")"></script>
+<script type="text/javascript" src="@urlHelper.Content("~/js/Socialdata.js")"></script>
+<script type="text/javascript" src="@urlHelper.Content("~/js/hashtags.js")"></script>
+<style>
+    .loading {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 48%;
+        top: 50%;
+        z-index: 9999;
+    }
+</style>
+<script type="text/javascript">
+    //-------------- Start of loading function logic ******************/
+    function startLoad() {
+        $('#loader').prepend('<div class="loading"><img src="../images/loading.gif"></div>');//<h2>Loading...</h2>
+        $('.loading').fadeIn(300);
+        //$('.fade').addClass('transparent', 300);
+    };
+
+    function loadDone() {
+        //$('.fade').removeClass('transparent', 300);
+        $('.loading').fadeOut(300, function () {
+            $(this).remove();
+        });
+
+    };
+    //-------------- end of loading function logic ******************/
+</script>
+
+<div>
+    <div id="divTwitter">
+        <div id="divTwitterResults" style="display: none; margin-top: 10px;">
+            <table class="customtable">
+                <thead>
+                    <tr>
+                        <th style="width: 300px;">Tweet Text</th>
+                        <th>Screen Name</th>
+                        <th>Created Date</th>
+                        <th>Twitter URL</th>
+                        <th>Approve</th>
+                        <th>Reject</th>
+                        <th style="display: none">TweetId</th>
+                        <th style="display: none">Meida URL</th>
+                    </tr>
+                </thead>
+
+                <tbody data-bind="foreach: tweets">
+                    <tr data-bind="attr:{Id:Id}">
+                        <td  data-bind="html: TweetText" id="tweetText"></td>
+                        <td data-bind="html: ScreenNameResponse" id="userName"></td>
+                        <td data-bind="html: CreatedAt" id="createdDate"></td>
+
+                        <td>
+                            <a target="_blank" data-bind="attr:{href:TwitterURL}" id="tweetUrl">Check this on Twitter</a></td>
+                        <td>
+                            <input type="button" name="approve" class="approve" value="Approve" data-bind="click:approveContent" />
+                        </td>
+                        <td>
+                            <input type="button" name="reject" class="reject" value="Reject" data-bind="click:rejectContent" /></td>
+
+                        <td data-bind="html: Id" style="display: none;"></td>
+                        <td data-bind="html: MediaURL" style="display: none;"></td>
+                        <td data-bind="html: likes" style="display: none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div id="loader"></div>
+<input type="hidden" id="hdnHashTag" value="@hashTag" />
+<input type="hidden" id="hdnAccessToken" value="@InstaGramAccessToken" />
+<input type="hidden" id="hdnInstaGramUrl" value="@InstaGramURL" />

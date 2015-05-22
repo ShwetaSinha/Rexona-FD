@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using RexonaAU.Helpers;
+@{
+    Layout = "_Baselayout.cshtml";
+    Common.SetNoBrowserCacheForpage();
+    Common.CheckUserSessionValidity();
+}
+
+@Html.Action("RenderRegister", "LogOn")
+
+

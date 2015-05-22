@@ -1,0 +1,69 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+}
+@{
+    var imageID = Umbraco.Field("image").ToString();
+    int MediaimageID = Convert.ToInt32(imageID);
+    var media = new umbraco.cms.businesslogic.media.Media(MediaimageID);
+    var Title = Model.Content.Name;
+    var Description = Model.Content.GetPropertyValue("Description");
+    var ArticlesTag = Model.Content.GetPropertyValue("categoryTag");
+    if (media != null)
+    {
+        var ImageSource = media.getProperty("umbracoFile").Value;     
+
+ <div class="category-header" style="background-image: url('@ImageSource');">
+        <div class="row top-row">
+          
+          <div class="large-6 columns">
+            <a href="/empowerment" class="crumb-back">« Back to Empowerment</a>
+            <h1>@Title</h1> 
+            <p>@Description </p> 
+             @using (Html.BeginUmbracoForm<RexonaAU.Controllers.ArticleController>("ArticlesSearch"))
+             {
+                <input type="text" name="search" placeholder="Search @Title..." id="txtArticleSearch">                 
+                @Html.AntiForgeryToken() 
+             }
+          </div>
+        </div>
+      </div>
+    }
+}
+
+<div class="alternate-panel noMargin">
+  <div class="row">
+    <div class="large-8 columns" id="articleResults">
+         </div>
+    </div>  
+</div>
+    <script>
+
+        $(document).ready(function () {
+            $.ajax({
+                url: "@Url.Action("GetArticlesByTag", "Article")?ArticlesTag=" + '@ArticlesTag',
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                dataType: 'json'
+            })
+
+                             .success(function (result) {
+                                 var items = '';
+                                 for (var i in result) {
+                                     //console.log(result);
+                                     items += '<article><a href="' + result[i].ArticleUrl + '"><h2>' + result[i].ArticleName + '</h2></a><div class="author">by ' + result[i].ArticleAuthor + '</div><div class="posted"> POSTED ' + result[i].PostedOn + '</div><hr>' + result[i].ArticleDescription + '<a href="' + result[i].ArticleUrl + '" class="readMore"><br/><br/>Read More</a></article>';
+                                 }
+
+                                 $('#articleResults').html(items);
+
+                             })
+                              .error(function (result) {
+                                  alert("Inside Error");
+                              })
+
+
+        });
+
+    </script>
+
+         

@@ -1,0 +1,1360 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using umbraco.cms.businesslogic.member;
+@using RexonaAU.Models;
+@using RexonaAU.Helpers;
+@using umbraco.NodeFactory;
+@using System.Globalization;
+@{
+    Layout = "_Baselayout.cshtml";
+}
+
+@{
+    
+    List<MemberPledges> lstMemberPledges = Common.GetAllMemberPledges();
+    string pledgeTitle = string.Empty, goalType = string.Empty, startDate = string.Empty, endDate = string.Empty, dateRangeText = string.Empty, numberOFMembers = string.Empty, showStartBadge = "false", showEndBadge = "false", showSharedBadge = "false", avatarImage = "http://placehold.it/50x50", isMemberofGroup = "false", isLoggedIn = "false", isConnectedUsingFB = "false";
+    bool publicPledgeSelection = false;
+
+    //Get Pledge Title
+    pledgeTitle = Model.Content.HasValue("title") ? Model.Content.GetPropertyValue<string>("title") : string.Empty;
+
+    //Check if the pledge is public/private and set text accordingly
+    publicPledgeSelection = Model.Content.HasValue("publicPledgeSelection") ? Model.Content.GetPropertyValue<bool>("publicPledgeSelection") : false;
+    goalType = publicPledgeSelection ? "Open" : "Close";
+
+    //Calculate number of members
+    var membersWithStep3Clear = Model.Content.Children.Where(a => a.GetPropertyValue<bool>("step3Clear")).OrderByDescending(a => a.CreateDate).Select(a => a).ToList();
+    string numberOFMembersText = membersWithStep3Clear.Count() == 1 ? membersWithStep3Clear.Count() + " member" : membersWithStep3Clear.Count() + " members";
+    numberOFMembers = Convert.ToString(membersWithStep3Clear.Count());
+    var membersWithStep3ClearIDs = Model.Content.Children.Where(a => a.GetPropertyValue<bool>("step3Clear")).OrderByDescending(a => a.CreateDate).Select(a => a.GetPropertyValue<int>("memberId")).ToList();
+    string joinedmembersWithStep3ClearIDs = string.Join(",", membersWithStep3ClearIDs.ToArray());
+    //Get start date / end date of logged in member
+    Member currentmember = Member.GetCurrentMember();
+    int currentmemberId = 0;
+    string currentmemberName = string.Empty;
+    string memberPostCode = string.Empty;
+    string memberCapitalCity = string.Empty;
+    if (currentmember != null)
+    {
+        currentmemberId = currentmember.Id;
+        memberPostCode = currentmember.GetProperty<string>("postCode");
+        memberCapitalCity = currentmember.GetProperty<string>("capitalCity");
+        isLoggedIn = "true";
+        currentmemberName = currentmember.GetProperty<string>("firstName") + " " + currentmember.GetProperty<string>("lastName");
+        avatarImage = GetAvatarImage(currentmember.Id);
+        isConnectedUsingFB = Convert.ToString(CheckFBUser(currentmember.Id)).ToLower();
+
+        if (Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == currentmember.Id).Count() > 0)
+        {
+            startDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == currentmember.Id).Select(a => a.GetPropertyValue<string>("startDate")).ToList<string>()[0];
+
+            endDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == currentmember.Id).Select(a => a.GetPropertyValue<string>("endDate")).ToList<string>()[0];
+
+            //Calculate badges only for signed in users and who are members of the group
+            isMemberofGroup = "true";
+            showSharedBadge = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == currentmember.Id).Select(a => a.GetPropertyValue<string>("shared")).ToList<string>()[0].ToLower();
+
+            DateTime dtStartDate = new DateTime(), dtEndDate = new DateTime();
+
+            if (!string.IsNullOrEmpty(startDate) && DateTime.TryParseExact(startDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dtStartDate))
+            {
+                if (DateTime.Now > dtStartDate)
+                {
+                    showStartBadge = "true";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(endDate) && DateTime.TryParseExact(endDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dtEndDate))
+            {
+                if (DateTime.Now > dtEndDate)
+                {
+                    showEndBadge = "true";
+                }
+            }
+            else if (string.IsNullOrEmpty(endDate))
+            {
+                showEndBadge = "hide";
+            }
+
+        }
+        else
+        {
+            startDate = SetStartDateEndDateOfOwner(out endDate);
+        }
+    }
+    else
+    {
+        //If current member is not logged in, show start/end dates of owner
+        startDate = SetStartDateEndDateOfOwner(out endDate);
+    }
+
+    dateRangeText = string.IsNullOrEmpty(endDate) ? startDate : startDate + " - " + endDate;
+
+    publicPledgeSelection = Model.Content.HasValue("publicPledgeSelection") ? Model.Content.GetPropertyValue<bool>("publicPledgeSelection") : false;
+
+    //Get ID of the pledge
+    var pledgeId = Model.Content.Id;
+
+}
+
+@functions{
+
+    //show start/end dates of owner when user is not logged in or user is not a member of the group
+    public string SetStartDateEndDateOfOwner(out string endDate)
+    {
+        int ownerID = 0;
+        string startDate = endDate = string.Empty;
+        if (Model.Content.Children.Where(a => a.GetPropertyValue<bool>("isOwner")).Select(a => a.GetPropertyValue<int>("memberId")).Count() > 0)
+        {
+            ownerID = Model.Content.Children.Where(a => a.GetPropertyValue<bool>("isOwner")).Select(a => a.GetPropertyValue<int>("memberId")).ToList<int>()[0];
+            startDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == ownerID).Select(a => a.GetPropertyValue<string>("startDate")).ToList<string>()[0];
+
+            endDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == ownerID).Select(a => a.GetPropertyValue<string>("endDate")).ToList<string>()[0];
+
+        }
+
+        return startDate;
+    }
+
+    //Return Avatar image (First pledge processed image)
+    List<MemberPledges> lstMemberPledges = Common.GetAllMemberPledges();
+    public string GetAvatarImage(int userId)
+    {
+        string avatarImage = string.Empty;
+        if (lstMemberPledges != null && lstMemberPledges.Count > 0)
+        {
+            List<MemberPledges> thisMemberPledges = lstMemberPledges.FindAll(obj => obj.MemberId == userId);
+            if (thisMemberPledges != null && thisMemberPledges.Count > 0)
+            {
+                var firstPledge = thisMemberPledges.OrderBy(obj => obj.CreatedDate).FirstOrDefault();
+                if (firstPledge != null && firstPledge.PledgeId > 0)
+                {
+                    avatarImage = !string.IsNullOrEmpty(firstPledge.ImageUrl) ? firstPledge.ImageUrl : "http://placehold.it/50x50";
+                }
+            }
+            else
+            {
+                avatarImage = "http://placehold.it/50x50";
+            }
+        }
+        return avatarImage;
+    }
+
+    public string GetUserName(int UserId)
+    {
+        string MemberName = string.Empty;
+        try
+        {
+            Member member = new Member(UserId);
+            if (member != null)
+            {
+                bool has_name = member.HasProperty("firstName") && member.HasProperty("lastName");
+                MemberName = !string.IsNullOrEmpty(member.Text) ? member.Text : has_name ? member.GetProperty<string>("firstName") + " " + member.GetProperty<string>("lastName") : string.Empty;
+            }
+        }
+        catch
+        {
+            MemberName = "User Deleted From Backend";
+        }
+
+        return MemberName;
+    }
+
+    public bool CheckFBUser(int UserId)
+    {
+        bool connectedUsingFB = false;
+        try
+        {
+            Member member = new Member(UserId);
+            if (member != null)
+            {
+                connectedUsingFB = member.HasProperty("facebookConnect") ? member.GetProperty<bool>("facebookConnect") : false;
+            }
+        }
+        catch
+        {
+            connectedUsingFB = false;
+        }
+
+        return connectedUsingFB;
+    }
+
+}
+
+<div class="hero-panel pledge-network no-p-bottom no-p-top">
+    <div class="row">
+        <div class="large-12 columns">
+            <a href="/dashboard/" class="button breadcrumb small with-icon left-icon"><i class="fa fa-chevron-left"></i>Back to Dashboard</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="pledge-heading">
+                <div class="pledge-title">
+                    <h1>@pledgeTitle</h1>
+                </div>
+                <div class="pledge-actions">
+                    <a id="joinGoal" href="#" style="display: none;" class="button small with-icon right-icon right">Join</a>
+                    <a id="joinedGoal" style="display: none;" href="#" class="button small with-icon right-icon right">Joined <i class="fa fa-check"></i></a>
+                    <a id="shareGoal" style="display: none;" class="button secondary small right">Share Goal</a>
+                </div>
+            </div>
+            <div class="pledge-details">
+                <div class="pledge-info">
+                    <div class="pledge-member-count">@goalType (@numberOFMembersText)</div>
+                    <div class="pledge-lifespan">@dateRangeText</div>
+                </div>
+                <div class="pledge-badges">
+                    <img id="imgStartBadge" src="~/images/goal-started.png" data-tooltip class="has-tip inactive" title="Started your pledge" style="display: none;">
+                    <img id="imgSharedBadge" src="~//images/goal-shared.png" data-tooltip class="has-tip inactive" title="Shared your pledge on social media" style="display: none;">
+                    <img id="imgEndBadge" src="~/images/goal-finished.png" data-tooltip class="has-tip inactive" title="Finished your pledge" style="display: none;">
+                    <input type="hidden" id="hdnStartBadge" value="@showStartBadge" />
+                    <input type="hidden" id="hdnSharedBadge" value="@showSharedBadge" />
+                    <input type="hidden" id="hdnEndBadge" value="@showEndBadge" />
+                    <input type="hidden" id="hdnPledgeId" value="@pledgeId" />
+                    <input type="hidden" id="hdnIsMemberofGroup" value="@isMemberofGroup" />
+                    <input type="hidden" id="hdnMemberId" value="@currentmemberId" />
+                    <input type="hidden" id="hdnMemberName" value="@currentmemberName" />
+                    <input type="hidden" id="hdnMemberEmail" value="@(currentmember == null ? string.Empty : currentmember.Email)" />
+                    <input type="hidden" id="hdnPledgeType" value="@goalType" />
+                    <input type="hidden" id="hdnIsLoggedIn" value="@isLoggedIn" />
+                    <input type="hidden" id="hdnIsConnectedUsingFb" value="@isConnectedUsingFB" />
+
+                    <input type="hidden" id="hdnMemPostcode" value="@memberPostCode" />
+                    <input type="hidden" id="hdnMemCaptialCity" value="@memberCapitalCity" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-panel dark-content">
+    <div class="row">
+        <div class="large-8 medium-7 small-12 columns">
+            <div class="discussions-listing-heading">
+                <h4 class="contained-title">Discussions</h4>
+            </div>
+            <div class="discussions-listing-container">
+                <div class="discussions-listing-start-discussion">
+                    <form data-abide="ajax" id="start-discussion">
+                        <div class="row">
+                            <div class="large-11 columns large-offset-1">
+                                <h5>Start a discussion</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-11 columns large-offset-1">
+                                <div class="user-avatar">
+                                    <img id="postAvatarImage" src="@avatarImage" alt="" style="height:50px;">
+                                </div>
+                                <input id="discussion-title" type="text" placeholder="Title your post" required data-abide-validator="discussionTitle">
+                                <small class="error" id="titleError">Please title your post.</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-11 columns large-offset-1">
+                                <textarea name="discussion-body" id="discussion-body" cols="30" rows="8" placeholder="What do you need help with?"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-11 columns large-offset-1" style="display: none;">
+                                <button id="DiscussionPost" type="submit" class="button small right with-icon icon-right">Post <i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="pill-box-container" id="discussions-pill-box">
+                    <div class="pill-box-pills">
+                        <ul class="pills">
+                            <li class="active three-pill"><a href="#discussions-all">All</a></li>
+                            <li class="three-pill"><a href="#discussions-following" style="display: none;">Following</a></li>
+                            <li class="three-pill"><a href="#discussions-my-posts" style="display: none;">My Posts</a></li>
+                        </ul>
+                    </div>
+                    <div class="pill-box">
+                        <div class="pill-box-content active" id="discussions-all">
+                            <ul class="entity-list" data-bind="foreach: Discussions">
+                                <li class="discussion-in-list">
+                                    <div class="entity-image entity-block hide-for-small">
+                                        <img data-bind="attr:{src: PostedByAvatar}" alt="">
+                                    </div>
+                                    <div class="entity-details entity-block">
+                                        <div class="entity-name">
+                                            <a>
+                                                <h5 data-bind="html: Title"></h5>
+                                            </a>
+                                        </div>
+                                        <div class="entity-meta">
+                                            <div class="discussions-timestamp-author">
+                                                <p data-bind="text: PostedBy"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="text: PostedDate"></p>
+                                                </div>
+                                            </div>
+                                            <div class="discussions-actions" data-bind="attr:{id: Id}" style="display: none;">
+                                                <a id="discussionFollow" class="small-link">Follow</a>
+                                                <a id="discussionFollowing" style="display: none; text-decoration: none;" class="small-link">Following <i class="fa fa-check"></i></a>
+                                                <a id="discussionReply" class="small-link">Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="pill-box-content" id="discussions-following">
+                            <ul class="entity-list" data-bind="foreach: FollowedDiscussions">
+                                <li class="discussion-in-list">
+                                    <div class="entity-image entity-block hide-for-small">
+                                        <img data-bind="attr:{src: PostedByAvatar}" alt="">
+                                    </div>
+                                    <div class="entity-details entity-block">
+                                        <div class="entity-name">
+                                            <a>
+                                                <h5 data-bind="html: Title"></h5>
+                                            </a>
+                                        </div>
+                                        <div class="entity-meta">
+                                            <div class="discussions-timestamp-author">
+                                                <p data-bind="text: PostedBy"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="text: PostedDate"></p>
+                                                </div>
+                                            </div>
+                                            <div class="discussions-actions" data-bind="attr:{id: Id}" style="display: none;">
+                                                <a id="discussionFollow" class="small-link" style="display: none;">Follow</a>
+                                                <a id="discussionReply" class="small-link">Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="pill-box-content" id="discussions-my-posts">
+                            <ul class="entity-list" data-bind="foreach: MyDiscussions">
+                                <li class="discussion-in-list">
+                                    <div class="entity-image entity-block hide-for-small">
+                                        <img data-bind="attr:{src: PostedByAvatar}" alt="">
+                                    </div>
+                                    <div class="entity-details entity-block">
+                                        <div class="entity-name">
+                                            <a>
+                                                <h5 data-bind="html: Title"></h5>
+                                            </a>
+                                        </div>
+                                        <div class="entity-meta">
+                                            <div class="discussions-timestamp-author">
+                                                <p data-bind="text: PostedBy"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="text: PostedDate"></p>
+                                                </div>
+                                            </div>
+                                            <div class="discussions-actions" data-bind="attr:{id: Id}" style="display: none;">
+                                                <a id="discussionFollow" class="small-link" style="display: none;">Follow</a>
+                                                <a id="discussionReply" class="small-link">Reply</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- sidebar -->
+        <div class="large-4 medium-5 small-12 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="pill-box-container" id="members-pill-box">
+                        <div class="pill-box-heading">
+                            <h4 class="contained-title">Members</h4>
+                        </div>
+                        <div class="pill-box-pills">
+                            <ul class="pills">
+                                <li class="active two-pill"><a href="#members-all">All (@numberOFMembers)</a></li>
+                                <li class="two-pill" style="display: none;"><a id="facebookTab" href="#members-facebook">Facebook (2)</a></li>
+                            </ul>
+                        </div>
+                        <div class="pill-box">
+                            <div class="pill-box-content active" id="members-all">
+                                <ul class="entity-list">
+                                    @foreach (var GroupMember in membersWithStep3Clear)
+                                    {
+                                        string MemberStartDate = GroupMember.CreateDate.ToString("dd/MM/yyyy");
+                                        string MemberAvatarImage = string.Empty, MemberName = string.Empty;
+
+                                        int MemberId = GroupMember.GetPropertyValue<int>("memberId");
+                                        MemberAvatarImage = GetAvatarImage(MemberId);
+                                        MemberName = GetUserName(MemberId);
+                                    
+                                        <li class="user">
+                                            <div class="entity-image entity-block hide-for-small">
+                                                <img src="@MemberAvatarImage" alt="">
+                                            </div>
+                                            <div class="entity-details entity-block">
+                                                <div class="entity-name">
+                                                    <p>@MemberName</p>
+                                                </div>
+                                                <div class="entity-meta">
+                                                    <p>Part of this pledge since</p>
+                                                    <div class="secondary-line">
+                                                        <p>@MemberStartDate</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+
+                                </ul>
+                            </div>
+                            <div class="pill-box-content" id="members-facebook">
+                                <ul class="entity-list">
+                                    @foreach (var GroupMember in membersWithStep3Clear)
+                                    {
+                                        string MemberStartDate = GroupMember.CreateDate.ToString("dd/MM/yyyy");
+                                        string MemberAvatarImage = string.Empty, MemberName = string.Empty;
+
+                                        int MemberId = GroupMember.GetPropertyValue<int>("memberId");
+                                        if (GroupMember.GetPropertyValue<bool>("isInvited"))
+                                        {
+                                            MemberAvatarImage = GetAvatarImage(MemberId);
+                                            MemberName = GetUserName(MemberId);
+                                        <li class="user">
+                                            <div class="entity-image entity-block hide-for-small">
+                                                <img src="@MemberAvatarImage" alt="">
+                                            </div>
+                                            <div class="entity-details entity-block">
+                                                <div class="entity-name">
+                                                    <p>@MemberName</p>
+                                                </div>
+                                                <div class="entity-meta">
+                                                    <p>Part of this pledge since</p>
+                                                    <div class="secondary-line">
+                                                        <p>@MemberStartDate</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li> 
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                            <div class="pill-meta">
+                                <div class="secondary-meta" style="display: none;"><a class="small-link">Show All</a></div>
+                                <div class="primary-meta" style="display: none;">Invite via: <a href="#" class="small-link" onclick="openCloseStack('.invite-friends');">Email</a> or <a href="" id="openInvite" class="small-link">Facebook</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="pill-box-container" id="events">
+                    <div class="pill-box-heading">
+                        <h4 class="contained-title">Recommended Events</h4>
+                    </div>
+                    <div class="pill-box-pills">
+                        <ul class="pills">
+                            <li class="active three-pill"><a href="#all" id="allCount">All <span id="AllCount"></span></a></li>
+                                <li class="three-pill"><a href="#near-me">Near Me <span id="nearCount"></span></a></li>
+                                <li class="three-pill"><a href="#my-events" style="display: none">My Events <span id="MyCount"></span></a></li>
+                        </ul>
+                    </div>
+                    <div class="pill-box">
+                        <div class="pill-box-content active" id="all">
+                            <div class="pill-box-search" id="AllSearch">
+                                <input type="search" placeholder="Search by post code...">
+                            </div>
+                            <ul class="entity-list" data-bind="foreach:AllEvents">
+                                    <a data-bind="attr:{id:EventId,onclick:clickEvent}" style="border: none;">
+                                    <li class="event" data-bind="attr:{'data-postcode':PostCode}">
+                                        <div class="entity-details entity-block">
+                                            <div class="entity-name">
+                                                <p data-bind="html:EventTitle"></p>
+                                                <span class="attendance" data-bind="visible:IsJoined,text:greenTag"></span>
+                                            </div>
+                                            <div class="entity-meta">
+                                                <p data-bind="html:FullDate"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="html:EventLocation"></p>
+                                                </div>
+                                                <p data-bind="html:PostCode" style="display: none;"></p>
+                                                <p class="pledgeURLEvent" data-bind="attr:{href:pledgeURL}" style="display: none;"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                
+                            </ul>
+                        </div>
+
+                        <div class="pill-box-content" id="near-me">
+                            <div class="pill-box-search" id="NearSearch">
+                                <input type="search" placeholder="Search by post code...">
+                            </div>
+                            <ul class="entity-list" data-bind="foreach:NearEvents">
+                                    <a data-bind="attr:{id:EventId,onclick:clickEvent}" style="border: none;">
+                                    <li class="event" data-bind="attr:{'data-postcode':PostCode}">
+                                        <div class="entity-details entity-block">
+                                            <div class="entity-name">
+                                                <p data-bind="html:EventTitle"></p>
+                                                <span class="attendance" data-bind="visible:IsJoined,text:greenTag"></span>
+                                            </div>
+                                            <div class="entity-meta">
+                                                <p data-bind="html:FullDate"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="html:EventLocation"></p>
+                                                </div>
+                                                <p data-bind="html:PostCode" style="display: none;"></p>
+                                                <p class="pledgeURLEvent" data-bind="attr:{href:pledgeURL}" style="display: none;"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+
+                        <div class="pill-box-content" id="my-events">
+                            
+                            <div class="pill-box-search" id="MySearch">
+                                <input type="search" placeholder="Search by post code...">
+                            </div>
+                            <ul class="entity-list" data-bind="foreach:MyEvents">
+                                    <a data-bind="attr:{id:EventId,onclick:clickEvent}" style="border: none;">
+                                    <li class="event" data-bind="attr:{'data-postcode':PostCode}">
+                                        <div class="entity-details entity-block">
+                                            <div class="entity-name">
+                                                <p data-bind="html:EventTitle"></p>
+                                                <span class="attendance" data-bind="visible:IsJoined,text:greenTag"></span>
+                                            </div>
+                                            <div class="entity-meta">
+                                                <p data-bind="html:FullDate"></p>
+                                                <div class="secondary-line">
+                                                    <p data-bind="html:EventLocation"></p>
+                                                </div>
+                                                <p data-bind="html:PostCode" style="display: none;"></p>
+                                                <p class="pledgeURLEvent" data-bind="attr:{href:pledgeURL}" style="display: none;"></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                            </ul>
+                        </div>
+
+                        <div class="pill-meta">
+                                <div class="primary-meta"><a id="createEvent" style="display: none" onclick="openCloseStack('.create-events')" class="small-link">Create Event</a></div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal-container create-events">
+        <div class="stack">
+            <div class="card next-card">
+                <div class="card-content title">
+                    <h5>Woah there</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status">
+                        <i class="fa fa-warning destructive"></i>
+                        <p>Your <strong>End Date</strong> cannot be before your <strong>Start Date</strong></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <h5>Create Event</h5>
+                    <div class="close-modal">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content scrollable">
+                    <form data-abide="ajax" id="eventForm">
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Title your event</label>
+                                <input type="text" id="eventTitle" placeholder="Event Title" required data-abide-validator="profanity" />
+                                <small id="swearError" class="error">Please enter a title</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Event Description</label>
+                                <input type="text" placeholder="Event description" id="eventDesc">
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>Start date</label>
+                                <input type="text" id="eventStartDate" placeholder="DD MM YY" class="datepicker-event start-date" required readonly="readonly" />
+                                <small class="error">Please select a start date</small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>Start time</label>
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <label class="select">
+                                            <select id="eventStarttimeselection">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="eventStart">
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>End date</label>
+                                <input type="text" id="eventEndDate" placeholder="DD MM YY" class="datepicker-event end-date" readonly="readonly" />
+                                <small class="error" id="end-error"></small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>End time</label>
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <label class="select">
+                                            <select id="eventEndtimeselection">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="eventEnd" required>
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Address</label>
+                                <input type="text" id="eventLocation" placeholder="123 Example St, Surry Hills" required>
+                                <small class="error">Please enter an address</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-4 columns">
+                                <label>Post code</label>
+                                <input type="tel" id="eventPostCode" placeholder="2021" required data-abide-validator="postcodeValidation" pattern="number" />
+                                <small class="error" id="postError"></small>
+                            </div>
+                        <div class="large-4 columns end">
+                            <label>State</label>
+                            <label class="select">
+                                <select id="state-selection" required>
+                                    <option selected value="">State</option>
+                                    <option value="act">ACT</option>
+                                    <option value="nsw">NSW</option>
+                                    <option value="nt">NT</option>
+                                    <option value="qld">QLD</option>
+                                    <option value="sa">SA</option>
+                                    <option value="tas">TAS</option>
+                                    <option value="vic">VIC</option>
+                                    <option value="wa">WA</option>
+                                </select>
+                            </label>
+                            <small class="error">Please select your state</small>
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <button type="submit" id="newEvent" class="button with-icon right-icon right">Create Event<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-container view-event">
+        <div class="stack">
+            <div class="card next-card share-card">
+                <div class="card-content title">
+                    <h5>Share this Event</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="row">
+                    <p class="eventLinkToShare" style="display: none"></p>
+                        <div class="large-8 columns large-centered">
+                            <a id="fbEvent" class="share-button button medium fb">Facebook <i class="fa fa-facebook"></i></a>
+                        <a id="twEvent" class="twitter-share-button button share-button medium twitter">Twitter <i class="fa fa-twitter"></i></a>
+                            <a id="ggEvent" class="g-plus share-button button medium">Google+ <i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <div class="close-modal">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content no-p-top">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="event-details">
+                            <p class="eventLinkToShare" style="display: none"></p>
+                                <h5 id="titleEvent">Title of Event Goes Here</h5>
+                            <div class="event-status" id="statusEvent" style="display: none;">Attending</div>
+                            <div class="event-desc">
+                                    <p id="eventDescription"></p>
+                                </div>
+                                <div class="date-time" id="eventDateTime">1 August at 07:00PM</div>
+                                <div class="location" id="locationEvent">123 Example Street, Surry Hills 2021</div>
+                            <div class="share">
+                                <a id="leaveEvent" class="attend-event" style="display: none;">Leave this event</a>
+                                <a id="JoinEvent" class="attend-event" style="display: none;">Attend this event</a>
+                                    <div class="confirm-leave">Are you sure you want to leave this event? <a class="destructive cancel-leave">Cancel</a> <a class="leave">Leave Event</a></div>
+                            </div>
+                        </div>
+                            <a class="button full-width" id="share-event">Share Event</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-container edit-events">
+        <div class="stack">
+            <div class="card next-card">
+                <div class="card-content title">
+                    <h5>Woah there</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status">
+                        <i class="fa fa-warning destructive"></i>
+                        <p>Your <strong>End Date</strong> cannot be before your <strong>Start Date</strong></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <h5>Edit Event</h5>
+                    <div class="close-modal">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content scrollable">
+                    <form data-abide="ajax" id="eventEditForm">
+                    
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Title your event</label>
+                            <input type="text" placeholder="Event Title" required data-abide-validator="profanity" id="editTitle">
+                            <small id="swearError" class="error">Please enter a title</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Event Description</label>
+                            <input type="text" placeholder="Event description" id="editDescription">
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>Start date</label>
+                            <input type="text" placeholder="DD MM YY" class="datepicker-event start-date" required readonly="readonly" id="editStartDate">
+                                <small class="error">Please select a start date</small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>Start time</label>
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <label class="select">
+                                            <select id="time-selection-start">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="start-am-pm">
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>End date</label>
+                            <input type="text" placeholder="DD MM YY" class="datepicker-event end-date" id="editEndDate">
+                                <small class="error" id="end-error"></small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>End time</label>
+                                <div class="row">
+                                    <div class="large-7 columns">
+                                        <label class="select">
+                                            <select id="time-selection-end">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="end-am-pm" required>
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Address</label>
+                            <input type="text" placeholder="123 Example St, Surry Hills" required id="editLocation">
+                                <small class="error">Please enter an address</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-4 columns">
+                                <label>Post code</label>
+                            <input type="tel" placeholder="2021" required data-abide-validator="postcodeValidation" pattern="number" id="editPostCode" />
+                                <small class="error" id="postError"></small>
+                            </div>
+                        <div class="large-4 columns end">
+                            <label>State</label>
+                            <label class="select">
+                                <select id="editSelect" required>
+                                    <option selected value="">State</option>
+                                    <option value="act">ACT</option>
+                                    <option value="nsw">NSW</option>
+                                    <option value="nt">NT</option>
+                                    <option value="qld">QLD</option>
+                                    <option value="sa">SA</option>
+                                    <option value="tas">TAS</option>
+                                    <option value="vic">VIC</option>
+                                    <option value="wa">WA</option>
+                                </select>
+                            </label>
+                            <small class="error">Please select your state</small>
+                        </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                            <a onclick="deleteEvent()" class="button alert left delete-events">Delete Event</a>
+                                <button type="submit" class="button with-icon right-icon right">Save Event<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+<div class="modal-container invite-friends">
+    <div class="stack">
+        <div class="card next-card">
+            <div class="card-content title">
+                <h5>Invite Sent</h5>
+                <div class="close-modal">
+                    <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-content scrollable">
+                <div class="status">
+                    <i class="fa fa-check-circle constructive"></i>
+                    <p>Your invitation to <strong>John Appleseed</strong> has been sent. If they accept your invitation, they will be automatically added to your friends list.</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card current-card">
+            <div class="card-content title">
+                <h5>Invite Friends</h5>
+                <div class="close-modal">
+                    <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content" id="invite-email">
+                <div class="card-content scrollable">
+                    <form data-abide="ajax" id="send-invite">
+                        <div class="row">
+                            <input type="email" id="invite-email" placeholder="Enter your friend's email address" required>
+                            <small class="error">Please enter a valid email address</small>
+                        </div>
+                        <div class="row">
+                            <textarea name="invite-message" id="invite-message" cols="30" rows="7" placeholder="(Optional) Enter your message here"></textarea>
+                        </div>
+                        <div class="row">
+                            <button id="emailInvite" type="submit" class="button medium right">Send Invite</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="hdnmemberIds" value="@joinedmembersWithStep3ClearIDs" />
+<div class="modal-container discussion">
+    <div class="content-lightbox-container">
+        <div class="close-modal">
+            <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="content-lightbox">
+            <div class="discussion-container">
+                <div class="reply parent op">
+                    <div class="reply-content">
+                        <div class="reply-meta">
+                            <div class="reply-author" id="DiscussionAuthor">
+                                <strong>Sophie Brown</strong> said:
+                            </div>
+                            <div id="DiscussionPostDateTime" class="reply-timestamp">
+                                14/05/2014 10:36pm
+                            </div>
+                        </div>
+                        <div class="reply-text">
+                            <h5 id="DiscussionTitle">I've just started running twice a week. How often do you guys run every week?</h5>
+                            <p id="DiscussionDescription">I was going to run every single day but a few friends of mine told me that your muscles need time to recover. Is that true or are my friends just trying to keep me fat?</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="reply-entry op-reply">
+                    <form data-abide="ajax">
+                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required data-abide-validator="profanity"></textarea>
+                        <small id="swearError" class="error"></small>
+                        <button style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                    </form>
+                </div>
+                <div class="reply parent" id="foreachReplies" data-bind="foreach: Replies">
+                    <div class="reply-content">
+                        <div class="reply-meta">
+                            <div class="reply-author" data-bind="html: PostedBy">
+                            </div>
+                            <div class="reply-timestamp" data-bind="text: PostedDate">
+                            </div>
+                        </div>
+                        <div class="reply-text">
+                            <p data-bind="html: ReplyText"></p>
+                        </div>
+
+                        <div class="reply-entry">
+                            <form data-abide="ajax">
+                                <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                <small class="error">Please enter your reply.</small>
+                                <button style="display: none;" data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                            </form>
+                        </div>
+
+                        <a class="hide-replies small-link" data-bind="visible: ShowSecondLevel"><i class="fa fa-minus-square-o"></i></a>
+                        <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                    </div>
+                    <div class="children" data-bind="foreach: SecondLevelReplies, visible: ShowSecondLevel">
+                        <div class="reply">
+                            <div class="reply-content">
+                                <div class="reply-meta">
+                                    <div class="reply-author" data-bind="html: PostedBy">
+                                    </div>
+                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                    </div>
+                                </div>
+                                <div class="reply-text">
+                                    <p data-bind="html: ReplyText"></p>
+                                </div>
+
+                                <div class="reply-entry">
+                                    <form data-abide="ajax">
+                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                        <small class="error">Please enter your reply.</small>
+                                        <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                    </form>
+                                </div>
+                                <a class="hide-replies small-link" data-bind="visible: ShowThirdLevel"><i class="fa fa-minus-square-o"></i></a>
+                                <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+                            </div>
+                            <div class="children" data-bind="foreach: ThirdLevelReplies, visible: ShowThirdLevel">
+                                <div class="reply">
+                                    <div class="reply-content">
+                                        <div class="reply-meta">
+                                            <div class="reply-author" data-bind="html: PostedBy">
+                                            </div>
+                                            <div class="reply-timestamp" data-bind="text: PostedDate">
+                                            </div>
+                                        </div>
+                                        <div class="reply-text">
+                                            <p data-bind="html: ReplyText"></p>
+                                        </div>
+
+                                        <div class="reply-entry">
+                                            <form data-abide="ajax">
+                                                <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                <small class="error">Please enter your reply.</small>
+                                                <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                            </form>
+                                        </div>
+                                        <a class="hide-replies small-link" data-bind="visible: ShowFourthLevel"><i class="fa fa-minus-square-o"></i></a>
+                                        <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                    </div>
+                                    <div class="children" data-bind="foreach: FourthLevelReplies, visible: ShowFourthLevel">
+                                        <div class="reply">
+                                            <div class="reply-content">
+                                                <div class="reply-meta">
+                                                    <div class="reply-author" data-bind="html: PostedBy">
+                                                    </div>
+                                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                    </div>
+                                                </div>
+                                                <div class="reply-text">
+                                                    <p data-bind="html: ReplyText"></p>
+                                                </div>
+
+                                                <div class="reply-entry">
+                                                    <form data-abide="ajax">
+                                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                        <small class="error">Please enter your reply.</small>
+                                                        <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                    </form>
+                                                </div>
+                                                <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                            </div>
+                                        </div>
+                                        <!-- For other replies -->
+                                        <div class="reply" data-bind="foreach: OtherLevelReplies, visible: ShowOtherLevel">
+                                            <div class="reply-content">
+                                                <div class="reply-meta">
+                                                    <div class="reply-author" data-bind="html: PostedBy, attr:{level: level}">
+                                                    </div>
+                                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                    </div>
+                                                </div>
+                                                <div class="reply-text">
+                                                    <p data-bind="html: ReplyText"></p>
+                                                </div>
+
+                                                <div class="reply-entry">
+                                                    <form data-abide="ajax">
+                                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                        <small class="error">Please enter your reply.</small>
+                                                        <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                    </form>
+                                                </div>
+                                                <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-panel has-border">
+        <div class="row">
+            <div class="large-6 columns">
+                <h2 class="contained-title inverted">Shared Articles</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="masonry-wall" id="dashboardRecArticles" data-bind="foreach: SharedArticles">
+                    <div class="item has-badge">
+                        <div class="item-type">
+                            <span data-bind="text:Type"></span>
+                            <div class="item-badge" data-bind="visible:badgeVisible">
+                                <img src="/images/ais-badge.jpg">
+                            </div>
+                        </div>
+                        <div class="item-content">
+                            <!-- ko if: ArticleThumbnail !="false" -->
+                            <div class="item-image" data-bind="visible: showImage">
+                            <a data-bind="attr:{href: ActualArticleURL}">
+                                <img data-bind="attr:{src: ArticleThumbnail}" class="full-on-mobile"></a>
+                            </div>
+                            <!-- /ko -->
+                            <div class="item-details">
+                                <div class="item-heading">
+                                    <a data-bind="attr:{href: ActualArticleURL}">
+                                        <h4 data-bind="html: ArticleTitle"></h4>
+                                    </a>
+                                </div>
+                            <div class="item-poster">
+                                <p><em data-bind="html:Author"></em></p>
+                            </div>
+                                <div class="item-description">
+                                    <p data-bind="html: Excerpt"></p>
+                                </div>
+                            </div>
+                            <div class="item-actions">
+                                <div class="item-share">
+                                    <a class="small-link">Share</a>
+                                </div>
+                                <div class="item-rate">
+                                    <div class="rating-icon" data-bind="attr:{id: Id}">
+                                        <i class="fa fa-heart"></i>
+                                    </div>
+                                    <div class="rating-number">
+                                        <span data-bind="html: Hearts"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+    </div>
+
+<div class="modal-container shared-image-lightbox">
+      <div class="content-lightbox-container image-lightbox">
+        <div class="close-modal">
+          <a onclick="closeStacks()">
+            Close <i class="fa fa-times"></i>
+          </a>
+        </div>
+        <div class="content-lightbox share-images">
+           <img src="http://placehold.it/500x500" id="shared-image">
+           <div class="pledge-lightbox-details">
+                 <div class="row">
+                   <div class="large-12 columns">
+                      <!-- show if user just finished creating goal -->
+                    <div style="display:none">
+                     <h5>Congratulations!</h5>
+                     <p>You've made your goal. Use the buttons below to share your goal with your friends, or close this window to continue to your dashboard.</p>
+                    </div>
+
+                    @if (Request.QueryString["share"] != null){
+                    
+                     <div id="sharedPopup">
+                     <h5>I will run more often</h5>
+                     <p>John Appleseed</p>
+                    </div>
+                    }
+                </div>
+            </div>
+                 <div class="row">
+                  <div class="large-12 columns ">
+                    <a class="share-button button medium fb fb-share-pledge">Facebook <i class="fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/share" onclick="javascript:window.open(this.href,
+                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="twitter-share-button button share-button medium twitter twImgShare" >Twitter <i class="fa fa-twitter"></i></a>
+                  <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" class="g-plus share-button button medium gpImgShare">Google+ <i class="fa fa-google-plus"></i></a>
+        </div>
+    </div>
+           </div>
+           
+        </div>
+      </div>
+    </div>
+<input type="hidden" id="hdnEventId" />
+<script src="~/js/PledgeNetwork.js"></script>
+@if (Request.QueryString["share"] != null){
+
+    try{
+        string Title = string.Empty;
+        string ImageURL = string.Empty;
+        string MemberName = string.Empty;
+        int member = Convert.ToInt32(Request.QueryString["share"]);
+        Node memNode = new Node(member);
+        if(memNode !=null){
+            Title = memNode.Parent.GetProperty<string>("title");
+            ImageURL = memNode.GetProperty<string>("imageUrl");
+            MemberName = memNode.Name;
+        }
+        if(string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(ImageURL) || string.IsNullOrEmpty(MemberName)){
+            <script>
+                $(document).ready(function () {
+                    new jBox('Notice', {
+                        content: '<strong>Error.</strong><br><br>The Page you are requesting does not <br>exist or has been deleted / removed.',
+                        color: 'red',
+                        theme: 'NoticeBorder'
+                    });
+                });
+            </script>
+        }
+        else{
+            <script>
+                $(document).ready(function () {
+                    $('#shared-image').attr('src', '@ImageURL');
+                    $('#sharedPopup h5').text('@Title');
+                    $('#sharedPopup p').text('@MemberName');
+                    openLightbox('.shared-image-lightbox');
+                    var title = '@Title';
+                    var shareURL = window.location.protocol + '//' + window.location.hostname + window.location.pathname + '?share=' + '@member';
+                    var twURLToShare = 'https://twitter.com/share?url=' + encodeURIComponent(shareURL) + '&text=' + encodeURIComponent('Rexona : #IWILLDO ' + title);
+                    $('.twImgShare').attr('href', twURLToShare);
+                    $('.gpImgShare').attr('href', 'https://plus.google.com/share?url=' + shareURL);
+                    $('.fb-share-pledge').click(function () {
+                        FB.ui({ // open a share dialog and pass it the url 
+                            method: 'share',
+                            href: shareURL
+                        }, function (response) { });
+                    });
+                });
+            </script>
+        }
+    }
+    catch(Exception ex){
+
+    }
+}

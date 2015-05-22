@@ -1,0 +1,1606 @@
+﻿@using umbraco.cms.businesslogic.member;
+@using RexonaAU.Models;
+@using RexonaAU.Helpers;
+@using umbraco.NodeFactory;
+@using System.Configuration;
+@using System.Globalization;
+@using RexonaAU.Controllers;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_baselayout.cshtml";
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+    string step1Url = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;
+    Common.SetNoBrowserCacheForpage();
+    Common.CheckUserSessionValidity(CurrentPage.id);
+
+    string profilePictureSrc = string.Empty;
+    string profilePictureSrcForSetting = string.Empty;
+    string memberName = string.Empty;
+    string forgottenPasswordURL = string.Empty;
+    string isConnectedUsingFB = "false";
+    string memberPostCode = string.Empty;
+    string memberCapitalCity = string.Empty;
+    Member member = null;
+    var memberId = 0;
+    int memberActivePledges = 0, memberCompletedPledges = 0;
+    double avgActivePledges = 0, avgCompletedPledges = 0;
+    int totalUnreadDiscussionCount = 0;
+    string isLoggedIn = "false";
+    string firstname = string.Empty, lastname = string.Empty;
+    List<MemberPledges> lstMemberPledges = new List<MemberPledges>();
+    List<MemberPledges> thisMemberPledges = new List<MemberPledges>();
+
+    List<DashboardDiscussion> lstDashboardDiscussion = new List<DashboardDiscussion>();
+    List<DashboardDiscussion> lstDashboardDiscussionReply = new List<DashboardDiscussion>();
+
+    if (!Member.IsLoggedOn())
+    {
+        string loginLink = uQuery.GetNodesByType("Login") != null && uQuery.GetNodesByType("Login").Count() > 0 ? uQuery.GetNodesByType("Login").FirstOrDefault().NiceUrl : string.Empty;
+        Response.Redirect(loginLink);
+    }
+    else
+    {
+        member = Member.GetCurrentMember();
+        memberId = member.Id;
+        lstMemberPledges = Common.GetAllMemberPledges();
+        if (memberId != null)
+        {
+            isLoggedIn = "true";
+            memberPostCode = member.GetProperty<string>("postCode");
+            memberCapitalCity = member.GetProperty<string>("capitalCity");
+
+            if (!member.GetProperty<bool>("facebookConnect"))
+            {
+                Node forgottenPassword = uQuery.GetNodesByType("ForgotPassword-Step-2").FirstOrDefault();
+                if (forgottenPassword != null && forgottenPassword.Id > 0)
+                {
+                    forgottenPasswordURL = forgottenPassword.NiceUrl;
+                }
+            }
+            else
+            {
+                isConnectedUsingFB = "true";
+            }
+            firstname = member.GetProperty<string>("firstName");
+            lastname = member.GetProperty<string>("lastName");
+            if (!String.IsNullOrEmpty(firstname) && !String.IsNullOrEmpty(lastname))
+            {
+                memberName = member.GetProperty<string>("firstName") + " " + member.GetProperty<string>("lastName");
+            }
+            else
+            {
+                memberName = member.Email;
+            }
+            if (lstMemberPledges != null && lstMemberPledges.Count > 0)
+            {
+                thisMemberPledges = lstMemberPledges.FindAll(obj => obj.MemberId == member.Id && obj.IsDeleted==false);
+                //thisMemberPledges = thisMemberPledges.FindAll(obj => obj.isDeleted == false);
+                if (thisMemberPledges != null && thisMemberPledges.Count > 0)
+                {
+                    var firstPledge = thisMemberPledges.OrderBy(obj => obj.CreatedDate).FirstOrDefault();
+                    if (firstPledge != null && firstPledge.PledgeId > 0)
+                    {
+                        profilePictureSrc = !string.IsNullOrEmpty(firstPledge.ImageUrl) ? firstPledge.ImageUrl : "http://placehold.it/70x70";
+                        profilePictureSrcForSetting = !string.IsNullOrEmpty(firstPledge.ImageUrl) ? firstPledge.ImageUrl : "http://placehold.it/125x125";
+                    }
+                    thisMemberPledges = thisMemberPledges.OrderByDescending(obj => obj.CreatedDate).ToList();
+                }
+                //else
+                //{
+                //    //Redirect to Pledge step 1 if no pledge exist
+                //    Response.Redirect(step1Url);
+                //}
+                memberActivePledges = lstMemberPledges.Count(obj => obj.MemberId == member.Id && obj.IsDeleted == false
+                    && (obj.EndDate == null || obj.EndDate >= DateTime.Now.Date)
+                    && obj.StartDate <= DateTime.Now.Date);
+
+                memberCompletedPledges = lstMemberPledges.Count(obj => obj.MemberId == member.Id && obj.EndDate < DateTime.Now.Date);
+
+                //Avg active pledges, Don't consider logged in user pledges
+                var activePledges = lstMemberPledges.Where(obj => obj.MemberId != member.Id
+                    && (obj.EndDate == null || obj.EndDate >= DateTime.Now.Date)
+                    && obj.StartDate <= DateTime.Now.Date);
+
+                if (activePledges != null && activePledges.Count() > 0)
+                {
+                    avgActivePledges = activePledges.GroupBy(obj => obj.MemberId).Average(obj => obj.Count());
+                    avgActivePledges = Math.Round(avgActivePledges, 1);
+                }
+
+                //Avg completed pledges
+                var completedPledges = lstMemberPledges.Where(obj => obj.MemberId != member.Id && obj.EndDate < DateTime.Now.Date);
+                if (completedPledges != null && completedPledges.Count() > 0)
+                {
+                    avgCompletedPledges = completedPledges.GroupBy(obj => obj.MemberId).Average(obj => obj.Count());
+                    avgCompletedPledges = Math.Round(avgCompletedPledges, 1);
+                }
+
+
+                //Bind discussion tab                
+                lstDashboardDiscussion = Common.GetDashboardDiscussions();
+
+                if (lstDashboardDiscussion.Exists(obj => obj.isReply))
+                {
+                    lstDashboardDiscussionReply = lstDashboardDiscussion.FindAll(obj => obj.isReply);
+                }
+                //remove all reply and keep only discussions
+                lstDashboardDiscussion.RemoveAll(obj => obj.isReply);
+
+                if (lstDashboardDiscussion != null && lstDashboardDiscussion.Count > 0)
+                {
+                    //get count only for discussion
+                    totalUnreadDiscussionCount = lstDashboardDiscussion.Where(obj => !obj.isReply).Sum(obj => obj.UnreadCount);
+                }
+            }
+        }
+    }
+    string makePledgeLink = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;  
+}
+
+@functions{
+
+    public void loadprofile()
+    {
+
+    }
+
+    //show start/end dates of owner when user is not logged in or user is not a member of the group
+    public string SetStartDateEndDateOfOwner(out string endDate)
+    {
+        int ownerID = 0;
+        string startDate = endDate = string.Empty;
+        if (Model.Content.Children.Where(a => a.GetPropertyValue<bool>("isOwner")).Select(a => a.GetPropertyValue<int>("memberId")).Count() > 0)
+        {
+            ownerID = Model.Content.Children.Where(a => a.GetPropertyValue<bool>("isOwner")).Select(a => a.GetPropertyValue<int>("memberId")).ToList<int>()[0];
+            startDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == ownerID).Select(a => a.GetPropertyValue<string>("startDate")).ToList<string>()[0];
+
+            endDate = Model.Content.Children.Where(a => a.GetPropertyValue<int>("memberId") == ownerID).Select(a => a.GetPropertyValue<string>("endDate")).ToList<string>()[0];
+
+        }
+
+        return startDate;
+    }
+
+    //Return Avatar image (First pledge processed image)
+    List<MemberPledges> lstMemberPledges = Common.GetAllMemberPledges();
+    public string GetAvatarImage(int userId)
+    {
+        string avatarImage = string.Empty;
+        if (lstMemberPledges != null && lstMemberPledges.Count > 0)
+        {
+            List<MemberPledges> thisMemberPledges = lstMemberPledges.FindAll(obj => obj.MemberId == userId);
+            if (thisMemberPledges != null && thisMemberPledges.Count > 0)
+            {
+                var firstPledge = thisMemberPledges.OrderBy(obj => obj.CreatedDate).FirstOrDefault();
+                if (firstPledge != null && firstPledge.PledgeId > 0)
+                {
+                    avatarImage = !string.IsNullOrEmpty(firstPledge.ImageUrl) ? firstPledge.ImageUrl : "http://placehold.it/50x50";
+                }
+            }
+            else
+            {
+                avatarImage = "http://placehold.it/50x50";
+            }
+        }
+        return avatarImage;
+    }
+
+    public string GetUserName(int UserId)
+    {
+        string MemberName = string.Empty;
+        try
+        {
+            Member member = new Member(UserId);
+            if (member != null)
+            {
+                bool has_name = member.HasProperty("firstName") && member.HasProperty("lastName");
+                MemberName = !string.IsNullOrEmpty(member.Text) ? member.Text : has_name ? member.GetProperty<string>("firstName") + " " + member.GetProperty<string>("lastName") : string.Empty;
+            }
+        }
+        catch
+        {
+            MemberName = "User Deleted From Backend";
+        }
+
+        return MemberName;
+    }
+
+    public bool CheckFBUser(int UserId)
+    {
+        bool connectedUsingFB = false;
+        try
+        {
+            Member member = new Member(UserId);
+            if (member != null)
+            {
+                connectedUsingFB = member.HasProperty("facebookConnect") ? member.GetProperty<bool>("facebookConnect") : false;
+            }
+        }
+        catch
+        {
+            connectedUsingFB = false;
+        }
+
+        return connectedUsingFB;
+    }
+    public int disscussioncount(int pledgeId)
+    {
+        int disc_count = 0;
+        int disc_RepliesCnt = 0;
+        int MasterDiscussionID = uQuery.GetNodesByType("PledgeDiscussionsMaster").FirstOrDefault().Id;
+        if (MasterDiscussionID > 0)
+        {
+            try
+            {
+                Node MasterDiscussionNode = new Node(MasterDiscussionID);
+                //Common dc = new Common();
+
+                if (MasterDiscussionNode != null)
+                {
+                    if (MasterDiscussionNode.ChildrenAsList.Where(a => a.Name == Convert.ToString(pledgeId)).Count() > 0)
+                    {
+                        int nodeId = MasterDiscussionNode.ChildrenAsList.Where(a => a.Name == Convert.ToString(pledgeId)).Select(a => a.Id).ToList()[0];
+                        Node pledgeDiscussionNode = new Node(nodeId);
+                        if (pledgeDiscussionNode.Children != null)
+                            disc_count = pledgeDiscussionNode.Children.Count;
+                        foreach (var children in pledgeDiscussionNode.ChildrenAsList)
+                        {
+                            int id = 0;
+                            id = children.Id;
+                            if(id>0)
+                            {
+                                disc_RepliesCnt += Common.GetDiscussionNotification(id);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        return disc_RepliesCnt;
+    }
+}
+<link href="~/stylesheets/dash.css" rel="stylesheet" />
+<link href="~/stylesheets/offcanvas.css" rel="stylesheet" />
+<div id="dash-wrapper">
+    <header style="display: none;" class="row" id="header">
+        <div class="four columns">
+            <h1>Dashboard</h1>
+        </div>
+        <div class="eight columns">
+            <nav class="hide-for-small" role="navigation" id="menu">
+                <ul class="nav-bar" id="nav">
+                    <li><a class="main nav-item" href="#dash-left">Panel 1</a></li>
+                    <li><a class="main nav-item" href="#dash-right">Panel 2</a></li>
+                </ul>
+            </nav>
+
+            <dl id="switchPanels" class="tabs five-up show-for-small">
+                <dd class="active"><a href="#dash-left">1</a></dd>
+                <dd><a href="#dash-right">2</a></dd>
+            </dl>
+        </div>
+    </header>
+    <div class="row">
+        <section id="main" role="main">
+            <article style="" class="screen screen1 screen2 page-panel" id="dash-left">
+                <div class="member-block">
+                    <div class="goal-picture">
+                        @if (!String.IsNullOrEmpty(profilePictureSrc))
+                        {
+                            <img src="@profilePictureSrc" style = "height:100px;width:100px" alt=""/>
+                        }
+                        else
+                        {
+                            <img src="~/images/profilephoto.jpg" style = "height:100px;width:100px" alt="" />
+                        }
+                    </div>
+                    <div class="member-block-name">
+                        @memberName
+                    </div>
+                </div>
+                <div class="goal-buttons">
+                    <a class="full button thin no-setgoal" href="@makePledgeLink">Set a goal</a>
+                    <a class="half button right thin black" id="editProfile" onclick="openLightbox('.editprofile');">Edit profile</a>
+                    <a class="half button right thin black" id="editlinkId" style="margin-right: 8px;">Edit goal</a>
+                    <div class="clearfix"></div>
+                </div>
+                <ul class="goal-list full">
+                    <h1 class="black" id="txtYourGoals">Your Goals</h1>
+                    @{
+                        string clsname = "";
+                        int bufferTimeForVideoProcessing = ConfigurationManager.AppSettings["bufferTimeForVideoProcessing"] != null ? Convert.ToInt32(ConfigurationManager.AppSettings["bufferTimeForVideoProcessing"]) : 0;
+                        int cntPledges=0;
+                        foreach (MemberPledges memberPledge in thisMemberPledges)
+                        {
+                            if (memberPledge.PledgeId > 0)
+                            {
+                                cntPledges += 1;
+                                Node pledge = new Node(memberPledge.ParentId);
+
+                                string pledgeDetails = pledge.GetProperty<bool>("publicPledgeSelection") ? "Open " : "Closed ";
+                                int pledgeMemberCount = pledge.ChildrenAsList.Where(obj => obj.GetProperty<bool>("step3Clear")).Count();
+                                pledgeMemberCount = pledge.ChildrenAsList.Where(obj => obj.GetProperty<bool>("isDeleted") == false).Count();
+                                string pledgeTag = pledge.GetProperty<string>("categoryTag");
+                                
+                                //add member count to output text
+                                //pledgeDetails += pledgeMemberCount > 1 ? "(" + pledgeMemberCount + " members)" :
+                                //    "(" + pledgeMemberCount + " member)";
+                                pledgeDetails = pledgeMemberCount > 1 ? pledgeMemberCount + " members" :
+                                    pledgeMemberCount + " member";
+
+                                if (clsname == "" || clsname == "active")
+                                {
+                                    clsname = "highlight";
+                                }
+                                else if (clsname == "highlight")
+                                {
+                                    clsname = "nocls";
+                                }
+                                else if (clsname == "nocls")
+                                {
+                                    clsname = "active";
+                                }
+
+                                int count = 0;
+                                count = disscussioncount(memberPledge.ParentId);
+                        <li class="highlight" id="goallink">
+                            @if (@count > 0)
+                            {
+                                <span class="label">@count</span>
+                            }
+                            <h5 id="@pledge.Id" class="dashPC">
+                                <a id="goalname" onclick="goals()" class="@pledgeDetails"  >@Html.Raw(pledge.GetProperty<string>("title"))
+                                    <input type="hidden" id="hdnPledgeId" value="@pledge.Id" />                                    
+                                    <input type="hidden" id="hdnPledgeTag" value="@pledgeTag" />
+                                </a> 
+                            </h5>
+                            <h5 id="@pledge.Id" class="dashMobile">   
+                                 <a id="goalname" onclick="reflink()" class="@pledgeDetails">@Html.Raw(pledge.GetProperty<string>("title"))
+                                    <input type="hidden" id="hdnPledgeId" value="@pledge.Id" />                                    
+                                    <input type="hidden" id="hdnPledgeTag" value="@pledgeTag" />
+                                </a>                             
+                                @*<a href="@pledge.NiceUrl">@Html.Raw(pledge.GetProperty<string>("title"))</a>*@
+                            </h5>                          
+                               
+                             <div style="display:none;float:right; position: absolute; right: 25px; top: 10px;" id="divEditGoal">
+                                <a class="removegoal" id="@pledge.Id" >
+                                    <i class="fa fa-times-circle"></i></a>
+                                 <input type="hidden"  value="@Url.Action("RemoveGoal", "Pledge")"  id="hdnDefaultmode" />
+                                  <input type="hidden" id="hdnMemCount" value="@pledgeMemberCount" />
+                            </div>
+                           
+                            <em id="visitcount">@pledgeDetails</em>
+
+                        </li>
+                            string pledgeTitle = string.Empty, goalType = string.Empty, startDate = string.Empty, endDate = string.Empty, dateRangeText = string.Empty, numberOFMembers = string.Empty, showStartBadge = "false", showEndBadge = "false", showSharedBadge = "false", avatarImage = "http://placehold.it/50x50", isMemberofGroup = "false";
+                            bool publicPledgeSelection = false;
+                            //Get Pledge Title
+                            pledgeTitle = pledge.GetProperty<string>("title");
+
+                            //Check if the pledge is public/private and set text accordingly
+                            publicPledgeSelection = pledge.GetProperty<bool>("publicPledgeSelection");
+                            goalType = publicPledgeSelection ? "Open" : "Close";
+
+                            //Calculate number of members
+                            var membersWithStep3Clear = pledge.ChildrenAsList.Where(a => a.GetProperty<bool>("step3Clear")).OrderByDescending(a => a.CreateDate).Select(a => a).ToList();
+                            string numberOFMembersText = membersWithStep3Clear.Count() == 1 ? membersWithStep3Clear.Count() + " member" : membersWithStep3Clear.Count() + " members";
+                            numberOFMembers = Convert.ToString(membersWithStep3Clear.Count());
+                            var membersWithStep3ClearIDs = pledge.ChildrenAsList.Where(a => a.GetProperty<bool>("step3Clear")).OrderByDescending(a => a.CreateDate).Select(a => a.GetProperty<int>("memberId")).ToList();
+                            string joinedmembersWithStep3ClearIDs = string.Join(",", membersWithStep3ClearIDs.ToArray());
+                            //Get start date / end date of logged in member
+                            Member currentmember = Member.GetCurrentMember();
+                            int currentmemberId = 0;
+                            string currentmemberName = string.Empty;
+                            memberPostCode = string.Empty;
+                            memberCapitalCity = string.Empty;
+                            if (currentmember != null)
+                            {
+                                currentmemberId = currentmember.Id;
+                                memberPostCode = currentmember.GetProperty<string>("postCode");
+                                memberCapitalCity = currentmember.GetProperty<string>("capitalCity");
+                                isLoggedIn = "true";
+                                currentmemberName = currentmember.GetProperty<string>("firstName") + " " + currentmember.GetProperty<string>("lastName");
+                                //if (!String.IsNullOrEmpty(currentmember.GetProperty<string>("firstName")) && !String.IsNullOrEmpty(currentmember.GetProperty<string>("lastName")))
+                                //{
+                                //    currentmemberName = currentmember.GetProperty<string>("firstName") + " " + currentmember.GetProperty<string>("lastName");
+                                //}
+                                //else
+                                //{
+                                //    currentmemberName = currentmember.Email;
+                                //}
+                                avatarImage = GetAvatarImage(currentmember.Id);
+                                isConnectedUsingFB = Convert.ToString(CheckFBUser(currentmember.Id)).ToLower();
+
+                                if (pledge.ChildrenAsList.Where(a => a.GetProperty<int>("memberId") == currentmember.Id).Count() > 0)
+                                {
+                                    startDate = pledge.ChildrenAsList.Where(a => a.GetProperty<int>("memberId") == currentmember.Id).Select(a => a.GetProperty<string>("startDate")).ToList<string>()[0];
+
+                                    endDate = pledge.ChildrenAsList.Where(a => a.GetProperty<int>("memberId") == currentmember.Id).Select(a => a.GetProperty<string>("endDate")).ToList<string>()[0];
+
+                                    //Calculate badges only for signed in users and who are members of the group
+                                    isMemberofGroup = "true";
+                                    showSharedBadge = pledge.ChildrenAsList.Where(a => a.GetProperty<int>("memberId") == currentmember.Id).Select(a => a.GetProperty<string>("shared")).ToList<string>()[0].ToLower();
+
+                                    DateTime dtStartDate = new DateTime(), dtEndDate = new DateTime();
+
+                                    if (!string.IsNullOrEmpty(startDate) && DateTime.TryParseExact(startDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dtStartDate))
+                                    {
+                                        if (DateTime.Now > dtStartDate)
+                                        {
+                                            showStartBadge = "true";
+                                        }
+                                    }
+
+                                    if (!string.IsNullOrEmpty(endDate) && DateTime.TryParseExact(endDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dtEndDate))
+                                    {
+                                        if (DateTime.Now > dtEndDate)
+                                        {
+                                            showEndBadge = "true";
+                                        }
+                                    }
+                                    else if (string.IsNullOrEmpty(endDate))
+                                    {
+                                        showEndBadge = "hide";
+                                    }
+
+                                }
+                                else
+                                {
+                                    startDate = SetStartDateEndDateOfOwner(out endDate);
+                                }
+                            }
+                            else
+                            {
+                                //If current member is not logged in, show start/end dates of owner
+                                startDate = SetStartDateEndDateOfOwner(out endDate);
+                            }
+                                
+                        <input type="hidden" id="hdnStartBadge" value="@showStartBadge" />
+                        <input type="hidden" id="hdnSharedBadge" value="@showSharedBadge" />
+                        <input type="hidden" id="hdnEndBadge" value="@showEndBadge" />
+@*<input type="hidden" id="hdnPledgeId" value="@pledge.Id" />*@
+                        <input type="hidden" id="hdnIsMemberofGroup" value="@isMemberofGroup" />
+                        <input type="hidden" id="hdnMemberId" value="@currentmemberId" />
+                        <input type="hidden" id="hdnMemberName" value="@currentmemberName" />
+                        <input type="hidden" id="hdnMemberEmail" value="@(currentmember == null ? string.Empty : currentmember.Email)" />
+                        <input type="hidden" id="hdnPledgeType" value="@goalType" />
+
+                        <input type="hidden" id="hdnMemPostcode" value="@memberPostCode" />
+                        <input type="hidden" id="hdnMemCaptialCity" value="@memberCapitalCity" />
+                        
+                        <input type="hidden" id="hdnmemberIds" value="@joinedmembersWithStep3ClearIDs" />
+                            dateRangeText = string.IsNullOrEmpty(endDate) ? startDate : startDate + " - " + endDate;
+
+                            publicPledgeSelection = Model.Content.HasValue("publicPledgeSelection") ? Model.Content.GetPropertyValue<bool>("publicPledgeSelection") : false;
+
+                            //Get ID of the pledge
+                            var pledgeId = Model.Content.Id;
+                            }
+                        }
+                        <input type="hidden" id="hdnpledgecnt" value="@cntPledges" />   
+                        <input type="hidden" id="hdnIsLoggedIn" value="@isLoggedIn" />
+                        <input type="hidden" id="hdnIsConnectedUsingFb" value="@isConnectedUsingFB" />
+                        
+                    }
+                </ul>
+                <div class="goal-buttons" id="no-goals-button">
+                    <div>
+                        <a class="full button thin" href="@makePledgeLink">Set a goal</a>
+                    </div>
+                </div>
+                <div id="no-goalsDiv" class="nogoals" style="display:none;">
+                    <h1 class="black" style="max-width:100%; margin-bottom:15px;">SET A GOAL</h1>
+                    <p>This area will be populated with advice and discussions once you set a goal. Each goal that you set will have its own list of advice and discussions.</p>
+                    <a class="full button nogoals-btn" href="@makePledgeLink">SET YOUR FIRST GOAL <i class="fa fa-chevron-right"></i></a>                  
+                </div>
+            </article>
+            <!-- /#panel-1 -->
+            <article class="screen screen1 screen2  page-panel dashPC" id="dash-right">
+                <div class="screen screen1" id="get-started-view">
+                    @*<h1 class="black">Set a goal to get started</h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque fuga aliquid eaque deserunt, 
+                    molestias iure reiciendis ex fugiat! Tenetur nam id iusto, 
+                    dolore atque quidem quos tempore assumenda minus officiis?</p>*@
+                    <a class="button goalCTA half" id="setgoal-right" href="@makePledgeLink" style="margin-top: 10px;">Set a Goal</a>
+                    <h6>Stuck for ideas?</h6>
+                    <p>
+                        Here are some popular goals for you to join.
+                    </p>
+                    <label class="select" id="filter" style="display:none">
+                        <select>
+                            <option value="popular" selected>Most Popular</option>
+                        </select>
+                    </label>
+                    <div class="pledges-gallery" data-bind="foreach: pledgesDashboard">
+                        <div class="large-6 columns" style="margin-top: 15px; margin-bottom: 25px;">
+                        <div class="item is-pledge">
+                            <div class="goal-suggest">
+                                <div class="iwill">I WILL...</div>
+                                <div class="join label item-join" data-bind="visible: ShowJoinLink && ShowJoinLinkAndText">
+                                   <a href="#" class="small-link">Join Goal</a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="goal-text" data-bind="text: PledgeTitle">lose 10 kilos by July</div>
+                                <input type="hidden" class="rating-icon" data-bind="attr:{Id: Id}" />
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div style="display: none;" class="screen screen2" id="goal-view">
+                    <h1 id="goaltitle">I will exercise more</h1>
+                    <em>128 members</em>
+                    <div class="clearfix"></div>
+                    <a class="button goalCTA half left" onclick="openLightbox('.discussion-main')" style="margin-top: 10px;">Add a discussion </a>
+                    <a class="button goalCTA half right" id="createEvent" onclick="openCloseStack('.create-events')" style="margin-top: 10px;">Add an Event</a>
+                    <div class="clearfix"></div>
+                    <div class="goal-view-content">
+                        <ul class="goal-view-content-filter">
+                            <li id="cls_all"><a class="button thin active" onclick="goaltaball()">All</a></li>
+                            <li id="cls_Article"><a class="button thin" onclick="goaltabarticle()">Articles</a></li>
+                            <li id="cls_Discussion"><a class="button thin" onclick="goaltabdiscussion()">Discussions</a></li>
+                            <li id="cls_Events"><a class="button thin" onclick="goaltabevents()">Events</a></li>
+                        </ul>   
+                        
+                        <div class="content-block alltabgrp" id="alltab">
+                            <ul class="entity-list" data-bind="foreach: ADE_all">
+                                <div data-bind="html: loadDiv" ></div>
+                            </ul>
+                        </div>
+                        <div class="content-block discussion" id="discussions-all">
+                            <ul class="entity-list" data-bind="foreach: Discussions">
+                                <li class="discussion-in-list">
+                                    <b data-bind="text: Title"></b>
+                                    <p data-bind="text: Description"></p>
+                                    <div class="footer-block">
+                                        <div class="left">
+                                            <h6 class="author" data-bind="text: PostedBy"></h6>
+                                            <h6 class="date" data-bind="text: PostedDate"></h6>
+                                        </div>
+                                        <div class="right">
+                                            <span class="replies button thin black loadreplies" data-bind="attr:{id: Id}" id="repliescount">
+                                                <a id="discussionReply" class="small-link" data-bind="html:Repliescount">View Replies</a>
+                                            </span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="content-block event" id="all">
+                            <ul class="entity-list" data-bind="foreach:AllEvents">
+                                
+								<li class="event" data-bind="attr:{'data-postcode':PostCode}" >
+                                    <div class="article-img">
+                                        <h1 data-bind="html:Day"></h1>
+                                        <p data-bind="html:Month"></p>
+                                        <div class="entity-meta">
+                                            <a class="button thin black" data-bind="attr:{id:EventId,onclick:clickEvent}">
+                                                <span class="attendance" data-bind="visible:IsJoined,text:greenTag"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <section class="large-9 columns">
+                                        <b data-bind="html:EventTitle"></b>
+                                        @*<p data-bind="html:FullDate"> Event Full date</p>*@
+                                        <p data-bind="html:EventDescription">
+                                            <p data-bind="html:EventLocation"></p>
+                                        </p>
+                                        <div class="footer-block">
+                                            @*<div class="left">
+                                                    <h6 class="author" data-bind="html:IsOwner">posted by john appleseed </h6>
+                                                    <h6 class="date">14 May 2015</h6>
+                                                </div>*@
+                                            <div class="right">
+                                                @*<span class="heart button thin black">4 <b>♥</b></span>
+                                                    <span class="share button thin black">Share</span>*@
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </section>
+                                    <section class="large-3 columns">
+                                    </section>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="dashboardRecArticles-display">
+                            <div class="content-panel" id="article-content-block">
+                                <div class="row">
+                                    <div class="large-6">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="masonry-wall" id="dashboardRecArticles">
+                                <ul class="entity-list" data-bind="foreach: SharedArticles" style="height:980px;">
+                                    <div class="content-block article">
+                                        <div class="article-img">
+                                            <img data-bind="attr:{src: ArticleThumbnail}"></div>
+                                        <section class="large-9 columns">
+                                            <a class="articleLink" data-bind="attr:{href: ActualArticleURL}">
+                                                <b data-bind="html: ArticleTitle"></b>
+                                            </a>
+                                            <p data-bind="html: Excerpt">
+                                            </p>
+                                            <div class="footer-block">
+                                                <div class="left">
+                                                    <h6 class="author" data-bind="html:Author">posted by john appleseed </h6>
+                                                    <h6 class="date" data-bind="html: ArticlepostedDate"></h6>
+                                                </div>
+                                                <div class="right">
+                                                    <span class="heart button thin black">
+                                                        <div class="item-rate">
+                                                            <div class="rating-icon" data-bind="attr:{id: Id}">
+                                                                <div class="rating-number">
+                                                                    <span data-bind="html: Hearts">0</span>
+                                                                    <i data-bind="attr:{id: Id}" class="fa fa-heart"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </span>
+                                                    <span class="share button thin black item-share"><a class="small-link">Share</a></span>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </section>
+                                        <div class="article-header" data-bind="visible:badgeVisible">
+                                            <span data-bind="text:Type"></span>
+                                            <img alt="" src="/images/ais-badge.jpg">
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+    </div>
+    <div class="modal-container editprofile">
+        <div class="content-lightbox-container">
+            <div class="close-modal">
+                <a data-showme="modalClose" onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="content-lightbox">
+                <h2>Edit Profile</h2>
+                <div class="member-block">
+                    @if(!String.IsNullOrEmpty(profilePictureSrc))
+                    {
+                        <img src="@profilePictureSrc" width="100px" height="100px" />
+                    }
+                    else
+                    {
+                        <img src="~/images/profilephoto.jpg" width="100px" height="100px"/>
+                    }
+                    <div class="member-block-name">
+                        @memberName
+                    </div>
+                </div>
+                @Html.Action("RenderEditprofile", "EditProfile")
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-container discussionreply">
+        <div class="content-lightbox-container">
+            <div class="close-modal">
+                <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="content-lightbox cl-overflow">
+                <div class="discussion-container">
+                    <div class="reply parent op">
+                        <div class="reply-content">
+                            <div class="reply-meta">
+                                <div class="reply-author" id="DiscussionAuthor">
+                                    <strong>Sophie Brown</strong> said:
+                                </div>
+                                <div id="DiscussionPostDateTime" class="reply-timestamp">
+                                    14/05/2014 10:36pm
+                                </div>
+                            </div>
+                            <div class="reply-text">
+                                <h5 id="DiscussionTitle">I've just started running twice a week. How often do you guys run every week?</h5>
+                                <p id="DiscussionDescription">I was going to run every single day but a few friends of mine told me that your muscles need time to recover. Is that true or are my friends just trying to keep me fat?</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="reply-entry op-reply">
+                        <form data-abide="ajax">
+                            <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required data-abide-validator="profanity"></textarea>
+                            <small id="swearError" class="error"></small>
+                            <button style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                        </form>
+                    </div>
+                    <div class="reply parent" id="foreachReplies" data-bind="foreach: Replies">
+                        <div class="reply-content">
+                            <div class="reply-meta">
+                                <div class="reply-author" data-bind="html: PostedBy">
+                                </div>
+                                <div class="reply-timestamp" data-bind="text: PostedDate">
+                                </div>
+                            </div>
+                            <div class="reply-text">
+                                <p data-bind="html: ReplyText"></p>
+                            </div>
+
+                            <div class="reply-entry">
+                                <form data-abide="ajax">
+                                    <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                    <small class="error">Please enter your reply.</small>
+                                    <button style="display: none;" data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                </form>
+                            </div>
+
+                            <a class="hide-replies small-link" data-bind="visible: ShowSecondLevel"><i class="fa fa-minus-square-o"></i></a>
+                            <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                        </div>
+                        <div class="children" data-bind="foreach: SecondLevelReplies, visible: ShowSecondLevel">
+                            <div class="reply">
+                                <div class="reply-content">
+                                    <div class="reply-meta">
+                                        <div class="reply-author" data-bind="html: PostedBy">
+                                        </div>
+                                        <div class="reply-timestamp" data-bind="text: PostedDate">
+                                        </div>
+                                    </div>
+                                    <div class="reply-text">
+                                        <p data-bind="html: ReplyText"></p>
+                                    </div>
+
+                                    <div class="reply-entry">
+                                        <form data-abide="ajax">
+                                            <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                            <small class="error">Please enter your reply.</small>
+                                            <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                        </form>
+                                    </div>
+                                    <a class="hide-replies small-link" data-bind="visible: ShowThirdLevel"><i class="fa fa-minus-square-o"></i></a>
+                                    <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+                                </div>
+                                <div class="children" data-bind="foreach: ThirdLevelReplies, visible: ShowThirdLevel">
+                                    <div class="reply">
+                                        <div class="reply-content">
+                                            <div class="reply-meta">
+                                                <div class="reply-author" data-bind="html: PostedBy">
+                                                </div>
+                                                <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                </div>
+                                            </div>
+                                            <div class="reply-text">
+                                                <p data-bind="html: ReplyText"></p>
+                                            </div>
+
+                                            <div class="reply-entry">
+                                                <form data-abide="ajax">
+                                                    <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                    <small class="error">Please enter your reply.</small>
+                                                    <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                </form>
+                                            </div>
+                                            <a class="hide-replies small-link" data-bind="visible: ShowFourthLevel"><i class="fa fa-minus-square-o"></i></a>
+                                            <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                        </div>
+                                        <div class="children" data-bind="foreach: FourthLevelReplies, visible: ShowFourthLevel">
+                                            <div class="reply">
+                                                <div class="reply-content">
+                                                    <div class="reply-meta">
+                                                        <div class="reply-author" data-bind="html: PostedBy">
+                                                        </div>
+                                                        <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="reply-text">
+                                                        <p data-bind="html: ReplyText"></p>
+                                                    </div>
+
+                                                    <div class="reply-entry">
+                                                        <form data-abide="ajax">
+                                                            <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                            <small class="error">Please enter your reply.</small>
+                                                            <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                        </form>
+                                                    </div>
+                                                    <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                                </div>
+                                            </div>
+                                            <!-- For other replies -->
+                                            <div class="reply" data-bind="foreach: OtherLevelReplies, visible: ShowOtherLevel">
+                                                <div class="reply-content">
+                                                    <div class="reply-meta">
+                                                        <div class="reply-author" data-bind="html: PostedBy, attr:{level: level}">
+                                                        </div>
+                                                        <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                        </div>
+                                                    </div>
+                                                    <div class="reply-text">
+                                                        <p data-bind="html: ReplyText"></p>
+                                                    </div>
+
+                                                    <div class="reply-entry">
+                                                        <form data-abide="ajax">
+                                                            <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                            <small class="error">Please enter your reply.</small>
+                                                            <button data-bind="attr:{id: Id}" style="display: none;" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                        </form>
+                                                    </div>
+                                                    <a class="small-link reply-to-post right" style="display: none;">Write a reply</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-container discussion-main">
+        <div class="content-lightbox-container">
+            <div class="close-modal">
+                <a onclick="closeStacks()" id="closepop">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <input type="hidden" id="hdnPopupPledgeId" value="" />
+            <div class="content-lightbox">
+                <div class="discussion-container">
+                    <div class="discussions-listing-start-discussion">
+                        <form data-abide="ajax" id="start-discussion">
+                            <div class="row">
+                                <div class="large-11 columns large-offset-1">
+                                    <h5>Start a discussion</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-11 columns large-offset-1">
+                                    <div class="user-avatar">
+                                        <img id="postAvatarImage" src="@profilePictureSrc" alt="">
+                                    </div>
+                                    <input id="discussion-title" type="text" placeholder="Title your post" required data-abide-validator="discussionTitle">
+                                    <small class="error" id="titleError">Please title your post.</small>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-11 columns large-offset-1">
+                                    <textarea name="discussion-body" id="discussion-body" cols="30" rows="8" placeholder="What do you need help with?"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="large-11 columns large-offset-1" style="display: none;">
+                                    <button id="DiscussionPost" type="submit" class="button small right with-icon icon-right closepopup">Post <i class="fa fa-chevron-right"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container create-events">
+        <div class="stack">
+            <div class="card next-card">
+                <div class="card-content title">
+                    <h5>Woah there</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status">
+                        <i class="fa fa-warning destructive"></i>
+                        <p>Your <strong>End Date</strong> cannot be before your <strong>Start Date</strong></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <h5>Create Event</h5>
+                    <div class="close-modal close-black">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content scrollable">
+                    <form data-abide="ajax" id="eventForm">
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Title your event</label>
+                                <input type="text" id="eventTitle" placeholder="Event Title" required data-abide-validator="profanity" />
+                                <small id="swearError" class="error">Please enter a title</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Event Description</label>
+                                <input type="text" placeholder="Event description" id="eventDesc">
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>Start date</label>
+                                <input type="text" id="eventStartDate" placeholder="DD MM YY" class="datepicker-event start-date" required readonly="readonly" />
+                                <small class="error">Please select a start date</small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>Start time</label>
+                                <div class="row">
+                                    <div class="large-7 columns timeframe">
+                                        <label class="select">
+                                            <select id="eventStarttimeselection">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="eventStart">
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>End date</label>
+                                <input type="text" id="eventEndDate" placeholder="DD MM YY" class="datepicker-event end-date" readonly="readonly" />
+                                <small class="error" id="end-error"></small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>End time</label>
+                                <div class="row">
+                                    <div class="large-7 columns timeframe">
+                                        <label class="select">
+                                            <select id="eventEndtimeselection">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="eventEnd" required>
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Address</label>
+                                <input type="text" id="eventLocation" placeholder="123 Example St, Surry Hills" required>
+                                <small class="error">Please enter an address</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-4 columns">
+                                <label>Post code</label>
+                                <input type="tel" id="eventPostCode" placeholder="2021" required data-abide-validator="postcodeValidation" pattern="number" />
+                                <small class="error" id="postError"></small>
+                            </div>
+                            <div class="large-4 columns end">
+                                <label>State</label>
+                                <label class="select">
+                                    <select id="state-selection" required>
+                                        <option selected value="">State</option>
+                                        <option value="act">ACT</option>
+                                        <option value="nsw">NSW</option>
+                                        <option value="nt">NT</option>
+                                        <option value="qld">QLD</option>
+                                        <option value="sa">SA</option>
+                                        <option value="tas">TAS</option>
+                                        <option value="vic">VIC</option>
+                                        <option value="wa">WA</option>
+                                    </select>
+                                </label>
+                                <small class="error">Please select your state</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <button type="submit" id="newEvent" class="button with-icon right-icon right">Create Event<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-container view-event">
+        <div class="stack">
+            <div class="card next-card share-card">
+                <div class="card-content title">
+                    <h5>Share this Event</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="row">
+                        <p class="eventLinkToShare" style="display: none"></p>
+                        <div class="large-8 columns large-centered">
+                            <a id="fbEvent" class="share-button button medium fb">Facebook <i class="fa fa-facebook"></i></a>
+                            <a id="twEvent" class="twitter-share-button button share-button medium twitter">Twitter <i class="fa fa-twitter"></i></a>
+                            <a id="ggEvent" class="g-plus share-button button medium">Google+ <i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <div class="close-modal close-black">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content no-p-top">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <div class="event-details">
+                                <p class="eventLinkToShare" style="display: none"></p>
+                                <h5 id="titleEvent">Title of Event Goes Here</h5>
+                                <div class="event-status" id="statusEvent" style="display: none;">Attending</div>
+                                <div class="event-desc">
+                                    <p id="eventDescription"></p>
+                                </div>
+                                <div class="date-time" id="eventDateTime">1 August at 07:00PM</div>
+                                <div class="location" id="locationEvent">123 Example Street, Surry Hills 2021</div>
+                                <div class="share">
+                                    <a id="leaveEvent" class="attend-event" style="display: none;">Leave this event</a>
+                                    <a id="JoinEvent" class="attend-event" style="display: none;">Attend this event</a>
+                                    <div class="confirm-leave">Are you sure you want to leave this event? <a class="destructive cancel-leave">Cancel</a> <a class="leave">Leave Event</a></div>
+                                </div>
+                            </div>
+                            <a class="button full-width" id="share-event">Share Event</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-container edit-events">
+        <div class="stack">
+            <div class="card next-card">
+                <div class="card-content title">
+                    <h5>Woah there</h5>
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status">
+                        <i class="fa fa-warning destructive"></i>
+                        <p>Your <strong>End Date</strong> cannot be before your <strong>Start Date</strong></p>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card current-card">
+                <div class="card-content title">
+                    <h5>Edit Event</h5>
+                    <div class="close-modal close-black">
+                        <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content scrollable">
+                    <form data-abide="ajax" id="eventEditForm">
+
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Title your event</label>
+                                <input type="text" placeholder="Event Title" required data-abide-validator="profanity" id="editTitle">
+                                <small id="swearError" class="error">Please enter a title</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Event Description</label>
+                                <input type="text" placeholder="Event description" id="editDescription">
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>Start date</label>
+                                <input type="text" placeholder="DD MM YY" class="datepicker-event start-date" required readonly="readonly" id="editStartDate">
+                                <small class="error">Please select a start date</small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>Start time</label>
+                                <div class="row">
+                                    <div class="large-7 columns timeframe">
+                                        <label class="select">
+                                            <select id="time-selection-start">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="start-am-pm">
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row dateTime">
+                            <div class="large-6 columns">
+                                <label>End date</label>
+                                <input type="text" placeholder="DD MM YY" class="datepicker-event end-date" id="editEndDate">
+                                <small class="error" id="end-error"></small>
+                            </div>
+                            <div class="large-6 columns">
+                                <label>End time</label>
+                                <div class="row">
+                                    <div class="large-7 columns timeframe">
+                                        <label class="select">
+                                            <select id="time-selection-end">
+                                                <option value="1:00">1:00</option>
+                                                <option value="1:30">1:30</option>
+                                                <option value="2:00">2:00</option>
+                                                <option value="2:30">2:30</option>
+                                                <option value="3:00">3:00</option>
+                                                <option value="3:30">3:30</option>
+                                                <option value="4:00">4:00</option>
+                                                <option value="4:30">4:30</option>
+                                                <option value="5:00">5:00</option>
+                                                <option value="5:30">5:30</option>
+                                                <option value="6:00">6:00</option>
+                                                <option value="6:30">6:30</option>
+                                                <option value="7:00">7:00</option>
+                                                <option value="7:30">7:30</option>
+                                                <option value="8:00">8:00</option>
+                                                <option value="8:30">8:30</option>
+                                                <option value="9:00">9:00</option>
+                                                <option value="9:30">9:30</option>
+                                                <option value="10:00">10:00</option>
+                                                <option value="10:30">10:30</option>
+                                                <option value="11:00">11:00</option>
+                                                <option value="11:30">11:30</option>
+                                                <option value="12:00" selected>12:00</option>
+                                                <option value="12:30">12:30</option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                    <div class="large-5 columns">
+                                        <div class="select">
+                                            <select id="end-am-pm" required>
+                                                <option value="AM" selected>AM</option>
+                                                <option value="PM" selected>PM</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <label>Address</label>
+                                <input type="text" placeholder="123 Example St, Surry Hills" required id="editLocation">
+                                <small class="error">Please enter an address</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-4 columns">
+                                <label>Post code</label>
+                                <input type="tel" placeholder="2021" required data-abide-validator="postcodeValidation" pattern="number" id="editPostCode" />
+                                <small class="error" id="postError"></small>
+                            </div>
+                            <div class="large-4 columns end">
+                                <label>State</label>
+                                <label class="select">
+                                    <select id="editSelect" required>
+                                        <option selected value="">State</option>
+                                        <option value="act">ACT</option>
+                                        <option value="nsw">NSW</option>
+                                        <option value="nt">NT</option>
+                                        <option value="qld">QLD</option>
+                                        <option value="sa">SA</option>
+                                        <option value="tas">TAS</option>
+                                        <option value="vic">VIC</option>
+                                        <option value="wa">WA</option>
+                                    </select>
+                                </label>
+                                <small class="error">Please select your state</small>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                <a onclick="deleteEvent()" class="button alert left delete-events">Delete Event</a>
+                                <button type="submit" class="button with-icon right-icon right">Save Event<i class="fa fa-chevron-right"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-container shared-image-lightbox">
+        <div class="content-lightbox-container image-lightbox">
+            <div class="close-modal">
+                <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="content-lightbox share-images">
+                <img src="http://placehold.it/500x500" id="shared-image">
+                <div class="pledge-lightbox-details">
+                    <div class="row">
+                        <div class="large-12 columns">
+                            <!-- show if user just finished creating goal -->
+                            <h5>Congratulations!</h5>
+                            <p>You've made your goal. Use the buttons below to share your goal with your friends, or close this window to continue to your dashboard.</p>
+
+                            <div id="sharedPopup" style="display: none">
+                                <h5>I will run more often</h5>
+                                <p>John Appleseed</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="large-12 columns ">
+                            <a class="share-button button medium fb fb-share-pledge">Facebook <i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/share" onclick="javascript:window.open(this.href,
+                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                class="twitter-share-button button share-button medium twitter twImgShare">Twitter <i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+                '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                class="g-plus share-button button medium gpImgShare">Google+ <i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <a href="/pledge-network/" class="button small with-icon right-icon right" style="display: none">View Discussions<i class="fa fa-chevron-right"></i></a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<input type="hidden" id="hdnEventId" />
+<input type="hidden" id="hdArtTag" />
+<input type="hidden" id="hdndiscsussioncnt" />
+<script type="text/javascript" src="~/js/db_events_discussion_articles.js"></script>
+
+ <script type="text/javascript">
+     $(document).ready(function () {        
+         var title = '@TempData["PledgeTitle"]';
+         if (title != '') {
+             $('#shared-image').attr('src', '@TempData["ImageUrl"]');
+             openLightbox('.shared-image-lightbox');
+             var title = '@TempData["PledgeTitle"]';             
+             var shareURL = window.location.protocol + '//' + window.location.hostname + '@TempData["PledgeShareUrl"]?share=@TempData["PledgeCreator"]';
+             console.log(shareURL);
+             var twURLToShare = 'https://twitter.com/share?url=' + encodeURIComponent(shareURL) + '&text=' + encodeURIComponent('Rexona : #IWILLDO ' + title);
+             $('.twImgShare').attr('href', twURLToShare);
+             $('.gpImgShare').attr('href', 'https://plus.google.com/share?url=' + shareURL);
+             $('.fb-share-pledge').click(function () {
+                 FB.ui({ // open a share dialog and pass it the url 
+                     method: 'share',
+                     href: shareURL
+                 }, function (response) { });
+             });
+         }
+            });
+        </script>
+
+
+<script>
+    $('#goallink a').click(function (e) {
+        var txt = $(e.target).text();
+        var count = $(e.target).attr('class');
+        sessionStorage.setItem("goaltitle", txt);
+        sessionStorage.setItem("goalmembers", count);
+        var unreadcnt = $(e.target).parent().parent().find('span').text();
+        //alert(unreadcnt);
+        sessionStorage.setItem("unreadcnt", unreadcnt);
+
+        $('#goaltitle').text(sessionStorage.getItem("goaltitle"));
+        $('#goal-view em').text(sessionStorage.getItem("goalmembers"));
+        $('#hdndiscsussioncnt').val(sessionStorage.getItem("goalmembers"));
+        $('#goal-view').show();
+        $('#get-started-view').hide();
+
+        $('.goal-list li').each(function () {
+            $(this).removeClass('active');
+            $(this).addClass('highlight');
+        });
+        $(this).closest('#goallink').removeClass('highlight');
+        $(this).closest('#goallink').addClass('active');
+
+
+        $('#cls_all').addClass('active');
+        $('#cls_Article').removeClass('active');
+        $('#cls_Discussion').removeClass('active');
+        $('#cls_Events').removeClass('active');
+    });
+    $(document).ready(function () {
+        goals();
+        var txt = $('#goalname').text();
+        var count = $('#visitcount').text();
+        sessionStorage.setItem("goaltitle", txt);
+        sessionStorage.setItem("goalmembers", count);
+        $('#goaltitle').text(sessionStorage.getItem("goaltitle"));
+        $('#goal-view em').text(sessionStorage.getItem("goalmembers"));
+
+        var artTag = $('#goallink a').find('#hdnPledgeTag').val();
+        sessionStorage.setItem("articleTag", artTag)
+        $('#hdArtTag').val(sessionStorage.getItem("articleTag"));
+
+        currentPageIndex = 0;
+        var pledgeid = $('#goallink a').find('#hdnPledgeId').val();
+        sessionStorage.setItem("PledgeId", pledgeid);
+        $('#hdnPopupPledgeId').val(sessionStorage.getItem("PledgeId"));
+        if ($('#hdnPopupPledgeId').val() != "") {
+            getAllrelatedtoPledge(currentPageIndex);
+        }
+        $('#cls_all').addClass('active');
+        $('#cls_Article').removeClass('active');
+        $('#cls_Discussion').removeClass('active');
+        $('#cls_Events').removeClass('active');
+               
+        
+        if (!(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))) {
+            $('#goallink').removeClass('highlight');
+            $('#goallink').addClass('active');
+            $('#setgoal-right').show();
+            $('#dash-right').removeClass('dashPC-setgoal')
+        }
+        else {
+            $('#setgoal-right').hide();
+            $('#dash-right').addClass('dashPC-setgoal')
+        }
+        if ($('#hdnpledgecnt').val() == 0) {
+            $('.goal-list').hide();
+            $('#no-goals-button').hide();
+            $('#no-goalsDiv').show();
+        }
+    });
+
+        
+
+
+    function goals() {
+        if ($('#hdnpledgecnt').val() > 0) {
+            $('#goal-view').show();
+            $('#get-started-view').hide();
+        }
+        else {
+            $('#goal-view').hide();
+            $('#get-started-view').show();
+        }
+        $('#alltab').show();
+        $('#dashboardRecArticles-display').hide();
+        $('#all').hide();
+        $('#discussions-all').hide();
+    }
+    function goaltaball() {
+        currentPageIndex = 0;
+        getAllrelatedtoPledge(currentPageIndex);
+        btn_viewreplies();
+        $('#alltab').show();
+        $('#discussions-all').hide();
+        $('#dashboardRecArticles-display').hide();
+        $('#all').hide();
+
+        $('#cls_all').addClass('active');
+        $('#cls_Article').removeClass('active');
+        $('#cls_Discussion').removeClass('active');
+        $('#cls_Events').removeClass('active');
+
+        //Article-all,event-all
+    }
+    function goaltabarticle() {//Articles,Discussions,Events
+        //Get Shared Articles
+        $('#alltab').hide();
+        $('#discussions-all').hide();
+        $('#dashboardRecArticles-display').show();
+        $('#all').hide();
+
+        $('#cls_all').removeClass('active');
+        $('#cls_Article').addClass('active');
+        $('#cls_Discussion').removeClass('active');
+        $('#cls_Events').removeClass('active');
+        sharedCurrentPageIndex = 0;
+        getSharedArticles(sharedCurrentPageIndex);
+    }
+    function goaltabdiscussion() {//Articles,Discussions,Events
+        $('#discussions-all .entity-list').html("");
+        $('#alltab').hide();
+        $('#discussions-all').show();
+        $('#dashboardRecArticles-display').hide();
+        $('#all').hide();
+
+        $('#cls_all').removeClass('active');
+        $('#cls_Article').removeClass('active');
+        $('#cls_Discussion').addClass('active');
+        $('#cls_Events').removeClass('active');
+        currentPageIndex = 0;
+        getDiscussionsPledge(currentPageIndex, $('#hdnPopupPledgeId').val());
+    }
+    function goaltabevents() {//Articles,Discussions,Events
+        getMyEvents();
+        $('#alltab').hide();
+        $('#discussions-all').hide();
+        $('#dashboardRecArticles-display').hide();
+        $('#all').show();
+
+        $('#cls_all').removeClass('active');
+        $('#cls_Article').removeClass('active');
+        $('#cls_Discussion').removeClass('active');
+        $('#cls_Events').addClass('active');
+    }
+    $('.attendance').on('load', function (e) {
+        var txt = $(e.target).text();
+        if (txt == '') {
+            $('.attendance').show();
+        }
+    });
+   
+
+    $('#editlinkId').on('click',function () {
+        if ($(this).text() == "Edit goal") {  
+            $('.goal-list li').each(function () {
+                $('.goal-list li').find('#divEditGoal').show();
+                    //.css("visibility", 'visible');
+            });
+            $('#editlinkId').text('Finish Editing');
+        }
+        else {
+            $('.goal-list li').each(function () {
+                $('.goal-list li').find('#divEditGoal').hide();
+                    //.css("visibility", 'hidden');
+            });
+            $('#editlinkId').text('Edit goal');
+        }
+    });
+
+    
+
+    $('.removegoal').on('click', function (e) {
+
+        var GoalId = $(this).attr('id');
+        var MemberId = $('#hdnMemberId').val();
+        var MemberCount = $('#hdnMemCount').val();
+
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            cache: false,
+            data: JSON.stringify({ "GoalId": GoalId, "MemberId": MemberId, "MemberCount": MemberCount }),
+            type: 'POST',
+            url: '/umbraco/surface/Pledge/RemoveGoal',
+            success: function (data) {
+                if (data.message.indexOf('error') > -1) {
+                    new jBox('Notice', {
+                        content: '<strong>Oops.</strong><br><br>Something went wrong. Please try again.',
+                        color: 'red',
+                        theme: 'NoticeBorder'
+                    });
+                    window.location.href = "/dashboard";
+                }
+                else {
+                    window.location.href = "/dashboard/";
+                }
+            }
+        })
+    });
+
+    function reflink()
+    {
+        // window.open("/MobileDashboard/", "_blank");
+        window.location.href = "/MobileDashboard/";
+    }
+
+</script>

@@ -1,0 +1,84 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Umbraco.Web
+@using RexonaAU.Models
+@using RexonaAU.Controllers
+@using RexonaAU.Helpers
+@using umbraco.NodeFactory
+@using umbraco.cms.businesslogic.member
+@using Umbraco.Core.Logging
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+    Common.SetNoBrowserCacheForpage();
+    umbraco.cms.businesslogic.member.Member mem = null;
+    bool isValidRequest = false;
+
+    try
+    {
+        if (!string.IsNullOrEmpty(Request.QueryString["memberId"]) && !string.IsNullOrEmpty(Request.QueryString["token"]))
+        {
+            mem = new umbraco.cms.businesslogic.member.Member(Convert.ToInt32(Request.QueryString["memberId"]));
+            if (mem != null && mem.Id > 0)
+            {
+                if (Common.PasswordTokenHelper.VerifyUserToken(mem, Request.QueryString["token"]))
+                {
+                    isValidRequest = true;
+                }
+                else
+                {
+                    TempData.Remove("ResetPasswordMsg");
+                    TempData.Add("ResetPasswordMsg", "<strong>Oops.</strong><br><br>Invalid link. Please re-generate link using Forgot Password.");
+                    Node signInNode = uQuery.GetNodesByType("Login").FirstOrDefault();
+                    if (signInNode != null && signInNode.Id > 0)
+                    {
+                        Response.Redirect(signInNode.Url);
+                    }
+                }
+            }
+            else
+            {
+                TempData.Remove("ResetPasswordMsg");
+                TempData.Add("ResetPasswordMsg", "<strong>Oops.</strong><br><br>Member not found. Please re-generate link using Forgot Password.");
+                Node signInNode = uQuery.GetNodesByType("Login").FirstOrDefault();
+                if (signInNode != null && signInNode.Id > 0)
+                {
+                    Response.Redirect(signInNode.Url);
+                }
+            }
+        }
+        else if (Member.IsLoggedOn())
+        {
+            isValidRequest = true;
+        }
+        else
+        {
+            TempData.Remove("ResetPasswordMsg");
+            TempData.Add("ResetPasswordMsg", "<strong>Oops.</strong><br><br>Invalid link. Please re-generate link using Forgot Password.");
+            Node signInNode = uQuery.GetNodesByType("Login").FirstOrDefault();
+            if (signInNode != null && signInNode.Id > 0)
+            {
+                Response.Redirect(signInNode.Url);
+            }
+        }
+    }
+    catch(Exception ex)
+    {
+        LogHelper.Info(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType, "Rexona AUS : GetAllMemberPledges() method:" + Environment.NewLine + "Message: " + ex.Message + Environment.NewLine + "Stack Trace: " + ex.StackTrace);           
+    }
+}
+
+@if (isValidRequest)
+{
+    @Html.Action("RenderResetPassword", "EditProfile");
+}
+else
+{
+    TempData.Remove("ResetPasswordMsg");
+    TempData.Add("ResetPasswordMsg", "<strong>Oops.</strong><br><br>Invalid link. Please re-generate link using Forgot Password.");
+    Node signInNode = uQuery.GetNodesByType("Login").FirstOrDefault();
+    if (signInNode != null && signInNode.Id > 0)
+    {
+        Response.Redirect(signInNode.Url);
+    }
+}

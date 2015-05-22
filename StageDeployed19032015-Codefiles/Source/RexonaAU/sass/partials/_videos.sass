@@ -1,0 +1,39 @@
+
+.video
+	margin-bottom: 1em
+	+at($abovesmall)
+		margin-bottom: 2em
+	.play-button
+		margin: auto 
+		position: absolute
+		top: -56%
+		left: 0
+		bottom: 0
+		right: 0
+		height: 50%
+		width: 50%
+		min-width: 100px
+		max-width: 100px
+		min-height: 100px
+		max-height: 100px
+		background-image: url("/images/bigplay.svg")
+		background-position: 0 200px
+		&:hover
+			background-position: 0 100px
+			cursor: pointer
+		+at($abovesmall)
+			top: -35%
+
+
+.video-heading
+	+clearfix
+	padding: 0.7em 0
+	.video-title 
+		width: 75%
+		float: left
+		margin: 0
+	.video-share
+		float: right
+		position: relative
+		top: 4px
+

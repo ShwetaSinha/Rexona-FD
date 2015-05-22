@@ -1,0 +1,205 @@
+﻿@using RexonaAU.Models;
+@using RexonaAU.Helpers;
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+
+@{var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+}
+
+<link id="bs-css" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link id="bsdp-css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<style>
+    .customtable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+        .customtable td, #customers th {
+            font-size: 1em;
+            border: 1px solid #888;
+            font-size: 14px;
+            padding: 10px 5px 10px 5px;
+        }
+
+        .customtable tr td {
+            word-wrap: break-word;
+        }
+
+        .customtable th {
+            font-size: 1.1em;
+            text-align: left;
+            padding: 10px 5px 10px 5px;
+            background-color: #888;
+            border: 1px solid #888;
+            color: #ffffff;
+        }
+
+        .customtable tr.alt td {
+            color: #000000;
+            background-color: #EAF2D3;
+        }
+</style>
+@{
+    <h3>RSS Feed Administration</h3>
+    <br />
+
+    <table class="customtable">
+
+        <thead>
+            <tr>
+                <th style="width:30%"><b>Article Title</b></th>
+                <th style="width:20%"><b>Article Link</b></th>
+                <th style="width:20%"><b>Include in eDM</b></th>
+                <th style="width:20%"><b>Mail Out Date</b></th>
+                <th style="width:10%"><b>Save</b></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:Articles">
+            <tr>
+                <td class="source" data-bind="text:ArticleTitle"></td>
+                <td><a data-bind="attr:{href:ActualArticleURL}" target="_blank">View</a> </td>
+                <td style="width:15%">
+                    <input type="checkbox" data-bind="attr:{id:checkboxId},checked: IncludeInEDM" checked />
+                </td>
+                <td>
+                    <input type="text" data-bind="attr:{id:datepickerId,value:MailOutDate}" class="pickDate" />
+                </td>
+                <td>
+                    <input type="button" data-bind="attr:{id:articleId}" class="saveArticle" value="Save" />
+                </td>
+            </tr>
+
+            @*@if (articles != null)
+                {
+                    foreach (var article in articles)
+                    {
+                        <tr>
+                            <td class="source" id="data-@article.Id">
+                                @article.ArticleTitle
+                            </td>
+                            <td><a href="@article.ActualArticleURL" target="_blank">View in new window</a> </td>
+                            <td style="width:15%">
+                                @if (article.IncludeInEDM)
+                                {
+                                    <input type="checkbox" id="isInEdm_@article.Id" checked />}
+                                else
+                                {
+                                    <input type="checkbox" id="isInEdm_@article.Id" />}
+
+                            </td>
+                            <td>
+
+                                <input type="text" name="mailOutDate$@article.Id" id="mailOutDate_@article.Id" class="pickDate" @if (article.MailOutDate != DateTime.MinValue) { Html.Raw("value=" + article.MailOutDate.ToShortDateString()); } else { Html.Raw("value=''"); }>
+
+
+                            </td>
+                            <td>
+                                <input type="button" name="save" class="saveArticle" value="Save" id="@article.Id" />
+                            </td>
+                        </tr>
+                    }
+                }*@
+        </tbody>
+    </table>
+}
+
+<script type="text/javascript">
+    var viewModel;
+    $(document).ready(function () {
+
+        viewModel = new ArticleViewModel();
+        ko.applyBindings(viewModel);
+        LoadArticles();
+
+        var datepicker = $.fn.datepicker.noConflict();
+        $.fn.bootstrapDP = datepicker;
+
+
+
+        $(document).on('click', '.saveArticle', function (e) {
+
+            var uid = $(this).attr("id");
+            var paramObject = new Object();
+            paramObject.articleId = uid;
+            paramObject.includeInEDM = $('#isInEdm_' + uid + ':checked').length > 0;
+            paramObject.mailOutDate = $('#mailOutDate_' + uid).val();
+            //paramObject.articleCategory =
+            //paramObject.articleBucket =
+
+            $.ajax({
+                type: 'POST',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                cache: false,
+                url: "/umbraco/surface/Ambassador/UpdateArticleEDMInfo",
+                async: true,
+                data: JSON.stringify(paramObject),
+                success: function (data) {
+                    if (data == "true") {
+                        LoadArticles();
+                        alert('The content is edited succesfully.');
+                    }
+                    else {
+                        alert('Oops,something went wrong,please try again');
+                    }
+                },
+                error: function (data) {
+                    alert('Oops,something went wrong,please try again');
+                }
+            });
+        });
+    });
+
+    function Article(data) {
+        //console.log(data);
+        this.ID = ko.observable(data.Id);
+        this.articleId = ko.observable(data.Id);
+        this.ArticleTitle = ko.observable(data.ArticleTitle);
+        this.IncludeInEDM = ko.observable(data.IncludeInEDM);
+        this.MailOutDate = ko.observable(data.MailOutDate);
+        this.ActualArticleURL = ko.observable(data.ActualArticleURL);
+        this.buttonId = ko.computed(function () {
+            return data.ID;
+        });
+        this.checkboxId = ko.computed(function () {
+            return 'isInEdm_' + data.Id;
+        });
+        //fakecheckboxId
+        this.datepickerId = ko.computed(function () {
+            return 'mailOutDate_' + data.Id;
+        });
+    }
+
+    function LoadArticles() {
+        $.ajax({
+            contentType: "application/json; charset=utf-8",
+            dataType: 'json',
+            type: 'GET',
+            url: '/umbraco/surface/Ambassador/GetAllArticles',
+            success: function (data) {
+                var articles = $.map(data, function (item) { return new Article(item); });
+                viewModel.Articles(articles);
+                //if (articles.length == 0) {
+                //    $('#divTwitterResults table tbody').html("<span style='color:red;'>No results found</span>");
+                //}
+                //$('#divTwitterResults,#divTwitterResults table').show();
+                setTimeout(function () {
+                    $('.pickDate').bootstrapDP({ format: "dd/mm/yyyy", autoclose: true });
+                }, 500);
+            },
+            error: function (data) {
+                console.log('Error Occured');
+            }
+        });
+    }
+
+    function ArticleViewModel() {
+        //  alert('called from viewModel');
+        var self = this;
+        self.Articles = ko.observableArray([]);
+    }
+
+</script>

@@ -1,0 +1,440 @@
+﻿@using umbraco.NodeFactory;
+@using RexonaAU.Helpers;
+@using System.Configuration;
+@using umbraco.cms.businesslogic.member;
+
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+
+    string learnMoreLink = uQuery.GetNodesByType("About").Count() > 0 ? uQuery.GetNodesByType("About").ToList().First().NiceUrl : string.Empty;
+
+
+    string ambassadorsLink = uQuery.GetNodesByType("Ambassadors").Count() > 0 ? uQuery.GetNodesByType("Ambassadors").ToList().First().NiceUrl : string.Empty;
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+
+    string PledgesTick = ConfigurationManager.AppSettings["PledgeTicker"];
+
+    var pledgeStep = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault();
+    var signUp = uQuery.GetNodesByType("SignUp").FirstOrDefault();
+    string step1Url = string.Empty;
+
+    if (pledgeStep != null && Member.IsLoggedOn())
+    {
+        step1Url = string.IsNullOrEmpty(pledgeStep.NiceUrl) ? string.Empty : Convert.ToString(pledgeStep.NiceUrl);
+    }
+    else
+    {
+        step1Url = string.IsNullOrEmpty(signUp.NiceUrl) ? string.Empty : Convert.ToString(signUp.NiceUrl);
+    }
+
+    //get intro images
+
+    string heroImg1 = string.Empty;
+    string heroImg2 = string.Empty;
+    string heroImg3 = string.Empty;
+    string heroImg4 = string.Empty;
+
+
+    int image1 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage1")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage1"));
+    int image2 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage2")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage2"));
+    int image3 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage3")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage3"));
+    int image4 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage4")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage4"));
+
+    if (image1 != 0)
+    {
+        umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image1);
+        heroImg1 = imgNode.GetImageUrl();
+    }
+    if (image2 != 0)
+    {
+        umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image2);
+        heroImg2 = imgNode.GetImageUrl();
+    }
+    if (image3 != 0)
+    {
+        umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image3);
+        heroImg3 = imgNode.GetImageUrl();
+    }
+    if (image4 != 0)
+    {
+        umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image4);
+        heroImg4 = imgNode.GetImageUrl();
+    }
+    string image1IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image1IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image1IntroText");
+    string image2IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image2IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image2IntroText");
+    string image3IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image3IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image3IntroText");
+    string image4IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image4IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image4IntroText");
+
+    //end
+   
+}
+
+<script src="@urlHelper.Content("~/js/TopContent.js")"></script>
+<script src="@urlHelper.Content("~/js/voting.js")"></script>
+<script src="@urlHelper.Content("~/js/article.js")"></script>
+@*ManageSocialContent.GetTweets();*@
+
+
+
+@*Define templates for the HTML markup *@
+
+<script type="text/html" id="socialContent">
+    <div class="item">
+        <span style="display: none" data-bind="text:Id"></span>
+        <span data-bind="attr:{id:spanId,text:Source}"></span>
+        <div class="item-type">
+            <span data-bind="text:Source"></span>
+        </div>
+        <div class="item-content">
+            <div class="item-image" data-bind="visible:instaGram">
+                @*src="http://placehold.it/400x400"*@
+                <img data-bind="attr:{src: MediaURL}" class="full-on-mobile" />
+            </div>
+            <div class="item-details">
+                <div class="item-heading" style="word-wrap: break-word;">
+                    <h4 data-bind="text:Content"></h4>
+                </div>
+            </div>
+            <div class="item-actions">
+                <div class="item-author">
+                    <span data-bind="text:newAuth"></span>
+                </div>
+                <div class="item-rate nohover">
+                    <div data-bind="attr:{id: Id}" class="disable">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="rating-number">
+                        <span data-bind="text:Likes"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="inspirationArticle">
+    <div class="item has-badge">
+        <span style="display: none" data-bind="text:Id"></span>
+        <span data-bind="attr:{id:spanId,text:Source}"></span>
+        <div class="item-type">
+            <span data-bind="text:Source" id="spnArticles"></span>
+            <div class="item-badge" data-bind="visible:badgeVisible">
+                <img src="/images/ais-badge.jpg">
+            </div>
+        </div>
+        <div class="item-content">
+            <!-- ko if: MediaURL != "false" -->
+            <div class="item-image">
+                <a data-bind="attr:{href: link}">
+                    <img data-bind="attr:{src: MediaURL}" class="full-on-mobile" /></a>
+            </div>
+            <!-- /ko -->
+            <div class="item-details">
+                <div class="item-heading">
+                    <a data-bind="attr:{href: link,Id: hrefId}">
+                        <h4 data-bind="html: ArticleTitle"></h4>
+                    </a>
+                </div>
+                <div class="item-poster">
+                    <p><em data-bind="html:Author"></em></p>
+                </div>
+                <div class="item-description">
+                    <p data-bind="html: Excerpt"></p>
+                </div>
+            </div>
+            <div class="item-actions">
+                <div class="item-share">
+                    <a href="javascript:void();" class="small-link">Share</a>
+                </div>
+                <div class="item-rate">
+                    <div class="rating-icon" data-bind="attr:{id: Id}">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="rating-number">
+                        <span data-bind="html: Likes"></span>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="pledges">
+    <div class="item is-pledge">
+        <span style="display: none" data-bind="text:Id"></span>
+        <span data-bind="attr:{id:spanId,text:Source}"></span>
+        <a data-bind="attr:{href: PledgeURL, Id: hrefId}">
+            <img class="full-on-mobile" data-bind="attr:{src: MediaURL}" />
+        </a>
+        <div class="item-content inverted">
+            <div class="item-details" data-bind="visible: IsPublicPledge">
+                <div class="item-description">
+                    <p><span data-bind="text:PledgeMembers"></span></p>
+                </div>
+            </div>
+            <div class="item-actions">
+                <div class="item-share">
+                    <a href="javascript:void();" class="small-link">Share</a>
+                </div>
+                <div class="item-join" data-bind="visible: ShowJoinLinkAndText && ShowJoinLink">
+                    <a href="javascript:void();" class="small-link">Join</a>
+                </div>
+
+                <div class="item-rate">
+                    <div class="rating-icon" data-bind="attr:{id: Id}">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="rating-number">
+                        <span data-bind="text: Likes"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+@*end*@
+
+<div class="hero-panel home">
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-6 medium-6 columns">
+                    <h1 class="contained-title tilted">I Will Do:</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 medium-6 columns">
+                    <div class="ticker tilted">
+                        <span id="spngoalsMade" class="number" style="display: none"></span>
+                        <span id="spnWord" class="words" style="display: none"></span>
+                        <span id="spnGamePlan" style="display: none;" class="words">Give your goal a game plan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <p class="inverted">@Umbraco.Field("homeIntroText")</p>
+                    @if (!string.IsNullOrEmpty(heroImg1) || !string.IsNullOrEmpty(image1IntroText))
+                    {
+                        <div class="home-step">
+                            @if (!string.IsNullOrEmpty(heroImg1))
+                            {
+                                <img src="@heroImg1" alt="">
+                            }
+                            @if (!string.IsNullOrEmpty(image1IntroText))
+                            {
+                                <p>@Html.Raw(image1IntroText)</p>
+                            }
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(heroImg2) || !string.IsNullOrEmpty(image2IntroText))
+                    {  <div class="home-step">
+                        @if (!string.IsNullOrEmpty(heroImg2))
+                        {
+                            <img src="@heroImg2" alt="">
+                        }
+                        @if (!string.IsNullOrEmpty(image2IntroText))
+                        {
+                            <p>@Html.Raw(image2IntroText)</p>
+                        }
+                    </div>}
+                    @if (!string.IsNullOrEmpty(heroImg3) || !string.IsNullOrEmpty(image3IntroText))
+                    {         <div class="home-step">
+                        @if (!string.IsNullOrEmpty(heroImg3))
+                        {
+                            <img src="@heroImg3" alt="">
+                        }
+                        @if (!string.IsNullOrEmpty(image3IntroText))
+                        {
+                            <p>@Html.Raw(image3IntroText)</p>
+                        }
+                    </div>}
+                    @if (!string.IsNullOrEmpty(heroImg4) || !string.IsNullOrEmpty(image4IntroText))
+                    { <div class="home-step">
+                        @if (!string.IsNullOrEmpty(heroImg4))
+                        {
+                            <img src="@heroImg4" alt="">
+                        }
+                        @if (!string.IsNullOrEmpty(image4IntroText))
+                        {
+                            <p>@Html.Raw(image4IntroText)</p>
+                        }
+                    </div>}
+                    <a href="@step1Url" class="button with-icon right-icon">Set your Fitness Goal <i class="fa fa-chevron-right"></i></a>
+                    <a href="#content" class="button tertiary with-icon right-icon scroll">Get Inspired <i class="fa fa-chevron-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+        <div id="videoContainer" class="large-6 columns">
+            @*<video id="home-video"  height="350" data-setup="{}">
+                <source src='@Umbraco.Field("youTubeUrl")' type='video/youtube' />
+                <!-- MP4 for Safari, IE9, iPhone, iPad, Android, and Windows Phone 7 -->
+                <!-- WebM/VP8 for Firefox4, Opera, and Chrome -->
+                 <object type='application/x-shockwave-flash' data="~/images/flashfox.swf" width='455' height='323' style='position: relative;'>
+                    <param name='movie' value='/images/flashfox.swf' />
+                    <param name='allowFullScreen' value='true' />
+                    <param name='flashVars' value='autoplay=false&amp;controls=true&amp;fullScreenEnabled=true&amp;posterOnEnd=true&amp;loop=false&amp;src=@Umbraco.Field("heroVideoM4V")' />
+                    <embed src='/media/movies/flashfox.swf' width='455' height='323' style='position:relative;'  flashVars='autoplay=false&amp;controls=true&amp;fullScreenEnabled=true&amp;posterOnEnd=true&amp;loop=false&amp;src=@Umbraco.Field("heroVideoM4V")' allowFullScreen='false' wmode='transparent' type='application/x-shockwave-flash' pluginspage='http://www.adobe.com/go/getflashplayer_en' />
+                    <img alt='' style='position: absolute; left: 0;' width='455' height='323' title='Video playback is not supported by your browser' />
+                </object>
+            </video>*@
+            @*<iframe height="350" class="video"  src="https:@Umbraco.Field("youTubeUrl")?enablejsapi=1" frameborder="0" allowfullscreen>
+               <object height="350">
+                <param name="movie" value="http://youtube.com/v/P6GwizcSNYs" />
+                <param name="wmode" value="transparent" />
+                <embed src="@Umbraco.Field("youTubeUrl")" type="application/x-shockwave-flash" allowfullscreen="true" wmode="transparent" height="350" />
+
+            </object>
+            </iframe>*@
+        </div>
+    </div>
+</div>
+<input type="hidden" id="hdnVideoURL" value="@Umbraco.Field("youTubeUrl")"/>
+<div class="content-panel">
+    <div class="row">
+        <div class="large-6 columns">
+            <h2>Meet our Ambassadors</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <p class="subheader">@Umbraco.Field("ambassadorIntro")</p>
+        </div>
+        <div class="large-6 columns">
+            <a href="@ambassadorsLink" class="right breadcrumb button with-icon right-icon view-more">View Ambassadors <i class="fa fa-chevron-right"></i></a>
+        </div>
+    </div>
+    <div class="row" id="homeambassadors" data-bind="foreach: TopAmbassador">
+        <div class="large-4 medium-4 small-12 columns">
+            <div class="ambassador-intro">
+                <a data-bind="attr:{href: AmbassadorURL}">
+                    <!-- ko if: AmbassadorImage !="false" -->
+                    <img data-bind="attr:{src: AmbassadorImage}" alt="" class="border-image" />
+                    <!-- /ko -->
+                    <!-- ko ifnot: AmbassadorImage !="false" -->
+                    <img src="http://placehold.it/500x400" alt="" class="border-image" />
+                    <!-- /ko -->
+                </a>
+
+                <h5 data-bind="html: Name"></h5>
+                <p class="subheader" data-bind="html: AmbassadorGoal"></p>
+            </div>
+            <a data-bind="attr:{href: AmbassadorURL}" class="small-link">More from <span data-bind="html: AmbassadorName"></span></a>
+            @*this ambassador*@
+        </div>
+
+
+    </div>
+</div>
+
+<div class="content-panel has-border dark-panel">
+    <a id="content"></a>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="connected-panel-container">
+                <div class="connected-panel-heading">
+                    <h2 class="contained-title">Get Inspired</h2>
+                    <a href="@step1Url" class="right breadcrumb button with-icon right-icon on-desktop">Set your Goal <i class="fa fa-chevron-right"></i></a>
+                </div>
+                <div class="connected-panel">
+                    <div class="row">
+                        <div class="large-4 large-offset-4 columns">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <label for="right-label" class="right floating-label">Show:</label>
+                                </div>
+                                <div class="small-8 columns">
+                                    <label class="select">
+                                        <select id="filterBy">
+                                            <option value="all" selected>All Content</option>
+                                            <option value="pledges">Goals</option>
+                                            <option value="social">Social Content</option>
+                                            <option value="empower">Articles</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="large-4 columns end">
+                            <div class="row">
+                                <div class="small-4 columns">
+                                    <label for="right-label" class="right floating-label">Sort By:</label>
+                                </div>
+                                <div class="small-8 columns">
+                                    <label class="select">
+                                        <select id="sortBy">
+                                            <option value="recent" selected>Most Recent</option>
+                                            <option value="popular">Most Popular</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="topContent">
+        <div class="large-12 columns">
+            <div id="divLoading" style="display: none;">
+                <h2 class="contained-title">Loading . . . </h2>
+            </div>
+            <div class="masonry-wall" data-bind="foreach:topContent">
+                <div data-bind="template: {name : Style }" id="templateDiv"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function updatePledgeCount() {
+        var pledgeTicks = @PledgesTick
+        $.ajax({
+            url: '/umbraco/surface/Pledge/PledgeTickerCount',
+            type: "POST",
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //console.log(data);
+                $('.number').text(data);
+                if (data != null) {
+                    if (data.message == 'Success') {
+                        if (data.pledgeCount >= pledgeTicks) {
+                            $('#spngoalsMade').show();
+                            $('#spnWord').show();
+                            $('#spnWord').text('Goals Made');
+                            $('#spngoalsMade').text(data.pledgeCount);
+                        }
+                        else {
+                            $('#spnGamePlan').show();
+                        }
+                    }
+                    else {
+                        console.log('Oops. Something went wrong.Please try again');
+                    }
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //console.log(xhr.statusText);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        updatePledgeCount();
+        setInterval(function () { updatePledgeCount(); }, 5000);
+        if ((navigator.userAgent.match(/iPhone/i))) {
+            $('#videoContainer').append('<iframe class="video" height="235" src="https:' + $('#hdnVideoURL').val() + '?enablejsapi=1&rel=0&showinfo=0" frameborder="0" allowfullscreen width="' + $('#videoContainer').width() + '"></iframe>');
+        }
+        else {
+            $('#videoContainer').append('<iframe class="video" height="350" src="https:' + $('#hdnVideoURL').val() + '?enablejsapi=1&rel=0&showinfo=0" frameborder="0" allowfullscreen width="' + $('#videoContainer').width() + '"></iframe>');
+        }
+    });
+
+</script>

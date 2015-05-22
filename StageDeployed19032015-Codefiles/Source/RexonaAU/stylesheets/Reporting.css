@@ -1,0 +1,470 @@
+﻿/**{
+	margin: 0;
+	padding: 0;
+}
+body,html{
+	margin: 0;
+	height: 100%;
+}*/
+body {
+    color: #4a4a4a;
+}
+
+#ReportingMainDIV article,
+#ReportingMainDIV aside,
+#ReportingMainDIV details,
+#ReportingMainDIV figcaption,
+#ReportingMainDIV figure,
+#ReportingMainDIV footer,
+#ReportingMainDIV header,
+#ReportingMainDIV hgroup,
+#ReportingMainDIV main,
+#ReportingMainDIV nav,
+#ReportingMainDIV section,
+#ReportingMainDIV summary {
+    display: block;
+}
+
+#ReportingMainDIV a {
+    background: transparent;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    #ReportingMainDIV a:active,
+    #ReportingMainDIV a:hover {
+        outline: 0;
+    }
+
+.clearfix:before, .clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.set-width {
+    width: 1240px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+body {
+    background: #F6F6F6;
+}
+
+.content {
+    float: left;
+    font-family: sans-serif;
+    width: 910px;
+}
+
+.tab {
+    padding-left: 50px;
+    padding-top: 18px;
+    padding-right: 30px;
+    border-left: 1px solid #ccc;
+    min-height: 220px;
+}
+
+#ReportingMainDIV .tabs {
+    background: #fff;
+    float: left;
+    padding-top: 30px;
+    width: 100%;
+    height: auto !important;
+    min-height: 100%;
+    height: 100%;
+}
+
+    #ReportingMainDIV .tabs ul.tab-ul {
+        list-style: none;
+        float: left;
+        width: 200px;
+        padding-left: 0;
+    }
+
+    #ReportingMainDIV .tabs .tab-ul li:first-child {
+        border-top: 1px solid #ccc;
+    }
+
+    #ReportingMainDIV .tabs .tab-ul li {
+        height: 55px;
+        border-bottom: 1px solid #ccc;
+        line-height: 55px;
+        cursor: pointer;
+        padding-left: 38px;
+    }
+
+.current {
+    border-right: 7px solid #96B939;
+}
+
+#ReportingMainDIV .tabs .tab-ul li a {
+    color: #4A4A4A;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#ReportingMainDIV h2 {
+    font-size: 26px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.articles {
+    width: 410px;
+    display: inline-block;
+    margin-right: 11px;
+}
+
+.Social {
+    width: 400px;
+    display: inline-block;
+}
+
+.tables h2 {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#ReportingMainDIV table {
+    font-size: 19px !important;
+}
+
+    #ReportingMainDIV table span {
+        color: #A4A4A4;
+        font-size: 14px;
+        width: 100%;
+        font-weight: normal;
+        text-transform: capitalize;
+        float: left;
+        font-family: sans-serif;
+    }
+
+#ReportingMainDIV h2 small {
+    font-weight: normal;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+#ReportingMainDIV table td {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-weight: bold;
+    font-size: 19px;
+}
+
+#ReportingMainDIV .tabs .top-article-list ul {
+    width: 100%;
+}
+
+.top-article-list, .top-instragram-list, .top-tweets {
+    float: left;
+}
+
+    .top-article-list ul {
+        list-style: none;
+    }
+
+.top-article-list ul li span, .top-article-list ul li small, .top-article-list ul li {
+            /*float: left;*/
+        }
+
+        .top-article-list ul li {
+            width: 100%;
+            padding-left:0px !important;
+        }
+
+        .top-article-list ul li, .list-thumb .title {
+            font-size: 13px;
+            color: #4a4a4a;
+            font-weight: bold;
+            padding: 8px 0px;
+        }
+
+#ReportingMainDIV .top-article-list h3, #ReportingMainDIV .top-instragram-list h3 {
+    font-size: 18px;
+    margin-top: 80px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.thumbnail {
+    height: 83px;
+    width: 83px;
+    float: left;
+    background: #D8D8D8;
+    border: 1px solid #888;
+}
+
+#ReportingMainDIV span.posted-by, span.posted-time {
+    color: #A4A4A4;
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 15px;
+}
+
+.list-thumb .title {
+    padding: 0px;
+    margin-left: 15px;
+    margin-bottom: 10px;
+}
+
+.list-thumb .title, span.posted-by, span.posted-time, .likes {
+    float: left;
+    width: 74%;
+}
+
+.list-thumb .title {
+    width: 300px;
+}
+
+.right-panel {
+    float: right;
+    width: 315px;
+}
+
+.likes {
+    margin-left: 15px;
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 10px;
+}
+
+.list-thumb {
+    margin-top: 10px;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.top-tweets .title, .top-tweets .posted-by, .top-tweets .posted-time, .top-tweets .likes {
+    margin-left: 0;
+}
+
+#ReportingMainDIV img.pie {
+    float: left;
+    /*width: 120px;
+height: 120px;*/
+}
+
+#ReportingMainDIV ul.chart-details {
+    float: left;
+    list-style: none;
+    font-size: 12px;
+    margin-left: 40px;
+}
+
+    #ReportingMainDIV ul.chart-details li {
+        margin: 12px 0px;
+    }
+
+        #ReportingMainDIV ul.chart-details li span {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+            #ReportingMainDIV ul.chart-details li span.orange {
+                color: #F5A623;
+            }
+
+            #ReportingMainDIV ul.chart-details li span.blue {
+                color: #4990E2;
+            }
+
+            #ReportingMainDIV ul.chart-details li span.green {
+                color: #7ED320;
+            }
+
+#ReportingMainDIV #tabs-2 .articles, #ReportingMainDIV #tabs-2 .social {
+    margin-bottom: 70px;
+}
+
+#ReportingMainDIV #tabs-3 table {
+    font-size: 28px;
+}
+
+.video {
+    background: #D8D8D8;
+    width: 100%;
+    height: 133px;
+    margin-bottom: 10px;
+}
+
+.video-div {
+    float: left;
+    width: 262px;
+    margin-right: 8px;
+    margin-bottom: 30px;
+}
+
+#ReportingMainDIV span.video-title {
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: capitalize;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 20px;
+    white-space: nowrap;
+    display: inherit;
+}
+
+a.video-link {
+    color: #96B939;
+    font-size: 12px;
+    width: 100%;
+    height: 15px;
+    display: inline-block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#ReportingMainDIV table.inline-list {
+    font-size: 10px;
+}
+
+    #ReportingMainDIV table.inline-list td, table.inline-list th {
+        padding: 0px 8px;
+        font-weight: normal;
+    }
+
+    #ReportingMainDIV table.inline-list th {
+        font-weight: bold;
+    }
+
+#ReportingMainDIV #tabs-4 .articles {
+    margin-bottom: 30px;
+}
+
+.sort {
+    float: right;
+}
+
+    .sort label {
+        font-size: 13px;
+        margin-right: 10px;
+    }
+
+    .sort select {
+        width: 269px;
+        height: 30px;
+        /* IE10 Consumer Preview */
+        background-image: -ms-linear-gradient(top, #fff 0%, #DADADA 100%);
+        /* Mozilla Firefox */
+        background-image: -moz-linear-gradient(top, #fff 0%, #DADADA 100%);
+        /* Opera */
+        background-image: -o-linear-gradient(top, #fff 0%, #DADADA 100%);
+        /* Webkit (Safari/Chrome 10) */
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fff), color-stop(1, #DADADA));
+        /* Webkit (Chrome 11+) */
+        background-image: -webkit-linear-gradient(top, #fff 0%, #DADADA 100%);
+        /* W3C Markup, IE10 Release Preview */
+        background-image: linear-gradient(to bottom, #fff 0%, #DADADA 100%);
+        background-color: #DADADA;
+        color: #444;
+        font-size: 12px;
+        border: 1px solid #aaa;
+        outline: 0;
+        border-radius: 3px;
+    }
+
+.logo {
+    font-family: sans-serif;
+    color: #4A4A4A;
+    font-size: 27px;
+    padding: 20px 0px;
+    float: left;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+#ReportingMainDIV .rightReporting {
+    float: right;
+    padding: 20px 0px;
+    margin-top: 20px;
+}
+
+#ReportingMainDIV button {
+    background: #D0D0D0;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    text-shadow: 0px 1px 2px #fff;
+    padding: 7px 15px;
+    border-radius: 4px;
+    margin-top: 28px;
+    color: #444;
+    box-shadow: 0px 0px 3px #444;
+    border-top: 1px solid #fff;
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.right label {
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 14px;
+    margin-right: 20px;
+}
+
+.calender-btn {
+    background: #D0D0D0;
+    width: 300px;
+    text-shadow: 0px 1px 2px #fff;
+    padding: 9px 20px;
+    border-radius: 3px;
+    border: none;
+    text-align: left;
+    margin-right: 6px;
+    color: #444;
+    box-shadow: 0px 0px 3px #444;
+    cursor: pointer;
+    border-top: 1px solid #fff;
+}
+
+#ReportingMainDIV table span.black {
+    color: black !important;
+}
+
+#ReportingMainDIV table span.grey, #ReportingMainDIV .articles span {
+    color: #A4A4A4 !important;
+}
+
+#ReportingMainDIV #tabs-3 .articles td {
+    text-align: center;
+}
+
+img {
+    vertical-align: inherit !important;
+}
+
+#ReportingMainDIV .header {
+    background-color: lightgray;
+}
+
+.propertypane {
+    width: 1255px !important;
+    background: none !important;
+}
+
+/*table span.black {
+    color: black !important;
+}
+
+table span.grey {
+    color: #A4A4A4 !important;
+}*/

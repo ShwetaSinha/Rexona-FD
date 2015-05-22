@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rexona_AUSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="UserResetPasswords" EntityType="Rexona_AUSModel.UserResetPassword" />
+    <EntitySet Name="EmailTransactions" EntityType="Rexona_AUSModel.EmailTransaction" />
+    <EntitySet Name="InstaGramHashTags" EntityType="Rexona_AUSModel.InstaGramHashTag" />
+    <EntitySet Name="TwitterHashTags" EntityType="Rexona_AUSModel.TwitterHashTag" />
+    <EntitySet Name="DiscussionFollowers" EntityType="Rexona_AUSModel.DiscussionFollower" />
+    <EntitySet Name="MemberFriends" EntityType="Rexona_AUSModel.MemberFriend" />
+    <EntitySet Name="RecommendedArticlePledges" EntityType="Rexona_AUSModel.RecommendedArticlePledge" />
+    <EntitySet Name="TractionEmails" EntityType="Rexona_AUSModel.TractionEmail" />
+    <EntitySet Name="PledgeInviteDatas" EntityType="Rexona_AUSModel.PledgeInviteData" />
+    <EntitySet Name="YouTubeVideos" EntityType="Rexona_AUSModel.YouTubeVideo" />
+  </EntityContainer>
+  <EntityType Name="UserResetPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="Token" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+    <Property Name="IsUsed" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmailTransaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ToEmailAddress" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Subject" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Body" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="RetryCount" Nullable="false" />
+    <Property Type="Boolean" Name="IsEmailSent" Nullable="false" />
+    <Property Type="Boolean" Name="AppendCLLogo" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="InstaGramHashTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UniqueId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Post" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PostUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MediaUrl" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+    <Property Type="Int32" Name="Likes" />
+    <Property Type="String" Name="Location" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="IsApproved" />
+    <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
+    <Property Type="String" Name="ScreeName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="InsertedOn" Precision="3" />
+  </EntityType>
+  <EntityType Name="TwitterHashTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="UniqueId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Post" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PostUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MediaUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+    <Property Type="Int32" Name="Likes" />
+    <Property Type="String" Name="Location" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="IsApproved" />
+    <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
+    <Property Type="String" Name="ScreeName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="InsertedOn" Precision="3" />
+  </EntityType>
+  <EntityType Name="DiscussionFollower">
+    <Key>
+      <PropertyRef Name="DiscussionId" />
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Type="Int64" Name="DiscussionId" Nullable="false" />
+    <Property Type="Int64" Name="MemberId" Nullable="false" />
+    <Property Type="DateTime" Name="LastReadDateTime" Precision="3" />
+    <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MemberFriend">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="MemberId" />
+    <Property Type="Int32" Name="FriendId" />
+    <Property Type="Boolean" Name="IsRemoved" />
+  </EntityType>
+  <EntityType Name="RecommendedArticlePledge">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="PledgeId" Nullable="false" />
+    <Property Type="Int32" Name="ArticleId" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TractionEmail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Decimal" Name="Id" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EmailType" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="TractionQueryString" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="SendDateTime" Precision="3" />
+    <Property Type="Boolean" Name="IsSent" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+    <Property Type="Int32" Name="RetryCount" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PledgeInviteData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="LinkId" Nullable="false" />
+    <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsUsed" />
+    <Property Type="DateTime" Name="InvitedDate" Precision="3" />
+    <Property Type="DateTime" Name="AcceptedDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="YouTubeVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="NodeId" Nullable="false" />
+    <Property Type="String" Name="NiceUrl" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="YouTubeVideoId" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+    <Property Type="DateTime" Name="UpdatedDateTime" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="VideoLikes" Nullable="false" />
+  </EntityType>
+</Schema>

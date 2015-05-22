@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<files><file><guid>27e9f3c6-abd6-422e-98e9-d78a649b5041.dll</guid><orgPath>/bin</orgPath><orgName>Our.Umbraco.HttpsRedirect.dll</orgName></file><file><guid>5eb87678-fed7-428b-960a-da744cb01010.ascx</guid><orgPath>/umbraco/plugins/HttpsRedirect</orgPath><orgName>HttpsRedirectInstaller.ascx</orgName></file></files>
+	<info>
+		<package>
+			<name>HTTPS Redirect</name>
+			<version>1.2.0</version>
+			<license url="http://www.opensource.org/licenses/mit-license.php">MIT license</license>
+			<url>http://our.umbraco.org/projects/website-utilities/https-redirect</url>
+			<requirements>
+				<major>4</major>
+				<minor>7</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Lee Kelleher, Darren Ferguson, Rich Green, Tom Fulton</name>
+			<website>http://our.umbraco.org/people</website>
+		</author>
+		<readme><![CDATA[# HTTPS Redirect
+
+HTTPS Redirect provides a simple mechanism to switch a URL from HTTP to HTTPS (SSL) based on the document-type (alias), node id or template alias.
+
+This package will add the following appSetting keys to your Web.config file: `HttpsRedirect:DocTypes`, `HttpsRedirect:PageIds`, `HttpsRedirect:Templates` and `HttpsRedirect:StripPort`.
+
+* DocTypes - a comma separated list of doc type aliases that should be served as HTTPS.
+* PageIds - a comma separated list of page IDs that should be served as HTTPS.
+* Templates - a comma separated list of template aliases that should be served as HTTPS.
+* StripPort - used to strip out the port portion of the URL - use this when you use a non-stanrard port internally to your firewall (eg 81 or 444).
+]]></readme>
+	</info>
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+	<control>/umbraco/plugins/HttpsRedirect/HttpsRedirectInstaller.ascx</control>
+	<Actions>
+		<Action runat="install" undo="true" alias="HttpsRedirect_Uninstaller" />
+	</Actions>
+</umbPackage>

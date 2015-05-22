@@ -1,0 +1,283 @@
+.goal-progress{
+	background: url("/images/dash-blackBG.png");
+	background-repeat: repeat-x;
+	background-position: center;
+	background-size: 3px;
+}
+
+.goal-progress{
+	max-width: 300px;
+}
+
+.goal-progress {
+    text-align:center;
+}
+.goal-state.state-1, .goal-state.state-2 {
+        margin-right:5.5px;
+    }
+.goal-state.state-1,.goal-state.state-2{
+	margin-right: 10.5px;
+}
+
+.goal-state.active{
+	background-color: #C5CF65;
+}
+
+
+.goal-state{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+	background-color: white;
+	width: 90px;
+	display: inline-block;
+	font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+	text-transform: uppercase;
+
+}
+
+p.remind{
+	font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+h1.white{
+	background-color: white;
+	text-align: center;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin-top: 40px;
+	margin-bottom: 20px;
+}
+
+.button.goalCTA{
+	
+	line-height: 60px;
+    background-color: #C5CF65;
+}
+
+
+.goal-state:first-child {
+    float: left;
+}
+.goal-progress {
+    text-align:center;
+}
+.goal-state:last-child{
+    float: right;
+}
+.goal-a-text
+{
+    background-color: white;
+    color:black;
+    text-decoration:none;
+}
+
+
+.btn-photo {
+   
+    background-color: #c3d060 !important;
+    font-size:12px;
+    /*background-image: none !important;
+    border: none !important;
+    border-radius: 15px !important;*/
+}
+
+.smalltext
+{
+    font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    font-size: 0.875em !important;
+}
+.goal-photo, .goal-confirm{
+	max-width: 480px;
+}
+
+@media all and (max-width: 768px) {
+
+    .button.goalCTA
+    {
+        width:100%;
+    }
+
+	.page-panel.not-offscreen{
+		float: none!important;
+	}
+	#dash-left,#dash-right{
+		width: 20%;
+	}
+	.goal-view-content-filter{
+		height: auto;
+	}
+	.footer-block .right{
+		width: 100%;
+	}
+	.footer-block .right .button{
+		padding-top:4px;
+		max-width: 50%;
+		float: right;
+		font-size: 8px;
+	}
+	.footer-block .right .button.heart{
+		float: left;
+	}
+	.article .article-img{
+		margin-bottom: 0px;
+		width: 100%;
+		height: 200px;
+		margin-top: 50px
+	}
+	.article .large-10.columns{
+		padding-top: 220px;
+	}
+	.footer-block .left h6 {
+	  font-size: 11px;
+	}
+	.footer-block .left{
+		padding-bottom: 10px;
+	}
+	p.remind{
+		padding: 10px;
+	}
+	.goal-photo .half.button{
+		width: 100%;
+		max-width: 100%;
+		float: none!important;
+	}
+	.or{
+		display: block;
+
+	}
+
+    .goal-state.state-1, .goal-state.state-2 {
+        margin-right:5.5px;
+    }
+    .goal-photo, .goal-confirm{
+	    max-width: 480px;
+	    margin: 0 auto;
+    }
+    .goal-form {
+        padding-left: 0 !important;
+    }
+    .goal-form .columns.left-col, 
+    .goal-form .columns.right-col {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        }
+    .goal-form .iwill {
+        width: auto !important;
+    }
+    .goal-form input.big[type="text"] {
+        width: 100% !important;
+        }
+}
+
+.full{
+	width: 100%;
+    background-color: #C5CF65;    
+    line-height:50px;
+}
+.half{
+	max-width: 48%;
+	width: 48%;
+    background-color: #C5CF65;
+    line-height:50px;
+    
+}
+
+.or{
+	display: none;
+	position: relative;
+
+}
+.or:before{
+	border-top: 2px solid white;
+    content:"";
+    margin: 0 auto;
+    position: absolute;
+    top: 6px; left: 0; right: 0; bottom: 0;
+    width: 95%;
+    z-index: -1;
+}
+.or span{
+	text-align: center;
+	display: block;
+	background-color: #d0d0d0;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	width: 50px;
+	font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+	color: white;
+	text-transform: uppercase;
+}
+
+.iwill{
+	margin-left: 10px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 15px;
+	padding-bottom: 10px;
+	background-color: #b7b7b7;
+	float: left;
+	font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+}
+
+.goal-form .iwill{
+	background-color: black;
+	color: white;
+	font-size: 18px;
+	padding: 10px;
+	margin-left: 0px;
+    width: 13%;
+
+}
+.goal-form{
+	padding-left: 40px;
+}
+.goal-form .columns.left-col{
+	padding-left: 0px;
+}
+
+.goal-form .columns.right-col{
+	padding-right: 0px;
+}
+.goal-form .columns.center-col {
+    padding: 0;
+}
+.goal-form .select select{
+    margin: 0 0 1em;
+    text-transform: none;
+}
+.goal-form .select:after{
+    position:inherit !important;
+    display:none;
+    }
+.goal-form input[type="text"]{
+    height: 2.7em !important;
+    padding: 0 15px !important;
+}
+.goal-form input[type="text"].big {
+    width: 100%;
+    float:left;
+}
+.goal-form .error > .error {
+    float:left;
+    width: 100%;
+
+}
+input[type=checkbox]{
+	display: none;
+}
+.goal-form .for-checkbox {
+    text-transform: capitalize;
+}
+input[type=checkbox]:checked + label:before{
+  background-color: #000;
+  line-height: 1.3;
+  font-family: "FontAwesome";
+  content: "\f00c";
+  font-size: 1.6em;
+  color: #fff;
+  padding: 3px;
+  padding-top: 1px;
+}
+p.post-form{
+	padding-top: 20px;
+}

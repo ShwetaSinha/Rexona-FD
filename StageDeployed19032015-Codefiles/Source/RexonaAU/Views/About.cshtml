@@ -1,0 +1,206 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using umbraco.NodeFactory
+@{
+    Layout = "_Baselayout.cshtml";
+    string pledgeStepurl = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;
+}
+<div class="hero-panel about">
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <h1 class="contained-title">Rules of the pre-game</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <p class="subheader inverted">@Umbraco.Field("getStartedDescription")</p>
+                    <a href="@pledgeStepurl" class="button with-icon right-icon">Set your goal <i class="fa fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-panel">
+    <div class="row">
+        <div class="large-6 medium-6 small-12 columns">
+            <img src="@Umbraco.Field("setGoalImage")" alt="@Umbraco.Field("goalImageAltText")">
+        </div>
+        <div class="large-6 medium-6 small-12 columns">
+            <h2 class="contained-title">ETCH YOUR GOAL IN STEEL</h2>
+            <p class="subheader">@Umbraco.Field("setGoalDescription")</p>
+
+        </div>
+    </div>
+</div>
+<div class="content-panel">
+    <div class="row">
+        <div class="large-6 medium-6 small-12 columns">
+            <h2 class="contained-title inverted">Discussions</h2>
+            <p class="subheader">@Umbraco.Field("discussionsDescription")</p>
+        </div>
+        <div class="large-6 medium-6 small-12 columns">
+            <img src="@Umbraco.Field("discussionsImage")" alt="@Umbraco.Field("discussionImageAltText")">
+        </div>
+    </div>
+</div>
+<div class="content-panel">
+    <div class="row">
+        <div class="large-6 medium-6 small-12 columns">
+            <img src="@Umbraco.Field("eventsImage")" alt="@Umbraco.Field("eventImageAltText")">
+        </div>
+        <div class="large-6 medium-6 small-12 columns">
+            <h2 class="contained-title">Events</h2>
+            <p class="subheader">@Umbraco.Field("eventsDescription")</p>
+        </div>
+    </div>
+</div>
+<div class="content-panel">
+    <div class="row">
+        <div class="large-6 medium-6 small-12 columns">
+            <h2 class="contained-title inverted">Useful Links</h2>
+            <p class="subheader">@Html.Raw(Umbraco.Field("usefulLinks"))</p>
+        </div>
+    </div>
+</div>
+
+
+@*will be hidden for 1st release*@
+@*hidden in release 1*@
+<div class="content-panel has-border" style="display:none;">
+    <div class="row">
+        <div class="large-6 columns">
+            <h2 class="contained-title inverted">Popular Goals</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="masonry-wall">
+                <div class="item is-pledge">
+                    <a href="#">
+                        <img src="~/images/pledge-th.jpg" class="full-on-mobile">
+                    </a>
+                    <div class="item-content inverted">
+                        <div class="item-details">
+                            <div class="item-description">
+                                <p>1,245 other people have made this pledge</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+
+                            <div class="item-join">
+                                <a href="#" class="small-link">Join</a>
+                            </div>
+
+                            <div class="item-rate">
+                                <div class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span>4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item is-pledge">
+                    <a href="#">
+                        <img src="~/images/pledge-th.jpg" class="full-on-mobile">
+                    </a>
+                    <div class="item-content inverted">
+                        <div class="item-details">
+                            <div class="item-description">
+                                <p>1,245 other people have made this pledge</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+
+                            <div class="item-join">
+                                <a href="#" class="small-link">Join</a>
+                            </div>
+
+                            <div class="item-rate">
+                                <div class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span>4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item is-pledge">
+                    <a href="#">
+                        <img src="~/images/pledge-th.jpg" class="full-on-mobile">
+                    </a>
+                    <div class="item-content inverted">
+                        <div class="item-details">
+                            <div class="item-description">
+                                <p>1,245 other people have made this pledge</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+
+                            <div class="item-join">
+                                <a href="#" class="small-link">Join</a>
+                            </div>
+
+                            <div class="item-rate">
+                                <div class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span>4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item is-pledge">
+                    <a href="#">
+                        <img src="~/images/pledge-th.jpg" class="full-on-mobile">
+                    </a>
+                    <div class="item-content inverted">
+                        <div class="item-details">
+                            <div class="item-description">
+                                <p>1,245 other people have made this pledge</p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+
+                            <div class="item-join">
+                                <a href="#" class="small-link">Join</a>
+                            </div>
+
+                            <div class="item-rate">
+                                <div class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span>4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

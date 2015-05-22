@@ -1,0 +1,27 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using RexonaAU.Helpers;
+@using umbraco.NodeFactory;
+@{
+    Layout = "_Baselayout.cshtml";
+
+    string forgottenPasswordURL = string.Empty;
+    Node forgottenPassword = uQuery.GetNodesByType("ForgotPassword-Step-1").FirstOrDefault();
+    if (forgottenPassword != null && forgottenPassword.Id > 0)
+    {
+        forgottenPasswordURL = forgottenPassword.NiceUrl;
+    }
+    Common.SetNoBrowserCacheForpage();
+    Common.CheckUserSessionValidity();
+}
+
+@*<div class="row top-row">
+
+    <div class="large-5 columns large-centered">
+        <h1>@Umbraco.Field("pageTitle")</h1>
+       <p>@Umbraco.Field("pageDescription")</p>
+    </div>
+</div>
+
+@Html.Partial("_SignIn", new RexonaAU.Models.SignInModel())   *@
+
+@Html.Action("RenderLogin", "LogOn")

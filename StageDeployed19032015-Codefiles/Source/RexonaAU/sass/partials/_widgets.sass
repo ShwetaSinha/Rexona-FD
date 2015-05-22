@@ -1,0 +1,453 @@
+// take a photo widget/section
+img#image
+	// scale by the same amount that we zoom the webcam in app.js
+	// this is so the 'square' photo doesnt revert to being a rectangle
+	-webkit-transform: scale(1.4)
+	transform: scale(1.4)
+	position: relative
+	top: 55px
+
+canvas#image
+	-webkit-transform: scale(1.1)
+	transform: scale(1.1)
+	position: relative
+	left: -15%
+
+// hide the incoming step when step-2 is opened
+.step-3
+	display: none
+
+#webcam 
+	position: relative
+	left: -20%
+	top: -17px
+
+// wrap in a container so we can zoom the webcam in and make it look square
+.webcam-container
+	width: 480px
+	height: 480px
+	overflow: hidden // 'crop'
+	margin-bottom: 1.4em
+	+at($abovesmall)
+		width: auto
+		height: auto
+
+// "line your face up" helper overlay
+.webcam-overlay
+	width: 480px
+	height: 480px
+	position: absolute
+	background-image: url("../images/webcam-mask.png")
+	z-index: 11
+
+// hide the confirmation buttons by default
+.confirm-photo
+	display: none
+
+// final pledge presentation
+#image-target
+	-webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.4)
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.4)
+
+// text on the final pledge
+.final-pledge
+	.pledge-logo
+		position: absolute
+		transform: scale(0.8)
+		-webkit-transform: scale(0.8)
+		left: 0
+	span 
+		font-family: $heading-stack
+		text-transform: uppercase
+		color: $black
+		border: 1px solid $black
+		background-image: url("../images/metal-overlay.jpg")
+		background-position: center center
+		position: absolute
+	.i-will
+		font-size: 2.1em
+		padding: 0.3em 0.3em
+		top: 315px
+		left: 30px
+		transform: rotate(-4deg)
+		-webkit-transform: rotate(-4deg)
+		-ms-transform: rotate(-4deg)
+		z-index: 50
+	.pledge-content
+		width: 460px
+		left: 25px
+		top: 362px
+		text-align: center
+		padding: 0.5em 0.3em
+		font-size: 1.4em
+		transform: rotate(-2deg)
+		-webkit-transform: rotate(-2deg)
+		-ms-transform: rotate(-2deg)
+		z-index: 49
+	.pledge-name
+		padding: 0.5em 0.5em
+		font-size: 1em
+		top: 420px
+		left: 170px
+		z-index: 51
+		transform: rotate(-1deg)
+		-webkit-transform: rotate(-1deg)
+		-ms-transform: rotate(-1deg)
+		text-align: center
+
+// mobile file upload
+#mobile-picker
+	display: none // hide the actual file input and instead send it a click event through js
+
+// the container that mobile photos go into (needs to crop them as a square)
+// props to http://stackoverflow.com/questions/19068070/how-to-style-a-div-to-be-a-responsive-square
+.mobile-square
+	width: 90vw
+	height: 90vw
+	overflow: hidden
+	margin: 0 auto
+
+// loading lightbox
+.loading-container 
+	background-color: #fff
+	height: 100%
+	width: 100%
+	position: fixed
+	z-index: 999
+	display: none
+
+// ticker on the homepage
+.ticker
+	font-family: $heading-stack
+	text-transform: uppercase
+	color: #fff
+	// position should offset the effect of the .tilted class
+	position: relative
+	top: -20px
+	left: 3px
+	margin-bottom: 1.5em
+	+at($abovesmall)
+		top: -16px
+		left: 0
+	.number, .words
+		padding: 0.5em
+		font-size: 1.375em
+	.number
+		background-color: $primary-color
+
+
+// home video
+#home-video
+	+at($abovesmall)
+		margin-top: 1em
+
+// lists of entities
+.entity-list
+	list-style: none
+	padding: 0
+	margin: 0
+
+	.entity-image, .entity-details
+		+animate(opacity, 300ms)
+
+	li
+		+clearfix
+		padding-bottom: 1em
+		margin-bottom: 1em
+		border-bottom: 1px solid lighten($black, 85%)
+		&:hover
+			//.entity-image, .entity-details
+				//opacity: 0.7
+	a 
+		.entity-details
+			+animate(opacity, 300ms)
+	a:hover
+		.entity-details 
+			opacity: 0.7
+
+	.entity-block
+		box-sizing: border-box
+		padding: 0px 10px
+		height: 100%
+	.entity-image 
+		float: left
+		padding-left: 0
+		img 
+			border-radius: 50%
+			border: 1px solid $primary-color
+	.entity-details
+		float: left
+		+at($abovesmall)
+			width: 60%
+		color: $black
+		p 
+			margin: 0
+		.entity-name p
+			font-weight: bold
+			font-size: 0.8em
+			margin-bottom: 0.2em
+			line-height: 1.2em
+		.attendance
+			color: $primary-color
+			font-size: 0.7em
+			float: right
+			position: relative
+			top: -1.4em
+			text-transform: uppercase
+			right: -6.3em
+		.secondary-line p	
+			color: lighten($black, 55%)
+			text-transform: uppercase
+	.entity-action
+		float: left
+		text-align: right
+		padding-top: 1em
+		a 
+			font-size: 0.9em
+
+	.confirm-remove
+		p
+			float: left
+			font-weight: bold
+			text-align: left
+			font-size: 0.9em
+			position: relative
+			top: 3px
+			left: -15px
+			color: $black!important
+		.confirm-options
+			float: right
+			.destructive
+				margin-left: 10px
+
+	// control widths + variations depending on entity time
+	.user, .user-fb
+		.entity-details
+			width: 40%
+		.entity-action
+			width: 40%
+		.entity-image
+			width: 15%
+
+	.discussion
+		.entity-details
+			width: 60%
+		.entity-action
+			width: 40%
+
+	.discussion-in-list
+		padding-top: 1em
+		padding-bottom: 2.5em
+		.entity-meta 
+			width: 100%
+			border-top: 1px solid #000
+			margin-top: 1.8em
+			padding-top: 1em
+		.entity-details
+			width: 88%
+			+at($abovesmall)
+				width: 100%
+		.entity-image
+			width: 12%
+			img
+				position: relative
+				right: -10px
+		.discussions-timestamp-author
+			float: left
+			+at($abovesmall)
+				font-size: 0.8em
+		.discussions-actions
+			float: right
+			.small-link
+				margin-left: 25px
+		h5 
+			+animate(opacity, 300ms)
+		h5:hover 
+			opacity: 0.7
+
+	.user-fb
+		.entity-name
+			padding-top: 1.6em
+		.entity-action
+			padding-top: 1.6em
+
+	.event 
+		.secondary-line p
+			text-transform: none!important
+			font-size: 0.8em
+
+	// list of replies in discussions popup
+	.reply-discussion
+		font-weight: bold
+	.reply-from
+		font-size: 0.9em
+	.reply-date
+		font-size: 0.9em
+		color: lighten($black, 55%)
+		margin-bottom: 1em
+
+.tabs-content
+	.content 
+		padding: 0!important
+
+.tooltip 
+	border: 1px solid $primary-color
+
+
+// pill boxes
+.pill-box-heading
+	+clearfix
+	+at($abovesmall)
+		margin-top: 1em
+	h4
+		width: auto!important
+		font-size: 1.3em
+		margin: 0
+		padding: 0.6em 0.8em
+.pill-box-pills
+	background-color: #000
+	+clearfix
+	ul.pills 
+		margin: 0
+		padding: 0 
+		list-style: none
+		li 
+			display: inline-block
+			float: left
+			text-align: center
+			padding: 1.6em 0
+		li.two-pill
+			width: 50%
+		li.three-pill
+			width: 33%
+			font-size: 0.8em
+		li.active
+			a 
+				background-color: $primary-color
+				&:hover
+					color: #fff
+		a 
+			font-size: 0.7em
+			text-transform: uppercase
+			color: #fff
+			border: 1px solid #000
+			padding: 0.4em 1.2em
+			background-color: #000
+			border-radius: 25px
+			&:hover 
+				color: darken(#fff, 25%)
+.pill-box
+	background-color: #FFF
+	padding: 1em
+	margin-bottom: 1em
+	+clearfix
+	+at($abovesmall)
+		margin-bottom: 0
+	input[type=search]
+		margin-bottom: 1em
+	.pill-box-search
+		border-bottom: 1px solid #f1f1f1
+		margin-bottom: 1em
+	.user 
+		.entity-image
+			width: 25%
+		.entity-details
+			width: 75%
+	.pill-meta
+		color: #a4a4a4
+		+clearfix
+		.secondary-meta
+			float: left
+			font-size: 0.8em
+		.primary-meta
+			float: right
+			font-size: 0.8em
+	.entity-list 
+		max-height: 400px
+		overflow: scroll
+		margin-bottom: 1em
+
+.pill-box-content
+	display: none
+.pill-box-content.active
+	display: block
+
+// line up with bottom of pill heading
+.pill-box-pills, .pill-box 
+	position: relative
+	top: 0px
+
+// sharing widgets
+.share-button
+	background-color: $black
+	display: block
+	padding: 1em 2em
+	color: #fff
+	text-align: left
+	&:hover
+		color: #fff
+	i 
+		float: right
+		position: relative
+		font-size: 1.6em
+		right: -8px
+.share-button.twitter
+	background-color: #55acee
+	&:hover 
+		background-color: darken(#55acee, 5%)
+.share-button.fb
+	background-color: #4862a3
+	&:hover 
+		background-color: darken(#4862a3, 5%)
+.share-button.g-plus
+	background-color: #de4c39
+	&:hover 
+		background-color: darken(#de4c39, 5%)
+
+.has-tip
+	pointer-events: auto!important
+
+// feedback tab
+#zenbox_tab
+	+at($small)
+		top: 80%!important
+		right: 50px
+		transform: rotate(-90deg)
+		-webkit-transform: rotate(-90deg)
+		-moz-transform: rotate(-90deg)
+
+#zenbox_container
+	+at($abovesmall)
+		width: 100%!important
+#zenbox_body
+	+at($abovesmall)
+		width: 100%!important
+
+// zendesk custom launcher stuff
+#zenbox_tab 
+	display: none!important
+
+// fix for datepicker appearing below lightbox
+.ui-datepicker
+	z-index: 1000!important
+.ui-datepicker-title
+	font-family: $heading-stack!important
+	font-weight: 300!important
+	text-transform: uppercase!important
+.ui-datepicker-header
+	background: none!important
+	border: none!important
+.ui-state-hover
+	background: $primary-color!important
+	border: none!important
+	color: #fff!important
+	span 
+		color: #fff!important
+.ui-datepicker-calendar
+	td 
+		.ui-state-default
+			background: none
+			padding-top: 0.6em
+			padding-bottom: 0.6em
+			text-align: center
+			border: none

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+	<files><file><guid>af3f0cc8-c0d4-4635-b3c4-6dd237c4bb8b.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.Controls.dll</orgName></file><file><guid>7aae3902-02ce-4336-aa2f-fbefe9ce9d5a.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.Core.dll</orgName></file><file><guid>198c7f57-952d-460c-bebf-27683a080256.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.DataTypes.dll</orgName></file><file><guid>7b286880-7217-43fe-9658-93a24f543395.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.DataTypes.RazorDataTypeModels.dll</orgName></file><file><guid>1e5d572d-cda4-4743-a0e2-baa588794153.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.Installer.dll</orgName></file><file><guid>7bcd615d-9e85-4427-ae6b-d2f2639bff6d.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.Legacy.dll</orgName></file><file><guid>3334f71a-c721-4436-bc66-32c911b510d7.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.MacroEngines.dll</orgName></file><file><guid>5ad5bfca-dbdf-4964-a5d2-11953a91c7a6.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.Mapping.dll</orgName></file><file><guid>ae683904-8ff1-4041-9adc-92c8ebe85039.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.NotFoundHandlers.dll</orgName></file><file><guid>ecc075df-8fbf-43cd-9efc-718b222065ad.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.PropertyEditors.ValueConverters.dll</orgName></file><file><guid>17be45ca-dad1-4a54-b573-814cd6eb8eac.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.UI.dll</orgName></file><file><guid>ad99b803-5c69-4044-acf9-93caee8354d4.dll</guid><orgPath>/bin</orgPath><orgName>uComponents.XsltExtensions.dll</orgName></file><file><guid>a6cdb457-bba9-4edd-ac18-87b8c8a21085.ascx</guid><orgPath>/umbraco/plugins/uComponents</orgPath><orgName>uComponentsInstaller.ascx</orgName></file></files>
+	<info>
+		<package>
+			<name>uComponents</name>
+			<version>6.0.0</version>
+			<license url="http://opensource.org/licenses/MIT">MIT license</license>
+			<url>http://ucomponents.org</url>
+			<requirements>
+				<major>6</major>
+				<minor>1</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>uComponents Team</name>
+			<website>http://ucomponents.org</website>
+		</author>
+		<readme><![CDATA[uComponents is a collaborative project for creating components for Umbraco including data types, XSLT extensions, controls and more.
+
+Containing over 30 data-types, 10 XSLT extension libraries, keyboard short-cuts, drag-n-drop functionality, as well as great developer utilities - uComponents is one of the must-have packages for any Umbraco-powered website!
+
+Full documentation can be found here: http://ucomponents.org
+
+Visit the CodePlex site for release notes and source code.
+http://ucomponents.codeplex.com
+]]></readme>
+	</info>
+	<DocumentTypes />
+	<Templates />
+	<Stylesheets />
+	<Macros />
+	<DictionaryItems />
+	<Languages />
+	<DataTypes />
+	<control>/umbraco/plugins/uComponents/uComponentsInstaller.ascx</control>
+	<Actions>
+		<Action runat="install" undo="true" alias="uComponents_Uninstaller" />
+	</Actions>
+</umbPackage>

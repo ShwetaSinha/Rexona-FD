@@ -1,0 +1,188 @@
+﻿<body class="f-topbar-fixed">
+
+        <div class="row top-row">
+          
+          <div class="large-6 columns">
+            <a href="/empower" class="crumb-back">« Back to Empowerment</a>
+            <h1>Showing results for <em>"what you typed"</em></h1> 
+           
+              @{
+                  List<RexonaAU.Models.ArticleDetail> articleModel = new List<RexonaAU.Models.ArticleDetail>();
+                  foreach(var article in ViewBag.ModelList)
+                  {
+                      articleModel.Add(new RexonaAU.Models.ArticleDetail
+                      {
+                          ArticleName = article.ArticleName,
+                          ArticleAuthor = article.ArticleAuthor,
+                          ArticleDescription = article.ArticleDescription,
+                          ArticleId = article.ArticleId,
+                          PostedOn = article.PostedOn
+
+                      });
+                  }
+                  
+               }
+            <p>Found <span id="articleFound">@articleModel.Count()</span> articles </p>            
+             @using (Html.BeginUmbracoForm<RexonaAU.Controllers.ArticleController>("ArticlesSearch"))
+             {
+                <input type="text" name="search" placeholder="Search again..." id="txtArticleSearch">                 
+                @Html.AntiForgeryToken() 
+             }
+          </div>
+        </div> 
+
+<div class="alternate-panel">
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="search-filters">
+        <div class="row">
+          <div class="small-12 large-6 columns">
+              <div class="row">
+                <div class="small-4 hide-for-medium hide-for-small columns">
+                  <label for="right-label" class="right inline">Show results from:</label>
+                </div>
+                <div class="small-12 large-8 columns">
+                  <label>
+                    <select>
+                      <option value="husker">All</option>
+                      <option value="starbuck">Running</option>
+                      <option value="hotdog">Cycling</option>
+                      <option value="apollo">Swimming</option>
+                    </select>
+                  </label>
+                </div>
+              </div>                
+            </div>
+            <div class="small-12 large-6 columns">
+              <div class="row">
+                <div class="small-4 hide-for-medium hide-for-small columns">
+                  <label for="right-label" class="right inline">Sort results by:</label>
+                </div>
+                <div class="small-12 large-8 columns">
+                  <label>
+                    <select>
+                      <option value="husker">Most relevant</option>
+                      <option value="starbuck">Most recent</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-8 columns" id="ArticlesResult">
+      @foreach (var item in articleModel)
+      {
+        <article>
+        <div class="post-type red">Swimming</div>
+        <a onclick="ArticleDetail(@item.ArticleId);"><h2>@item.ArticleName</h2></a>
+        <div class="author">by @item.ArticleAuthor</div>
+        <div class="posted">Posted @item.PostedOn</div>
+        <hr>
+        <p>@item.ArticleDescription</p>
+        <a onclick="ArticleDetail(@item.ArticleId);" class="readMore">Read More</a>
+        </article>             
+    
+      }
+    </div>
+    <div class="large-4 columns">
+      <div class="sidebar">
+        <h5>Most popular posts</h5>
+        <hr>
+        <ul class="article-listing">
+          <a href="#">
+            <li>
+              <div class="title">Article Title</div>
+              <div class="author">by John Appleseed</div>
+              <div class="posted">Posted 12:45AM 14/05/2014</div>
+            </li>
+            <li>
+              <div class="title">Article Title</div>
+              <div class="author">by John Appleseed</div>
+              <div class="posted">Posted 12:45AM 14/05/2014</div>
+            </li>
+            <li>
+              <div class="title">Article Title</div>
+              <div class="author">by John Appleseed</div>
+              <div class="posted">Posted 12:45AM 14/05/2014</div>
+            </li>
+          </a>
+        </ul>
+      </div>
+      <div class="sidebar">
+        <h5>Top Pledges</h5>
+        <hr>
+        <div class="packery-wall one-by-one" style="position: relative; height: 726px;">
+            <div class="item pledge" style="position: absolute; left: 0px; top: 0px; background-image: url(http://newrepublique.com/iwilldo/images/pledge-user.jpg);">
+              <div class="item-content">
+                <div class="item-type">Pledge</div>
+                <div class="category running">Running</div>
+                <p class="item-title">I will run 1,000km this year</p>
+                <p class="item-author">John Appleseed</p>
+                <div class="item-meta">
+                  <div class="hearts count">
+                    <div class="number">4</div>
+                    <i class="fa fa-heart"></i> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item pledge" style="position: absolute; left: 0px; top: 243px; background-image: url(http://newrepublique.com/iwilldo/images/pledge-user.jpg);">
+              <div class="item-content">
+                <div class="item-type">Pledge</div>
+                <div class="category cycling">Cycling</div>
+                <p class="item-title">I will run 1,000km this year</p>
+                <p class="item-author">John Appleseed</p>
+                <div class="item-meta">
+                  <div class="hearts count">
+                    <div class="number">4</div>
+                    <i class="fa fa-heart"></i> 
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="item pledge" style="position: absolute; left: 0px; top: 486px; background-image: url(http://newrepublique.com/iwilldo/images/pledge-user.jpg);">
+              <div class="item-content">
+                <div class="item-type">Pledge</div>
+                <div class="category swimming">Swimming</div>
+                <p class="item-title">I will run 1,000km this year</p>
+                <p class="item-author">John Appleseed</p>
+                <div class="item-meta">
+                  <div class="hearts count">
+                    <div class="number">4</div>
+                    <i class="fa fa-heart"></i> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="gallery.html" class="button small radius secondary">View Gallery</a>
+          <a href="sign-up.html" class="button small radius">Make your own</a>
+      </div>
+    </div>
+  </div>
+</div>
+   
+</body>
+
+<script>       
+    function ArticleDetail(articleid) {
+        $.ajax({
+            url: "@Url.Action("GetPageUrl", "Categories")?PageId=" + articleid,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            dataType: 'json'
+        })
+             .success(function (result) {
+                 window.location = result;
+             })
+             .error(function (result) {
+                 alert("Inside Error");
+             })
+    }   
+   
+</script>
+

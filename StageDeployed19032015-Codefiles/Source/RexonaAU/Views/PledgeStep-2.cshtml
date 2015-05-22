@@ -1,0 +1,165 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Configuration;
+@using RexonaAU.Helpers;
+@{
+    Layout = "_Baselayout.cshtml";
+    Common.SetNoBrowserCacheForpage();
+    Common.CheckUserSessionValidity(CurrentPage.id);
+    string step1Url = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;   
+}
+
+
+@*To be removed later.*@
+<style>
+    .webcam-overlay
+    {
+        display: none !important;
+    }
+</style>
+
+@{
+    string CheckIfProd = ConfigurationManager.AppSettings["CheckIfProd"];
+    bool CheckIfProdEnvironment = false;
+    bool.TryParse(CheckIfProd, out CheckIfProdEnvironment);
+    if (CheckIfProdEnvironment)
+    {
+    <script type='text/javascript'>
+        // Conversion Name: Conversion Page 4: Take Photo
+        // INSTRUCTIONS 
+        // The Conversion Tags should be placed at the top of the <BODY> section of the HTML page. 
+        // In case you want to ensure that the full page loads as a prerequisite for a conversion 
+        // being recorded, place the tag at the bottom of the page. Note, however, that this may 
+        // skew the data in the case of slow-loading pages and in general not recommended. 
+        //
+        // NOTE: It is possible to test if the tags are working correctly before campaign launch 
+        // as follows:  Browse to http://bs.serving-sys.com/Serving/adServer.bs?cn=at, which is 
+        // a page that lets you set your local machine to 'testing' mode.  In this mode, when 
+        // visiting a page that includes an conversion tag, a new window will open, showing you 
+        // the data sent by the conversion tag to the MediaMind servers. 
+        // 
+        // END of instructions (These instruction lines can be deleted from the actual HTML)
+        var ebRand = Math.random() + '';
+        ebRand = ebRand * 1000000;
+        document.write('<scr' + 'ipt src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542146&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+    </script>
+    <noscript>
+        <img width="1" height="1" style="border: 0" src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542146&amp;ns=1" />
+    </noscript>
+
+    }
+    
+}
+<link href="~/stylesheets/setyourgoal.css" rel="stylesheet" />
+<div id="step-two">
+    <div class="sign-up-hero">
+       @* <div class="row">
+            <div class="large-12 columns">
+                <div class="step-2">
+                    <a id="backStep1" href="@step1Url" class="button small breadcrumb pulled-up with-icon icon-left"><i class="fa fa-chevron-left"></i>Back to Goal Details</a>
+                </div>
+            </div>
+        </div>*@
+        <div class="row">
+            <div class="large-4 columns step-2"> 
+            <div class="goal-progress">
+              <div class="goal-state state-1"><a id="backStep1" class="goal-a-text" href="@step1Url">Set</a></div>
+              <div class="goal-state active state-2">Photo</div>
+              <div class="goal-state state-3">Confirm</div>
+            </div>
+ @*</div>
+       </div>
+        
+        <div class="row">
+            <div class="large-5 columns step-2">*@
+                @*<img src="~/images/step-2.png" alt="Step 2" class="centered pledge-step">*@
+                <h1 class="white">Take a Photo</h1>
+                <p class="remind">Here are a few tips to help you take your photo:</p>
+                <ul class="smalltext">
+                    <li>Sit in front of a plain background</li>
+                    <li>Use the outline as a guide </li>
+                    <li>Adjust your camera focus or angle of your screen to help you fit in the outline</li>
+                    <li>Avoid dark or bright lighting </li>
+                </ul>            
+
+            </div>
+            <div class="large-5 columns step-3">
+                <img src="~/images/step-3.png" alt="Step 3" width="159" height="160" class="centered pledge-step">
+                <h1 class="contained-title">Confirm Goal</h1>
+                <p class="subheader"></p>
+            </div>
+            <div class="large-7 large-offset-by-one columns">
+                <div class="row touch-hide">
+                    <div class="large-11">
+                        <div class="webcam-container">
+                            <div class="webcam-overlay step-2 on-desktop"></div>
+                            <div class="webcam-visible-wrapper step-2 on-desktop">
+                                <div id="webcam"></div>
+                            </div>
+
+                            <div class="final-pledge" id="the-pledge">
+                                @*  <img src="/images/pledge-logo.png" alt="Rexona" class="pledge-logo step-3">
+                                <span class="i-will step-3">I Will:</span>
+                                <span class="pledge-content step-3">Run a really really long way this year</span>
+                                <span class="pledge-name step-3">Alexandra Stewart-Liberty</span>*@
+                                <img id="image" class="step-3-pledge" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row step-2">
+
+                   <div class="take-a-photo">
+                        <div class="goal-photo">
+                            @* <a onclick="base64_toimage()" class="button with-icon right-icon centered on-desktop">Take a Photo <i class="fa fa-camera"></i></a>
+                            <input type="hidden" id="hdnImgSrc" />
+                            <a onclick="mobileUpload()" class="button with-icon right-icon centered on-mobile">Add a Photo <i class="fa fa-camera"></i></a>
+                            <input type="file" id="mobile-picker" accept="image/*;capture=camera">*@
+                            <div class="row">
+                                <div class="photo-buttons">
+                                    <a onclick="mobileUpload()" class="button left half btn-photo">Upload Photo <i class="fa fa-upload"></i></a>
+                              
+                                
+                                    <a id="mobileHide" onclick="base64_toimage()" class="button right half btn-photo">Take a Photo <i class="fa fa-camera"></i></a>
+                                    <input type="hidden" id="hdnImgSrc" />
+
+                                    <div class="or"><span>or</span></div>
+                                    <a onclick="DIPPre()" class="button full btn-photo skip-photo" id="skipphoto">Skip this step <i class="fa fa-chevron-right"></i></a>
+                                   <input type="hidden" id="hdnSkipImgSrc" value="" />
+
+                                 </div>
+                            </div>
+                            
+                            <input type="file" id="mobile-picker">
+                        </div>
+                   </div>
+                   <div class="confirm-photo">      
+                       <div class="goal-confirm">                
+                        <div class="large-6 columns">
+                            <a href="#" class="button left with-icon left-icon breadcrumb take-another"><i class="fa fa-chevron-left"></i>Take Another</a>
+                        </div>
+                        <div class="photo-buttons">
+                            <a href="#" class="button right btn-photo use-photo" id="usephoto">Use this photo <i class="fa fa-chevron-right"></i></a>                            
+                        </div>
+                   </div>
+                       </div>                  
+                </div>
+                <div class="row step-3">
+                    <div class="large-12 columns">
+                        <a href="/dashboard/" class="button goalCTA right">Confirm and Continue <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<input type="hidden"  value="@Url.Action("ImgProcessing", "Pledge")"  id="hdnmode" />
+<input type="hidden"  value="@Url.Action("DefaultImgProcessing", "Pledge")"  id="hdnDefaultmode" />
+<script type="text/javascript">
+    $('#backStep1').click(function () {
+        sessionStorage.setItem('backPressed', true);
+    });
+</script>

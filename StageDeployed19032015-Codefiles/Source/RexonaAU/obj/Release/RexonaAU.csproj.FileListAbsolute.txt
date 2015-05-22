@@ -1,0 +1,99 @@
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\RexonaAU.dll.config
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\RexonaAU.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\RexonaAU.pdb
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Antlr3.Runtime.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\interfaces.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\log4net.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Lucene.Net.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Microsoft.ApplicationBlocks.Data.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Microsoft.Web.Helpers.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\MiniProfiler.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\MySql.Data.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Our.Umbraco.uGoLive.47x.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Our.Umbraco.uGoLive.Checks.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Our.Umbraco.uGoLive.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\RestSharp.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\SendGridMail.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\SQLCE4Umbraco.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\System.Data.SqlServerCe.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\System.Data.SqlServerCe.Entity.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\WebActivator.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\WebGrease.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\AWSSDK.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Antlr3.Runtime.pdb
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\interfaces.xml
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\Lucene.Net.xml
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\MiniProfiler.pdb
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\MiniProfiler.xml
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\RestSharp.xml
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\obj\Release\RexonaAU.csprojResolveAssemblyReference.cache
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\obj\Release\RexonaAU.Properties.Resources.resources
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\obj\Release\RexonaAU.csproj.GenerateResource.Cache
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\obj\Release\RexonaAU.dll
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\obj\Release\RexonaAU.pdb
+D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin\System.Net.Http.Primitives.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\RexonaAU.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\RexonaAU.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Antlr3.Runtime.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Analytics.v3.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.PlatformServices.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Core.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.PlatformServices.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Tasks.v1.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\interfaces.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Lucene.Net.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.ApplicationBlocks.Data.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.Extensions.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Web.Helpers.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\MiniProfiler.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\MySql.Data.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Our.Umbraco.uGoLive.47x.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Our.Umbraco.uGoLive.Checks.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Our.Umbraco.uGoLive.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\RestSharp.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\SendGridMail.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\SQLCE4Umbraco.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\System.Data.SqlServerCe.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\System.Data.SqlServerCe.Entity.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\WebActivator.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\WebGrease.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Zlib.Portable.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\AWSSDK.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Antlr3.Runtime.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Analytics.v3.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Analytics.v3.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.PlatformServices.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Auth.PlatformServices.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Core.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Core.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.PlatformServices.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.PlatformServices.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Tasks.v1.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Google.Apis.Tasks.v1.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\interfaces.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Lucene.Net.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.Extensions.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\MiniProfiler.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\RestSharp.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\bin\Zlib.Portable.xml
+D:\Project Details\StatingSer_CodeBackUp\bin\RexonaAU.dll
+D:\Project Details\StatingSer_CodeBackUp\bin\RexonaAU.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\obj\Release\RexonaAU.csprojResolveAssemblyReference.cache
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\obj\Release\RexonaAU.Properties.Resources.resources
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\obj\Release\RexonaAU.csproj.GenerateResource.Cache
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\obj\Release\RexonaAU.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\RexonaAU\obj\Release\RexonaAU.pdb

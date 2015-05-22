@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Rexona_AUSModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="UserResetPasswords">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.UserResetPassword">
+        <MappingFragment StoreEntitySet="UserResetPassword">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmailTransactions">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.EmailTransaction">
+        <MappingFragment StoreEntitySet="EmailTransactions">
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="AppendCLLogo" ColumnName="AppendCLLogo" />
+          <ScalarProperty Name="IsEmailSent" ColumnName="IsEmailSent" />
+          <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="ToEmailAddress" ColumnName="ToEmailAddress" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InstaGramHashTags">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.InstaGramHashTag">
+        <MappingFragment StoreEntitySet="InstaGramHashTag">
+          <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+          <ScalarProperty Name="ScreeName" ColumnName="ScreeName" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Likes" ColumnName="Likes" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MediaUrl" ColumnName="MediaUrl" />
+          <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TwitterHashTags">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.TwitterHashTag">
+        <MappingFragment StoreEntitySet="TwitterHashTag">
+          <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+          <ScalarProperty Name="ScreeName" ColumnName="ScreeName" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Likes" ColumnName="Likes" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MediaUrl" ColumnName="MediaUrl" />
+          <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+          <ScalarProperty Name="Post" ColumnName="Post" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DiscussionFollowers">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.DiscussionFollower">
+        <MappingFragment StoreEntitySet="DiscussionFollower">
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="LastReadDateTime" ColumnName="LastReadDateTime" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="DiscussionId" ColumnName="DiscussionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MemberFriends">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.MemberFriend">
+        <MappingFragment StoreEntitySet="MemberFriends">
+          <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+          <ScalarProperty Name="FriendId" ColumnName="FriendId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RecommendedArticlePledges">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.RecommendedArticlePledge">
+        <MappingFragment StoreEntitySet="RecommendedArticlePledges">
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+          <ScalarProperty Name="PledgeId" ColumnName="PledgeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TractionEmails">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.TractionEmail">
+        <MappingFragment StoreEntitySet="TractionEmails">
+          <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+          <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
+          <ScalarProperty Name="TractionQueryString" ColumnName="TractionQueryString" />
+          <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PledgeInviteDatas">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.PledgeInviteData">
+        <MappingFragment StoreEntitySet="PledgeInviteData">
+          <ScalarProperty Name="AcceptedDate" ColumnName="AcceptedDate" />
+          <ScalarProperty Name="InvitedDate" ColumnName="InvitedDate" />
+          <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="YouTubeVideos">
+      <EntityTypeMapping TypeName="Rexona_AUSModel.YouTubeVideo">
+        <MappingFragment StoreEntitySet="YouTubeVideos">
+          <ScalarProperty Name="VideoLikes" ColumnName="VideoLikes" />
+          <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="YouTubeVideoId" ColumnName="YouTubeVideoId" />
+          <ScalarProperty Name="NiceUrl" ColumnName="NiceUrl" />
+          <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

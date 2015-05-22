@@ -1,0 +1,156 @@
+﻿@using umbraco.cms.businesslogic.member;
+@using umbraco.MacroEngines.Library;
+@using System.Web.Mvc.Html;
+@using Umbraco.Web;
+@using umbraco.NodeFactory;
+@using umbraco.cms.businesslogic.member;
+
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+    var pledgeStep = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault();
+    var signUp = uQuery.GetNodesByType("SignUp").FirstOrDefault();
+    string step1Url = string.Empty;
+
+    if (pledgeStep != null && Member.IsLoggedOn())
+    {
+        step1Url = string.IsNullOrEmpty(pledgeStep.NiceUrl) ? string.Empty : Convert.ToString(pledgeStep.NiceUrl);
+    }
+    else
+    {
+        step1Url = string.IsNullOrEmpty(signUp.NiceUrl) ? string.Empty : Convert.ToString(signUp.NiceUrl);
+    }
+} 
+<script src="@urlHelper.Content("~/js/empowerment.js")"></script>
+<div class="hero-panel ais-advice">
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-10 columns">
+                    <h1 class="contained-title">Expert Advice</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <p class="subheader inverted">
+                        Tap into a wealth of exclusive information from the AIS to help you do more. Access inspiration, cutting-edge science and tips on preparing and performing at your best.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-panel dark-panel">
+    <div class="row">
+
+        <!-- pledges -->
+        <div class="large-9 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="connected-panel-container">
+                        <div class="connected-panel-heading">
+                            <h2 class="contained-title">All Posts</h2>
+                        </div>
+                        <div class="connected-panel">
+                            <div class="row">
+                                <div class="large-6 columns">
+                                </div>
+                                <div class="large-6 columns">
+                                    <div class="row">
+                                        <div class="small-4 columns">
+                                            <label for="right-label" class="right floating-label">Sort By:</label>
+                                        </div>
+                                        <div class="small-8 columns">
+                                            <label class="select">
+                                                <select id="sortArticle">
+                                                    <option value="recent" selected>Most Recent</option>
+                                                    <option value="popular" >Most Popular</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="masonry-wall blog-wall" id="empowerArticles" data-bind="foreach:Articles">
+                        <div class="item has-badge">
+                            <div class="item-type">
+                                <span data-bind="text:Type" id="spnArticles"></span>
+                                <div class="item-badge" data-bind="visible:badgeVisible">
+                                    <img src="/images/ais-badge.jpg">
+                                </div>
+                            </div>
+                            <div class="item-content">
+                                <!-- ko if: showImage -->
+                                <div class="item-image">
+                                    <a data-bind="attr:{href: ActualArticleURL}">
+                                        <img data-bind="attr:{src: ArticleThumbnail}" class="full-on-mobile" /></a>
+                                </div>
+                                <!-- /ko -->
+
+                                <div class="item-details">
+                                    <div class="item-heading">
+                                        @*href: ActualArticleURL,*@
+                                        @*TO DO remove javascript:void() after release 1*@
+                                        <a data-bind="attr:{href: ActualArticleURL, Id: hrefId}">
+                                            <h4 data-bind="html: ArticleTitle"></h4>
+                                        </a>
+                                    </div>
+                                    <div class="item-poster">
+                                        <p><em data-bind="html:Author"></em></p>
+                                    </div>
+                                    <div class="item-description">
+                                        <p data-bind="html: Excerpt"></p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <div class="item-share">
+                                        <a href="#" class="small-link">Share</a>
+                                    </div>
+                                    <div class="item-rate">
+                                        <div class="rating-icon" data-bind="attr:{id: ID}">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span data-bind="html: Hearts"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- promo -->
+        @*hidden in release 1*@
+        <div class="large-3 columns">
+            <div class="listing-sidebar">
+                <div class="connected-panel-container">
+                    <div class="connected-panel-heading">
+                        <h5 class="contained-title">Stay Informed</h5>
+                    </div>
+                    <div class="connected-panel inverted">
+                        <a href="@step1Url" class="button full-width small with-icon right-icon">Set your goal <i class="fa fa-chevron-right"></i></a>
+                        <hr>
+                        <form data-abide="ajax">
+                            <p>Sign up for updates that give you the confidence to do more.</p>
+                            <input type="email" id="txtEmailId" placeholder="Your email address" required />
+                            <small class="error">Please enter a valid email address</small>
+                            <button id="signUpForUpdates" type="submit" class="button secondary full-width small with-icon right-icon">Subscribe <i class="fa fa-chevron-right"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

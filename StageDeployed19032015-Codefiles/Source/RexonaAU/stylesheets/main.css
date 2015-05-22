@@ -1,0 +1,632 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+body {
+    padding-top: 0px;
+    color: #555555 !important;
+}
+
+.hero {
+    background-image: url('../images/hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron p {
+    font-size: 16px !important;
+}
+
+.jumbotron .btn {
+    width: 25%;
+}
+
+.col-md-6 p {
+    line-height: 2;
+    font-size: 16px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 1000px) {
+    .btn {
+        width: 100%!important;
+    }
+
+    img {
+        width: 100%!important;
+    }
+
+    .spacer img {
+        min-height: 280px;
+    }
+
+    .js-rexAnim {
+        text-align: center;
+    }
+
+    .js-ipad {
+        margin-top: 50px;
+    }
+
+    .wrapper, .wrapper-green, .wrapper-gray {
+        padding-top: 20px!important;
+        padding-bottom: 25px!important;
+    }
+}
+
+.terms {
+    text-decoration: underline;
+    color: #555555;
+}
+
+.bigBubble img {
+    display: block;
+}
+
+.wrapper-green {
+    background-color: #c3d158 !important;
+    color: white;
+}
+
+.wrapper-gray {
+    background-color: #EEE !important;
+}
+
+.js-rexAnim {
+    padding-top: 50px;
+    text-align: left;
+}
+
+    .js-rexAnim .well {
+        font-size: 21px !important;
+        border-radius: 0px;
+        display: inline-block;
+        margin-bottom: 0px;
+        padding-top: 7px;
+        padding-bottom: 7px;
+        color: gray;
+        font-family: sofia_problack !important;
+        font-weight: bold !important;
+    }
+
+.js-goal input {
+    font-size: 21px;
+    width: 70% !important;
+    color: gray;
+    /*padding-top: 20px;
+    padding-bottom: 20px;*/
+    padding-left: 15px;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:15px;
+    height:60px;
+}
+
+.wrapper, .wrapper-green, .wrapper-gray {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    background-color: #ffffff;
+}
+
+body {
+    font-family: 'sofia_problack' !important;
+}
+
+.row p {
+    /*font-family: 'sofia_problack' !important;*/
+}
+
+.container.signUp p {
+    font-family: 'sofia_problack';
+}
+
+.container.signUp span {
+    /*font-family: 'sofia_problack' !important;*/
+}
+
+.row #section2 h2 {
+    color: #ffffff;
+}
+
+.js-connect {
+    position: relative;
+}
+
+.bigBubble img, .smallBubbles img, .bubbleLines img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 464px;
+    max-height: 448px;
+}
+
+.spacer img {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    min-height: 400px;
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+label.for-checkbox span {
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    position: relative;
+    top: 8px;
+    text-transform: none;
+}
+
+label.for-checkbox:before {
+    content: " ";
+    display: inline-block;
+    float: left;
+    width: 25px;
+    height: 25px;
+    background-color: #fff;
+    margin: 10px 12px 0 -9px;
+    -webkit-box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15);
+    box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15);
+}
+
+input[type="checkbox"] + label,
+input[type="radio"] + label {
+    display: block;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+    vertical-align: baseline;
+}
+
+input[type=checkbox]:checked + label:before {
+    background-color: black;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    float: left;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.4 !important;
+    padding-left: 3px !important;
+    content: "\f00c";
+    font-size: 1.1em !important;
+    color: #fff;
+}
+
+.jumbotron.hero {
+    text-align: center;
+    color: white;
+    background-image: url("../images/hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+    .jumbotron.hero a.introbtn {
+        text-decoration: underline !important;
+        color: #ffffff !important;
+        font-size: medium;
+    }
+
+.u-caps {
+    text-transform: uppercase;
+}
+
+.u-inline {
+    display: inline;
+}
+
+input[type=checkbox] {
+    margin: 5px;
+}
+
+@media screen and (max-width: 300px) {
+    .btn {
+        width: 100% !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .logo img {
+        width: 82px !important;
+        height: 40px !important;
+    }
+}
+
+.btn {
+    background-image: none;
+    border: none !important;
+    border-radius: 10px !important;
+    text-shadow: none !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    padding-top: 20px !important;
+    width: 50%;
+    padding-bottom: 20px !important;
+    font-weight: 400 !important;
+    font-family: "sofia_problack","Helvetica Neue","Helvetica",Arial,sans-serif !important;
+}
+
+.btn-primary {
+    /*background-color: #c3d158 !important;*/
+    background-color: #c3d060 !important;
+    background-image: none !important;
+    border: none !important;
+    border-radius: 15px !important;
+}
+
+.btn-fb {
+    background-color: #3E5C9A !important;
+    color: white !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    font-size: 21px !important;
+    width: 100% !important;
+}
+
+.btn-secondary
+{
+    text-align: center;
+    color: #c3d158 !important;
+}
+    
+
+.btn-signupgoal {
+    /*background-color: #c3d158 !important;*/
+    background-color: #c3d060 !important;
+    background-image: none !important;
+    border: none !important;
+}
+
+.u-backlined {
+    /*position: relative;*/
+    border-bottom: 2px solid #d5d5d5;
+    top: 8px;
+    padding: 0 15px;
+    margin-bottom: 80px;
+}
+
+    .u-backlined span {
+        display: inline-block;
+        position: relative;
+        top: 25px;
+        font-size: 35px;
+        background: #EEE;
+        padding: 0 12px;
+        text-transform: uppercase;
+    }
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default {
+    background-color: #e0e0e0 !important;
+    background-position: 0 -15px !important;
+    color: #333 !important;
+}
+
+.btn-signIn {
+    background-color: rgba(0,0,0,.5) !important;
+    color: white !important;
+    border: 2px solid white !important;
+    border-radius: 14px !important;
+}
+
+.signUp {
+    text-align: center;
+    max-width: 500px;
+}
+
+    .signUp p {
+        margin-bottom: 20px;
+        line-height: 2;
+    }
+
+    .signUp .btn-primary {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        font-size: 21px;
+    }
+
+.left {
+    margin-left: 10px;
+    text-align: left;
+    line-height: 2.5;
+}
+
+.signUp label {
+    display: block;
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: #555555 !important;
+    text-transform: none;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+.signUp input[type=text], .signUp input[type=email], .signUp input[type=password] {
+    width: 100%;
+    /*font-size: 18px;*/
+    padding-left:15px;
+    padding-right:15px;
+    padding-top:5px;
+    padding-bottom:5px;
+
+}
+
+@font-face {
+    font-family: 'sofia_problack';
+    src: url('../font/family/sofiaproblack-webfont.eot');
+    src: url('../font/family/sofiaproblack-webfont.eot?#iefix') format('embedded-opentype'), url('font/family/sofiaproblack-webfont.woff') format('woff'), url('../font/family/sofiaproblack-webfont.ttf') format('truetype'), url('../font/family/sofiaproblack-webfont.svg#sofia_problack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('font/fa/fontawesome-webfont.eot?v=4.3.0');
+    src: url('font/fa/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('font/fa/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('font/fa/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('font/fa/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('font/fa/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.js-ipad {
+    position: relative;
+}
+
+.ipad {
+    z-index: 9;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+p, input {
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+}
+
+/*.ipad-images {
+    z-index: 0;
+   width: 100%;
+   
+    position: absolute;
+    top: 0;
+    left: 0;
+    max-width: 469px;
+}
+
+    .ipad-images .img-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 92%;
+        height: 100%;
+        max-height: 360px;
+        background-color: black;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+
+        .ipad-images .img-wrapper img {
+            max-width: 420px;
+            margin-left: 22px;
+            padding-top: 30px;
+        }
+
+            .ipad-images .img-wrapper img.active {
+            }*/
+
+.js-ipad{
+	position: relative;
+}
+.ipad{
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+}
+.ipad-images{
+	z-index: 0;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 445px;
+	padding:2px;
+
+}
+.ipad-images .img-wrapper{
+	position: relative;
+	overflow: hidden;
+	background-color: black;
+	border-radius: 18px;    
+}
+
+.ipad-images .img-wrapper img.active{
+
+}
+
+#section2, #section3 {
+    margin-top: 10%;
+}
+
+
+.navbar-inverse {
+    background-image: none;
+    background-color: black;
+}
+
+.right.login-buttons-active {
+    display: block;
+}
+
+.right.login-buttons-inactive {
+    display: none;
+}
+
+.termsandcondition {
+    float: left;
+    text-align:left;
+}
+
+#home .logo.on-mobile {
+padding: 0.5em 0.5em!important;
+box-shadow: none!important;
+webkit-box-shadow: none!important;
+}
+
+#home .menu-open {
+top: 0.5em!important;
+}
+
+#home .termsandcondition a {
+color: #000 !important;
+text-decoration: underline;
+}
+
+#home .termsandcondition a:hover {
+color: #23527c !important;
+text-decoration: none;
+}
+
+@media (max-width: 450px) {
+    .ipad-images .img-wrapper {
+        max-height: 193px!important;
+    }
+    .spacer img {
+       min-height: 240px;
+   }
+}
+
+#home .logo.on-mobile.left {
+    margin-left: 0!important;
+}
+#home .logo.on-mobile.left img {
+    position: relative;
+    left: 10px;
+}
+@media (max-width: 450px) {
+	.jumbotron {
+		padding: 0px 10px 30px 10px!important;
+	}
+	.jumbotron .container {
+		padding: 0px 4px!important;
+	}
+	.jumbotron p {
+		font-weight: 400!important;
+		line-height: 1.3!important;
+	}
+	.jumbotron h2 {
+		font-size: 25px!important;
+	}
+	.btn {
+		border-radius: 4px!important;
+	}
+	.js-goal input {
+		width: 100%!important;
+	}
+	h2 {
+		font-size: 20px!important;
+		text-align: center!important;
+	}
+	.col-md-6 p {
+		line-height: 1.6!important;
+		font-size: 15px!important;
+	}
+	.well {
+		float: left!important;
+	}
+	.js-connect {
+		margin-top: 15px!important;
+	}
+	form h1 {
+		font-size: 20px!important;
+	}
+	.btn-fb {
+		font-size: 14px!important;
+	}
+	.signUp label {
+		margin-bottom: 9px!important;
+	}
+	#sign-up {
+		font-size: 14px!important;
+		padding: 1.5em 0;
+	}
+	.spacer img {
+		min-height: 200px!important;
+	}
+
+}
+
+
+
+
+.content-lightbox-youtube {
+    background-color: black;
+    max-height: 360px;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding:4px;
+}
+
+.content-lightbox-container-youtube {
+    width: 90%;
+    max-width: 640px;
+    margin: 0 auto;
+    position: relative;
+    top: 1%;
+}
+.content-lightbox-container-youtube .close-modal-youtube {
+    text-align: right;
+    padding: 0.75em 0;
+}
+.content-lightbox-container-youtube .close-modal-youtube a {
+    text-transform: uppercase;
+    font-family: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif;
+    color: white;
+}
+          
+.content-lightbox-container-youtube .close-modal-youtube a:hover {
+    color: #bfbfbf;
+}
+
+
+.large-6-youtube {
+    width: 100%;
+}
+.column, .columns {
+    float: left;
+    padding-left: 0px;
+    padding-right: 0px;
+    position: relative;
+}
+
+.jumbotron .btn{
+    width: 28%;
+}
+.btn-primary, .btn-secondary {
+    font-size: 18px !important;
+}
+
+.col-top {
+ margin-top: 0% !Important; 
+}
+
+/*.slick-list {
+    padding-top:30px !important;
+    padding-bottom:35px !important;
+    padding-left:19px !important;
+    padding-right:19px !important;
+
+}*/
+
+.slick-list {
+ padding: 30px 19px 18px !important;
+}
+
+ 

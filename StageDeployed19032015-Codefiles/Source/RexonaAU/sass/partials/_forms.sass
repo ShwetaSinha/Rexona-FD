@@ -1,0 +1,184 @@
+// all form labels
+label
+	font-family: $heading-stack
+	text-transform: uppercase
+	font-size: 0.875em // 14px
+	color: $black
+	margin-bottom: 0.4em
+
+// all the text input stylings
+input[type=text], textarea, input[type=email], input[type=tel]
+	padding: 1.5em 1em
+	border: none
+	-webkit-box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15)
+	box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15)
+	font-family: $body-stack 
+	font-size: 0.875em // 14px
+	border-left: 1px solid #dddddd
+	border-right: 1px solid #dddddd
+	border-bottom: 1px solid #dddddd
+
+textarea
+	resize: none
+
+label .has-tip 
+	color: $primary-color
+	font-weight: 100
+	margin-left: 5px
+
+// custom checkboxes //
+// hide default checkboxes
+form
+	input[type=checkbox]
+		display: none 
+
+
+
+
+// create a div using label next to a checkbox as hook
+label.for-checkbox
+	a 
+		color: #000
+		text-decoration: underline
+		&:hover
+			color: lighten(#000, 40%)
+	// wrap the actual label text in a span so we can position it correctly
+	span 
+		position: relative
+		top: 15px
+	// style the :before pseudoselector to act as our new checkbox
+	&:before
+		content: " "
+		display: inline-block
+		float: left 
+		width: 28px
+		height: 28px
+		background-color: #fff
+		-webkit-box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15)
+		box-shadow: inset 0px 2px 0 0 rgba(0,0,0,0.15)
+		// negative margin to pull checkboxes back over to the left
+		margin: 10px 12px 0 -9px
+
+form
+	// 'checked' checkboxes then have the before selector on their labels changed when ticked
+	input[type=checkbox]:checked + label:before
+		background-color: $black
+		-webkit-box-shadow: none
+		box-shadow: none
+		// styles for fontawesome
+		font-family: FontAwesome
+		font-style: normal
+		font-weight: normal
+		float: left
+		-webkit-font-smoothing: antialiased
+		-moz-osx-font-smoothing: grayscale
+		// control the position of the checkmark (line-height for vertical, p-left for horizontal)
+		line-height: 1.3
+		padding-left: 3px
+		// adding the checkmark
+		content: "\f00c"
+		font-size: 1.6em
+		color: #fff
+
+// wrap checkboxes in this div. margin is to compensate for the positional screw-up
+// caused by custom checkboxes (win some you lose some...)
+.form-checkboxes 
+	margin-bottom: 1.5em
+	+at($abovesmall)
+		margin-bottom: 3em
+
+// end custom checkboxes //
+
+// need extra bottom padding so that single line textareas appear with v-centered text
+textarea
+	padding: 1.5em 1em 2.6em 1em
+
+// oh god the !important spam. but its the only way this works...
+// gives the top green border when form input is focused 
+input:focus, textarea:focus
+	background: #fff!important
+	-webkit-box-shadow: inset 0px 2px 0 0 $primary-color!important
+	box-shadow: inset 0px 2px 0 0 $primary-color!important
+	border-left: 1px solid #dddddd!important
+	border-right: 1px solid #dddddd!important
+	border-bottom: 1px solid #dddddd!important
+
+// divider used to split up forms e.g. "OR" on the main sign-up
+.form-divider
+	width: 100%
+	margin: 0.1em 0 1em 0
+	.text
+		font-size: 0.8em
+		color: lighten(#000, 55%)
+		width: 4%
+	.line 
+		height: 1px
+		width: 44%
+		background-color: lighten(#000, 75%)
+		position: absolute
+		top: 6px
+	.line-left 
+		left: 0
+	.line-right
+		right: 0
+
+// "big" form input (e.g. primary or hero inputs)
+label.big 
+	background-color: $black 
+	padding: 0.3em 0.5em
+	width: auto
+	float: left
+	margin: 0
+	font-size: 2.125em // 34px 
+	color: #fff
+input.big 
+	font-size: 1.125em // 18px
+
+// positioning for make a pledge internal forms
+.make-a-pledge-form 
+	margin-top: 5em
+	+at($abovesmall)
+		margin-top: 2em
+
+// automcomplete on pledges
+.ui-menu-item
+	background-color: #fff
+	font-family: $body-stack
+	padding: 0.6em 1em!important
+	border: none!important
+	&:hover
+		background-color: $primary-color!important
+		color: #fff!important
+		border: none!important
+		padding: 0.6em 1em!important
+
+// helper text on forms. used to explain reasoning behind certain inputs or fields
+// use on its own row
+.form-helper
+	margin-top: 1em
+	font-size: 0.7em
+
+// foundation abide.js error state
+small.error 
+	-webkit-border-radius: 0 0 4px 4px
+	border-radius: 0 0 4px 4px
+.error 
+	input[type=text], textarea, input[type=email], input[type=tel]
+		-webkit-box-shadow: inset 0px 2px 0 0 #cb4444
+		box-shadow: inset 0px 2px 0 0 #cb4444
+
+// floating labels e.g. next to filters. 
+.floating-label
+	margin-top: 8px
+
+// firefox fixes
+@-moz-document url-prefix()
+
+	// fix for impossible text
+	input[type=text], textarea, input[type=email], input[type=tel]
+		padding: 0 1em
+
+	.select:after, .select:before
+		display: none!important
+	.select select
+		padding: 0.5em 0.5em!important

@@ -1,0 +1,411 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Linq;
+@using System.Xml;
+@using System.Xml.Linq;
+@using RexonaAU.Models;
+@using umbraco.cms.businesslogic.media;
+@using umbraco.NodeFactory
+@using System.Configuration;
+@{
+    try
+    {
+        string CheckIfProd = ConfigurationManager.AppSettings["CheckIfProd"];
+        bool CheckIfProdEnvironment = false;
+        bool.TryParse(CheckIfProd, out CheckIfProdEnvironment);
+        if (CheckIfProdEnvironment)
+        {
+            var currentPageNodedetails = new Node(Model.Content.Id);
+            if (Request.Url.AbsoluteUri.IndexOf("secure") == -1)
+            {
+                string targetURL = Request.Url.Scheme + "://secure." + Request.Url.Host + Request.Url.AbsolutePath;
+                targetURL = targetURL.Replace("www.", string.Empty);
+                Response.Redirect(targetURL);
+            }
+        }
+    }
+    catch
+    {
+    }
+
+    Layout = null;
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+
+    Node Pledge = uQuery.GetNodesByType("Pledges").FirstOrDefault();
+}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>@Umbraco.Field("pageTitle")</title>
+    <meta name="keywords" content="@Umbraco.Field("metaTitle")" />
+    <meta name="description" content="@Umbraco.Field("metaDescription")">
+    @{
+
+        var currentPageNode = new Node(Model.Content.Id);
+
+        var Title = string.Empty;
+        var Description = string.Empty;
+        var Url = string.Empty;
+        var ImageURL = string.Empty;
+        var TwitterType = "summary";
+        var RenderHomePageMetaTags = false;
+        string currentPageAlias = currentPageNode.NodeTypeAlias;
+        if (currentPageNode != null)
+        {
+
+            if (currentPageNode.NodeTypeAlias.Equals("Article", StringComparison.OrdinalIgnoreCase))
+            {
+
+                Title = string.IsNullOrEmpty(Model.Content.GetPropertyValue<string>("articleTitle")) ? Model.Content.GetPropertyValue<string>("openGraphTitle") : Model.Content.GetPropertyValue<string>("articleTitle");
+                Description = string.IsNullOrEmpty(Convert.ToString(Umbraco.Field("metaDescription"))) ? Model.Content.GetPropertyValue<string>("openGraphDescription") : Convert.ToString(Umbraco.Field("metaDescription"));
+                if (Model.Content.GetPropertyValue<int>("openGraphImage") == 0)
+                {
+                    int nodeid = Model.Content.GetPropertyValue<int>("heroImage");
+                    if (nodeid != 0)
+                    {
+                        umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(nodeid);
+                        ImageURL = imgNode.GetImageUrl();
+                    }
+                    Url = Request.Url.ToString();
+                }
+                else
+                {
+                    int ogImageId = Model.Content.GetPropertyValue<int>("openGraphImage");
+                    if (ogImageId != 0)
+                    {
+                        umbraco.cms.businesslogic.media.Media ogImgNode = new umbraco.cms.businesslogic.media.Media(ogImageId);
+                        ImageURL = ogImgNode.GetImageUrl();
+                    }
+                    Url = Request.Url.ToString();
+                }
+            }
+            else if (currentPageNode.NodeTypeAlias.Equals("Pledge", StringComparison.OrdinalIgnoreCase))
+            {
+
+                if (Request.QueryString["share"] != null)
+                {
+                    int member = Convert.ToInt32(Request.QueryString["share"]);
+                    try
+                    {
+                        Node memNode = new Node(member);
+                        if (memNode != null)
+                        {
+                            Title = memNode.Parent.GetProperty<string>("title");
+                            ImageURL = memNode.GetProperty<string>("imageUrl");
+                            Url = Request.Url.GetLeftPart(UriPartial.Authority) + memNode.Parent.Url;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+
+
+                    Description = "Rexona : I WILL DO";
+
+                    TwitterType = "summary";
+                }
+                else
+                {
+                    if (currentPageNode.Children.Count > 0)
+                    {
+                        foreach (Node child in currentPageNode.Children)
+                        {
+                            if (child.GetProperty<string>("isOwner") == "1")
+                            {
+                                ImageURL = child.GetProperty<string>("imageUrl");
+                            }
+                        }
+
+                    }
+                    Title = Model.Content.GetPropertyValue<string>("title");
+                    Description = "Rexona : I WILL DO";
+                    Url = Request.Url.GetLeftPart(UriPartial.Authority) + currentPageNode.Url;
+                    TwitterType = "summary";
+                }
+            }
+            else if (currentPageAlias.Equals("Ambassadors", StringComparison.OrdinalIgnoreCase) || currentPageAlias.Equals("PledgeGallery", StringComparison.OrdinalIgnoreCase) || currentPageAlias.Equals("Empowerment", StringComparison.OrdinalIgnoreCase) || currentPageAlias.Equals("Author", StringComparison.OrdinalIgnoreCase))
+            {
+
+                Title = !string.IsNullOrEmpty(Model.Content.GetPropertyValue<string>("openGraphTitle")) ? Model.Content.GetPropertyValue<string>("openGraphTitle") : string.Empty;
+                Description = !string.IsNullOrEmpty(Convert.ToString(Umbraco.Field("openGraphDescription"))) ? Model.Content.GetPropertyValue<string>("openGraphDescription") : string.Empty;
+                int ogImageId = Model.Content.GetPropertyValue<int>("openGraphImage");
+                if (ogImageId != 0)
+                {
+                    umbraco.cms.businesslogic.media.Media ogImgNode = new umbraco.cms.businesslogic.media.Media(ogImageId);
+                    ImageURL = ogImgNode.GetImageUrl();
+                }
+                Url = Request.Url.ToString();
+
+            }
+            else if (currentPageNode.NodeTypeAlias.Equals("Home", StringComparison.OrdinalIgnoreCase)
+                || currentPageNode.NodeTypeAlias.Equals("PledgeSteps", StringComparison.OrdinalIgnoreCase))
+            {
+                RenderHomePageMetaTags = true;
+            }
+        }
+
+        var facebookAppId = ConfigurationManager.AppSettings["FacebooKAppId"];
+    }
+    @if (!RenderHomePageMetaTags)
+    {
+        <meta property="og:site_name" content="Rexona | I Will Do" />
+        <meta property="og:type" content="article" />
+
+        <meta itemprop="go:headline" content="@Title" />
+        <meta itemprop="go:description" content="@Html.Raw(Description)" />
+
+        <meta property="og:title" content="@Title" />
+        <meta property="og:image" content="@ImageURL" />
+        <meta property="og:description" content="@Html.Raw(Description)" />
+
+        <meta name="twitter:card" content="@TwitterType">
+        <meta name="twitter:url" content="@Url">
+        <meta name="twitter:title" content="@Title">
+        <meta name="twitter:description" content="@Html.Raw(Description)">
+        <meta name="twitter:image" content="@ImageURL">
+    }
+    else
+    {
+        <meta property="og:site_name" content="Rexona | I Will Do" />
+        <meta property="og:type" content="article" />
+
+        <meta property="og:title" content="Give your goal a Game Plan" />
+        <meta property="og:image" content="@Request.Url.GetLeftPart(UriPartial.Authority)/images/Rexona_Invite.jpg" />
+@*<meta property="og:description" content="@Html.Raw(Description)" />*@
+    }
+
+    <script src="@urlHelper.Content("~/bower_components/jquery/dist/jquery.min.js")"></script>
+    <script src="@urlHelper.Content("~/js/lunametrics-youtube-v6.js")"></script>
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/app.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/style.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/default.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/default.date.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/jquery-ui.min.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/jquery-ui.structure.min.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/jquery-ui.theme.min.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/wtforms.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/video.css")" />
+    <link rel="stylesheet" href="@urlHelper.Content("~/stylesheets/plugins/jBox.css")" />
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/images/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="~/images/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="~/images/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="~/images/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="~/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="~/images/favicon-32x32.png" sizes="32x32">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/images/mstile-144x144.png">
+    <meta name="msapplication-config" content="/images/browserconfig.xml">
+    <!--[if IE]>
+        <link rel="stylesheet" type="text/css" href="~/stylesheets/2002.css" />
+    <![endif]-->
+    <!--[if IE 8]>
+        <link rel="stylesheet" type="text/css" href="~/stylesheets/ie8.css" />
+    <![endif]-->
+
+    <link rel="stylesheet" href="//assets.zendesk.com/external/zenbox/v2.6/zenbox.css" />
+
+    <script src="@urlHelper.Content("~/bower_components/modernizr/modernizr.js")"></script>
+    <script src="@urlHelper.Content("~/bower_components/masonry/dist/masonry.pkgd.min.js")"></script>
+    <script src="@urlHelper.Content("~/bower_components/foundation/js/foundation.min.js")"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+    <script src="@urlHelper.Content("~/js/plugins/placeholder.js")"></script>
+    @*<script src="@urlHelper.Content("~/js/plugins/caman.full.min.js")"></script>*@
+    <script src="@urlHelper.Content("~/js/plugins/picker.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/picker.date.js")"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    @*<script src="@urlHelper.Content("~/js/plugins/jquery-ui.min.js")"></script>*@
+    <script src="@urlHelper.Content("~/js/plugins/scriptcam.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/video.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/exif.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/imagesLoaded.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/fastclick.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/jBox.min.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/knockout-3.1.0.js")"></script>
+    <script src="@urlHelper.Content("~/js/plugins/knockout.validation.js")"></script>
+    <script type="text/javascript" src="//assets.zendesk.com/external/zenbox/v2.6/zenbox.js"></script>
+
+    @*    <script src="//connect.facebook.net/en_US/all.js#xfbml=1&status=0" type="text/javascript"></script>*@
+    <script src="@urlHelper.Content("~/js/app.js")"></script>
+    <script src="@urlHelper.Content("~/js/facebook.js")"></script>
+    <script src="@urlHelper.Content("~/js/voting.js")"></script>
+
+    <script src="@urlHelper.Content("~/bower_components/jquery.cookie/jquery.cookie.js")"></script>
+
+    <script>
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '@System.Configuration.ConfigurationManager.AppSettings["googleAnalyticsKey"]']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        $(document).ready(function () {
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '@facebookAppId',
+                    xfbml: true,
+                    version: 'v2.0'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) { return; }
+                js = d.createElement(s); js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+
+        });
+    </script>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', '@System.Configuration.ConfigurationManager.AppSettings["googleAnalyticsKey"]', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body id="home">
+    <input type="hidden" value="@currentPageAlias" />
+    <div class="lockout-container">
+        <div class="ie8-lockout">
+            <p><strong>Your browser is not supported.</strong></p>
+            <p class="subheader">To access Do More, upgrade your browser to <a href="https://www.google.com/chrome/browser/">Chrome</a>, <a href="https://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or the latest version of <a href="http://windows.microsoft.com/en-AU/internet-explorer/download-ie?">Internet Explorer</a></p>
+
+            <p>For more information, check out <a href="http://whatbrowser.org">whatbrowser.org</a></p>
+        </div>
+    </div>
+    <div class="loading-container">
+        <div class="loading">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    @Umbraco.RenderMacro("TopNavigation")
+
+
+    @RenderBody()
+    @Umbraco.RenderMacro("FooterNavigation")
+    <script>
+        $(document).foundation();
+    </script>
+
+    <div class="modal-container share">
+        <div class="content-lightbox-container">
+            <div class="close-modal">
+                <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            <div class="content-lightbox">
+                <h2>Share <span id="sharedItem"></span>&nbsp;on...</h2>
+                <div class="row">
+                    <div class="large-8 columns large-centered">
+                        <a class="facebook-share-button share-button button medium fb">Facebook <i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/share" onclick="javascript:window.open(this.href,
+      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                            class="twitter-share-button button share-button medium twitter">Twitter<i class="fa fa-twitter"></i></a>
+                        <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+      '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                            class="g-plus share-button button medium">Google+<i class="fa fa-google-plus"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal-container play-video">
+        <div class="video-lightbox">
+            <div class="close-modal">
+                <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                </a>
+            </div>
+            @*<video id="lightbox-video" width="600" height="360" autoplay="true">
+                    <source type="video/youtube" src="" />
+                </video>*@
+
+        </div>
+    </div>
+
+    <input type="hidden" id="hdnFbAppId" value="@facebookAppId" />
+
+
+    @*video light box *@
+    <div class="modal-container video-player">
+        <div class="stack">
+            <div class="card next-card share-card">
+                <div class="card-content title">
+                    <div class="close-modal">
+                        <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content ">
+                    <div class="row">
+                        <div class="large-8 columns large-centered">
+                            <a onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                class="share-button button medium fb fbVideoShare">Facebook <i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/share" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                class="twitter-share-button button share-button medium twitter twVideoShare">Twitter <i class="fa fa-twitter"></i></a>
+                            <a href="https://plus.google.com/share?url={URL}" onclick="javascript:window.open(this.href,
+          '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"
+                                class="g-plus share-button button medium gpVideoShare">Google+ <i class="fa fa-google-plus"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <div class="card current-card">
+                <div class="card-content title no-p-bottom">
+                    <h5>Your Goal Video</h5>
+                    <div class="close-modal">
+                        <a id="VideoClose" onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card-content">
+                    <div class="row">
+                        <div class="large-12 columns dashboardVideo">
+                            @*<iframe width="100%" height="315" src="//www.youtube.com/embed/EyoutEHpPAU" frameborder="0" allowfullscreen></iframe>*@
+                            <a href="#" class="button full-width" onclick="runCards()">Share Video</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

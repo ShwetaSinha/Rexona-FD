@@ -1,0 +1,166 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+}
+<div class="modal-container discussion">
+    <div class="content-lightbox-container">
+        <div class="close-modal">
+            <a onclick="openCloseStack($(this).parents('.discussion'))">Close <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="content-lightbox">
+            <div class="discussion-container">
+                <div class="reply parent op">
+                    <div class="reply-content">
+                        <div class="reply-meta">
+                            <div class="reply-author" id="DiscussionAuthor">
+                                <strong>Sophie Brown</strong> said:
+                            </div>
+                            <div id="DiscussionPostDateTime" class="reply-timestamp">
+                                14/05/2014 10:36pm
+                            </div>
+                        </div>
+                        <div class="reply-text">
+                            <h5 id="DiscussionTitle">I've just started running twice a week. How often do you guys run every week?</h5>
+                            <p id="DiscussionDescription">I was going to run every single day but a few friends of mine told me that your muscles need time to recover. Is that true or are my friends just trying to keep me fat?</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="reply-entry op-reply">
+                    <form data-abide="ajax">
+                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required data-abide-validator="profanity"></textarea>
+                        <small id="swearError" class="error"></small>
+                        <button class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                    </form>
+                </div>
+                <div class="reply parent" id="discussionPopup" data-bind="foreach: Replies">
+                    <div class="reply-content">
+                        <div class="reply-meta">
+                            <div class="reply-author" data-bind="html: PostedBy">
+                            </div>
+                            <div class="reply-timestamp" data-bind="text: PostedDate">
+                            </div>
+                        </div>
+                        <div class="reply-text">
+                            <p data-bind="html: ReplyText"></p>
+                        </div>
+
+                        <div class="reply-entry">
+                            <form data-abide="ajax">
+                                <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                <small class="error">Please enter your reply.</small>
+                                <button data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                            </form>
+                        </div>
+
+                        <a class="hide-replies small-link" data-bind="visible: ShowSecondLevel"><i class="fa fa-minus-square-o"></i></a>
+                        <a class="small-link reply-to-post right">Write a reply</a>
+
+                    </div>
+                    <div class="children" data-bind="foreach: SecondLevelReplies, visible: ShowSecondLevel">
+                        <div class="reply">
+                            <div class="reply-content">
+                                <div class="reply-meta">
+                                    <div class="reply-author" data-bind="html: PostedBy">
+                                    </div>
+                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                    </div>
+                                </div>
+                                <div class="reply-text">
+                                    <p data-bind="html: ReplyText"></p>
+                                </div>
+
+                                <div class="reply-entry">
+                                    <form data-abide="ajax">
+                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                        <small class="error">Please enter your reply.</small>
+                                        <button data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                    </form>
+                                </div>
+                                <a class="hide-replies small-link" data-bind="visible: ShowThirdLevel"><i class="fa fa-minus-square-o"></i></a>
+                                <a class="small-link reply-to-post right">Write a reply</a>
+                            </div>
+                            <div class="children" data-bind="foreach: ThirdLevelReplies, visible: ShowThirdLevel">
+                                <div class="reply">
+                                    <div class="reply-content">
+                                        <div class="reply-meta">
+                                            <div class="reply-author" data-bind="html: PostedBy">
+                                            </div>
+                                            <div class="reply-timestamp" data-bind="text: PostedDate">
+                                            </div>
+                                        </div>
+                                        <div class="reply-text">
+                                            <p data-bind="html: ReplyText"></p>
+                                        </div>
+
+                                        <div class="reply-entry">
+                                            <form data-abide="ajax">
+                                                <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                <small class="error">Please enter your reply.</small>
+                                                <button data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                            </form>
+                                        </div>
+                                        <a class="hide-replies small-link" data-bind="visible: ShowFourthLevel"><i class="fa fa-minus-square-o"></i></a>
+                                        <a class="small-link reply-to-post right">Write a reply</a>
+
+                                    </div>
+                                    <div class="children" data-bind="foreach: FourthLevelReplies, visible: ShowFourthLevel">
+                                        <div class="reply">
+                                            <div class="reply-content">
+                                                <div class="reply-meta">
+                                                    <div class="reply-author" data-bind="html: PostedBy">
+                                                    </div>
+                                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                    </div>
+                                                </div>
+                                                <div class="reply-text">
+                                                    <p data-bind="html: ReplyText"></p>
+                                                </div>
+
+                                                <div class="reply-entry">
+                                                    <form data-abide="ajax">
+                                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                        <small class="error">Please enter your reply.</small>
+                                                        <button data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                    </form>
+                                                </div>
+                                                <a class="small-link reply-to-post right">Write a reply</a>
+
+                                            </div>
+                                        </div>
+                                        <!-- For other replies -->
+                                        <div class="reply" data-bind="foreach: OtherLevelReplies, visible: ShowOtherLevel">
+                                            <div class="reply-content">
+                                                <div class="reply-meta">
+                                                    <div class="reply-author" data-bind="html: PostedBy, attr:{level: level}">
+                                                    </div>
+                                                    <div class="reply-timestamp" data-bind="text: PostedDate">
+                                                    </div>
+                                                </div>
+                                                <div class="reply-text">
+                                                    <p data-bind="html: ReplyText"></p>
+                                                </div>
+
+                                                <div class="reply-entry">
+                                                    <form data-abide="ajax">
+                                                        <textarea name="discussions-reply" id="discussions-reply" cols="30" rows="3" placeholder="Write a reply..." required></textarea>
+                                                        <small class="error">Please enter your reply.</small>
+                                                        <button data-bind="attr:{id: Id}" class="button medium right with-icon icon-right" type="submit">Reply <i class="fa fa-chevron-right"></i></button>
+                                                    </form>
+                                                </div>
+                                                <a class="small-link reply-to-post right">Write a reply</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

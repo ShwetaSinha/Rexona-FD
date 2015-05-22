@@ -1,0 +1,379 @@
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll.config
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\AWSSDK.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\CookComputing.XmlRpcV2.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Examine.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\log4net.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Helpers.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MySql.Data.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.47x.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.Checks.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\SQLCE4Umbraco.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.Entity.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\TidyNet.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Web.UI.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.XmlSerializers.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UmbracoExamine.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UrlRewritingNet.UrlRewriter.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.xml
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csproj.App.config
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\TFS\Source\Rexona_AUS\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csprojResolveAssemblyReference.cache
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll.config
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\AWSSDK.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\CookComputing.XmlRpcV2.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Examine.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Helpers.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MySql.Data.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.47x.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.Checks.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\SQLCE4Umbraco.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.Entity.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\TidyNet.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Web.UI.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.XmlSerializers.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UmbracoExamine.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UrlRewritingNet.UrlRewriter.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\log4net.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.pdb
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.xml
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csproj.App.config
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\newrepublique-rexona_aus_code-67f220241a51\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll.config
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\AWSSDK.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\CookComputing.XmlRpcV2.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Examine.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Helpers.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MySql.Data.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.47x.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.Checks.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\SQLCE4Umbraco.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.Entity.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\TidyNet.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Web.UI.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.XmlSerializers.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UmbracoExamine.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UrlRewritingNet.UrlRewriter.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\log4net.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.pdb
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.pdb
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.pdb
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.xml
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csproj.App.config
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csprojResolveAssemblyReference.cache
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\Sravan\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll.config
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\AWSSDK.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\CookComputing.XmlRpcV2.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Examine.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.ApplicationBlocks.Data.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Helpers.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Microsoft.Web.Mvc.FixedDisplayModes.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MySql.Data.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.47x.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.Checks.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Our.Umbraco.uGoLive.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\SQLCE4Umbraco.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Data.SqlServerCe.Entity.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\TidyNet.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Web.UI.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.XmlSerializers.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UmbracoExamine.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\UrlRewritingNet.UrlRewriter.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\log4net.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\businesslogic.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.pdb
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\ClientDependency.Core.Mvc.pdb
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\cms.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\controls.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.pdb
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\HtmlAgilityPack.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\interfaces.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Lucene.Net.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\MiniProfiler.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Newtonsoft.Json.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.IO.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Extensions.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Formatting.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.Primitives.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Net.Http.WebRequest.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Runtime.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Threading.Tasks.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Helpers.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Http.WebHost.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Mvc.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.Razor.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\Umbraco.Core.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.DataLayer.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.editorControls.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.MacroEngines.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.macroRenderings.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\bin\Debug\umbraco.providers.xml
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonS3Provider.csproj.App.config
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.dll
+D:\Project Details\Rexona\StageDeployed19032015\Source\Gibe.Umbraco.AmazonS3Provider\obj\Debug\Gibe.Umbraco.AmazonFileSystemProvider.pdb

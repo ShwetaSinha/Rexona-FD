@@ -1,0 +1,160 @@
+@using System.Net.Mail;
+@using umbraco.cms.businesslogic.web;
+@using umbraco.NodeFactory;
+@using RexonaAU;
+@using umbraco;
+@using System.Configuration;
+@using RexonaAU.Helpers;
+@using RexonaAU.Models;
+@{
+    Entities dbEntities = new Entities();
+    var objTweet = dbEntities.TwitterHashTags
+                   .Where(tweet => tweet.IsApproved == (int)ManageSocialContent.SocialContentStatus.Approved)
+                   .Select(tweets =>
+                           new
+                           {
+                               Id = tweets.Id,
+                               UniqueId = tweets.UniqueId,
+                               Username = tweets.UserName,
+                               Post = tweets.Post,
+                               PostUrl = tweets.PostUrl,
+                               MediaUrl = tweets.MediaUrl,
+                               CreatedDate = tweets.CreatedDate.Value.ToString(),
+                               Likes = tweets.Likes,
+                               Location = tweets.Location,
+                               ScreeName = tweets.ScreeName,
+                               Source = "tweet",
+                               CreatedDateTime = tweets.CreatedDate
+                           })
+                .OrderByDescending(tweet => tweet.CreatedDateTime)
+                .ToList();
+
+    var objInstaGram = dbEntities.InstaGramHashTags.Where(tweet => tweet.IsApproved == (int)ManageSocialContent.SocialContentStatus.Approved)
+                .Select(tweets =>
+                        new
+                        {
+                            Id = tweets.Id,
+                            UniqueId = tweets.UniqueId,
+                            Username = tweets.UserName,
+                            Post = tweets.Post,
+                            PostUrl = tweets.PostUrl,
+                            MediaUrl = tweets.MediaUrl,
+                            CreatedDate = tweets.CreatedDate.Value.ToString(),
+                            Likes = tweets.Likes,
+                            Location = tweets.Location,
+                            ScreeName = tweets.ScreeName,
+                            Source = "instagram",
+                            CreatedDateTime = tweets.CreatedDate
+                        })
+                        .OrderByDescending(tweet => tweet.CreatedDateTime)
+                .ToList();
+
+
+    var finalList = objTweet.Concat(objInstaGram).ToList();         
+    
+    <style>
+        .customtable {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+            .customtable td, #customers th {
+                font-size: 1em;
+                border: 1px solid #888;
+                font-size: 14px;
+                padding: 10px 5px 10px 5px;
+            }
+
+            .customtable tr td {
+                word-wrap: break-word;
+            }
+
+            .customtable th {
+                font-size: 1.1em;
+                text-align: left;
+                padding: 10px 5px 10px 5px;
+                background-color: #888;
+                border: 1px solid #888;
+                color: #ffffff;
+            }
+
+            .customtable tr.alt td {
+                color: #000000;
+                background-color: #EAF2D3;
+            }
+    </style>
+    <h3>Approved Entries</h3>
+    <br />
+
+    <table class="customtable">
+
+        <thead>
+            <tr>
+                <th><b>User Name</b></th>
+                <th style="width: 40%"><b>Post</b></th>
+                <th><b>Post Url</b></th>
+                <th>Reject</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in finalList)
+            {
+
+
+                string userName = item.ScreeName;
+                string post = item.Post;
+                string postURL = item.PostUrl;
+                string source = item.Source;
+                string uniqueId = item.Source + item.Id;
+                <tr id="@uniqueId">
+                    <td style="display: none;" class="source" id="data-@item.Id">
+                        @source
+                    </td>
+                    <td>@userName</td>
+                    <td>@post</td>
+                    <td><a target="_blank"  href="@postURL">Post Url</a></td>
+                    <td>
+                        <input type="button" name="deny" class="rejectApproved" value="Reject"  id="@item.Id"/></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".rejectApproved").click(function (e) {
+
+            var uid = $(this).attr("id");
+            var source = $("#data-" + uid);
+            if (typeof source != undefined) {
+                source = $("#data-" + uid).html().trim()
+            }
+            var paramObject = new Object();
+            paramObject.entryId = uid;
+            paramObject.source = source;
+            $('#' + source + uid).hide();
+            startLoad();
+            $.ajax({
+                type: 'POST',
+                contentType: "application/x-www-form-urlencoded",
+                url: "/umbraco/surface/SocialContent/RejectApprovedContent/",
+                async: true,
+                data: paramObject,
+                success: function (data) {
+                    loadDone();
+                    alert('The selected entry has been denied');
+                },
+                error: function (data) {
+                    alert('ohh something went wrong,please try again');
+                    loadDone();
+                }
+
+            });
+
+        });
+    });
+</script>

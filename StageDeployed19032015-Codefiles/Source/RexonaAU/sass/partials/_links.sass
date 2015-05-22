@@ -1,0 +1,21 @@
+a 
+	+animate(color, 300ms)
+	+animate(background-color, 300ms)
+a:hover 
+	color: lighten($primary-color, 15%)
+
+
+.small-link
+	font-weight: bold
+	text-decoration: underline
+	font-size: 0.85em
+
+.destructive
+	color: $destructive-color
+	&:hover
+		color: lighten($destructive-color, 25%)
+.constructive
+	color: $primary-color
+.action 
+	padding-bottom: 0.1em
+	border-bottom: 1px solid

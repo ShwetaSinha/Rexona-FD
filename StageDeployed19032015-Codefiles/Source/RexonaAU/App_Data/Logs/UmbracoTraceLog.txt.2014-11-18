@@ -1,0 +1,9 @@
+2014-11-18 10:13:35,103 [22] INFO  umbraco.presentation.publishingService - [Thread 122] sendEmails has been called with response: False
+2014-11-18 10:13:37,163 [22] INFO  umbraco.presentation.publishingService - [Thread 122] sendTractionEmails has been called with response: False
+2014-11-18 10:13:39,222 [22] INFO  umbraco.presentation.publishingService - [Thread 122] refreshSocialContent has been called with response: False
+2014-11-18 10:14:35,105 [22] INFO  umbraco.presentation.publishingService - [Thread 109] sendEmails has been called with response: False
+2014-11-18 10:14:37,164 [22] INFO  umbraco.presentation.publishingService - [Thread 109] sendTractionEmails has been called with response: False
+2014-11-18 10:15:35,153 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendEmails has been called with response: False
+2014-11-18 10:15:37,212 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendTractionEmails has been called with response: False
+2014-11-18 10:16:20,396 [22] INFO  umbraco.BusinessLogic.Log - [Thread 129] Log scrubbed.  Removed all items older than 2014-09-19 10:16:20
+2014-11-18 10:16:20,427 [22] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 129] Application shutdown. Reason: HostingEnvironment

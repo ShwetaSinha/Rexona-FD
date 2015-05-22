@@ -1,0 +1,22 @@
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+<p class="ticker"><strong><span id="pledgeTickerSpan" runat="server"></span></strong> pledges made. </p>
+<script>
+
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '@Url.Action("PledgeTickerCount", "Pledge")',
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            dataType: 'json'
+
+        })
+       .success(function (result) {
+           //console.log(result);
+           setInterval(function () {
+               $('#pledgeTickerSpan').text(result);             
+           }, 2000);          
+       })
+    });
+   
+</script>

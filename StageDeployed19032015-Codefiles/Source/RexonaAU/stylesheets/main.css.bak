@@ -1,0 +1,286 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+.hero
+{
+    background-image: url('../images/hero.jpg');
+    background-repeat: no-repeat;
+	background-size: cover;
+}
+
+@media (max-width: 1000px) {
+	.btn{
+		width: 100%!important;
+	}
+	img{
+		width: 100%!important;
+	}
+	.spacer img{
+		min-height: 280px;
+	}
+	.js-rexAnim{
+		text-align: center;
+	}
+	.js-ipad{
+		margin-top: 50px;
+	}
+	.wrapper, .wrapper-green, .wrapper-gray{
+		padding-top: 20px!important;
+		padding-bottom: 25px!important;
+	}
+}
+.terms{
+	text-decoration: underline; color:#337ab7;
+}
+.bigBubble img {
+    display:block !important;
+}
+
+.wrapper-green{
+	background-color: #CCCC66 !important;
+	color: white;
+}
+
+.wrapper-gray{
+	background-color: #EEE !important;
+}
+.js-rexAnim{
+	padding-top: 50px; text-align:left;
+}
+.js-rexAnim .well{
+	border-radius: 0px;
+	display: inline-block;
+	margin-bottom: 0px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	color: gray;
+}
+.js-goal input{
+	width: 50% !important;
+	color: gray;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	padding-left: 15px;
+}
+.wrapper, .wrapper-green, .wrapper-gray{
+	padding-top: 80px;
+	padding-bottom: 100px; 
+    background-color:#ffffff;
+}
+body{
+	font-family: 'sofia_problack';
+}
+.row p {
+    font-family: 'sofia_problack' !important;
+}
+.container.signUp p{
+    font-family: 'sofia_problack' !important;
+}
+.container.signUp span{
+    font-family: 'sofia_problack' !important;
+}
+
+.row #section2 h2 {
+color:#ffffff;}
+
+.js-connect{
+	position: relative;
+}
+.bigBubble img, .smallBubbles img, .bubbleLines img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 464px;
+	max-height: 448px;
+
+}
+
+.spacer img{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	min-height: 400px;
+}
+
+.jumbotron.hero{
+	text-align: center;
+	color: white;
+	background-image: ;
+}
+.jumbotron.hero a.introbtn{
+	text-decoration: underline !important;
+	color: #ffffff !important ;
+	font-size: medium;
+}
+.u-caps{
+	text-transform: uppercase;
+}
+.u-inline{
+	display: inline;
+}
+input[type=checkbox]{
+	margin: 5px;
+}
+@media screen and (max-width: 300px) {
+    .btn{
+        width: 100% !important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .logo img{
+        width:82px !important;
+        height:40px !important;
+    }
+}
+.btn{
+	background-image: none;
+	border: none !important;
+	border-radius: 10px !important;
+	text-shadow: none !important;
+	padding-left: 50px !important;
+	padding-right: 50px !important;
+	padding-top: 20px !important;
+	width: 50%;
+	padding-bottom: 20px !important;
+    font-weight:400 !important;
+    font-family: "sofia_problack","Helvetica Neue","Helvetica",Arial,sans-serif !important;
+}
+.btn-primary{
+	background-color: #CCCC66 !important;
+	background-image: none !important;
+	border: none !important;
+	border-radius: 15px !important;
+}
+
+.btn-fb{
+	background-color: #3E5C9A;
+	color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+
+}
+.btn-secondary{
+	  text-align:center;
+  border-bottom:2px solid #d5d5d5;
+
+}
+.u-backlined{
+ 	position:relative;
+ 	border-bottom:2px solid #d5d5d5;
+ 	top:8px;
+	padding:0 15px;
+	margin-bottom: 80px;
+
+}
+.u-backlined span{
+	display:inline-block;
+	position:relative;
+	top:25px;
+	font-size: 35px;
+	background:#EEE;
+	padding:0 12px;
+	text-transform: uppercase;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default
+{background-color: #e0e0e0 !important;
+    background-position: 0 -15px !important; color: #333 !important;
+}
+
+.btn-signIn{
+	background-color: rgba(0,0,0,.5) !important;
+	color: white !important;;
+}
+.signUp{
+	text-align: center;
+	max-width: 500px;
+}
+.signUp .btn-primary{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.signUp label{
+	display: block;
+	text-align: left;	
+	margin-bottom: 15px;
+}
+.signUp input[type=text], .signUp input[type=email], .signUp input[type=password]{
+	width: 100%;
+}
+
+@font-face {
+    font-family: 'sofia_problack';
+    src: url('../fonts/family/sofiaproblack-webfont.eot');
+    src: url('../fonts/family/sofiaproblack-webfont.eot?#iefix') format('embedded-opentype'),
+         url('font/family/sofiaproblack-webfont.woff') format('woff'),
+         
+         url('../fonts/family/sofiaproblack-webfont.ttf') format('truetype'),
+         url('../fonts/family/sofiaproblack-webfont.svg#sofia_problack') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.js-ipad{
+	position: relative;
+}
+.ipad{
+	z-index: 9;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+
+}
+.ipad-images{
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	max-width: 469px;
+
+}
+.ipad-images .img-wrapper{
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+.ipad-images .img-wrapper img{
+
+	max-width: 469px;
+}
+.ipad-images .img-wrapper img.active{
+
+}
+
+#section2, #section3{
+	margin-top: 10%;
+}
+
+
+.navbar-inverse{
+	background-image: none;
+	background-color: black;
+}
+
+.right.login-buttons-active
+{ display:block;
+}
+
+.right.login-buttons-inactive
+{ display:none;
+}
+
+span.subscribe
+{
+    color: #181818;
+    font-family: "sofia_problack","Helvetica Neue","Helvetica",Arial,sans-serif;
+    font-size: 0.875em;
+    text-transform: uppercase;
+}

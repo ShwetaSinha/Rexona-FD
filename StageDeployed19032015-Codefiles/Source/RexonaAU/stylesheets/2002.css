@@ -1,0 +1,49 @@
+/* line 1, ../sass/2002.sass */
+.select:after, .select:before {
+  display: none !important;
+}
+
+/* line 3, ../sass/2002.sass */
+.select select {
+  padding: 0.5em 0.5em !important;
+}
+
+/* line 7, ../sass/2002.sass */
+#home-video {
+  width: 480px !important;
+}
+
+/* line 10, ../sass/2002.sass */
+.mejs-overlay-button {
+  left: 230px;
+}
+
+/* line 14, ../sass/2002.sass */
+.pill-box-pills ul.pills a {
+  font-size: 0.7em;
+}
+
+/* line 17, ../sass/2002.sass */
+.entity-list a.entity {
+  display: block !important;
+}
+
+/* line 21, ../sass/2002.sass */
+.confirm-remove p {
+  float: left;
+  font-size: 0.8em !important;
+}
+
+/* line 24, ../sass/2002.sass */
+.confirm-options {
+  float: right;
+}
+/* line 26, ../sass/2002.sass */
+.confirm-options a {
+  font-size: 0.7em;
+}
+
+/* line 30, ../sass/2002.sass */
+.view-friends .entity-block {
+  padding-right: 0 !important;
+}

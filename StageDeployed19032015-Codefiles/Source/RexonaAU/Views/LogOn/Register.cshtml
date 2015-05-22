@@ -1,0 +1,237 @@
+﻿@using System.Web.Mvc.Html;
+@using Umbraco.Web;
+@using RexonaAU.Controllers;
+@using Umbraco.Core;
+@using umbraco.NodeFactory;
+@using Umbraco.Core.Models;
+@using System.Configuration;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+    string CheckIfProd = ConfigurationManager.AppSettings["CheckIfProd"];
+    bool CheckIfProdEnvironment = false;
+    bool.TryParse(CheckIfProd, out CheckIfProdEnvironment);
+    if (CheckIfProdEnvironment)
+    {
+    <script type='text/javascript'>
+        // Conversion Name: Conversion Page 2: Sign Up
+        // INSTRUCTIONS 
+        // The Conversion Tags should be placed at the top of the <BODY> section of the HTML page. 
+        // In case you want to ensure that the full page loads as a prerequisite for a conversion 
+        // being recorded, place the tag at the bottom of the page. Note, however, that this may 
+        // skew the data in the case of slow-loading pages and in general not recommended. 
+        //
+        // NOTE: It is possible to test if the tags are working correctly before campaign launch 
+        // as follows:  Browse to http://bs.serving-sys.com/Serving/adServer.bs?cn=at, which is 
+        // a page that lets you set your local machine to 'testing' mode.  In this mode, when 
+        // visiting a page that includes an conversion tag, a new window will open, showing you 
+        // the data sent by the conversion tag to the MediaMind servers. 
+        // 
+        // END of instructions (These instruction lines can be deleted from the actual HTML)
+        var ebRand = Math.random() + '';
+        ebRand = ebRand * 1000000;
+        document.write('<scr' + 'ipt src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542144&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+    </script>
+<noscript>
+    <img width="1" height="1" style="border: 0" src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542144&amp;ns=1" />
+</noscript>
+}
+    
+}
+
+
+
+<div class="hero-panel empty sign-up"></div>
+<div class="row">
+    <div class="large-10 small-12 columns large-centered">
+        <div class="container-block">
+            <div class="block-content inverted">
+                <h1 class="contained-title centered centered-title">Set Your Goal</h1>
+                <p class="subheader centered">Ready to get started? Just follow these three steps:</p>
+                <img src="~/images/steps.png" alt="" class="centered" />
+                <br />
+                <p class="subheader">
+                    Disclaimer: Unilever takes your privacy very seriously and will use and protect any personal information you provide on this website in accordance with our  
+                  <a href="http://www.unilever.com.au/resource/privacypolicy/index.aspx" target="_blank">Privacy Policy.</a>
+                </p>
+            </div>
+            <div class="block-content">
+                <div class="row">
+                    <div class="large-9 columns large-centered">
+                        <div class="row">
+                            
+                            <form data-abide="ajax">
+                                <div class="large-12 columns">
+                                    <a href="" class="button fb-button full-width">Connect with Facebook</a>
+                                    <div class="form-checkboxes">
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <input id="fb-subscribe" type="checkbox" checked="" class="subscribe-me" />
+                                            <label class="for-checkbox" for="fb-subscribe">
+                                                <span>Subscribe me for I WILL DO content</span>
+                                            </label>
+                                            @*<input id="fb-subscribe" type="checkbox" checked><label class="for-checkbox" for="fb-subscribe"><span>Subscribe me for I WILL DO content</span></label>*@
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                           <!-- <input id="fb-terms" type="checkbox" required><label class="for-checkbox" for="fb-terms"><span>I agree to the <a onclick="openLightbox('.terms')">terms and conditions</a></span></label>
+                                            <small class="error terms-error">Please agree to the terms and conditons.</small> -->
+                                            <label class="terms-condi" for="fb-terms"><span class="terms-condi">By clicking "Connect with Facebook" you agree to our <a onclick="openLightbox('.terms')">terms and conditions.</a></span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                            </form>
+                        </div>
+                        <div class="row">
+                            <div class="large-11 large-centered columns">
+                                <div class="form-divider">
+                                    <!-- presentational markup. i'm so sorry -->
+                                    <div class="line line-left"></div>
+                                    <div class="text centered">OR</div>
+                                    <div class="line line-right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="large-12 columns">
+                                @*<form data-abide="ajax" id="signupForm">
+                                    *@
+                                @using (Html.BeginUmbracoForm<LogOnController>("SignUp", null, new Dictionary<string, object> { { "data-abide", "data-abide" }, { "autocomplete", "off" } }))
+                                {
+                                    @Html.AntiForgeryToken();
+                                    @*<div class="row">
+                                        <div class="large-12 columns">
+                                            <label>First Name</label>
+                                            <input type="text" placeholder="Your first name" required name="firstname" id="firstname" />
+                                            <small class="error">Please enter your first name</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <label>Last Name</label>
+                                            <input type="text" placeholder="Your last name" required name="lastname" id="lastname" />
+                                            <small class="error">Please enter your last name</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <label>Profile Name <span data-tooltip aria-haspopup="true" href="#" class="has-tip" title="The name that will appear on your goal image.">?</span></label>
+                                            <input type="text" placeholder="Your name here" required data-abide-validator="nameValidator" name="displayname" id="displayname" />
+                                            <small id="nameError" class="error"></small>
+                                        </div>
+                                    </div>*@
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <label>Email Address <span data-tooltip aria-haspopup="true" href="#" class="has-tip" title="We’d like to send you exclusive content and keep you up to date with competitions and promotions.">?</span></label>
+
+                                            <input type="email" name="email" id="email" placeholder="e.g. jappleseed@gmail.com" required pattern="email" />
+                                            <small class="error">Please enter a valid email address.</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <label>Password <span data-tooltip aria-haspopup="true" href="#" class="has-tip" title="Password must contain minimum of 6 characters.">?</span></label>
+                                            <input style="display: none" type="text" name="fakeemailremembered" />
+                                            <input style="display: none" type="password" name="fakepasswordremembered" />
+                                            <input type="password" name="password" id="password" required data-abide-validator="passwordCheck"/>
+                                            <small class="error" id="passwordError"></small>
+                                        </div>
+                                    </div>
+                                    @*<div class="row">
+                                        <div class="large-12 columns">
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="confirmpassword" id="confirmpassword" required data-equalto="password" />
+                                            <small class="error">Passwords must match.</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-4 columns">
+                                            <label>Postcode <span data-tooltip aria-haspopup="true" href="#" class="has-tip" title="We’d like to keep you informed of upcoming events near you.">?</span></label>
+                                            <input type="tel" name="postcode" id="postcode" placeholder="2021" required data-abide-validator="postcodeValidation" pattern="number" />
+                                            <small class="error" id="postError">Please enter a valid postcode.</small>
+                                        </div>
+                                        <div class="large-4 columns">
+                                            <label>State</label>
+                                            <label class="select">
+                                                <select id="state-selection" name="state" required>
+                                                    <option selected value="">State</option>
+                                                    <option value="act">ACT</option>
+                                                    <option value="nsw">NSW</option>
+                                                    <option value="nt">NT</option>
+                                                    <option value="qld">QLD</option>
+                                                    <option value="sa">SA</option>
+                                                    <option value="tas">TAS</option>
+                                                    <option value="vic">VIC</option>
+                                                    <option value="wa">WA</option>
+                                                </select>
+                                            </label>
+                                            <small class="error">Please select your state</small>
+                                        </div>*@
+                                        @*change dob div class remove "end" from class name *@
+                                       @* <div class="large-4 columns end">
+                                            <label>Date of Birth <span data-tooltip aria-haspopup="true" href="#" class="has-tip" title="You must be over 18 to take part">?</span></label>
+                                            <input type="tel" name="dateofbirth" id="dateofbirth" placeholder="DD MM YY" class="datepicker-birthdate" required />
+                                            <small class="error">Please enter your date of birth.</small>
+                                        </div>
+                                    </div>*@
+                                    <div class="form-checkboxes">
+                                        <div class="row">
+                                            <div class="large-12 columns">
+                                                <input name="sub" id="subscribe" type="checkbox" checked class="subscribe-me"/><label class="for-checkbox" for="subscribe"><span>Subscribe me for I WILL DO content</span></label>
+                                                <input type="hidden" name="subscribe" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="large-12 columns">
+                                                <!--<input id="terms" type="checkbox" required><label class="for-checkbox" for="terms"><span>I agree to the <a onclick="openLightbox('.terms')">terms and conditions</a></span></label>
+                                                <small class="error terms-error">Please agree to the terms and conditons.</small>-->
+                                                <label class="terms-condi">By clicking "Sign up & continue to goal" you agree to our <a class="changeBlue" onclick="openLightbox('.terms')" >terms and conditions</a>.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="large-12 columns">
+                                            <button type="submit" id="sign-up" class="button-signup-but with-icon right-icon full-width">Sign Up & continue to goal<i class="fa fa-chevron-right"></i></button>
+                                        </div>
+                                    </div>
+                                }
+                                @*
+                                </form>
+                                *@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-container terms">
+    <div class="content-lightbox-container">
+        <div class="close-modal">
+            <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="content-lightbox">
+            @Umbraco.Field("termsAndCondition")
+        </div>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] != null ? TempData["ErrorMessage"].ToString() : string.Empty))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new jBox('Notice', {
+                content: '@Html.Raw(TempData["ErrorMessage"].ToString())',
+                color: 'red',
+                theme: 'NoticeBorder'
+            });
+        });
+    </script>
+TempData["ErrorMessage"] = null;
+}

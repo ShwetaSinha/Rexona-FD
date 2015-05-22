@@ -1,0 +1,770 @@
+.hero-panel // reusable block at top of most pages
+	background-color: #141414
+	min-height: 220px
+	background-size: cover
+	border-bottom: 4px solid $primary-color
+	-webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15)
+	box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15) 
+	padding: 3em 0
+	// pos relative and z-index so drop shadow appears on top of lower elements
+	position: relative
+	z-index: 10
+	h1, h2, h3, h4, h5, h6, p
+		color: #fff
+	.contained-title
+		color: $black
+
+.lockout-container
+	display: none
+
+.home-step 
+	+clearfix
+	width: 100%
+	display: block
+	img 
+		margin-bottom: 1.3em
+		margin-right: 1em
+		float: left
+		+at($abovesmall)
+			float: none 
+			margin: 0 auto
+			display: block
+	p 
+		font-size: 0.8em
+		padding-top: 2em
+		+at($abovesmall)
+			text-align: center
+.hero-panel.empty 
+	min-height: 290px
+
+.ambassador-intro
+	+clearfix
+	margin-bottom: 1em
+	h5
+		margin-top: 1em
+	.subheader 
+		margin-bottom: 0.5em
+	img
+		margin-top: 1em
+
+.content-panel // horizontal strips of content
+	background-color: #FFF 
+	padding: 3em 0
+	background-repeat: no-repeat
+	background-size: cover
+	&:nth-of-type(odd)
+		background-color: #f2f2f2
+	+at($abovesmall)
+		background-image: none!important
+
+.content-panel.dark-panel 
+	background-color: #d0d0d0
+
+// background images for each content panel. should be reusable
+.content-panel.bg-1
+	background-image: url("../images/content-bg-1.png")
+	background-position: center right
+.content-panel.bg-2
+	background-image: url("../images/content-bg-2.png")
+	background-position: center left
+.content-panel.bg-3
+	background-image: url("../images/content-bg-3.png")
+	background-position: center right
+.content-panel.bg-4
+	background-image: url("../images/content-bg-4.png")
+	background-position: center left
+.content-panel.bg-5
+	background-image: url("../images/content-bg-5.png")
+	background-position: top right
+	background-size: 100%
+
+	
+// 'hero' (top) section during sign up
+.sign-up-hero
+	padding: 3em 0 6em 0
+	position: relative
+	z-index: 99
+	+at($abovesmall)
+		padding: 0.4em 0
+.sign-up-bottom
+	border-top: 4px solid $primary-color
+	-webkit-box-shadow: inset 0 30px 30px 0 rgba(0,0,0,0.15)
+	box-shadow: inset 0 30px 30px 0 rgba(0,0,0,0.15)  
+	background-color: #FFF
+	padding: 3em 0 6em 0
+
+// different images to use for hero panels
+.hero-1 
+	background-image: url("../images/hero-1.jpg")
+.hero-2
+	background-image: url("../images/hero-2.jpg")
+.hero-3
+	background-image: url("../images/hero-3.jpg")
+.hero-4
+	background-image: url("../images/hero-4.jpg")
+.hero-5
+	background-image: url("../images/hero-5.jpg")
+.hero-6
+	background-image: url("../images/hero-6.jpg")
+
+
+#ambassador .hero-panel
+	background-position: 0 0
+	+at($abovelarge)
+		background-position: -400px 0
+	+at($large)
+		background-position: -700px 0
+	+at($abovesmall)
+		background-position: 0 0
+
+.hero-panel.home
+	background-image: url("../images/hero-home.jpg")
+.hero-panel.about 
+	background-image: url("../images/hero-about.jpg")
+.hero-panel.sign-up 
+	background-image: url("../images/hero-sign-up.jpg")
+.hero-panel.goal-gallery
+	background-image: url("../images/hero-goal-gallery.jpg")
+.hero-panel.ais-advice 
+	background-image: url("../images/hero-ais-advice.jpg")
+.hero-panel.ambassadors
+	background-image: url("../images/hero-ambassadors.jpg")
+.hero-panel.support
+	background-image: url("../images/hero-support.jpg")
+.hero-panel.pledge-network
+	background-image: url("../images/hero-pledge-network.jpg")
+.hero-panel.dashboard 
+	background-image: url("../images/hero-dashboard.jpg")
+
+// content blocks (sign up, articles)
+.container-block
+	background-color: #f5f5f5
+	min-height: 200px
+	position: relative
+	z-index: 11 // one higher than our hero panel index
+	-webkit-box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2)
+	box-shadow: 0 10px 30px 0 rgba(0,0,0,0.2)
+	// need to manually position the div back over the top of the hero image container
+	top: -195px
+	+at($abovesmall)
+		top: -225px
+
+// containers within a panel, used to hold content
+.block-content 
+	min-height: 100px
+	padding: 45px 100px
+	+at($abovesmall)
+		padding: 30px 20px
+.block-content.inverted
+	border-bottom: 4px solid $primary-color
+	-webkit-box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15)
+	box-shadow: 0 5px 5px 0 rgba(0,0,0,0.15)
+
+.block-content.article // reduced padding for content blocks on article pages
+	padding: 25px 40px 30px 40px
+	.breadcrumb // grey breadcrumbs on articles
+		padding-left: 0
+		color: lighten($black, 65%)!important
+		&:hover
+			color: lighten($black, 95%)!important
+
+// 'connected panels' - instances where a heading is directly connected to the panel below it
+.connected-panel-container
+	h1, h2
+		width: 40%
+		+at($abovesmall)
+			width: 80%
+	.connected-panel-heading
+		width: 100%
+		display: block
+		+clearfix
+	.connected-panel
+		+clearfix
+		background-color: #ededed
+		padding: 0.8em
+		position: relative
+		// bring it up so it lines up with the bottom of .connected-panel-heading
+		top: -1.75em
+		-webkit-box-shadow: 3px 6px 7px 0 rgba(0,0,0,0.10)
+		box-shadow: 3px 6px 7px 0 rgba(0,0,0,0.10)
+		label.for-checkbox
+			font-size: 0.7em
+			position: relative
+			margin-bottom: 13px
+			span 
+				position: relative
+				top: 6px
+
+.connected-panel-container.dashboard
+	position: relative
+	top: 65px
+	+at($abovesmall)
+		top: 0
+		margin-top: 1.5em
+.connected-panel.dashboard // adjustments for the variation that appears on the dashboard page
+	box-shadow: none!important 
+	webkit-box-shadow: none!important
+	background-color: #FFF
+	border-top: 1px solid lighten($black, 83%)
+	position: relative
+	+clearfix
+	h1, h2, h3, h4, h5, h6, p 
+		color: $body-font-color
+	.user-details
+		+clearfix
+		width: 35%
+		float: left
+		+at($abovesmall)
+			width: 100%
+		.user-avatar, .user-name
+			float: left
+		.user-name
+			position: relative
+			top: 1.35em
+			left: 1em
+	.dashboard-tabs
+		float: right
+		+at($abovesmall)
+			width: 100%
+			display: block
+			margin-top: 1em
+		ul 
+			list-style: none
+			margin: 0
+			padding: 0
+			li 
+				display: inline-block
+				line-height: 5em
+				+at($abovesmall)
+					font-size: 0.8em
+			a 
+				color: lighten($black, 50%)
+				font-family: $heading-stack
+				font-weight: 100
+				padding: 2.6em 2.5em
+				text-transform: uppercase
+				text-align: center
+				font-size: 0.9em
+				border-right: 1px solid lighten($black, 83%)
+				+at($abovesmall)
+					padding: 0.7em 
+				&:hover
+					color: $primary-color
+				&:last-child
+					border: none
+				&:first-child
+					border-left: 1px solid lighten($black, 83%)
+					+at($abovesmall)
+						border-left: none
+			.notification-badge 
+				background-color: $destructive-color
+				color: #fff
+				padding: 0.4em 0.7em
+				border-radius: 100px
+				font-family: $body-stack
+				font-weight: bold
+				position: relative
+				top: -20px
+				left: 20px
+				+at($abovesmall)
+					left: 10px
+					top: -10px
+			
+
+
+.item-poster
+	display: block
+	width: 100%		
+
+// masonry layouts
+
+// change items to 1/3 width in the gallery
+.blog-wall .item 
+	width: 33%
+	+at($abovesmall)
+		width: 50%
+	+at($small)
+		width: 100%
+
+.gallery-wall .item
+	width: 25%
+	+at($abovesmall)
+		width: 50%
+	+at($small)
+		width: 100%
+
+.item // each item in the wall
+	box-sizing: border-box
+	padding: 8px // horizontal gutter
+	width: 25%
+	+clearfix
+	+at($abovesmall)
+		width: 50%
+	+at($small)
+		width: 100%
+	h4 
+		+animate(color, 300ms)
+		font-family: $body-stack
+		font-weight: bold
+		text-transform: none
+		font-size: 1.1em
+		line-height: 1.4
+		margin-top: 0 // remove top margin so that heading-only items (tweets) don't add a 2px gap between the type of item and the content
+
+	a h4:hover // linked h4s, for example inspiration articles
+		color: lighten(#000, 45%)
+	a img
+		+animate(opacity, 300ms) 
+		&:hover 
+			opacity: 0.7
+	
+	.item-content
+		background: #FFF
+		padding: 0 20px 20px 20px // remove top padding on regular items so we can correctly position the 'type' tag
+		-webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2)
+		box-shadow: 0 4px 5px 0 rgba(0,0,0,0.2)
+
+
+	
+	.item-type
+		padding: 0.8em 1.35em 0.5em 1.35em
+		background-color: #fff
+		color: lighten($body-font-color, 50%)
+	.item-type span 
+		text-transform: uppercase
+		font-size: 0.7em
+
+	.item-image
+		margin-bottom: 1em
+		border: 1px solid $primary-color
+
+
+	.item-details
+		border-bottom: 1px solid lighten($body-font-color, 50%)
+		margin-bottom: 0.9em
+		p 
+			font-size: 0.8em
+			margin-bottom: 0.9em
+
+	.item-actions
+		+clearfix
+	.item-share
+		float: left
+	.item-author
+		float: left
+		width: 70%
+		word-wrap: break-word
+		font-size: 0.8em
+	.item-rate
+		float: right
+		width: 30%
+		color: lighten($body-font-color, 70%)
+		font-size: 0.85em
+		+animate(color, 300ms)
+		.rating-icon
+			float: right
+			margin-left: 6px
+		.rating-number
+			span
+				float: right
+		&:hover
+			color: $primary-color
+			cursor: pointer
+	.item-rate.voted
+		color: $primary-color!important
+
+// items that have a badge (AIS content)
+
+.item.single-item 
+	width: 100%
+	padding: 0
+	margin-top: 1em
+.item.has-badge
+	.item-content
+		padding: 30px 20px 20px 20px // re-add top padding, higher than normal
+
+	.item-badge
+		position: absolute
+		right: 15px
+		top: 8px
+		-webkit-box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1)
+		box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1)
+
+.item.is-pledge
+
+	.small-link
+		font-weight: 300!important
+
+	.item-content
+		padding: 20px // add back even padding since there's nothing else in this item to do it
+
+	.item-join
+		float: left
+		width: 30%
+		margin-left: 0.8em
+
+	.item-share
+		a 
+			color: #fff!important
+			&:hover 
+				color: darken(#fff, 10%)!important
+
+	.item-rate
+		color: #fff
+// end of masonry layout	
+
+// container for promo tiles
+// top margin to line it up with the filters in the gallery
+.listing-sidebar
+	margin-top: 3.8em
+	+at($abovesmall)
+		margin-top: 0
+	h5
+		width: 80%
+	.connected-panel
+		top: -18px
+		padding: 1em
+
+// same as listing sidebar, but lining up with the different layout on the article pages
+.article-sidebar
+	position: relative
+	top: -12.4em
+	z-index: 11 // position above hero panel
+	h5
+		width: 80%
+	.connected-panel
+		top: -18px
+		padding: 1em
+
+.article-meta-data
+	p 
+		margin: 0
+	.article-date
+		font-size: 0.9em
+		margin-bottom: 1em
+
+// video grids
+.video-grid
+	+at($abovesmall)
+		margin-bottom: 2em
+	img 
+		margin-bottom: 0
+	.video-grid-video
+		position: relative
+	.play-button
+		position: absolute
+		top: -7%!important
+		width: 100%
+		height: 100%
+
+// contact details on help page
+.help-contact-details
+	p 
+		margin: 0
+
+
+// pledges list on dashboard
+.pledges-top-bar
+	+clearfix
+	background-color: #ededed
+	.button 
+		padding: 0!important
+		margin: 0!important
+	.pledges-heading, .pledges-stats, .pledges-make-another
+		padding: 14px 1em
+	.pledges-heading, .pledges-stats, .stat
+		display: inline-block
+		float: left
+	.pledges-make-another
+		float: right
+		+at($abovesmall)
+			position: absolute
+			top: 0
+			right: 20px
+	.pledges-heading
+		background-color: #FFF
+		font-family: $heading-stack
+		text-transform: uppercase
+		font-size: 1.3em
+		+at($abovesmall)
+			font-size: 1.1em
+	.button 
+		font-size: 0.9em
+	.pledges-stats
+		font-size: 0.75em
+		text-transform: uppercase
+		position: relative
+		top: 5px
+		left: 5px
+		+at($abovesmall)
+			width: 100%
+			margin-bottom: 1em
+		.stat 
+			margin-right: 1.4em
+
+.pledges-list
+	list-style: none 
+	margin: 0 
+	padding: 0
+	.pledge-in-list
+		color: #fff
+		+clearfix
+		background-color: #000
+		height: 210px
+		margin-top: 1em
+		+at($abovesmall)
+			height: auto
+		.pledge-details
+			//background-color: red
+			width: 65%
+			float: left
+			+at($abovesmall)
+				width: 100%
+		.pledge-name
+			//background-color: green
+			padding: 2em 1.2em
+			font-size: 1.25em 
+			line-height: 1.2em
+			text-transform: uppercase
+			font-family: $heading-stack
+			a 
+				color: #fff
+				&:hover
+					color: darken(#fff, 25%)
+		.pledge-meta 
+			border-top: 1px solid #868686
+			//background-color: yellow
+			+clearfix
+			.pledge-info
+				width: 40%
+				float: left
+			.pledge-badges
+				width: 60%
+				float: left
+				img 
+					float: right
+					margin-left: 10px
+					+at($abovesmall)
+						margin-left: 0
+		.pledge-video 
+			width: 35%
+			background-size: cover
+			background-repeat: no-repeat
+			float: right
+			height: 100%
+			border: 1px solid $primary-color
+			+at($abovesmall)
+				width: 100%
+				height: 300px
+			.play-button
+				position: relative
+				top: 25%
+				+at($abovesmall)
+					top: 35%
+			p 
+				font-size: 0.8em
+				padding: 1.5em
+				width: 100%
+				text-align: center
+				margin-top: 5em
+
+		.pledge-meta
+			font-size: 0.7em
+			.pledge-info
+				padding: 2em 1.2em
+				.pledge-lifespan 
+					font-size: 0.9em
+			.pledge-badges
+				padding: 0.8em 1em
+				+at($abovesmall)
+					padding: 1.7em 1em
+			.inactive
+				pointer-events: auto
+
+// settings popup on dashboard
+.settings-avatar
+	margin-bottom: 1.5em
+.settings-user-name
+	font-weight: bold
+	margin-bottom: 0.5em
+.settings-user-email
+	margin-bottom: 1.5em
+
+
+// pledge network page
+
+// heading
+.hero-panel
+	.pledge-heading // contains both the title and the action buttons
+		padding-bottom: 0.5em
+		border-bottom: 1px solid #fff
+		width: 100%
+		+clearfix
+		.pledge-title
+			width: 55%
+			float: left
+			+at($abovesmall)
+				width: 100%
+		.pledge-actions
+			width: 45%
+			float: left
+			+at($abovesmall)
+				width: 100%
+			.secondary
+				margin-right: 1.2em
+				+at($abovesmall)
+					margin-right: 0
+			.button 
+				position: relative
+				top: -5px
+	.pledge-details
+		padding: 1.5em 0
+		+clearfix
+		.pledge-member-count, .pledge-lifespan
+			color: #fff
+			margin-bottom: 0.5em
+			font-size: 1.2em 
+	.pledge-info
+		width: 25%
+		float: left
+		+at($abovesmall)
+			width: 100%
+		.pledge-badges
+			width: 25%
+			+at($abovesmall)
+				width: 100%
+			float: left
+			.inactive
+				pointer-events: auto!important
+	
+// discussions
+.discussions-listing-heading
+	+clearfix
+	h4 
+		width: auto!important
+		font-size: 1.3em
+		margin: 0
+		padding: 0.6em 0.8em
+.discussions-listing-start-discussion
+	background-color: #e0e0e0
+	padding: 2em 3em
+	+at($abovesmall)
+		padding: 1em 1.5em
+	.user-avatar
+		position: absolute
+		top: -7px
+		left: -55px
+		+at($abovesmall)
+			display: none
+.discussions-listing-container
+	position: relative
+	top: 0px
+
+// discussions thread
+.children
+	padding-left: 3.5em
+	+at($abovesmall)
+		padding-left: 1em
+
+.discussion-container
+	background-color: #ededed
+	+at($abovesmall)
+		max-height: 370px
+		overflow: scroll
+		-webkit-overflow-scrolling: touch
+
+.parent
+	border: none!important
+	.children
+		position: relative
+		top: -19px
+		+at($abovesmall)
+			top: -6px
+		.children
+			.children
+				.children
+					padding-left: 0em
+					background-color: #e2e2e2
+					.reply 
+						border: none
+					top: 0
+
+.discussion-container
+	.reply-text
+		h5 
+			margin-bottom: 1em
+
+	.reply
+		background-color: #ededed
+		border-left: 1px solid #858585
+	.reply-content
+		padding: 1.5em 3em 1em 3em
+		+at($abovesmall)
+			padding: 0.2em 1em
+		+clearfix
+		.reply-text
+			border-bottom: 1px solid #858585
+			margin-bottom: 1em
+
+	.reply-entry 
+		+clearfix
+		background-color: #ededed
+		display: none 
+		margin-top: 1em
+		padding: 0
+		padding-bottom: 0.4em
+		margin-bottom: 0.8em
+		border-bottom: 1px solid #858585
+
+	.reply.op 
+		.reply-text
+			border: none
+
+	.op-reply
+		display: block
+		margin-top: 0
+		background-color: #FFF
+		border-top: 1px solid #858585
+		padding: 1.5em 3em 1em 3em
+		+at($abovesmall)
+			padding: 0.2em 1em
+
+	.hide-replies
+		font-size: 1.4em!important
+		position: relative
+		z-index: 99
+		//top: 0.9em
+		+at($abovesmall)
+			left: -0.35em
+			z-index: 99
+
+	.reply-meta
+		+at($abovesmall)
+			padding-top: 1em
+		font-size: 0.8em
+		+clearfix
+		.reply-author
+			margin-top: 0.6em
+			float: left
+		.reply-timestamp
+			margin-bottom: 2em
+			text-transform: uppercase
+			color: lighten(#000, 55%)
+			float: right
+			+at($abovesmall)
+				margin-top: 0.6em
+
+.event-details
+	margin-bottom: 2em
+	div 
+		margin-bottom: 0.7em
+	.event-status
+		text-align: left 
+		color: $primary-color
+		text-transform: uppercase
+		font-size: 0.8em
+	.date-time 
+		margin-top: 1.2em
+		font-weight: bold
+	.location 
+		color: lighten(#000, 50%)

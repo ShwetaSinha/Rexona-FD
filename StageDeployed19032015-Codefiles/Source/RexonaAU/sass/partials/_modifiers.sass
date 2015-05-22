@@ -1,0 +1,120 @@
+// use for buttons, form inputs, modals, etc
+.full-width
+	width: 100%!important
+	display: block
+
+// invert an object and its children
+.inverted
+	background: #181818!important
+	color: #fff
+	p
+		color: #fff!important
+	label 
+		color: #fff!important
+	li a // nav items
+		color: #fff!important
+	a:not(.button):hover 
+		color: lighten($primary-color, 15%)!important
+	hr 
+		border-color: #5c5c5c
+p.inverted, a.inverted
+	background: none!important // so text doesn't inherit a background
+
+// center stuff
+.centered
+	text-align: center
+	margin-left: auto
+	margin-right: auto
+	display: block
+	float: none
+// another class for centering titles. use it along with .centered
+// we need to set up a flexible width, otherwise .contained-title elements
+// have their white box container extend to 100% width
+.centered-title 
+	width: 70%
+	+at($abovesmall) // make it less ridiculous on mobile
+		width: 95%
+
+// primary color border for images
+.border-image
+	border: 1px solid $primary-color
+
+// custom "hide and show" classes
+.on-mobile // only show on mobile
+	display: none 
+	+at($abovesmall)
+		display: block
+.on-desktop // only show on desktop
+	display: block 
+	+at($abovesmall)
+		display: none
+
+// v centered
+.v-centered
+	position: relative
+	top: 30%
+	transform: translateY(-30%)
+
+// visibility 
+.visible
+	display: block
+.hidden 
+	display: none
+
+// offset things on an angle
+.tilted
+	transform: rotate(-4deg)
+	-webkit-transform: rotate(-4deg)
+	-moz-transform: rotate(-4deg)
+
+.pull-up 
+	position: relative
+	top: -1.65em
+
+// add top borders to panels whenever the design calls for it
+.has-border
+	border-top: 4px solid $primary-color
+	-webkit-box-shadow: inset 0 5px 5px 0 rgba(0,0,0,0.15)
+	box-shadow: inset 0 5px 5px 0 rgba(0,0,0,0.15) 
+
+// make images full-width on mobile
+.full-on-mobile
+	width: 100%
+	height: auto
+
+// compensate for relatively positioned content blocks leaving a big gap underneath. use this on elements that need to appear under these content blocks
+.pos-res-top-fix
+	top: -100px
+	position: relative
+	+at($abovesmall)
+		top: -170px
+
+// reset uppercase stuff
+.regular-case
+	text-transform: none
+	margin-bottom: 1em
+
+
+// grey out inactive items
+.inactive
+	opacity: 0.2
+	pointer-events: none
+
+// misc padding related classes
+.no-p-bottom
+	padding-bottom: 0!important
+.no-p-top
+	padding-top: 0!important
+.no-p-left
+	padding-left: 0!important
+.no-p-right 
+	padding-right: 0!important
+.no-p 
+	padding: 0!important
+
+// modifier for late pledge
+.late-pledge
+	color: red!important
+
+
+	

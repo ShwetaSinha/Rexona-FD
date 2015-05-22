@@ -1,0 +1,60 @@
+// awkward one-off appearance of the breadcrumb button on step-2 of make a pledge
+.sign-up-hero
+	.breadcrumb.pulled-up
+		position: relative
+		top: -40px
+		+at($abovesmall)
+			top: 15px
+
+// manually position dropdown arrow on filter panels
+.connected-panel
+	.select:after
+		top: 19%
+
+// manually change background color of dashboard content (instead of the nth-of-type selector)
+.dark-content
+	background-color: #d0d0d0!important
+
+// remove double play buttons on mobile 
+.mejs-overlay-button
+	+at($small)
+		//display: none
+
+.terms-error
+	+at($small)
+		margin-top: 30px!important
+
+// mobile spacing of create events form
+.dateTime 
+	margin-bottom: 1em!important
+
+.delete-events
+	margin-top: 0.5em
+
+// language selector
+.select.language:after
+	display: none!important
+.language select
+	font-family: $heading-stack!important
+	text-transform: uppercase
+	font-weight: 100
+	color: #181818!important
+	font-size: 0.85em
+	position: relative
+	top: 10px
+
+// states for 'are you sure' events box
+.confirm-leave
+	display: none
+	a 
+		font-weight: bold
+	.destructive 
+		margin-right: 0.5em
+		margin-left: 0.5em
+
+a 
+	p 
+		color: #000
+	&:hover 
+		p 
+			color: lighten(#000, 30%)

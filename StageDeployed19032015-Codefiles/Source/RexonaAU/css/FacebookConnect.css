@@ -1,0 +1,50 @@
+﻿#fbcNotLoggedIn {
+    
+}
+
+#fbcNotLoggedIn a.fbcLogin, #fbcLoggedIn a.fbcLogOut, #fbcLoggedIn a.fbcShare, a.facebookConnect {
+    color: #fff;
+    display: block;
+    background-color: #617aac;
+    border: solid 1px #29447e;
+    -moz-box-shadow: 3px 3px 4px #ccc;
+    -webkit-box-shadow: 3px 3px 4px #ccc;
+    box-shadow: 3px 3px 4px #ccc;
+    padding: 4px;
+    width: 130px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    float: left;
+    margin-right: 10px
+    
+}
+
+#fbcLoggedIn {
+    width: 350px;
+    border: solid 1px #29447e;
+    -moz-box-shadow: 3px 3px 4px #ccc;
+    -webkit-box-shadow: 3px 3px 4px #ccc;
+    box-shadow: 3px 3px 4px #ccc;
+    padding: 10px;
+}
+
+#fbcLoggedIn .fbcWelcome {}
+
+#fbcLoggedIn .fbcPictureSquare {
+    float: right
+}
+
+#fbcLoggedIn a.fbcLogOut {
+    width: 70px;
+    margin-top: 15px
+}
+
+#fbcLoggedIn a.fbcShare {
+    width: 150px;
+    margin-top: 15px
+}
+
+.clear {
+    clear: both
+}

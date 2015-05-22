@@ -1,0 +1,330 @@
+﻿
+@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Google.Apis.Analytics.v3
+@using System.Collections.Specialized
+@using System.Threading.Tasks
+@using System.Xml.Linq
+
+<script src="~/js/Reporting.js"></script>
+<link href="~/stylesheets/Reporting.css" type="text/css" rel="stylesheet" />
+
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" media="all" href="~/stylesheets/daterangepicker-bs3.css" />
+<script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="~/js/moment.js"></script>
+<script type="text/javascript" src="~/js/daterangepicker.js"></script>
+
+<div id="ReportingMainDIV" class="set-width">
+    <div class="header">
+        <h1 class="logo">&nbsp;&nbsp;&nbsp;IWillDo Reporting</h1>
+        <div class="rightReporting">
+            <table>
+                <tr>
+                    <td>
+                        <label>Show:</label></td>
+                    <td>
+                        <div id="reportrange2" class="btn" style="display: inline-block; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar" style="float: left"></i>&nbsp;
+                            <span style="width: auto; margin-left: 7px;"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="btnExport" style="margin-top: 0px; margin-left: 5px;">Export.csv</button></td>
+                    <td>
+                        <button style="display: none">Export.pdf</button></td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="tabs">
+        <ul class="tab-ul">
+            <li class="current">
+                <a href="#tabs-1">Content</a>
+
+            </li>
+            <li>
+                <a href="#tabs-2">Goals</a>
+
+            </li>
+            <li>
+                <a href="#tabs-3">Users</a>
+
+            </li>
+            <li>
+                <a href="#tabs-4">Videos</a>
+
+            </li>
+        </ul>
+        <div class="content">
+            <div id="divLoader" style="display: none; margin-left: 50%; position: absolute;">
+                <img src="/images/loading.gif" />
+            </div>
+            <div id="tabs-1" class="tab active">
+                <h2>Content</h2>
+                <div class="tables">
+                    <div class="articles">
+                        <h2>Articles</h2>
+                        <table data-bind="foreach:Content" style="width: 420px;">
+                            <tr>
+                                <td>AIS</td>
+                                <td>Ambassador</td>
+                                <td>Team Do:More</td>
+                            </tr>
+                            <tr>
+                                <td data-bind="html:AISArticles"></td>
+                                <td data-bind="html:AmbassadorArticles"></td>
+                                <td data-bind="html:DoMoreArticles"></td>
+                            </tr>
+                            <tr>
+                                <td data-bind="html:AISArticleViews"></td>
+                                <td data-bind="html:AmbassadorArticleViews"></td>
+                                <td data-bind="html:DoMoreArticleViews"></td>
+                            </tr>
+                        </table>
+                        <div class="top-article-list">
+                            <h3>Top Articles</h3>
+                            <ul data-bind="foreach:Articles" style="padding-left: 0px;">
+                                <li data-bind="html:ArticleName"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="Social">
+                        <h2>Social<small>(posts with #IWillDo)</small></h2>
+                        <table data-bind="foreach:Content" style="margin-top: 50px;">
+                            <tr>
+                                <td data-bind="html:InstaPosts"><b></b></td>
+                                <td data-bind="html:Tweets"><b></b></td>
+                                <td data-bind="html:SocialPosts"><b></b></td>
+                            </tr>
+                            <tr>
+                                <td><span>Instagram Posts</span></td>
+                                <td><span>Twitter Posts</span></td>
+                                <td><span>Total Posts</span></td>
+                            </tr>
+                            <tr><td colspan="3">&nbsp;</td></tr>
+                            <tr>
+                                <td data-bind="html:AwaitingApproval">146</td>
+                                <td data-bind="html: RejectedPosts">1,034</td>
+                                <td data-bind="html:ApprovedPosts"><span>Approved Posts</span></td>
+                            </tr>
+                        </table>
+                        <div class="top-instragram-list">
+                            <h3>Top Instagram</h3>
+                            <div data-bind="foreach: Instagram">
+                                <div class="list-thumb">
+                                    <a data-bind="attr:{href: LinkUrl}" target="_blank">
+                                        <img class="thumbnail" data-bind="attr:{ src:MediaURL }" />
+                                    </a>
+                                    <span class="title" data-bind="html:post"></span>
+                                    <span class="posted-by" data-bind="html:Author"></span>
+                                    <span class="posted-time" data-bind="html:Date"></span>
+                                    <span class="likes" data-bind="html:Likes"></span>
+                                </div>
+                            </div>
+                            <div class="top-tweets">
+                                <h3>Top Tweets </h3>
+                                <div data-bind="foreach: Tweets">
+                                    <div class="list-thumb">
+                                        <span class="title" data-bind="html:tweet"></span>
+                                        <span class="posted-by" style="margin-left: 0px;" data-bind="html:Author"></span>
+                                        <span class="posted-time" data-bind="html:Date"></span>
+                                        <span class="likes" data-bind="html:Likes"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tabs-2" class="tab">
+                <h2>Goals</h2>
+                <div class="tables">
+                    <div class="articles">
+                        <h2>Goals</h2>
+                        <table>
+                            <tr>
+                                <td id="totalGoals"></td>
+                                <td id="membersJoined"></td>
+                                <td id="uniqueGoals"></td>
+
+                            </tr>
+                            <tr>
+                                <td id="totalEvents"></td>
+                                <td id="totalDiscussions"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="Social">
+                        <h2>Buckets</h2>
+                        <img class="pie" src="/umbraco/surface/Report/DrawChart?src=Goals" alt="Drawing chart with HTML Helper" id="categoryTag" />
+                    </div>
+                    <div class="articles">
+                        <h2>Open/Closed</h2>
+                        <img class="pie" src="/umbraco/surface/Report/DrawChart?src=Open" alt="Drawing chart with HTML Helper" id="goal" />
+                    </div>
+                    <div class="Social drop">
+                        <h2>Sign Up Dropoffs</h2>
+                        <ul class="chart-details">
+                            <li><span class="black">1. Sign Up Page </span><span id="signup" class="grey"></span></li>
+                            <li><span class="black">2. Step 1 - Goal Details </span><span id="step1" class="grey"></span></li>
+                            <li><span class="black">3. Step 2 - Take a Photo </span><span id="steptakePhoto" class="grey"></span></li>
+                            <li><span class="black">4. Step 2.1 - Happy with Photo </span><span id="stepHappy" class="grey"></span></li>
+                            <li><span class="black">5. Step 3 - Confirm & Continue </span><span id="step3" class="grey"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="tabs-3" class="tab">
+
+                <h2>Users</h2>
+                <div class="tables">
+                    <div class="articles">
+                        <table>
+                            <tr>
+                                <td></td>
+                                <td id="totalUsers"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td id="activeUsers"></td>
+                                <td id="invitesSent"></td>
+                                <td id="inviteAccepted"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="tabs-4" class="tab">
+                <h2>Videos Summary</h2>
+                <div class="tables">
+                    <div class="articles">
+                        <table>
+                            <tr>
+                                <td id="totalPlays">-<span>Total Plays</span></td>
+                                <td id="uniquePlays">-<span>Unique Plays</span></td>
+                                <td id="totalVideos">-<span>Total Videos</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="social">
+                        <h2>All Videos
+							<div class="sort">
+                                <label>Sort by:</label>
+                                <select id="VideoSort">
+                                    <option value="plays">Most Plays</option>
+                                    <option value="popular">Most Popular</option>
+                                    <option value="recent">Recent</option>
+                                </select>
+                            </div>
+                        </h2>
+                        <div data-bind="foreach: VideoStat">
+                            <div class="video-div" data-bind="attr: {id:elementID}">
+                                <img class="video" data-bind="attr:{src:VideoId}" />
+                                <span class="video-title" data-bind="html:VideoName">Title of page That video appears on</span>
+                                <a class="video-link" target="_blank" data-bind="attr:{href:VideoURL},html:VideoURL">http://iwilldo.com.au/blog/an-example-url</a>
+                                <table class="inline-list">
+                                    <tr>
+                                        <th>Plays</th>
+                                        <th>Stops</th>
+                                        <th>Avg. View</th>
+                                        <th>Likes</th>									
+                                    </tr>
+                                    <tr>
+                                        <td data-bind="html:TotalPlays">30</td>
+                                        <td data-bind="html:TotalStops">30</td>
+                                        <td data-bind="html:AvgViews">1:10</td>
+									    <td data-bind="html:Likes">10</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+
+        $('.tab').css('min-height', $(window).height());
+
+        var cb = function (start, end, label) {
+            console.log(start);
+            //$('#reportrange2 span').html(start.format('DD/MM/YYYY') + ' - ' + end.format('DD/MM/YYYY'));
+            //alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+        }
+        $('#reportrange2 span').html('All Time');
+        $('#reportrange2').daterangepicker({
+            startDate: moment(),
+            endDate: moment(),
+            opens: 'left',
+            cancelLabel: 'All Time'
+        }, cb);
+
+        $('.cancelBtn').text('All Time');
+
+        $('#reportrange2').on('apply.daterangepicker', function (ev, picker) {
+
+            var startDate, endDate;
+            $('#tabs-1, #tabs-2, #tabs-3, #tabs-4').css('opacity', '0.3');
+            $('#divLoader').show();
+            if (picker.startDate.toString() != '') {
+                startDate = new Date(picker.startDate);
+                var month = startDate.getMonth() + 1;
+                startDate = startDate.getDate() + '/' + month + '/' + startDate.getFullYear();
+            }
+            if (picker.endDate.toString() != '') {
+                endDate = new Date(picker.endDate);
+                var month = endDate.getMonth() + 1;
+                endDate = endDate.getDate() + '/' + month + '/' + endDate.getFullYear();
+            }
+            $('#categoryTag').attr('src', '/umbraco/surface/Report/DrawChart?src=Goals&StartDate=' + startDate + '&EndDate=' + endDate);
+            $('#goal').attr('src', '/umbraco/surface/Report/DrawChart?src=Open&StartDate=' + startDate + '&EndDate=' + endDate);
+            $('#reportrange2 span').html(startDate + ' - ' + endDate);
+            fetchReport(startDate, endDate);
+            fetchGoalsReport(startDate, endDate);
+            fetchUsersReport(startDate, endDate);
+            fetchVideoStat(startDate, endDate, $('#VideoSort').val());
+            $('#reportrange2 span').html(startDate + ' - ' + endDate);
+        });
+
+        $('#reportrange2').on('cancel.daterangepicker', function (ev, picker) {
+
+            var startDate = new Date();
+            var month = startDate.getMonth() + 1;
+            startDate = startDate.getDate() + '/' + month + '/' + startDate.getFullYear();
+            var endDate = new Date();
+            var month = endDate.getMonth() + 1;
+            endDate = endDate.getDate() + '/' + month + '/' + endDate.getFullYear();
+
+            $('#reportrange2').data('daterangepicker').setStartDate(startDate);
+            $('#reportrange2').data('daterangepicker').setEndDate(endDate);
+            $('#reportrange2 span').html('All Time');
+            fetchReport('', '');
+            fetchGoalsReport('', '');
+            fetchUsersReport('', '');
+            fetchVideoStat('', '', $('#VideoSort').val());
+            $('#categoryTag').attr('src', '/umbraco/surface/Report/DrawChart?src=Goals');
+            $('#goal').attr('src', '/umbraco/surface/Report/DrawChart?src=Open');
+
+        });
+
+        $('.tab').hide();
+        $('.tab').removeClass('current');
+        $('.tab.active').show();
+        $('.tabs .tab-ul li').click(function () {
+            $('.tabs .tab-ul li').removeClass('current');
+            var href = $(this).find('a').attr('href');
+            $('.tab').hide();
+            $('.tab' + href).show();
+            $(this).addClass('current');
+        });
+
+    });
+
+</script>

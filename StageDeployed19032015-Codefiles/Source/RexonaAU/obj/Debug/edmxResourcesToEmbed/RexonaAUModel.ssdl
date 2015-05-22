@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Rexona_AUSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Rexona_AUSModelStoreContainer">
+    <EntitySet Name="DiscussionFollower" EntityType="Rexona_AUSModel.Store.DiscussionFollower" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="EmailTransactions" EntityType="Rexona_AUSModel.Store.EmailTransactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InstaGramHashTag" EntityType="Rexona_AUSModel.Store.InstaGramHashTag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MemberFriends" EntityType="Rexona_AUSModel.Store.MemberFriends" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PledgeInviteData" EntityType="Rexona_AUSModel.Store.PledgeInviteData" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RecommendedArticlePledges" EntityType="Rexona_AUSModel.Store.RecommendedArticlePledges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TractionEmails" EntityType="Rexona_AUSModel.Store.TractionEmails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TwitterHashTag" EntityType="Rexona_AUSModel.Store.TwitterHashTag" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserResetPassword" EntityType="Rexona_AUSModel.Store.UserResetPassword" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="YouTubeVideos" EntityType="Rexona_AUSModel.Store.YouTubeVideos" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="DiscussionFollower">
+    <Key>
+      <PropertyRef Name="DiscussionId" />
+      <PropertyRef Name="MemberId" />
+    </Key>
+    <Property Name="DiscussionId" Type="bigint" Nullable="false" />
+    <Property Name="MemberId" Type="bigint" Nullable="false" />
+    <Property Name="LastReadDateTime" Type="datetime" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EmailTransactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ToEmailAddress" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RetryCount" Type="int" Nullable="false" />
+    <Property Name="IsEmailSent" Type="bit" Nullable="false" />
+    <Property Name="AppendCLLogo" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="InstaGramHashTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UniqueId" Type="varchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Post" Type="nvarchar(max)" />
+    <Property Name="PostUrl" Type="varchar" MaxLength="100" />
+    <Property Name="MediaUrl" Type="varchar" MaxLength="200" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Likes" Type="int" />
+    <Property Name="Location" Type="varchar" MaxLength="100" />
+    <Property Name="IsApproved" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="ScreeName" Type="varchar" MaxLength="50" />
+    <Property Name="InsertedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MemberFriends">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="int" />
+    <Property Name="FriendId" Type="int" />
+    <Property Name="IsRemoved" Type="bit" />
+  </EntityType>
+  <EntityType Name="PledgeInviteData">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LinkId" Type="int" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" />
+    <Property Name="IsUsed" Type="bit" />
+    <Property Name="InvitedDate" Type="datetime" />
+    <Property Name="AcceptedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="RecommendedArticlePledges">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PledgeId" Type="int" Nullable="false" />
+    <Property Name="ArticleId" Type="int" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TractionEmails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmailType" Type="nvarchar" MaxLength="500" />
+    <Property Name="TractionQueryString" Type="nvarchar(max)" />
+    <Property Name="SendDateTime" Type="datetime" />
+    <Property Name="IsSent" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="RetryCount" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TwitterHashTag">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UniqueId" Type="varchar" MaxLength="100" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Post" Type="nvarchar(max)" />
+    <Property Name="PostUrl" Type="varchar" MaxLength="100" />
+    <Property Name="MediaUrl" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="Likes" Type="int" />
+    <Property Name="Location" Type="varchar" MaxLength="100" />
+    <Property Name="IsApproved" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="ScreeName" Type="varchar" MaxLength="50" />
+    <Property Name="InsertedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserResetPassword">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserEmail" Type="varchar" Nullable="false" MaxLength="500" />
+    <Property Name="Token" Type="varchar" Nullable="false" MaxLength="1000" />
+    <Property Name="IsUsed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="YouTubeVideos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NodeId" Type="int" Nullable="false" />
+    <Property Name="NiceUrl" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="YouTubeVideoId" Type="nvarchar" Nullable="false" MaxLength="1000" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="VideoLikes" Type="bigint" Nullable="false" />
+  </EntityType>
+</Schema>

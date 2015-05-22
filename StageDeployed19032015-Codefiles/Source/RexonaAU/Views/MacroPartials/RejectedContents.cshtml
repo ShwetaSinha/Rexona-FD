@@ -1,0 +1,85 @@
+@using System.Net.Mail;
+@using umbraco.cms.businesslogic.web;
+@using umbraco.NodeFactory;
+@using RexonaAU;
+@using umbraco;
+@using System.Configuration;
+@using RexonaAU.Helpers;
+@using RexonaAU.Models;
+
+@{
+    Entities dbEntities = new Entities();
+    var objTweet = dbEntities.TwitterHashTags
+                   .Where(tweet => tweet.IsApproved == (int)ManageSocialContent.SocialContentStatus.Rejected)
+                   .Select(tweets =>
+                           new
+                           {
+                               Id = tweets.Id,
+                               UniqueId = tweets.UniqueId,
+                               Username = tweets.UserName,
+                               Post = tweets.Post,
+                               PostUrl = tweets.PostUrl,
+                               MediaUrl = tweets.MediaUrl,
+                               CreatedDate = tweets.CreatedDate.Value.ToString(),
+                               Likes = tweets.Likes,
+                               Location = tweets.Location,
+                               ScreeName = tweets.ScreeName,
+                               CreatedDateTime = tweets.CreatedDate
+                           })
+                   .OrderByDescending(tweet => tweet.CreatedDateTime).ToList();
+
+    var objInstaGram = dbEntities.InstaGramHashTags.Where(tweet => tweet.IsApproved == (int)ManageSocialContent.SocialContentStatus.Rejected)
+                  .Select(tweets =>
+                          new
+                          {
+                              Id = tweets.Id,
+                              UniqueId = tweets.UniqueId,
+                              Username = tweets.UserName,
+                              Post = tweets.Post,
+                              PostUrl = tweets.PostUrl,
+                              MediaUrl = tweets.MediaUrl,
+                              CreatedDate = tweets.CreatedDate.Value.ToString(),
+                              Likes = tweets.Likes,
+                              Location = tweets.Location,
+                              ScreeName = tweets.ScreeName,
+                              CreatedDateTime= tweets.CreatedDate
+                          })
+                     .OrderByDescending(tweet => tweet.CreatedDateTime).ToList();
+
+
+
+
+    var finalList = objTweet.Concat(objInstaGram).ToList();
+                 
+    <h3>Rejected Entries</h3>
+    <br />
+    <table class="customtable">
+
+        <thead>
+            <tr>
+                <th><b>User Name</b></th>
+                <th><b>Post</b></th>
+                <th><b>Post Url</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in finalList)
+            {
+
+
+                string userName = item.ScreeName;
+                string post = item.Post;
+                string postURL = item.PostUrl;
+                string source = string.Empty;
+                <tr>
+                    <td>@userName</td>
+                    <td>@post</td>
+                    <td><a target="_blank"  href="@postURL">Post Url</a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    
+}

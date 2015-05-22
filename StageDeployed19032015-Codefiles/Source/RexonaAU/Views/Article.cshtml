@@ -1,0 +1,253 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using umbraco.cms.businesslogic.member;
+@using umbraco.NodeFactory;
+@using System.Text.RegularExpressions;
+@{
+    Layout = "_Baselayout.cshtml";
+    //int authorid = Model.Content.GetPropertyValue<int>("articleAuthor");
+    //Node authorNode = new Node(authorid);
+    string authorName = !string.IsNullOrEmpty(Model.Content.GetPropertyValue<string>("articleAuthor")) ? "by " + Model.Content.GetPropertyValue<string>("articleAuthor") : string.Empty;
+    //string authorName = !string.IsNullOrEmpty(authorName) ? "by " + authorName : string.Empty;
+    string date = Model.Content.CreateDate.ToString("dd/MM/yyyy HH:mm");
+    string empowerLink = uQuery.GetNodesByType("Empowerment").Count() > 0 ? uQuery.GetNodesByType("Empowerment").ToList().FirstOrDefault().NiceUrl : string.Empty;
+    var memberId = 0;
+    string step1Url = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;
+    if (Member.IsLoggedOn())
+    {
+        Member member = Member.GetCurrentMember();
+        memberId = member.Id;
+        <script>
+            $(document).ready(function () {
+                $('#recommendPopupBtn').show();
+            });
+        </script>
+    }
+    else
+    {
+        <script>
+            $(document).ready(function () {
+                $('#recommendPopupBtn').hide();
+            });
+        </script>
+    }
+    string articleDescription = Model.Content.GetPropertyValue<string>("articleDescription");
+    if (!string.IsNullOrEmpty(articleDescription) && articleDescription.ToLower().Contains("<iframe"))
+    {
+        MatchCollection matches = Regex.Matches(articleDescription, "<iframe.+?src=[\"'](.+?)[\"'].*?>", RegexOptions.IgnoreCase);//.Groups[1].Value;
+        foreach (Match origionalLink in matches)
+        {
+            if (origionalLink.Groups.Count > 1)
+            {
+                string newLink = origionalLink.Groups[1].Value;
+                if (newLink.Contains("?"))
+                {
+                    newLink += "&enablejsapi=1";
+                }
+                else
+                {
+                    newLink += "?enablejsapi=1";
+                }
+                articleDescription = articleDescription.Replace(origionalLink.Groups[1].Value, newLink);
+            }
+        }
+
+        if (!articleDescription.ToLower().Contains("<iframe class=\"video\""))
+        {
+            articleDescription = articleDescription.Replace("<iframe", "<iframe class=\"video\"");
+        }
+    }
+}
+
+<script src="~/js/recommendedArticles.js"></script>
+<input id="hdnTags" type="hidden" value="@Umbraco.Field("articleTag")" />
+<input id="hdnMemberId" type="hidden" value="@memberId" />
+<input id="hdnArticleId" type="hidden" value="@Model.Content.Id" />
+<div class="hero-panel hero-1"></div>
+<div class="row">
+    <div class="large-9 small-12 columns">
+        <div class="container-block">
+
+            <div class="block-content article inverted">
+                <a id="BackToPosts" href="@empowerLink" class="button small breadcrumb with-icon icon-left"><i class="fa fa-chevron-left"></i>&nbsp;Back to Posts</a>
+                <a id="BackToAuthor" style="display: none;" class="button small breadcrumb with-icon icon-left"><i class="fa fa-chevron-left"></i></a>
+                <a id="recommendPopupBtn" class="button small secondary right">Recommend Article</a>
+
+                <hr>
+
+                <h1 class="inverted articleTitle">@Umbraco.Field("articleTitle")</h1>
+                <div class="article-meta-data">
+                    <div class="article-author">
+                        <p>@authorName</p>
+                    </div>
+                    <div class="article-date">
+                        <p>Posted @date</p>
+                    </div>
+                    <div class="article-share"><a class="small-link" id="socialShare">Share</a></div>
+                </div>
+            </div>
+
+            <div class="block-content article">
+
+                @Html.Raw(articleDescription)
+            </div>
+
+        </div>
+    </div>
+    <div class="large-3 columns">
+        <div class="article-sidebar">
+            <div class="connected-panel-container">
+                <div class="connected-panel-heading">
+                    <h5 class="contained-title">Stay Informed</h5>
+                </div>
+                <div class="connected-panel inverted">
+                    <p>Sign up for updates that give you the confidence to do more.</p>
+                    <a href="@step1Url" class="button full-width small with-icon right-icon">Set your goal <i class="fa fa-chevron-right"></i></a>
+                    <hr>
+                    <form data-abide="ajax">
+                        <input id="txtEmailId" type="email" placeholder="Your email address" required>
+                        <small class="error">Please enter a valid email address</small>
+                        <button id="signUpForUpdates" type="submit" class="button secondary full-width small with-icon right-icon">Subscribe <i class="fa fa-chevron-right"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-panel has-border pos-res-top-fix">
+    <div class="row">
+        <div class="large-6 columns">
+            <h2 class="contained-title inverted">Recommended Articles</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="masonry-wall" id="recommendedArticlesSection" data-bind="foreach:RecArticles">
+                @*Inspiration Articles markup*@
+                <div class="item has-badge">
+                    <div class="item-type">
+                        <span data-bind="text:Type"></span>
+                        <div class="item-badge" data-bind="visible:badgeVisible">
+                            <img src="/images/ais-badge.jpg">
+                        </div>
+                    </div>
+                    <div class="item-content">
+                        <!-- ko if: showImage -->
+                        <div class="item-image">
+                            <a data-bind="attr:{href: ActualArticleURL}">
+                                <img data-bind="attr:{src: ArticleThumbnail}" class="full-on-mobile" /></a>
+                        </div>
+                        <!-- /ko -->
+
+                        <div class="item-details">
+                            <div class="item-heading">
+                                <a data-bind="attr:{href: ActualArticleURL}">
+                                    <h4 data-bind="html: ArticleTitle"></h4>
+                                </a>
+                            </div>
+                            <div class="item-poster">
+                                <p><em data-bind="html:Author"></em></p>
+                            </div>
+                            <div class="item-description">
+                                <p data-bind="html: Excerpt"></p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+                            <div class="item-rate">
+                                <div class="rating-icon" data-bind="attr:{id: Id}">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span data-bind="html: Hearts"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Recommend popup-->
+<div class="modal-container pledge-share">
+    <div class="stack">
+        <div class="card next-card">
+            <div class="card-content title">
+                <h5>John Appleseed</h5>
+                <div class="close-modal">
+                    <a onclick="runCards()">Close <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card current-card">
+            <div class="card-content title">
+                <h5>Share with your goal</h5>
+                <div class="close-modal">
+                    <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+
+
+
+            <div class="card-content scrollable">
+                <ul class="entity-list" id="Pledgelist" data-bind="foreach: Pledges">
+                    <li class="user">
+                        @*<div class="entity-image entity-block hide-for-small">
+                    <img src="http://placehold.it/150x150" alt="">
+                  </div>*@
+                        <div class="entity-details entity-block">
+                            <div class="entity-name">
+                                <p data-bind="html: Title">John Appleseed</p>
+                            </div>
+                            <div class="entity-meta">
+                                <p data-bind="html: Members">Part of this goal since</p>
+                                @*<div class="secondary-line"><p>14/05/2014</p></div>*@
+                            </div>
+                        </div>
+                        <div class="entity-action entity-block">
+                            <div class="switch round">
+                                <input data-bind="attr:{id: checkboxId}" type="checkbox">
+                                <label data-bind="attr:{for: checkboxId}"></label>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card-content alternate grey">
+                <a id="shareWithPledges" class="button with-icon right-icon centered">Share with selected goals <i class="fa fa-chevron-right"></i></a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (JSON.parse(sessionStorage.getItem('BackUrlIsAutorPage'))) {
+            $('#BackToPosts').hide().click(function () {
+                sessionStorage.setItem('BackUrlIsAutorPage', false);
+            });;
+            var BackToAuthorText = sessionStorage.getItem('BackToAuthorText');
+            var BackToAuthorUrl = sessionStorage.getItem('BackToAuthorUrl');
+            $('#BackToAuthor').attr('href', BackToAuthorUrl).html('<i class="fa fa-chevron-left"></i> ' + BackToAuthorText).show().click(function () {
+                sessionStorage.setItem('BackUrlIsAutorPage', false);
+            });
+        }
+
+        $('.local-nav .large-12 ul').click(function () {
+            if ($(this).attr('href') != '#') {
+                sessionStorage.setItem('BackUrlIsAutorPage', false);
+            }
+        });
+    })
+</script>

@@ -1,0 +1,2 @@
+// developer.mozilla.org/en/CSS/background-size
+Modernizr.testStyles("#modernizr{background-size:cover}",function(e){var t=window.getComputedStyle?window.getComputedStyle(e,null):e.currentStyle;Modernizr.addTest("bgsizecover",t.backgroundSize=="cover")});

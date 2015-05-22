@@ -1,0 +1,443 @@
+﻿@using umbraco.NodeFactory;
+@using RexonaAU.Helpers;
+@using System.Configuration;
+@using umbraco.cms.businesslogic.member;
+@using RexonaAU.Controllers;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+
+    string learnMoreLink = uQuery.GetNodesByType("About").Count() > 0 ? uQuery.GetNodesByType("About").ToList().First().NiceUrl : string.Empty;
+
+
+    string ambassadorsLink = uQuery.GetNodesByType("Ambassadors").Count() > 0 ? uQuery.GetNodesByType("Ambassadors").ToList().First().NiceUrl : string.Empty;
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+
+    string PledgesTick = ConfigurationManager.AppSettings["PledgeTicker"];
+
+    var pledgeStep = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault();
+    var Personalised = uQuery.GetNodesByType("Empowerment").FirstOrDefault();
+    var pledgeGallery = uQuery.GetNodesByType("PledgeGallery").FirstOrDefault();
+    var signUp = uQuery.GetNodesByType("SignUp").FirstOrDefault();
+
+
+    string step1Url = string.Empty;
+    string PersonalisedURL = string.Empty;
+    string pledgeGalleryURL = string.Empty;
+
+
+    if (pledgeStep != null && Member.IsLoggedOn())
+    {
+        step1Url = string.IsNullOrEmpty(pledgeStep.NiceUrl) ? string.Empty : Convert.ToString(pledgeStep.NiceUrl);
+    }
+    else
+    {
+        step1Url = string.IsNullOrEmpty("#SignUp") ? string.Empty : Convert.ToString("#SignUp");
+    }
+
+    if (pledgeStep != null && Member.IsLoggedOn())
+    {
+        PersonalisedURL = string.IsNullOrEmpty(Personalised.NiceUrl) ? string.Empty : Convert.ToString(Personalised.NiceUrl);
+    }
+    else
+    {
+        PersonalisedURL = string.IsNullOrEmpty("#SignUp") ? string.Empty : Convert.ToString("#SignUp");
+    }
+
+    if (pledgeStep != null && Member.IsLoggedOn())
+    {
+        pledgeGalleryURL = string.IsNullOrEmpty(pledgeGallery.NiceUrl) ? string.Empty : Convert.ToString(pledgeGallery.NiceUrl);
+    }
+    else
+    {
+        pledgeGalleryURL = string.IsNullOrEmpty("#SignUp") ? string.Empty : Convert.ToString("#SignUp");
+    }
+    
+    
+    
+    
+        string heroImg1 = string.Empty;
+        string heroImg2 = string.Empty;
+        string heroImg3 = string.Empty;
+        string heroImg4 = string.Empty;
+
+
+        int image1 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage1")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage1"));
+        int image2 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage2")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage2"));
+        int image3 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage3")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage3"));
+        int image4 = String.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("homeIntroImage4")) ? 0 : Convert.ToInt32(Model.Content.GetPropertyValue<string>("homeIntroImage4"));
+
+        if (image1 != 0)
+        {
+            umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image1);
+            heroImg1 = imgNode.GetImageUrl();
+        }
+        if (image2 != 0)
+        {
+            umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image2);
+            heroImg2 = imgNode.GetImageUrl();
+        }
+        if (image3 != 0)
+        {
+            umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image3);
+            heroImg3 = imgNode.GetImageUrl();
+        }
+        if (image4 != 0)
+        {
+            umbraco.cms.businesslogic.media.Media imgNode = new umbraco.cms.businesslogic.media.Media(image4);
+            heroImg4 = imgNode.GetImageUrl();
+        }
+        string image1IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image1IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image1IntroText");
+        string image2IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image2IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image2IntroText");
+        string image3IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image3IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image3IntroText");
+        string image4IntroText = string.IsNullOrWhiteSpace(Model.Content.GetPropertyValue<string>("image4IntroText")) ? string.Empty : Model.Content.GetPropertyValue<string>("image4IntroText");
+
+
+        Node homePage = new Node(1108);
+        var pages = homePage.ChildrenAsList
+            .Where(showInHeader => showInHeader.GetProperty("showInHeader") != null);
+        var TopNavigationPages = pages.Where(showInHeader => showInHeader.GetProperty("showInHeader").Value.ToString() == "1")
+            .OrderBy(navigationOrder => navigationOrder.GetProperty("navigationOrder").Value);
+    
+        
+
+    }
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+<link href="~/stylesheets/bootstrap-theme.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css" />
+<link rel="stylesheet" href="~/stylesheets/animate.css" />
+<link rel="stylesheet" href="~/stylesheets/main.css" />
+<script src="~/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+<link href="~/stylesheets/bootstrap.css" rel="stylesheet" />
+@*<link href="~/stylesheets/bootstrap.min.css" rel="stylesheet" />*@
+@*<link href="~/stylesheets/bootstrap-theme.css" rel="stylesheet" />*@
+<div class="jumbotron hero">
+    <div class="container">
+        <h2>Achieve your goals with support from the AIS and champion athletes.</h2>
+        <p>
+            I WILL DO is easy to join and free. Simply set your goal and receive personalised, expert advice to help you get there.
+       
+        </p>
+        <p>
+            As part of the I WILL DO community you can access tailored support from the Australian Institute of Sport and Rexona Ambassador Adam Goodes.
+       
+        </p>
+        <div id="intro-login-btn">
+            <p><a class="btn btn-primary btn-lg u-caps navigatesignup " href="#" id="#SignUp" role="button">Join now for free</a></p>
+
+            @foreach (var page in TopNavigationPages)
+            {
+                if (page.NodeTypeAlias == "Login")
+                {
+
+                <p><a href="@page.NiceUrl" role="button"class="btn btn-default btn-signIn btn-lg u-caps ">sign in</a></p>
+                }
+            }
+        </div>
+        <p>
+        <a class="introbtn" onclick="ytlinkClick()">Watch introduction video</a>
+               <i class="fa fa-play-circle"></i>
+            @*<i class="fa fa-play-circle"></i>*@
+        </p>
+    </div>
+</div>
+<input type="hidden" id="hdnVideoURL" value="@Umbraco.Field("youTubeUrl")"/>
+<div class="wrapper" id="js-waypoint-goal">
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="js-rexAnim js-goal">
+
+                    <div class="well">I WILL...</div>
+                    <br />
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="col-md-6" id="section1">
+                <h2 class="u-caps">Set your goal</h2>
+                <p>Committing to a goal is the first step to achieving it. By sharing your goal on I WILL DO you'll become part of a like-minded community and get expert support to help you along the way.</p>
+                @*<p><a class="btn btn-primary u-caps " href="@step1Url" role="button">Get started</a></p>*@
+                 @{
+                     if (step1Url != "#SignUp")
+                    {
+                    <p><a class="btn btn-primary u-caps" href="@step1Url" role="button">Get started</a></p>
+                    }
+                    else
+                    {
+                    <p><a class="btn btn-primary u-caps navigatesignup " href="#" id="@step1Url" role="button">Get started</a></p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<div class="wrapper-green">
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-6 col-md-push-6">
+                <div class="js-rexAnim js-ipad">
+                    <div class="spacer">
+                        <img src="~/images/Empty.png" alt="" />
+                    </div>
+                    <div class="ipad">
+                        <img src="~/images/ipad.png" alt="" />
+                    </div>
+                    <div class="ipad-images">
+                        <div class="img-wrapper">
+                            <div>
+                                <img src="~/images/ipadIMG-1.jpg" alt="" />
+                            </div>
+                            <div>
+                                <img src="~/images/ipadIMG-2.jpg" alt="" />
+                            </div>
+                            <div>
+                                <img src="~/images/ipadIMG-3.jpg" alt="" />
+                            </div>
+                            <div>
+                                <img src="~/images/ipadIMG-4.jpg" alt="" />
+                            </div>
+                            <div>
+                                <img src="~/images/ipadIMG-5.jpg" alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-pull-6 col-top" id="section2">
+                <h2 class="u-caps">Get personalised advice</h2>
+                <p>Tap into the proven experience of the AIS for personalised advice on how to best overcome obstacles and reach your goal. Plus, access exclusive content from Ambassadors including Adam Goodes to motivate you.</p>
+                @*<p><a class="btn btn-secondary btn-default u-caps" href="@PersonalisedURL" role="button">Get started</a></p>*@
+                @{
+                    if (PersonalisedURL != "#SignUp")
+                    {
+                    <p><a class="btn btn-secondary btn-default u-caps" href="@PersonalisedURL" role="button">Get started</a></p>
+                    }
+                    else
+                    {
+                    <p><a class="btn btn-secondary btn-default u-caps navigatesignup " href="#" id="@PersonalisedURL" role="button">Get started</a></p>
+                    }
+                }
+            </div>
+            
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<div class="wrapper" id="js-waypoint-connect">
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="js-rexAnim js-connect">
+                    <div class="spacer">
+                        <img src="~/images/Empty.png" alt="" />
+                    </div>
+                    <div class="bigBubble">
+                        <img src="~/images/bigBuubble.png" alt=""/>
+                    </div>
+                    <div class="smallBubbles">
+                        <img src="~/images/smallBubble1.png" alt=""/>
+                        <img src="~/images/smallBubble2.png" alt=""/>
+                        <img src="~/images/smallBubble3.png" alt=""/>
+                        <img src="~/images/smallBubble4.png" alt=""/>
+                    </div>
+                    <div class="bubbleLines">
+                        <img src="~/images/lines.png" alt=""/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" id="section3">
+                <h2 class="u-caps">Connect with others</h2>
+                <p>Join community discussion with other goal-setters and share your experiences and questions. You can also create or attend events, including training sessions, with participants close to you who have similar goals.</p>
+                @*<p><a class="btn btn-primary u-caps " href="@pledgeGalleryURL" role="button">Get started</a></p>*@
+                @{
+                    if (pledgeGalleryURL != "#SignUp")
+                    {
+                    <p><a class="btn btn-primary u-caps" href="@pledgeGalleryURL" role="button">Get started</a></p>
+                    }
+                    else
+                    {
+                    <p><a class="btn btn-primary u-caps navigatesignup " href="#" id="@pledgeGalleryURL" role="button">Get started</a></p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <!-- /container -->
+</div>
+<div class="wrapper-gray" id="registerpnl">
+    <div class="container signUp" id="SignUp">
+
+        <form data-abide="ajax">
+            <h1 class="u-caps">Sign up and get started</h1>
+            <p>
+                It's free to set your goal and access the support of I WILL DO.
+         
+            </p>
+            <p>
+                <a href="" class="btn fb-button btn-fb btn-default u-caps">Connect with Facebook</a>
+                @*<a href="#" class="btn btn-fb btn-default u-caps ">Connect with Facebook</a>*@
+            </p>
+            <p>
+                <input  class="u-inline" type="checkbox" checked name="subscribe-fb" id="checkbox-subscribe-fb" /><label for="checkbox-subscribe-fb" class="for-checkbox"><span>Subscribe me to I WILL DO content</span></label>
+                </p>
+            <p class="termsandcondition">
+                By clicking "Connect with Facebook" you agree to our <a onclick="openLightbox('.terms')">terms and conditions.</a>
+            </p>
+        </form>
+            <div class="u-backlined">
+                <span>or</span>
+            </div>
+            @using (Html.BeginUmbracoForm<LogOnController>("SignUp", null, new Dictionary<string, object> { { "data-abide", "data-abide" }, { "autocomplete", "off" } }))
+            {
+                                    @Html.AntiForgeryToken();
+            
+            @*<p>
+                 <label>First Name</label>
+                 <input type="text" placeholder="Your first name" required name="firstname" id="firstname" />
+                 <small class="error">Please enter your first name</small>
+            </p>
+            <p>
+                <label>Last Name</label>
+                <input type="text" placeholder="Your last name" required name="lastname" id="lastname" />
+                <small class="error">Please enter your last name</small>
+            </p>
+            <p>
+                <label>Profile Name <span aria-haspopup="true" href="#" class="has-tip" title="The name that will appear on your goal image."></span></label>
+                <input type="text" placeholder="Your name here" required data-abide-validator="nameValidator" name="displayname" id="displayname" />
+                <small id="nameError" class="error"></small>
+            </p>*@
+
+            <p>
+                <label>Your email address <span aria-haspopup="true" href="#" class="has-tip" title="We’d like to send you exclusive content and keep you up to date with competitions and promotions."></span></label>
+                <input type="email" name="email" id="email" placeholder="e.g. jappleseed@gmail.com" required pattern="email" />
+                <small class="error">Please enter a valid email address.</small>
+            </p>
+            <p>
+                <label>Choose a password <span aria-haspopup="true" href="#" class="has-tip" title="Password must contain minimum of 6 characters."></span></label>
+                <input style="display: none" type="text" name="fakeemailremembered" />
+                <input style="display: none" type="password" name="fakepasswordremembered" />
+                <input type="password" name="password" id="password" required data-abide-validator="passwordCheck"/>
+                <small class="error" id="passwordError"></small>
+
+            </p>
+                
+                <p>
+                <input  class="u-inline" type="checkbox" checked name="subscribe-fb" id="subscribe"><label for="subscribe" class="for-checkbox"><span>Subscribe me to I WILL DO content</span></label>
+                </p>
+            <p class="termsandcondition">
+                By clicking "Sign up & continue to goal" you agree to our <a onclick="openLightbox('.terms')">terms and conditions</a>
+            </p>
+                <input type="hidden" name="subscribe" />
+            <button type="submit" id="sign-up" class="button btn-signupgoal with-icon right-icon full-width">Sign up &amp; continue to goal</button>
+            }
+         
+    </div>
+</div>
+
+@*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>*@
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+<script src="~/js/vendor/bootstrap.min.js"></script>
+<script src="~/js/vendor/jquery.typetype.min.js"></script>
+<script src="~/js/vendor/jquery.waypoints.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script>
+<script src="~/js/main.js"></script>
+
+<div class="modal-container youtube">
+    <div class="content-lightbox-container-youtube">
+        <div class="close-modal-youtube">
+            <a onclick="closeStacksyoutube()">Close <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="content-lightbox-youtube">
+            <div id="videoContainer" class="large-6-youtube columns">
+            
+        </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal-container terms">
+    <div class="content-lightbox-container">
+        <div class="close-modal">
+            <a onclick="closeStacks()">Close <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <div class="content-lightbox">
+             @CurrentPage.AncestorOrSelf(1).SignUp.First().termsAndCondition;
+            @*@Umbraco.Field("termsAndCondition")*@
+        </div>
+    </div>
+</div>
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] != null ? TempData["ErrorMessage"].ToString() : string.Empty))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new jBox('Notice', {
+                content: '@Html.Raw(TempData["ErrorMessage"].ToString())',
+                color: 'red',
+                theme: 'NoticeBorder'
+            });
+        });
+    </script>
+    TempData["ErrorMessage"] = null;
+}
+
+
+
+<script>
+    function ytlinkClick() {
+        openLightbox('.youtube');
+        loadyoutube();
+    }
+    function loadyoutube() {
+        if ((navigator.userAgent.match(/iPhone/i))) {
+            $('#videoContainer').append('<iframe class="video" height="235" src="https:' + $('#hdnVideoURL').val() + '?enablejsapi=1&rel=0&showinfo=0" frameborder="0" allowfullscreen width="' + $('#videoContainer').width() + '"></iframe>');
+        }
+        else {
+            $('#videoContainer').append('<iframe class="video" height="350" src="https:' + $('#hdnVideoURL').val() + '?enablejsapi=1&rel=0&showinfo=0" frameborder="0" allowfullscreen width="' + $('#videoContainer').width() + '"></iframe>');
+        }
+    }
+
+    function closeStacksyoutube() {
+        // fade out then reset the style attr so we can re-open lightboxes
+        if ($('#eventForm').length) {
+            $('form#eventForm')[0].reset();
+        }
+        $('.is-open').css({ 'opacity': 0 });
+        setTimeout(function () {
+            $('.is-open').attr('style', '');
+            $('.is-open').removeClass('is-open');
+
+            $('video:not("#home-video")').each(function () {
+                if (this.player) {
+                    this.player.pause();
+                    this.player.remove();
+                }
+            });
+            //if ($('.play-video .video-lightbox object').length) {
+            //    $('.play-video .video-lightbox object').remove();
+            //}
+            if ($('#videoContainer iframe').length) {
+                $('#videoContainer iframe').remove();
+            }
+        }, 400)
+    }
+</script>
+
+<script>
+    $('.navigatesignup').click(function () {
+        var divID = '#SignUp';
+        $('html, body').animate({
+            scrollTop: $(divID).offset().top
+        }, 2500);
+    });
+</script>
+
+
+
+

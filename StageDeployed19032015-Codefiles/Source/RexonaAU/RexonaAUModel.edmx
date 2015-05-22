@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Rexona_AUSModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="Rexona_AUSModelStoreContainer">
+          <EntitySet Name="DiscussionFollower" EntityType="Rexona_AUSModel.Store.DiscussionFollower" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="EmailTransactions" EntityType="Rexona_AUSModel.Store.EmailTransactions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="InstaGramHashTag" EntityType="Rexona_AUSModel.Store.InstaGramHashTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MemberFriends" EntityType="Rexona_AUSModel.Store.MemberFriends" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="PledgeInviteData" EntityType="Rexona_AUSModel.Store.PledgeInviteData" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RecommendedArticlePledges" EntityType="Rexona_AUSModel.Store.RecommendedArticlePledges" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TractionEmails" EntityType="Rexona_AUSModel.Store.TractionEmails" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TwitterHashTag" EntityType="Rexona_AUSModel.Store.TwitterHashTag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserResetPassword" EntityType="Rexona_AUSModel.Store.UserResetPassword" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="YouTubeVideos" EntityType="Rexona_AUSModel.Store.YouTubeVideos" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="DiscussionFollower">
+          <Key>
+            <PropertyRef Name="DiscussionId" />
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Name="DiscussionId" Type="bigint" Nullable="false" />
+          <Property Name="MemberId" Type="bigint" Nullable="false" />
+          <Property Name="LastReadDateTime" Type="datetime" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailTransactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ToEmailAddress" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RetryCount" Type="int" Nullable="false" />
+          <Property Name="IsEmailSent" Type="bit" Nullable="false" />
+          <Property Name="AppendCLLogo" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="InstaGramHashTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Post" Type="nvarchar(max)" />
+          <Property Name="PostUrl" Type="varchar" MaxLength="100" />
+          <Property Name="MediaUrl" Type="varchar" MaxLength="200" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Likes" Type="int" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="IsApproved" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ScreeName" Type="varchar" MaxLength="50" />
+          <Property Name="InsertedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MemberFriends">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="FriendId" Type="int" />
+          <Property Name="IsRemoved" Type="bit" />
+        </EntityType>
+        <EntityType Name="PledgeInviteData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LinkId" Type="int" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="50" />
+          <Property Name="IsUsed" Type="bit" />
+          <Property Name="InvitedDate" Type="datetime" />
+          <Property Name="AcceptedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="RecommendedArticlePledges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PledgeId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TractionEmails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailType" Type="nvarchar" MaxLength="500" />
+          <Property Name="TractionQueryString" Type="nvarchar(max)" />
+          <Property Name="SendDateTime" Type="datetime" />
+          <Property Name="IsSent" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="RetryCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TwitterHashTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UniqueId" Type="varchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Post" Type="nvarchar(max)" />
+          <Property Name="PostUrl" Type="varchar" MaxLength="100" />
+          <Property Name="MediaUrl" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="Likes" Type="int" />
+          <Property Name="Location" Type="varchar" MaxLength="100" />
+          <Property Name="IsApproved" Type="int" />
+          <Property Name="UpdatedDate" Type="datetime" />
+          <Property Name="ScreeName" Type="varchar" MaxLength="50" />
+          <Property Name="InsertedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UserResetPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="numeric" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="Token" Type="varchar" Nullable="false" MaxLength="1000" />
+          <Property Name="IsUsed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="YouTubeVideos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NodeId" Type="int" Nullable="false" />
+          <Property Name="NiceUrl" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="YouTubeVideoId" Type="nvarchar" Nullable="false" MaxLength="1000" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="UpdatedDateTime" Type="datetime" Nullable="false" />
+          <Property Name="VideoLikes" Type="bigint" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Rexona_AUSModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="UserResetPasswords" EntityType="Rexona_AUSModel.UserResetPassword" />
+          <EntitySet Name="EmailTransactions" EntityType="Rexona_AUSModel.EmailTransaction" />
+          <EntitySet Name="InstaGramHashTags" EntityType="Rexona_AUSModel.InstaGramHashTag" />
+          <EntitySet Name="TwitterHashTags" EntityType="Rexona_AUSModel.TwitterHashTag" />
+          <EntitySet Name="DiscussionFollowers" EntityType="Rexona_AUSModel.DiscussionFollower" />
+          <EntitySet Name="MemberFriends" EntityType="Rexona_AUSModel.MemberFriend" />
+          <EntitySet Name="RecommendedArticlePledges" EntityType="Rexona_AUSModel.RecommendedArticlePledge" />
+          <EntitySet Name="TractionEmails" EntityType="Rexona_AUSModel.TractionEmail" />
+          <EntitySet Name="PledgeInviteDatas" EntityType="Rexona_AUSModel.PledgeInviteData" />
+          <EntitySet Name="YouTubeVideos" EntityType="Rexona_AUSModel.YouTubeVideo" />
+        </EntityContainer>
+        <EntityType Name="UserResetPassword">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Decimal" Nullable="false" Precision="18" Scale="0" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="UserEmail" Type="String" Nullable="false" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="Token" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="IsUsed" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmailTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ToEmailAddress" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Subject" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Body" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+          <Property Type="Boolean" Name="IsEmailSent" Nullable="false" />
+          <Property Type="Boolean" Name="AppendCLLogo" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="InstaGramHashTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UniqueId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Post" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MediaUrl" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+          <Property Type="Int32" Name="Likes" />
+          <Property Type="String" Name="Location" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IsApproved" />
+          <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
+          <Property Type="String" Name="ScreeName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="InsertedOn" Precision="3" />
+        </EntityType>
+        <EntityType Name="TwitterHashTag">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UniqueId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Post" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MediaUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreatedDate" Precision="3" />
+          <Property Type="Int32" Name="Likes" />
+          <Property Type="String" Name="Location" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="IsApproved" />
+          <Property Type="DateTime" Name="UpdatedDate" Precision="3" />
+          <Property Type="String" Name="ScreeName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="InsertedOn" Precision="3" />
+        </EntityType>
+        <EntityType Name="DiscussionFollower">
+          <Key>
+            <PropertyRef Name="DiscussionId" />
+            <PropertyRef Name="MemberId" />
+          </Key>
+          <Property Type="Int64" Name="DiscussionId" Nullable="false" />
+          <Property Type="Int64" Name="MemberId" Nullable="false" />
+          <Property Type="DateTime" Name="LastReadDateTime" Precision="3" />
+          <Property Type="DateTime" Name="CreatedDateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MemberFriend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="MemberId" />
+          <Property Type="Int32" Name="FriendId" />
+          <Property Type="Boolean" Name="IsRemoved" />
+        </EntityType>
+        <EntityType Name="RecommendedArticlePledge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="PledgeId" Nullable="false" />
+          <Property Type="Int32" Name="ArticleId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TractionEmail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Decimal" Name="Id" Nullable="false" Precision="18" Scale="0" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EmailType" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TractionQueryString" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="SendDateTime" Precision="3" />
+          <Property Type="Boolean" Name="IsSent" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="RetryCount" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PledgeInviteData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="LinkId" Nullable="false" />
+          <Property Type="String" Name="Type" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsUsed" />
+          <Property Type="DateTime" Name="InvitedDate" Precision="3" />
+          <Property Type="DateTime" Name="AcceptedDate" Precision="3" />
+        </EntityType>
+        <EntityType Name="YouTubeVideo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="NodeId" Nullable="false" />
+          <Property Type="String" Name="NiceUrl" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="YouTubeVideoId" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsDeleted" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="UpdatedDateTime" Nullable="false" Precision="3" />
+          <Property Type="Int64" Name="VideoLikes" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Rexona_AUSModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="UserResetPasswords">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.UserResetPassword">
+              <MappingFragment StoreEntitySet="UserResetPassword">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTransactions">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.EmailTransaction">
+              <MappingFragment StoreEntitySet="EmailTransactions">
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="AppendCLLogo" ColumnName="AppendCLLogo" />
+                <ScalarProperty Name="IsEmailSent" ColumnName="IsEmailSent" />
+                <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="ToEmailAddress" ColumnName="ToEmailAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InstaGramHashTags">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.InstaGramHashTag">
+              <MappingFragment StoreEntitySet="InstaGramHashTag">
+                <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+                <ScalarProperty Name="ScreeName" ColumnName="ScreeName" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MediaUrl" ColumnName="MediaUrl" />
+                <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TwitterHashTags">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.TwitterHashTag">
+              <MappingFragment StoreEntitySet="TwitterHashTag">
+                <ScalarProperty Name="InsertedOn" ColumnName="InsertedOn" />
+                <ScalarProperty Name="ScreeName" ColumnName="ScreeName" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Likes" ColumnName="Likes" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="MediaUrl" ColumnName="MediaUrl" />
+                <ScalarProperty Name="PostUrl" ColumnName="PostUrl" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UniqueId" ColumnName="UniqueId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscussionFollowers">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.DiscussionFollower">
+              <MappingFragment StoreEntitySet="DiscussionFollower">
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="LastReadDateTime" ColumnName="LastReadDateTime" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="DiscussionId" ColumnName="DiscussionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberFriends">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.MemberFriend">
+              <MappingFragment StoreEntitySet="MemberFriends">
+                <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+                <ScalarProperty Name="FriendId" ColumnName="FriendId" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecommendedArticlePledges">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.RecommendedArticlePledge">
+              <MappingFragment StoreEntitySet="RecommendedArticlePledges">
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+                <ScalarProperty Name="PledgeId" ColumnName="PledgeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TractionEmails">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.TractionEmail">
+              <MappingFragment StoreEntitySet="TractionEmails">
+                <ScalarProperty Name="RetryCount" ColumnName="RetryCount" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
+                <ScalarProperty Name="TractionQueryString" ColumnName="TractionQueryString" />
+                <ScalarProperty Name="EmailType" ColumnName="EmailType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PledgeInviteDatas">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.PledgeInviteData">
+              <MappingFragment StoreEntitySet="PledgeInviteData">
+                <ScalarProperty Name="AcceptedDate" ColumnName="AcceptedDate" />
+                <ScalarProperty Name="InvitedDate" ColumnName="InvitedDate" />
+                <ScalarProperty Name="IsUsed" ColumnName="IsUsed" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="LinkId" ColumnName="LinkId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="YouTubeVideos">
+            <EntityTypeMapping TypeName="Rexona_AUSModel.YouTubeVideo">
+              <MappingFragment StoreEntitySet="YouTubeVideos">
+                <ScalarProperty Name="VideoLikes" ColumnName="VideoLikes" />
+                <ScalarProperty Name="UpdatedDateTime" ColumnName="UpdatedDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="YouTubeVideoId" ColumnName="YouTubeVideoId" />
+                <ScalarProperty Name="NiceUrl" ColumnName="NiceUrl" />
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

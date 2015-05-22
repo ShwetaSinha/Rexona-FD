@@ -1,0 +1,63 @@
+@using umbraco.cms.businesslogic.web;
+@using umbraco.NodeFactory;
+@using RexonaAU;
+@using umbraco;
+@using System.Configuration;
+
+@*<style>
+    td{
+       overflow:scroll;
+       overflow-wrap:break-word;
+       word-wrap:break-word;
+    }
+        td:nth-child(1) {
+            width:30px;
+        }
+</style>*@
+
+<div style="margin: 5px; width: 100%">
+    <div id="divInstagram">
+        <div id="divInstagramResults" style="display: none; margin-top: 10px;">
+            <table class="customtable">
+                <thead>
+                    <tr>
+                        <th>Instagram Text</th>
+                        <th>Screen Name</th>
+                        <th>Created Date</th>
+                        <th>Instagram URL</th>
+                        <th>Approve</th>
+                        <th>Reject</th>
+                        @*<th style="display: none">ProfilePic</th>*@
+                        <th style="display: none">InstaID</th>
+                        <th style="display: none">Meida URL</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: instagram">
+                    <tr data-bind="attr:{Id:ID}">
+                        <td id="InstagramText" data-bind="html: captiontext" >
+
+                        </td>
+                        <td data-bind="html:user"></td>
+                        <td data-bind="html: CreatedAt" id="createdDate"></td>
+
+                        <td>
+                            <a target="_blank" data-bind="attr:{href:link}" id="InstaUrl">Check this on Instagram</a></td>
+                        <td>
+                            <input type="button" name="approve" class="approve" value="Approve" data-bind="click:approveInstaContent" />
+                        </td>
+                        <td>
+                            <input type="button" class="reject" value="Reject" data-bind="click:rejectInstaContent" />
+                        </td>
+                        <td data-bind="html: MediaURL" style="display: none;"></td>
+                        <td data-bind="html: likes" style="display: none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<script>
+
+   
+</script>

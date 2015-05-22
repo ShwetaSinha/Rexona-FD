@@ -1,0 +1,572 @@
+2015-02-23 14:37:59,692 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Determining hash of code files on disk
+2015-02-23 14:37:59,697 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Hash determined (took 4ms)
+2015-02-23 14:37:59,727 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2015-02-23 14:38:00,547 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 820ms)
+2015-02-23 14:38:00,551 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2015-02-23 14:38:00,576 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 24ms)
+2015-02-23 14:38:00,576 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2015-02-23 14:38:00,597 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 20ms)
+2015-02-23 14:38:00,597 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2015-02-23 14:38:00,602 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 4ms)
+2015-02-23 14:38:00,604 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2015-02-23 14:38:00,610 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 6ms)
+2015-02-23 14:38:00,610 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2015-02-23 14:38:00,616 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 5ms)
+2015-02-23 14:38:01,440 [16] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 5] Initializing Examine and binding to business logic events
+2015-02-23 14:38:19,288 [16] ERROR UmbracoExamine.DataServices.UmbracoContentService - [Thread 5] EXCEPTION OCCURRED reading GetAllUserPropertyNames
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover)
+   at System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.<Query>d__7`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Umbraco.Core.Persistence.Database.Fetch[T](String sql, Object[] args)
+   at UmbracoExamine.DataServices.UmbracoContentService.GetAllUserPropertyNames()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2015-02-23 14:38:19,435 [16] ERROR UmbracoExamine.DataServices.UmbracoContentService - [Thread 5] EXCEPTION OCCURRED reading GetAllUserPropertyNames
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.<Query>d__7`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Umbraco.Core.Persistence.Database.Fetch[T](String sql, Object[] args)
+   at UmbracoExamine.DataServices.UmbracoContentService.GetAllUserPropertyNames()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2015-02-23 14:38:19,568 [16] ERROR UmbracoExamine.DataServices.UmbracoContentService - [Thread 5] EXCEPTION OCCURRED reading GetAllUserPropertyNames
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.<Query>d__7`1.MoveNext()
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Umbraco.Core.Persistence.Database.Fetch[T](String sql, Object[] args)
+   at UmbracoExamine.DataServices.UmbracoContentService.GetAllUserPropertyNames()
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2015-02-23 14:38:19,814 [16] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 5] Adding examine event handlers for index providers: 3
+2015-02-23 14:38:19,957 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of umbraco.interfaces.IApplication
+2015-02-23 14:38:19,996 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 38ms)
+2015-02-23 14:38:20,127 [16] INFO  Umbraco.Core.Persistence.UmbracoDatabase - [Thread 5]    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.ExecuteScalar[T](String sql, Object[] args)
+2015-02-23 14:38:20,178 [16] ERROR Umbraco.Core.PluginManager - [Thread 5] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception: The system cannot find the file specified
+   --- End of inner exception stack trace ---
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.ExecuteScalar[T](String sql, Object[] args)
+   at Umbraco.Core.Persistence.SqlSyntax.SqlServerSyntaxProvider.DoesTableExist(Database db, String tableName)
+   at Umbraco.Core.Persistence.PetaPocoExtensions.TableExist(UmbracoDatabase db, String tableName)
+   at umbraco.BusinessLogic.ApplicationRegistrar.<>c__DisplayClass9.<.ctor>b__4(XDocument doc)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   at umbraco.BusinessLogic.ApplicationRegistrar..ctor()
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2015-02-23 14:38:20,180 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of umbraco.interfaces.ITree
+2015-02-23 14:38:20,217 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 37ms)
+2015-02-23 14:38:20,323 [16] INFO  Umbraco.Core.Persistence.UmbracoDatabase - [Thread 5]    at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.ExecuteScalar[T](String sql, Object[] args)
+2015-02-23 14:38:20,374 [16] ERROR Umbraco.Core.PluginManager - [Thread 5] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception: The system cannot find the file specified
+   --- End of inner exception stack trace ---
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.<>c__DisplayClass1.<ExecuteAction>b__0()
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction[TResult](Func`1 func)
+   at Umbraco.Core.Persistence.FaultHandling.RetryPolicy.ExecuteAction(Action action)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection, RetryPolicy retryPolicy)
+   at Umbraco.Core.Persistence.PetaPocoConnectionExtensions.OpenWithRetry(IDbConnection connection)
+   at Umbraco.Core.Persistence.Database.OpenSharedConnection()
+   at Umbraco.Core.Persistence.Database.ExecuteScalar[T](String sql, Object[] args)
+   at Umbraco.Core.Persistence.SqlSyntax.SqlServerSyntaxProvider.DoesTableExist(Database db, String tableName)
+   at Umbraco.Core.Persistence.PetaPocoExtensions.TableExist(UmbracoDatabase db, String tableName)
+   at umbraco.BusinessLogic.ApplicationTreeRegistrar.<>c__DisplayClass9.<.ctor>b__4(XDocument doc)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   at umbraco.BusinessLogic.ApplicationTreeRegistrar..ctor()
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2015-02-23 14:38:21,020 [16] INFO  umbraco.content - [Thread 5] Loading content from disk cache...
+2015-02-23 14:38:21,191 [16] ERROR umbraco.DataLayer.SqlHelper`1[[System.Data.SqlClient.SqlParameter, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] - [Thread 5] Error executing query select id, domainName from umbracoDomains
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at umbraco.DataLayer.SqlHelpers.SqlServer.SqlServerHelper.ExecuteReader(String commandText, SqlParameter[] parameters)
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2015-02-23 14:38:21,219 [16] ERROR Umbraco.Core.UmbracoApplicationBase - [Thread 5] An unhandled exception occurred
+umbraco.DataLayer.SqlHelperException: Umbraco Exception (DataLayer): SQL helper exception in ExecuteReader ---> System.Data.SqlClient.SqlException: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception: The system cannot find the file specified
+   --- End of inner exception stack trace ---
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at umbraco.DataLayer.SqlHelpers.SqlServer.SqlServerHelper.ExecuteReader(String commandText, SqlParameter[] parameters)
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+   --- End of inner exception stack trace ---
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+   at umbraco.cms.businesslogic.web.Domain.<GetDomains>b__0()
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, CacheDependency cacheDependency, Nullable`1 timeout, Func`1 getCacheItem, Object syncLock)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, CacheDependency cacheDependency, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemRemovedCallback refreshAction, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.CacheHelper.GetCacheItem[TT](String cacheKey, TimeSpan timeout, Func`1 getCacheItem)
+   at umbraco.cms.businesslogic.web.Domain.GetDomains(Boolean includeWildcards)
+   at Umbraco.Web.Routing.DomainHelper.GetAllDomains(Boolean includeWildcards)
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.FindDomain()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.PrepareRequest()
+   at Umbraco.Web.Routing.PublishedContentRequest.Prepare()
+   at Umbraco.Web.UmbracoModule.ProcessRequest(HttpContextBase httpContext)
+   at Umbraco.Web.UmbracoModule.<Init>b__7(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2015-02-23 14:38:31,094 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2015-02-23 14:38:31,125 [16] INFO  Umbraco.Core.PluginManager - [Thread 5] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 24ms)
+2015-02-23 14:38:46,348 [16] ERROR umbraco.DataLayer.SqlHelper`1[[System.Data.SqlClient.SqlParameter, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] - [Thread 6] Error executing query select id, domainName from umbracoDomains
+System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at umbraco.DataLayer.SqlHelpers.SqlServer.SqlServerHelper.ExecuteReader(String commandText, SqlParameter[] parameters)
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+2015-02-23 14:38:46,371 [16] ERROR Umbraco.Core.UmbracoApplicationBase - [Thread 6] An unhandled exception occurred
+umbraco.DataLayer.SqlHelperException: Umbraco Exception (DataLayer): SQL helper exception in ExecuteReader ---> System.InvalidOperationException: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached.
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpenInner(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteReader(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at umbraco.DataLayer.SqlHelpers.SqlServer.SqlServerHelper.ExecuteReader(String commandText, SqlParameter[] parameters)
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+   --- End of inner exception stack trace ---
+   at umbraco.DataLayer.SqlHelper`1.ExecuteReader(String commandText, IParameter[] parameters)
+   at umbraco.cms.businesslogic.web.Domain.<GetDomains>b__0()
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, CacheDependency cacheDependency, Nullable`1 timeout, Func`1 getCacheItem, Object syncLock)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, CacheDependency cacheDependency, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemPriority priority, CacheItemRemovedCallback refreshAction, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, CacheItemRemovedCallback refreshAction, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.Cache.HttpRuntimeCacheProvider.GetCacheItem[TT](String cacheKey, Nullable`1 timeout, Func`1 getCacheItem)
+   at Umbraco.Core.CacheHelper.GetCacheItem[TT](String cacheKey, TimeSpan timeout, Func`1 getCacheItem)
+   at umbraco.cms.businesslogic.web.Domain.GetDomains(Boolean includeWildcards)
+   at Umbraco.Web.Routing.DomainHelper.GetAllDomains(Boolean includeWildcards)
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.FindDomain()
+   at Umbraco.Web.Routing.PublishedContentRequestEngine.PrepareRequest()
+   at Umbraco.Web.Routing.PublishedContentRequest.Prepare()
+   at Umbraco.Web.UmbracoModule.ProcessRequest(HttpContextBase httpContext)
+   at Umbraco.Web.UmbracoModule.<Init>b__7(Object sender, EventArgs e)
+   at System.Web.HttpApplication.SyncEventExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2015-02-23 14:40:33,322 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendEmails has been called with response: False
+2015-02-23 14:40:35,525 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendTractionEmails has been called with response: False
+2015-02-23 14:40:37,681 [16] INFO  umbraco.presentation.publishingService - [Thread 5] refreshSocialContent has been called with response: False
+2015-02-23 14:40:39,853 [16] INFO  umbraco.presentation.publishingService - [Thread 5] approveSocialContent has been called with response: False
+2015-02-23 14:41:33,116 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendEmails has been called with response: False
+2015-02-23 14:41:35,217 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendTractionEmails has been called with response: False
+2015-02-23 14:42:33,146 [16] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 14:42:35,272 [16] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 14:43:33,202 [16] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 14:43:35,374 [16] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 14:44:33,195 [16] INFO  umbraco.presentation.publishingService - [Thread 11] sendEmails has been called with response: False
+2015-02-23 14:44:35,351 [16] INFO  umbraco.presentation.publishingService - [Thread 11] sendTractionEmails has been called with response: False
+2015-02-23 14:45:33,204 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:45:35,378 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:46:33,225 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendEmails has been called with response: False
+2015-02-23 14:46:35,404 [16] INFO  umbraco.presentation.publishingService - [Thread 5] sendTractionEmails has been called with response: False
+2015-02-23 14:47:33,210 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:47:35,389 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:48:33,141 [16] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2015-02-23 14:48:35,282 [16] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2015-02-23 14:49:33,208 [16] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2015-02-23 14:49:35,386 [16] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2015-02-23 14:49:57,891 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.IDataType
+2015-02-23 14:49:57,997 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.IDataType, found 82 (took 105ms)
+2015-02-23 14:49:58,080 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.interfaces.ITree
+2015-02-23 14:49:58,120 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 40ms)
+2015-02-23 14:49:59,005 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Starting resolution types of umbraco.cms.businesslogic.macro.IMacroEngine
+2015-02-23 14:49:59,013 [16] INFO  Umbraco.Core.PluginManager - [Thread 14] Completed resolution of types of umbraco.cms.businesslogic.macro.IMacroEngine, found 4 (took 8ms)
+2015-02-23 14:50:33,268 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:50:35,440 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:51:33,246 [16] INFO  umbraco.presentation.publishingService - [Thread 18] sendEmails has been called with response: False
+2015-02-23 14:51:35,426 [16] INFO  umbraco.presentation.publishingService - [Thread 18] sendTractionEmails has been called with response: False
+2015-02-23 14:52:33,239 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:52:35,395 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:53:33,264 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:53:35,459 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:54:33,282 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:54:35,454 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:55:33,211 [16] INFO  umbraco.presentation.publishingService - [Thread 18] sendEmails has been called with response: False
+2015-02-23 14:55:35,430 [16] INFO  umbraco.presentation.publishingService - [Thread 18] sendTractionEmails has been called with response: False
+2015-02-23 14:56:33,327 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:56:35,499 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:57:33,285 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:57:35,474 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:58:33,229 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:58:35,389 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 14:59:33,299 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 14:59:35,471 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:00:33,288 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:00:35,447 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:01:33,290 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:01:35,457 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:02:33,264 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:02:35,392 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:03:33,303 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:03:35,465 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:04:33,268 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:04:35,433 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:05:33,370 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:05:35,497 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:06:33,374 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:06:35,528 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:07:33,382 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:07:35,511 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:08:33,375 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:08:35,517 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:09:33,367 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:09:35,532 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:10:33,391 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:10:35,562 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:11:33,422 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:11:35,633 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:12:33,426 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:12:35,634 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:13:33,436 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:13:35,608 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:14:33,420 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:14:35,602 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:15:33,475 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:15:35,625 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:16:33,450 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:16:35,637 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:17:33,455 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:17:35,668 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:18:33,437 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:18:35,648 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:19:33,488 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:19:35,637 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:20:33,489 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:20:35,645 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:21:33,489 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:21:35,616 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:22:33,462 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:22:35,674 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:23:33,482 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:23:35,606 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:24:33,525 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:24:35,672 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:25:33,472 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:25:35,660 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:26:33,504 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:26:35,722 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:27:33,546 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:27:35,687 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:28:33,583 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:28:35,755 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:29:33,532 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:29:35,725 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:30:33,579 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:30:35,766 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:31:33,633 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:31:35,852 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:32:33,618 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:32:35,821 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:33:33,595 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:33:35,768 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:34:33,587 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:34:35,717 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:35:33,615 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:35:35,734 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:36:33,609 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:36:35,819 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:37:33,650 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:37:35,821 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:38:33,709 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:38:35,878 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:39:33,675 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:39:35,863 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:40:33,684 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:40:35,871 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:41:33,675 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:41:35,872 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:42:33,655 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:42:35,868 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:43:33,700 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:43:35,872 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:44:33,701 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:44:35,889 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:45:33,701 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:45:35,920 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:46:33,716 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2015-02-23 15:46:35,856 [16] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2015-02-23 15:46:51,211 [16] INFO  umbraco.BusinessLogic.Log - [Thread 14] Log scrubbed.  Removed all items older than 2014-12-25 15:46:50
+2015-02-23 15:54:05,754 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Determining hash of code files on disk
+2015-02-23 15:54:05,758 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Hash determined (took 3ms)
+2015-02-23 15:54:05,761 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2015-02-23 15:54:05,772 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 10ms)
+2015-02-23 15:54:05,776 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2015-02-23 15:54:05,777 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 0ms)
+2015-02-23 15:54:05,777 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2015-02-23 15:54:05,779 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 14 (took 2ms)
+2015-02-23 15:54:05,780 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2015-02-23 15:54:05,781 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 1ms)
+2015-02-23 15:54:05,784 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2015-02-23 15:54:05,784 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 0ms)
+2015-02-23 15:54:05,785 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2015-02-23 15:54:05,785 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 0ms)
+2015-02-23 15:54:05,874 [14] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 6] Initializing Examine and binding to business logic events
+2015-02-23 15:54:05,994 [14] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 6] Adding examine event handlers for index providers: 3
+2015-02-23 15:54:06,001 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.interfaces.IApplication
+2015-02-23 15:54:06,001 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 0ms)
+2015-02-23 15:54:06,235 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.interfaces.ITree
+2015-02-23 15:54:06,244 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 9ms)
+2015-02-23 15:54:06,657 [14] INFO  umbraco.content - [Thread 6] Loading content from disk cache...
+2015-02-23 15:54:07,065 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2015-02-23 15:54:07,067 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 1ms)
+2015-02-23 15:54:07,232 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.interfaces.IDataType
+2015-02-23 15:54:07,238 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.interfaces.IDataType, found 82 (took 5ms)
+2015-02-23 15:54:07,255 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.interfaces.ITree
+2015-02-23 15:54:07,256 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 0ms)
+2015-02-23 15:54:07,707 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Starting resolution types of umbraco.cms.businesslogic.macro.IMacroEngine
+2015-02-23 15:54:07,707 [14] INFO  Umbraco.Core.PluginManager - [Thread 6] Completed resolution of types of umbraco.cms.businesslogic.macro.IMacroEngine, found 4 (took 0ms)
+2015-02-23 15:54:38,121 [14] INFO  umbraco.presentation.publishingService - [Thread 8] sendEmails has been called with response: False
+2015-02-23 15:54:40,313 [14] INFO  umbraco.presentation.publishingService - [Thread 8] sendTractionEmails has been called with response: False
+2015-02-23 15:54:42,488 [14] INFO  umbraco.presentation.publishingService - [Thread 8] refreshSocialContent has been called with response: False
+2015-02-23 15:54:44,670 [14] INFO  umbraco.presentation.publishingService - [Thread 8] approveSocialContent has been called with response: False
+2015-02-23 15:55:38,071 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendEmails has been called with response: False
+2015-02-23 15:55:40,259 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendTractionEmails has been called with response: False
+2015-02-23 15:56:38,046 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendEmails has been called with response: False
+2015-02-23 15:56:40,237 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendTractionEmails has been called with response: False
+2015-02-23 15:56:53,400 [14] INFO  Umbraco.Core.PluginManager - [Thread 8] Starting resolution types of umbraco.interfaces.ICacheRefresher
+2015-02-23 15:56:53,400 [14] INFO  Umbraco.Core.PluginManager - [Thread 8] Completed resolution of types of umbraco.interfaces.ICacheRefresher, found 22 (took 1ms)
+2015-02-23 15:56:54,765 [14] INFO  UmbracoExamine.DataServices.UmbracoLogService - [Thread 10] Field "email" is listed multiple times in the index set "InternalMemberIndexSet". Please ensure all names are unique, Provider=InternalMemberIndexer, NodeId=5874
+2015-02-23 15:56:54,803 [14] INFO  UmbracoExamine.DataServices.UmbracoLogService - [Thread 10] Field "email" is listed multiple times in the index set "InternalMemberIndexSet". Please ensure all names are unique, Provider=InternalMemberIndexer, NodeId=5874
+2015-02-23 15:57:38,127 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2015-02-23 15:57:40,330 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2015-02-23 15:58:38,109 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendEmails has been called with response: False
+2015-02-23 15:58:40,328 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendTractionEmails has been called with response: False
+2015-02-23 15:59:38,120 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendEmails has been called with response: False
+2015-02-23 15:59:40,307 [14] INFO  umbraco.presentation.publishingService - [Thread 10] sendTractionEmails has been called with response: False
+2015-02-23 16:00:38,119 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2015-02-23 16:00:40,266 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2015-02-23 16:01:38,104 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2015-02-23 16:01:40,288 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2015-02-23 16:02:38,138 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:02:40,318 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:03:38,125 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:03:40,274 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:04:38,129 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:04:40,292 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:05:38,145 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:05:40,332 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:06:38,162 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:06:40,370 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:07:38,187 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:07:40,371 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:08:38,163 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:08:40,357 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:09:38,212 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:09:40,434 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:10:38,194 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:10:40,414 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:11:38,207 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:11:40,398 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:12:38,287 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:12:40,496 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:13:38,187 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:13:40,361 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:14:38,273 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:14:40,469 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:15:38,192 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:15:40,336 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:16:38,231 [14] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2015-02-23 16:16:40,419 [14] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2015-02-23 16:17:38,181 [14] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2015-02-23 16:17:40,400 [14] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2015-02-23 16:18:38,258 [14] INFO  umbraco.presentation.publishingService - [Thread 23] sendEmails has been called with response: False
+2015-02-23 16:18:40,415 [14] INFO  umbraco.presentation.publishingService - [Thread 23] sendTractionEmails has been called with response: False
+2015-02-23 16:19:38,257 [14] INFO  umbraco.presentation.publishingService - [Thread 23] sendEmails has been called with response: False
+2015-02-23 16:19:40,445 [14] INFO  umbraco.presentation.publishingService - [Thread 23] sendTractionEmails has been called with response: False
+2015-02-23 16:20:38,255 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendEmails has been called with response: False
+2015-02-23 16:20:40,489 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendTractionEmails has been called with response: False
+2015-02-23 16:21:38,281 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendEmails has been called with response: False
+2015-02-23 16:21:40,461 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendTractionEmails has been called with response: False
+2015-02-23 16:22:38,296 [14] INFO  umbraco.presentation.publishingService - [Thread 37] sendEmails has been called with response: False
+2015-02-23 16:22:40,466 [14] INFO  umbraco.presentation.publishingService - [Thread 37] sendTractionEmails has been called with response: False
+2015-02-23 16:23:38,306 [14] INFO  umbraco.presentation.publishingService - [Thread 37] sendEmails has been called with response: False
+2015-02-23 16:23:40,509 [14] INFO  umbraco.presentation.publishingService - [Thread 37] sendTractionEmails has been called with response: False
+2015-02-23 16:24:38,334 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2015-02-23 16:24:40,537 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2015-02-23 16:25:38,355 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2015-02-23 16:25:40,575 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2015-02-23 16:26:38,355 [14] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2015-02-23 16:26:40,529 [14] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2015-02-23 16:27:38,381 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendEmails has been called with response: False
+2015-02-23 16:27:40,548 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendTractionEmails has been called with response: False
+2015-02-23 16:28:38,392 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendEmails has been called with response: False
+2015-02-23 16:28:40,598 [14] INFO  umbraco.presentation.publishingService - [Thread 6] sendTractionEmails has been called with response: False
+2015-02-23 16:29:38,396 [14] INFO  umbraco.presentation.publishingService - [Thread 25] sendEmails has been called with response: False
+2015-02-23 16:29:40,568 [14] INFO  umbraco.presentation.publishingService - [Thread 25] sendTractionEmails has been called with response: False
+2015-02-23 16:30:38,404 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:30:40,591 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:31:38,412 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2015-02-23 16:31:40,615 [14] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2015-02-23 16:32:38,413 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendEmails has been called with response: False
+2015-02-23 16:32:40,610 [14] INFO  umbraco.presentation.publishingService - [Thread 26] sendTractionEmails has been called with response: False
+2015-02-23 16:33:38,386 [14] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2015-02-23 16:33:40,568 [14] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2015-02-23 16:34:38,402 [14] INFO  umbraco.presentation.publishingService - [Thread 33] sendEmails has been called with response: False
+2015-02-23 16:34:40,590 [14] INFO  umbraco.presentation.publishingService - [Thread 33] sendTractionEmails has been called with response: False
+2015-02-23 16:35:38,443 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2015-02-23 16:35:40,630 [14] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2015-02-23 16:36:38,440 [14] INFO  umbraco.presentation.publishingService - [Thread 18] sendEmails has been called with response: False
+2015-02-23 16:36:40,659 [14] INFO  umbraco.presentation.publishingService - [Thread 18] sendTractionEmails has been called with response: False
+2015-02-23 16:37:38,439 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2015-02-23 16:37:40,627 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2015-02-23 16:38:38,291 [14] INFO  umbraco.presentation.publishingService - [Thread 15] sendEmails has been called with response: False
+2015-02-23 16:38:40,311 [14] INFO  umbraco.presentation.publishingService - [Thread 15] sendTractionEmails has been called with response: False
+2015-02-23 16:39:38,264 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2015-02-23 16:39:40,280 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2015-02-23 16:40:38,294 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2015-02-23 16:40:40,309 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2015-02-23 16:41:38,335 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2015-02-23 16:41:40,383 [14] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2015-02-23 16:42:38,336 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2015-02-23 16:42:40,367 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2015-02-23 16:43:38,351 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 16:43:40,381 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 16:44:38,351 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2015-02-23 16:44:40,349 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2015-02-23 16:45:38,362 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2015-02-23 16:45:40,394 [14] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2015-02-23 16:46:38,371 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 16:46:40,388 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 16:47:38,318 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 16:47:40,328 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 16:48:38,407 [14] INFO  umbraco.presentation.publishingService - [Thread 41] sendEmails has been called with response: False
+2015-02-23 16:48:40,423 [14] INFO  umbraco.presentation.publishingService - [Thread 41] sendTractionEmails has been called with response: False
+2015-02-23 16:49:38,398 [14] INFO  umbraco.presentation.publishingService - [Thread 11] sendEmails has been called with response: False
+2015-02-23 16:49:40,429 [14] INFO  umbraco.presentation.publishingService - [Thread 11] sendTractionEmails has been called with response: False
+2015-02-23 16:50:38,390 [14] INFO  umbraco.presentation.publishingService - [Thread 39] sendEmails has been called with response: False
+2015-02-23 16:50:40,419 [14] INFO  umbraco.presentation.publishingService - [Thread 39] sendTractionEmails has been called with response: False
+2015-02-23 16:51:38,408 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2015-02-23 16:51:40,439 [14] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2015-02-23 16:52:22,211 [14] INFO  umbraco.BusinessLogic.Log - [Thread 12] Log scrubbed.  Removed all items older than 2014-12-25 16:52:22
+2015-02-23 16:52:22,211 [14] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 12] Application shutdown. Reason: HostingEnvironment

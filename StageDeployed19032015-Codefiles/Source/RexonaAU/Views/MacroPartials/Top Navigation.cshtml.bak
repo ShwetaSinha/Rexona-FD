@@ -1,0 +1,192 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+
+@using umbraco.MacroEngines.Library;
+@using System.Web.Mvc.Html;
+@using Umbraco.Web;
+@using umbraco.NodeFactory;
+@using umbraco.cms.businesslogic.member;
+
+@{        
+    // Node homePage = new Node(1108);
+
+    Node homePage = new Node(1108);
+    var pages = homePage.ChildrenAsList
+        .Where(showInHeader => showInHeader.GetProperty("showInHeader") != null);
+    var TopNavigationPages = pages.Where(showInHeader => showInHeader.GetProperty("showInHeader").Value.ToString() == "1")
+        .OrderBy(navigationOrder => navigationOrder.GetProperty("navigationOrder").Value);
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+    int pledgeCount = 0;
+
+    var homePageNode = uQuery.GetNodesByType("Home").FirstOrDefault();
+
+    string homePageUrl = string.Empty;
+    if (homePageNode != null && homePageNode.Id > 0)
+    {
+        homePageUrl = homePageNode.NiceUrl;
+    }
+}
+@if (Member.IsLoggedOn() && HttpContext.Current.User.Identity.IsAuthenticated)
+{
+    
+    <script type="text/javascript">
+     
+        $(document).ready(function () {
+            setTimeout(function () {
+                $('#login').text('Sign Out').show();
+                $('#register').hide();
+                $('#login').click(function (e) {
+                    e.preventDefault();
+
+                    $.ajax({
+                        url: "/umbraco/surface/LogOn/Logout",
+                        method: "POST",
+                        success: function (response) {
+                            //console.log(response);
+                            window.location.href = response;
+                        }
+                    });
+                });
+            });
+        }, 1000);
+    </script>
+    
+    Member memberLogged = Member.GetCurrentMember();
+
+    var pledges = uQuery.GetNodesByType("Pledge");
+    if (pledges != null)
+    {
+        var pledgeNodeResult = from L1 in pledges
+                               where (L1.ChildrenAsList.Exists(a => a.GetProperty<int>("memberId")
+                              == memberLogged.Id && a.GetProperty<bool>("step3Clear")))
+                               select new { Value = L1.GetProperty<string>("title"), Id = L1.Id };
+        if (pledgeNodeResult != null)
+        {
+            pledgeCount = pledgeNodeResult.ToList().Count;
+        }
+    }
+}
+else
+{
+    
+    <script>
+        $(document).ready(function () {
+            $('#login').text('Sign In').show();
+            $('#register').show();
+        });
+    </script>
+}
+
+<div class="navigation-container">
+    <div class="logo on-mobile left">
+        <a href="@homePageUrl">
+            <img src="@urlHelper.Content("~/images/logo.svg")" alt="Rexona Logo" width="82" height="40"></a>
+    </div>
+    <div class="menu-open right">
+        <a href="#"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <div class="double-navigation">
+        <nav class="rexona-global-nav">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="logo on-desktop left">
+                        <a href="http://www.rexona.com.au/en/">
+                            <img src="~/images/logo.svg" alt="Rexona Logo" width="82" height="40"></a>
+                    </div>
+                    <ul class="left">
+                        <span class="on-mobile">
+                            <li><a href="http://www.rexona.com.au/en/">Rexona Global <i class="fa fa-chevron-right"></i></a></li>
+                        </span>
+                        <span class="on-desktop">
+                            <li><a href="http://www.rexona.com.au/en/men">Men</a></li>
+                            <li><a href="http://www.rexona.com.au/en/women">Women</a></li>
+                            <li><a href="http://www.rexona.com.au/en/sweat-facts">Sweat Facts</a></li>
+                            <li><a href="http://www.rexona.com.au/en/about">About</a></li>
+                        </span>
+                    </ul>
+                    <div class="right on-desktop">
+                        <label class="select language">
+                            <select id="language">
+                                <option selected>AUS - ENGLISH</option>
+                                <option>ARG - ESPAÑOL</option>
+                                <option>BRA - PORTUGUÊS</option>
+                                <option>CAN - ENGLISH</option>
+                                <option>CAN - FRANÇAIS</option>
+                                <option>DE - DEUTSCH</option>
+                                <option>DK - DANSK</option>
+                                <option>ESP - ESPAÑOL</option>
+                                <option>FI - SUOMI</option>
+                                <option>FRA - FRANÇAIS</option>
+                                <option>GBR - ENGLISH</option>
+                                <option>IDN - BAHASA</option>
+                                <option>MEX - ESPAÑOL</option>
+                                <option>NL - NEDERLANDS</option>
+                                <option>PH - ENG</option>
+                                <option>PT - PORTUGUÊS</option>
+                                <option>RUS - RUSSIAN</option>
+                                <option>SA - ENGLISH</option>
+                                <option>SV - SVENSKA</option>
+                                <option>USA - ENGLISH</option>
+                                <option>USA - ESPAÑOL</option>
+                                <option>RO - ROMANIA</option>
+                                <option>PL - POLSKI</option>
+                                <option>CZ - ČESKY</option>
+                                <option>SK - SLOVENSKY</option>
+                                <option>HUN - MAGYAR</option>
+                                <option>NZ - ENGLISH</option>
+                                <option>AT - DEUTSCH</option>
+                                <option>CH - DEUTSCH</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="local-nav inverted">
+            <div class="row">
+                <div class="large-12 columns">
+                    <ul class="left">
+                        <li><a href="@homePageUrl">Home</a></li>
+                    </ul>
+                    <ul class="left">
+                        @foreach (var page in TopNavigationPages)
+                        {
+                            if (!page.NodeTypeAlias.Equals("Login", StringComparison.OrdinalIgnoreCase)
+                                && !page.NodeTypeAlias.Equals("SignUp", StringComparison.OrdinalIgnoreCase)
+                                && !page.NodeTypeAlias.Equals("MakeAPledge", StringComparison.OrdinalIgnoreCase)
+                                && !page.NodeTypeAlias.Equals("MyDashboard", StringComparison.OrdinalIgnoreCase))
+                            {
+                            <li><a href="@page.NiceUrl">@page.GetProperty("navigationTitle")</a></li>
+                            }
+
+                            else if (page.NodeTypeAlias.Equals("Pledge Steps", StringComparison.OrdinalIgnoreCase))
+                            {
+                            <li><a href="@page.NiceUrl">@page.GetProperty("navigationTitle")</a></li>    
+                            }
+
+                        }
+                        <li><a href="#" onclick="zen()">Feedback</a></li>
+                        @if (Member.IsLoggedOn() && pledgeCount > 0 && TopNavigationPages.Count(obj => obj.NodeTypeAlias == "MyDashboard") > 0)
+                        {
+                            var page = TopNavigationPages.First(obj => obj.NodeTypeAlias == "MyDashboard");
+                            <li><a href="@page.NiceUrl">@page.GetProperty("navigationTitle")</a></li>
+                        }
+                    </ul>
+                    <ul class="right">
+                        @foreach (var page in TopNavigationPages)
+                        {
+                            if (page.NodeTypeAlias == "SignUp")
+                            {
+                            <li><a href="@page.NiceUrl" id="register" style="display:none" class="tiny button secondary">Sign Up</a></li>
+                            }
+                            else if (page.NodeTypeAlias == "Login")
+                            {
+                            <li><a href="@page.NiceUrl" id="login" style="display:none" class="tiny button">Sign In</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>

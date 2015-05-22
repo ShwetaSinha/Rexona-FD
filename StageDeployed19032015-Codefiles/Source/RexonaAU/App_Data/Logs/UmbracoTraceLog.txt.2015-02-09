@@ -1,0 +1,40 @@
+2014-12-15 09:49:15,054 [12] ERROR umbraco.DataLayer.SqlHelper`1[[System.Data.SqlClient.SqlParameter, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] - [Thread 41] Error executing query delete from umbracoLog where datestamp < @oldestPermittedLogEntry and logHeader in ('open','system')
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when receiving results from the server. (provider: TCP Provider, error: 0 - The semaphore timeout period has expired.) ---> System.ComponentModel.Win32Exception (0x80004005): The semaphore timeout period has expired
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at Microsoft.ApplicationBlocks.Data.SqlHelper.ExecuteNonQuery(String connectionString, CommandType commandType, String commandText, SqlParameter[] commandParameters)
+   at umbraco.DataLayer.SqlHelper`1.ExecuteNonQuery(String commandText, IParameter[] parameters)
+ClientConnectionId:ee3c1378-d329-476e-a908-2fcf8d37a0b6
+2014-12-15 09:49:40,280 [12] INFO  umbraco.presentation.publishingService - [Thread 40] sendEmails has been called with response: False
+2014-12-15 09:49:42,324 [12] INFO  umbraco.presentation.publishingService - [Thread 40] sendTractionEmails has been called with response: False
+2014-12-15 09:49:44,383 [12] INFO  umbraco.presentation.publishingService - [Thread 40] refreshSocialContent has been called with response: False
+2014-12-15 09:49:46,429 [12] INFO  umbraco.presentation.publishingService - [Thread 40] approveSocialContent has been called with response: False
+2014-12-15 09:50:40,203 [12] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2014-12-15 09:50:42,263 [12] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2014-12-15 09:51:40,254 [12] INFO  umbraco.presentation.publishingService - [Thread 45] sendEmails has been called with response: False
+2014-12-15 09:51:42,313 [12] INFO  umbraco.presentation.publishingService - [Thread 45] sendTractionEmails has been called with response: False
+2014-12-15 09:52:40,239 [12] INFO  umbraco.presentation.publishingService - [Thread 48] sendEmails has been called with response: False
+2014-12-15 09:52:42,283 [12] INFO  umbraco.presentation.publishingService - [Thread 48] sendTractionEmails has been called with response: False
+2014-12-15 09:53:40,243 [12] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-12-15 09:53:42,271 [12] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-12-15 09:54:40,272 [12] INFO  umbraco.presentation.publishingService - [Thread 40] sendEmails has been called with response: False
+2014-12-15 09:54:42,332 [12] INFO  umbraco.presentation.publishingService - [Thread 40] sendTractionEmails has been called with response: False
+2014-12-15 09:55:40,271 [12] INFO  umbraco.presentation.publishingService - [Thread 47] sendEmails has been called with response: False
+2014-12-15 09:55:42,331 [12] INFO  umbraco.presentation.publishingService - [Thread 47] sendTractionEmails has been called with response: False
+2014-12-15 09:56:40,235 [12] INFO  umbraco.presentation.publishingService - [Thread 53] sendEmails has been called with response: False
+2014-12-15 09:56:42,279 [12] INFO  umbraco.presentation.publishingService - [Thread 53] sendTractionEmails has been called with response: False
+2014-12-15 09:57:40,244 [12] INFO  umbraco.presentation.publishingService - [Thread 52] sendEmails has been called with response: False
+2014-12-15 09:57:42,263 [12] INFO  umbraco.presentation.publishingService - [Thread 52] sendTractionEmails has been called with response: False
+2014-12-15 09:58:28,683 [12] INFO  umbraco.BusinessLogic.Log - [Thread 55] Log scrubbed.  Removed all items older than 2014-10-16 09:58:28
+2014-12-15 09:58:28,683 [12] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 55] Application shutdown. Reason: HostingEnvironment

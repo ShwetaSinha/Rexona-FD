@@ -1,0 +1,126 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+
+}
+
+<script src="@urlHelper.Content("~/js/article.js")"></script>
+<script src="@urlHelper.Content("~/js/ambassadorPage.js")"></script>
+<div class="hero-panel ambassadors">
+    <div class="row">
+        <div class="large-6 columns">
+            <div class="row">
+                <div class="large-8 columns">
+                    <h1 class="contained-title">Ambassadors</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="large-12 columns">
+                    <p class="subheader inverted">@Umbraco.Field("ambassadorIntro")</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content-panel">
+    <div class="row" id="topAmbassadors" data-bind="foreach: TopAmbassador">
+        <div class="large-4 medium-6 small-12 columns">
+            <div class="ambassador-intro">
+                <a data-bind="attr:{href: AmbassadorURL}">
+
+                    <!-- ko if: AmbassadorImage !="false" -->
+                    <img data-bind="attr:{src: AmbassadorImage}" alt="" class="border-image">
+                    <!-- /ko -->
+                    <!-- ko ifnot: AmbassadorImage !="false" -->
+                    <img src="http://placehold.it/500x400" alt="" class="border-image">
+                    <!-- /ko -->
+                </a>
+                <h5 data-bind="html: Name"></h5>
+                <p data-bind="html: AmbassadorDescription"></p>
+            </div>
+            <a data-bind="attr:{href: AmbassadorURL}" class="small-link">View all of <span data-bind="html: AmbassadorName"></span>'s posts</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="content-panel has-border dark-panel">
+
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="connected-panel-container">
+                <div class="connected-panel-heading">
+                    <h2 class="contained-title">Ambassador Posts</h2>
+                </div>
+                <div class="connected-panel">
+                    <div class="large-4 columns large-offset-8">
+                        <div class="row">
+                            <div class="small-4 columns">
+                                <label for="right-label" class="right floating-label">Sort By:</label>
+                            </div>
+                            <div class="small-8 columns">
+                                <label class="select">
+                                    <select id="ambassadorFilter">
+                                        <option value="recent" selected>Most Recent</option>
+                                        <option value="popular" >Most Popular</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="masonry-wall" id="articles" data-bind="foreach: Articles">
+                <div class="item has-badge">
+                    <div class="item-type">
+                        <span>AMBASSADOR</span>
+                        @*<div class="item-badge">
+                            <img src="/images/ais-badge.jpg">
+                        </div>*@
+                    </div>
+                    <div class="item-content">
+                        <!-- ko if: ArticleThumbnail !="false" -->
+                        <div class="item-image">
+                            <a data-bind="attr:{href: ActualArticleURL}">
+                                <img data-bind="attr:{src: ArticleThumbnail}" class="full-on-mobile"></a>
+                        </div>
+                        <!-- /ko -->
+                        <div class="item-details">
+                            <div class="item-heading">
+                                <a data-bind="attr:{href: ActualArticleURL}">
+                                    <h4 data-bind="html: ArticleTitle"></h4>
+                                </a>
+                            </div>
+                            <div class="item-poster">
+                                <p><em data-bind="html:Author"></em></p>
+                            </div>
+                            <div class="item-description">
+                                <p data-bind="html: Excerpt"></p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+                            <div class="item-rate">
+                                <div data-bind="attr:{id: Id}" class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span data-bind="html: Hearts"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

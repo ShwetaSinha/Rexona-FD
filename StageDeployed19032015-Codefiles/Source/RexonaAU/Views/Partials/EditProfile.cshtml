@@ -1,0 +1,100 @@
+﻿@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Umbraco.Web
+@using RexonaAU.Models
+@using RexonaAU.Controllers
+@model EditProfileViewModel
+@{
+    Html.EnableClientValidation(true);
+    Html.EnableUnobtrusiveJavaScript(true);
+}
+
+
+@using (Html.BeginUmbracoForm<EditProfileController>("HandleResetPassword", null, new Dictionary<string, object> { { "data-abide", "data-abide" } }))
+{
+                @Html.AntiForgeryToken()
+                
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label for="prof-fname">First Name</label>
+                        <input type="text" required name="FirstName" id="FirstName" value="@Model.FirstName" >
+                        <small class="error">Please enter your first name</small>
+                    </div>
+                    <div class="large-6 columns">
+                        <label for="prof-lname">Last Name</label>
+                        <input type="text" required name="LastName" id="LastName" value="@Model.LastName">
+                        <small class="error">Please enter your last name</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <label for="prof-email">Email Address</label>
+                        <input type="email" name="EmailAddress"  id="EmailAddress" required readonly pattern="email" value="@Model.EmailAddress"/>
+                        <small class="error">Please enter a valid email address.</small>
+                    </div>
+                    <div class="large-6 columns">
+                        <label for="prof-pass">Choose a Password</label>
+                        <input style="display: none" type="text" name="fakeemailremembered" />
+                        <input style="display: none" type="password" name="fakepasswordremembered" />
+                        <input type="password" name="Password" id="Password" data-abide-validator="passwordCheck_dashboard"/>
+                        <small class="error" id="passwordError"></small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns">
+                    </div>
+                    <div class="large-6 columns">
+                        <label for="prof-conf-pass">Confirm Password</label>
+                        <input type="password" id="ConfirmPassword" name="ConfirmPassword" data-equalto="Password" />
+                        <small class="error">Passwords must match.</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-6 columns">
+                        <button type="submit" class="button goalCTA">Edit Profile &nbsp;&gt;</button>
+                    </div>
+                    <div class="large-6 columns">
+                        <a class="button goalCTA cancel" onclick="closeStacks()">Cancel &nbsp;X</a>
+                    </div>
+                </div>
+}
+
+@if (!string.IsNullOrEmpty(TempData["ResetPasswordMsg"] != null ? TempData["ResetPasswordMsg"].ToString() : string.Empty))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new jBox('Notice', {
+                content: '@Html.Raw(TempData["ResetPasswordMsg"].ToString())',
+                color: 'green',
+                theme: 'NoticeBorder'
+            });
+        });
+    </script>
+    TempData["ResetPasswordMsg"] = null;
+}
+@if (!string.IsNullOrEmpty(TempData["Status"] != null ? TempData["Status"].ToString() : string.Empty))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new jBox('Notice', {
+                content: '@Html.Raw(TempData["Status"].ToString())',
+                color: 'red',
+                theme: 'NoticeBorder'
+            });
+        });
+    </script>
+    TempData["Status"] = null;
+}
+@if (!string.IsNullOrEmpty(TempData["ErrorMessage"] != null ? TempData["ErrorMessage"].ToString() : string.Empty))
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            new jBox('Notice', {
+                content: '@Html.Raw(TempData["ErrorMessage"].ToString())',
+                color: 'red',
+                theme: 'NoticeBorder'
+            });
+        });
+    </script>
+    TempData["ErrorMessage"] = null;
+}

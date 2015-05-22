@@ -1,0 +1,66 @@
+// import webfonts from MyFonts font kit
+@font-face
+	font-family: 'sofia_problack'
+	src: url('font/sofiaproblack-webfont.eot')
+	src: url('font/sofiaproblack-webfont.eot?#iefix') format('embedded-opentype'), url('font/sofiaproblack-webfont.woff') format('woff'), url('font/sofiaproblack-webfont.ttf') format('truetype'), url('font/sofiaproblack-webfont.svg#sofia_problack') format('svg')
+	font-weight: normal
+	font-style: normal
+
+// set our font stacks
+$heading-stack: "sofia_problack", "Helvetica Neue", "Helvetica", Arial, sans-serif
+$body-stack: "Helvetica Neue", "Helvetica", Arial, sans-serif
+
+// set body font for em calculations 
+body 
+	font-size: 16px
+
+// reset our heading fonts
+h1, h2, h3, h4, h5, h6
+	font-family: $heading-stack
+	line-height: 1.2
+	text-transform: uppercase
+
+.underlined 
+	border-bottom: 1px solid $primary-color
+	padding-bottom: 1em
+	margin-bottom: 1.5em
+
+// general subheader class. specify size per text type e.g. p.subheader, h1.subheader...
+.subheader
+	font-weight: bold
+	color: $black
+
+// individual heading settings as per psd. redo these as PSDs are finished
+h1 
+	font-size: 2em
+h2
+	font-size: 1.8em
+	margin-bottom: 0.8em
+h3
+h4
+h5
+h6
+
+// paragraph styles
+p 
+	font-size: 0.875em // 14px
+	line-height: 1.5
+p.subheader 
+	font-size: 1em // 16px
+	line-height: 1.5
+	margin-bottom: 1.4em
+
+// white box that goes around certain "mega" headings in the PSD
+.contained-title
+	text-align: center
+	width: 100%
+	float: left
+	padding: 0.35em 1em
+	background-color: #FFF
+	-webkit-box-shadow: 3px 6px 7px 0 rgba(0,0,0,0.35)
+	box-shadow: 3px 6px 7px 0 rgba(0,0,0,0.35)
+	margin-bottom: 1em
+
+// small text 
+small 
+	font-size: 0.70em

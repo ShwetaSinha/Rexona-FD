@@ -1,0 +1,288 @@
+﻿@model RexonaAU.Models.SignUpModel
+
+
+<script src="~/scripts/knockout-3.0.0.js"></script>
+<script src="~/scripts/knockout.validation.js"></script>
+
+<style>
+    .validationMessage {
+        color: red;
+    }
+</style>
+
+<form action="" method="post" id="register-form" novalidate="novalidate">
+
+    @*  <div class="row sign-up">
+        <div class="large-5 columns large-centered">
+          <label>Your Name
+          
+            <input type="text" id="NameId" name="name" data-bind = "value: name" placeholder="Enter your first and last name" >
+          </label>
+
+          <label>Your Email Address
+            <input type="text" id="EmailId" name="email" data-bind = "value: email" placeholder="e.g. johnappleseed@mail.com">
+          </label>
+
+            <label>Password
+            <input type="password" id="PasswordId" name="password" data-bind = "value: password" placeholder="*********">
+          </label>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <input id="checkbox1"  type="checkbox"><label for="checkbox1">I agree with the terms and conditions</label>      
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="large-12 columns">
+              <input id="checkbox2"  type="checkbox"><label for="checkbox2">Send me relevant Empower content</label>    
+            </div>
+          </div>
+                   
+           <input type="button" id="signUp" class="button secondary expand" value="SignUp" onclick="SignUp();"/>
+         
+        </div>
+      </div>*@
+
+
+    <div class="row sign-up">
+        <div class="large-5 columns large-centered">
+            @using (Html.BeginUmbracoForm<RexonaAU.Controllers.LogOnController>("SignUp"))
+             {
+                @Html.LabelFor(model => model.UserName)
+                @Html.TextBoxFor(model => model.UserName,  new { data_bind = "value: name" }) 
+                @Html.LabelFor(model => model.EmailAddress)
+                @Html.TextBoxFor(model => model.EmailAddress, new { data_bind = "value: email" })
+                @Html.LabelFor(model => model.Password)
+                @Html.PasswordFor(model => model.Password, new { data_bind = "value: password" })  
+               <div class="row">
+                    <div class="large-12 columns">
+                        <label>@Html.CheckBoxFor(model => model.AgreeToTerms, new { data_bind = "checked: checkbox1" }) I agree with the terms and conditions</label>
+                        <span data-bind = "value: checkbox1CHK"></span>
+                     </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <label>@Html.CheckBoxFor(model => model.SubscribeMe) Send me relevant Empower content</label>
+                        
+                         </div>
+                </div>                      
+                @Html.AntiForgeryToken()   
+                <input type="submit" id="submitForm" class="button secondary expand" value="Sign Up"  data-bind="click: SummitForm" />    
+             }
+            <h4>@TempData["Status"]</h4>
+
+
+        </div>
+    </div>
+
+</form>
+
+<style>
+.field-validation-error {
+color: red;
+}
+    </style>
+<div id="fbcNotLoggedIn">
+
+    <div id="fb-root"></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+</div>
+
+<script type="text/javascript">
+
+      function fbAsyncInit() {
+          FB.init({
+              appId: '1430554253884530',
+              status: true, // check login status
+              cookie: true, // enable cookies to allow the server to access the session
+              xfbml: true  // parse XFBML
+          });
+      }
+
+
+      function LoginWithFacebook() {
+          //  alert("LoginWithFacebook");
+          FB.login(
+                function (response) {
+
+                    //debugger;
+                    //console.log(response);
+                    //  alert(response.status);
+
+                    if (response.status == 'connected') {
+
+                        FB.api('/me', function (response) {
+                            //console.log(response);
+
+                            // Check wherever this email address exists
+                            $.ajax({
+                                url: "@Url.Action("FBLogin", "LogOn")?UserName=" + response.email + "&Email=" + response.email,
+                                contentType: 'application/json; charset=utf-8',
+                                // type: 'POST',
+                                dataType: 'json'
+
+                            })
+                             .success(function (result) {
+                                 //window.location = '/enter-your-goal/';
+                                 window.location = '/dashboard';
+                                 //alert("Inside Success");
+                             })
+                              .error(function (result) {
+                                  //alert("Inside Error");
+                              })
+                            // window.location = result;
+
+                        });
+
+                    }
+
+                });
+            }
+
+            function logOut() {
+                FB.logout(function (response) {
+                    //console.log('logout :: ', response);
+                    //Removing access token form localStorage.
+                    $('#loginBtn').show();
+                    $('#logoutBtn').hide();
+                    $('#userDetails').hide();
+                });
+            }
+
+            fbAsyncInit();
+
+
+@*            function SignUp() {
+
+                var Uname = $('#NameId').val();
+                var Email = $('#EmailId').val();
+                var password = $('#PasswordId').val();
+                sessionStorage.setItem("Created By", Uname);
+                //alert("Inside Signup");
+                $.ajax({
+                    url: "@Url.Action("SignUp", "LogOn")?UserName=" + Uname + "&Password=" + password + "&Email=" + Email,
+
+              //contentType: 'application/json; charset=utf-8',
+              type: 'POST',
+              // dataType: 'json'
+
+
+          })
+
+        .success(function (result) {
+            //   alert("Inside Success");
+            window.location = result;
+
+        })
+
+        .error(function (xhr, status) {
+            alert("Inside Error");
+        })
+
+
+      }*@
+
+</script>
+
+
+<script type="text/javascript">
+
+    var viewModel = null;
+    $(document).ready(function () {
+
+        // to setup ko.validation
+        ko.validation.rules.pattern.message = 'invalid.';
+
+        ko.validation.rules['checked'] = {
+            validator: function (value) {
+                //console.log(value);
+                if (!value) {
+                    return false;
+                }
+                return true;
+            }
+        };
+
+        ko.validation.init({
+            insertMessages: true,
+            messageTemplate: ''
+        });
+
+        ko.validation.configure({
+            registerextenders: true,
+            messagesonmodified: false,
+            parseinputattributes: true,
+            messagetemplate: ''
+        });
+
+        ko.validation.rules['checkedTerms'] = {
+            validator: function (value) {
+                //console.log(value);
+                if (!value)
+                    return false;
+                return true;
+            }
+        }
+
+        var viewModel = function () {
+            var self = this;
+
+            self.name = ko.observable().extend({ required: { message: 'Please Input Your Name.' } })
+                    .extend({ minLength: 3 }).extend({
+                        pattern: {
+                            //params: /^[a-zA-Z]*$/,
+                            params: /^[A-Za-z]+[A-Za-z\s]*$/,
+                            message: "Name should contain only Alphabets"
+                        }
+                    }),
+          self.email = ko.observable().extend({ required: { message: 'Please Input Your Email Id.' } })
+                    .extend({
+                        pattern: {
+                           // params: /^[a-zA-Z0-9_%+-]+[a-zA-Z0-9_%+-]+@@(?:[a-zA-Z0-9]+\.)+[a-zA-Z]{2,4}/,
+                           params:/^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/,
+                            message: "Email format is invalid"
+                        }
+                    }),
+
+            self.password = ko.observable().extend({ required: { message: 'Please Input Your Password.' } })
+                   .extend({ minLength: 3 }),
+
+             self.checkbox1 = ko.observable();
+            self.checkbox1CHK = ko.observable().extend({
+                required: {
+                    message: 'Please agree to the terms and conditions.', onlyIf: function () {
+                        return (self.checkbox1() === undefined);
+                    }
+                }
+            }),
+
+            self.checkbox2 = ko.observable();
+            self.errors = ko.validation.group(this, { deep: true, observable: false });
+
+
+            self.SummitForm = function () {
+                if (self.errors().length > 0) {
+                    self.errors.showAllMessages();
+                    return;
+                }
+                
+                else {
+                    $('#submitForm').closest('form').submit();
+                    return true;
+                }
+            };
+
+        };
+
+        ko.validation.registerExtenders();
+
+        var vModel = new viewModel();
+        ko.applyBindings(vModel);
+
+
+
+    });
+
+</script>

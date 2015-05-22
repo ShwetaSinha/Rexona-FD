@@ -1,0 +1,147 @@
+﻿@model RexonaAU.Models.PledgeModel
+@using System.Web.UI.WebControls
+
+@using Umbraco.Web;
+@using umbraco.NodeFactory;
+@using umbraco.cms.businesslogic.member;
+@{
+    var memberId = 0;
+    Member member = null;
+    string firstName = string.Empty;
+    string lastName = string.Empty;
+
+    if (Member.IsLoggedOn())
+    {
+            
+        //Get memeber and bind the details
+        member = Member.GetCurrentMember();
+        memberId = member.Id;
+        if (member != null)
+        {
+            firstName = member.GetProperty<string>("firstName"); 
+            lastName = member.GetProperty<string>("lastName");           
+        }
+
+        if (firstName!="")
+        {
+             <script type="text/javascript">
+                 $(document).ready(function () {
+                     $('#flNameDiv').hide();
+                     $('#chkDiv').hide();
+                 });
+            </script>
+        }
+        else
+        {
+             <script type="text/javascript">
+                 $(document).ready(function () {
+                     $('#flNameDiv').show();
+                     $('#chkDiv').show();
+                 });
+            </script>
+        }
+    }
+}
+<link href="~/stylesheets/setyourgoal.css" rel="stylesheet" />
+<div class="sign-up-hero">
+    <div class="row">
+        <div class="large-4 columns">
+            <div class="goal-progress">
+              <div class="goal-state active state-1">Set</div>
+              <div class="goal-state state-2">Photo</div>
+              <div class="goal-state state-3">Confirm</div>
+            </div>
+
+      
+        
+            @*<img src="../../images/step-1.png" alt="Step 1" class="centered pledge-step">*@
+            <h1 class="white">Set a goal</h1>
+            <p class="remind">What will you do? Remember, aim high but keep it realistic.</p>
+        </div>
+      
+      <div class="large-8 large-offset-by-one columns">
+        <div class="goal-form">
+             @using (Html.BeginUmbracoForm<RexonaAU.Controllers.PledgeController>("CreatePledge", null, new Dictionary<string, object> { { "data-abide", "data-abide" } }))
+             {
+                    @Html.AntiForgeryToken();
+              <div class="large-12 columns center-col">  
+              <div class="iwill">I WILL:</div>  
+              <input type="text" id="pledges" name="title" placeholder="Run more often" class="big" data-abide-validator="pledgeText" required/>
+              <small id="swearError" class="error"></small>
+              @Html.HiddenFor(model => model.nodeid, new { @id = "hdnId" })
+                </div>
+              <div class="large-6 columns left-col">
+                <label for="start">I'll start my goal</label>
+                <input type="text" name="startDate" class="datepicker-regular" id="startDate" placeholder="DD MM YY" required />
+                <small class="error">Please select a start date</small>
+              </div>
+              <div class="large-6 columns right-col">
+                <label for="end">I'll finish my goal <span>(optional)</span></label>
+                <input type="text" name="endDate" class="datepicker-finish" placeholder="DD MM YY" disabled />
+              </div>
+                 
+              <div class="large-12 columns center-col">
+                <label for="name">Join this goal as...</label>
+                <label class="select">
+                    <select name="selectedValue" id="privacy-selection">
+                        <option value="public" selected>an Open Goal</option>
+                        <option value="private">a Closed Goal</option>
+                    </select>
+                </label>
+             </div>
+                 <div id="flNameDiv">
+                      <div class="large-6 columns left-col">
+                        <label for="fname">First Name:</label>
+                          <input type="text" placeholder="John" required name="firstname" value="@firstName" id="firstname" />
+                          <small class="error">Please enter your first name</small>
+                
+                      </div>
+                      <div class="large-6 columns right-col">
+                        <label for="end">Last Name: </label>
+                        <input type="text" placeholder="Appleseed" required name="lastname" id="lastname" value="@lastName" />
+                        <small class="error">Please enter your last name</small>
+                
+                      </div>
+                </div>
+              <div class="clearfix"></div>
+              @*<p class="post-form">Joining as an <strong>Open Goal</strong> means you'll join other members who have made the same goal as you. If nobody else has the same goal, new users who make the same goal will automatically be added to yours. If you're creating an <strong>Open Goal</strong>, your goal will appear to other users and they'll be able to join you.</p>*@
+                 <div class="large-12 columns left-col post-form">
+                            <div class="privacy-explanation public">
+                                <p class="post-form">Joining as an <strong>Open Goal</strong> means you'll join other members who have made the same goal as you. If nobody else has the same goal, new users who make the same goal will automatically be added to yours. If you're creating an <strong>Open Goal</strong>, your goal will appear to other users and they'll be able to join you.</p>
+                            </div>
+                            <div class="privacy-explanation private hidden">
+                                <p class="post-form">Joining as a <strong>Closed Goal</strong> means you'll make this goal on your own, and only people you specifically invite will be able to join with you. If new users make the same goal as you, they won't be added to your goal.</p>
+                            </div>
+
+                        </div>
+               <div id="chkDiv"><input id="check1" checked type="checkbox"><label class="for-checkbox" for="check1"><span>Subscribe me to I WILL DO content</span></label></div><br>
+                 <input type="hidden" name="subscribe" />
+               <button type="submit" class="button goalCTA right-icon">Set goal <i class="fa fa-chevron-right"></i></button>
+                 <input type="hidden"  value="@Url.Action("GetPublicPledges", "Pledge")"  id="mode" />     
+                }
+            </div>
+    </div>
+    </div>
+</div>
+
+@*hidden in release 1*@
+<div class="sign-up-bottom" style="display: none;">
+    <div class="row">
+        <div class="large-5 columns">
+            <h1 class="contained-title inverted">Popular Goals</h1>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('.right-icon').click(function () {
+
+        sessionStorage.setItem('goalId', '' + $('#hdnId').val() + '');
+        sessionStorage.setItem('goal', '' + $('#pledges').val() + '');
+        sessionStorage.setItem('startDate', '' + $('input[name=startDate]').val() + '');
+        sessionStorage.setItem('endDate', '' + $('input[name=endDate]').val() + '');
+        sessionStorage.setItem('goalType', '' + $("#privacy-selection option:selected").val() + '');
+        sessionStorage.setItem('firstName', '' + $('#firstname').val() + '');
+        sessionStorage.setItem('lastName', '' + $('#lastname').val() + '');
+
+    });
+</script>

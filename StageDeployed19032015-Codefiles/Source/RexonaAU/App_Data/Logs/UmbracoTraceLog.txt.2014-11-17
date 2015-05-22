@@ -1,0 +1,570 @@
+2014-11-17 16:35:41,281 [11] ERROR RexonaAU.Helpers.GoogleAnalyticsAPI - [Thread 28] Rexona AUS : GoogleAnalyticsAPI() method:
+Message: Could not load file or assembly 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+Stack Trace:    at Google.Apis.Http.HttpClientFactory.CreateHandler(CreateHttpClientArgs args)
+   at Google.Apis.Http.HttpClientFactory.CreateHttpClient(CreateHttpClientArgs args) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Core\Apis\Http\HttpClientFactory.cs:line 36
+   at Google.Apis.Auth.OAuth2.ServiceAccountCredential..ctor(Initializer initializer) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Auth.DotNet4\OAuth2\ServiceAccountCredential.cs:line 217
+   at RexonaAU.Helpers.GoogleAnalyticsAPI..ctor(String keyPath, String accountEmailAddress) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 32
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+
+=== Pre-bind state information ===
+LOG: DisplayName = System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ (Fully-specified)
+LOG: Appbase = file:///D:/TFS/Source/Rexona_AUS/Source/RexonaAU/
+LOG: Initial PrivatePath = D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin
+Calling assembly : Google.Apis.Core, Version=1.9.0.26010, Culture=neutral, PublicKeyToken=null.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: D:\TFS\Source\Rexona_AUS\Source\RexonaAU\web.config
+LOG: Using host configuration file: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet.config
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Redirect found in application configuration file: 1.5.0.0 redirected to 2.2.28.0.
+LOG: Post-policy reference: System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+
+   at Google.Apis.Http.HttpClientFactory.CreateHandler(CreateHttpClientArgs args)
+   at Google.Apis.Http.HttpClientFactory.CreateHttpClient(CreateHttpClientArgs args) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Core\Apis\Http\HttpClientFactory.cs:line 36
+   at Google.Apis.Auth.OAuth2.ServiceAccountCredential..ctor(Initializer initializer) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Auth.DotNet4\OAuth2\ServiceAccountCredential.cs:line 217
+   at RexonaAU.Helpers.GoogleAnalyticsAPI..ctor(String keyPath, String accountEmailAddress) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 32
+
+
+2014-11-17 16:35:41,322 [11] ERROR RexonaAU.Controllers.ReportController - [Thread 28] Rexona AUS : GoalsReporting() method:
+Message: Object reference not set to an instance of an object.
+Stack Trace:    at RexonaAU.Helpers.GoogleAnalyticsAPI.BuildAnalyticRequest(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate, Int32 startIndex) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 84
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.GetAnalyticsData(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 71
+   at RexonaAU.Controllers.ReportController.GoalsReporting(String startDate, String endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Controllers\ReportController.cs:line 491
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.BuildAnalyticRequest(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate, Int32 startIndex) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 84
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.GetAnalyticsData(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 71
+   at RexonaAU.Controllers.ReportController.GoalsReporting(String startDate, String endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Controllers\ReportController.cs:line 491
+2014-11-17 16:35:43,859 [11] ERROR RexonaAU.Helpers.GoogleAnalyticsAPI - [Thread 8] Rexona AUS : GoogleAnalyticsAPI() method:
+Message: Could not load file or assembly 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+Stack Trace:    at Google.Apis.Http.HttpClientFactory.CreateHandler(CreateHttpClientArgs args)
+   at Google.Apis.Http.HttpClientFactory.CreateHttpClient(CreateHttpClientArgs args) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Core\Apis\Http\HttpClientFactory.cs:line 36
+   at Google.Apis.Auth.OAuth2.ServiceAccountCredential..ctor(Initializer initializer) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Auth.DotNet4\OAuth2\ServiceAccountCredential.cs:line 217
+   at RexonaAU.Helpers.GoogleAnalyticsAPI..ctor(String keyPath, String accountEmailAddress) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 32
+System.IO.FileNotFoundException: Could not load file or assembly 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' ---> System.IO.FileNotFoundException: Could not load file or assembly 'System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' or one of its dependencies. The system cannot find the file specified.
+File name: 'System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a'
+
+=== Pre-bind state information ===
+LOG: DisplayName = System.Net.Http.Primitives, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+ (Fully-specified)
+LOG: Appbase = file:///D:/TFS/Source/Rexona_AUS/Source/RexonaAU/
+LOG: Initial PrivatePath = D:\TFS\Source\Rexona_AUS\Source\RexonaAU\bin
+Calling assembly : Google.Apis.Core, Version=1.9.0.26010, Culture=neutral, PublicKeyToken=null.
+===
+LOG: This bind starts in default load context.
+LOG: Using application configuration file: D:\TFS\Source\Rexona_AUS\Source\RexonaAU\web.config
+LOG: Using host configuration file: C:\Windows\Microsoft.NET\Framework64\v4.0.30319\aspnet.config
+LOG: Using machine configuration file from C:\Windows\Microsoft.NET\Framework64\v4.0.30319\config\machine.config.
+LOG: Redirect found in application configuration file: 1.5.0.0 redirected to 2.2.28.0.
+LOG: Post-policy reference: System.Net.Http.Primitives, Version=2.2.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a
+LOG: The same bind was seen before, and was failed with hr = 0x80070002.
+
+   at Google.Apis.Http.HttpClientFactory.CreateHandler(CreateHttpClientArgs args)
+   at Google.Apis.Http.HttpClientFactory.CreateHttpClient(CreateHttpClientArgs args) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Core\Apis\Http\HttpClientFactory.cs:line 36
+   at Google.Apis.Auth.OAuth2.ServiceAccountCredential..ctor(Initializer initializer) in c:\code\google.com\google-api-dotnet-client\default\Tools\Google.Apis.Release\bin\Debug\test\default\Src\GoogleApis.Auth.DotNet4\OAuth2\ServiceAccountCredential.cs:line 217
+   at RexonaAU.Helpers.GoogleAnalyticsAPI..ctor(String keyPath, String accountEmailAddress) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 32
+
+
+2014-11-17 16:35:43,921 [11] ERROR RexonaAU.Controllers.ReportController - [Thread 8] Rexona AUS : SocialContentReporting() method:
+Message: Object reference not set to an instance of an object.
+Stack Trace:    at RexonaAU.Helpers.GoogleAnalyticsAPI.BuildAnalyticRequest(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate, Int32 startIndex) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 84
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.GetAnalyticsData(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 71
+   at RexonaAU.Controllers.ReportController.ContentReporting(String startDate, String endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Controllers\ReportController.cs:line 185
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.BuildAnalyticRequest(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate, Int32 startIndex) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 84
+   at RexonaAU.Helpers.GoogleAnalyticsAPI.GetAnalyticsData(String profileId, String[] dimensions, String[] metrics, DateTime startDate, DateTime endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Helpers\GoogleAnalyticsAPI.cs:line 71
+   at RexonaAU.Controllers.ReportController.ContentReporting(String startDate, String endDate) in d:\TFS\Source\Rexona_AUS\Source\RexonaAU\Controllers\ReportController.cs:line 185
+2014-11-17 16:36:24,176 [11] INFO  umbraco.presentation.publishingService - [Thread 18] sendEmails has been called with response: False
+2014-11-17 16:36:26,353 [11] INFO  umbraco.presentation.publishingService - [Thread 18] sendTractionEmails has been called with response: False
+2014-11-17 16:36:40,652 [11] INFO  umbraco.BusinessLogic.Log - [Thread 42] Log scrubbed.  Removed all items older than 2014-09-18 16:36:40
+2014-11-17 16:36:40,652 [11] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 42] Application shutdown. Reason: BinDirChangeOrDirectoryRename
+2014-11-17 16:36:55,059 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Determining hash of code files on disk
+2014-11-17 16:36:55,074 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Hash determined (took 6ms)
+2014-11-17 16:36:55,074 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-11-17 16:36:55,186 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 106ms)
+2014-11-17 16:36:55,201 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-11-17 16:36:55,201 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 9ms)
+2014-11-17 16:36:55,217 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-11-17 16:36:55,217 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 13 (took 11ms)
+2014-11-17 16:36:55,217 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-11-17 16:36:55,232 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 3ms)
+2014-11-17 16:36:55,232 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-11-17 16:36:55,232 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 4ms)
+2014-11-17 16:36:55,232 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-11-17 16:36:55,232 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 4ms)
+2014-11-17 16:36:55,361 [46] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 39] Initializing Examine and binding to business logic events
+2014-11-17 16:36:55,504 [46] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 39] Adding examine event handlers for index providers: 3
+2014-11-17 16:36:55,535 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of umbraco.interfaces.IApplication
+2014-11-17 16:36:55,535 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 9ms)
+2014-11-17 16:36:55,599 [46] ERROR Umbraco.Core.PluginManager - [Thread 39] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   at umbraco.BusinessLogic.ApplicationRegistrar..ctor()
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-11-17 16:36:55,599 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Starting resolution types of umbraco.interfaces.ITree
+2014-11-17 16:36:55,630 [46] INFO  Umbraco.Core.PluginManager - [Thread 39] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 28ms)
+2014-11-17 16:36:55,695 [46] ERROR Umbraco.Core.PluginManager - [Thread 39] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   at umbraco.BusinessLogic.ApplicationTreeRegistrar..ctor()
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-11-17 16:36:56,552 [46] INFO  umbraco.content - [Thread 56] Loading content from disk cache...
+2014-11-17 16:36:59,038 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-11-17 16:36:59,044 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 6ms)
+2014-11-17 16:36:59,156 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Starting resolution types of umbraco.interfaces.IDataType
+2014-11-17 16:36:59,204 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Completed resolution of types of umbraco.interfaces.IDataType, found 82 (took 48ms)
+2014-11-17 16:36:59,220 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Starting resolution types of umbraco.interfaces.ITree
+2014-11-17 16:36:59,248 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Completed resolution of types of umbraco.interfaces.ITree, found 38 (took 28ms)
+2014-11-17 16:36:59,462 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Starting resolution types of umbraco.cms.businesslogic.macro.IMacroEngine
+2014-11-17 16:36:59,468 [46] INFO  Umbraco.Core.PluginManager - [Thread 56] Completed resolution of types of umbraco.cms.businesslogic.macro.IMacroEngine, found 4 (took 6ms)
+2014-11-17 16:37:27,682 [46] INFO  umbraco.presentation.publishingService - [Thread 53] sendEmails has been called with response: False
+2014-11-17 16:37:29,889 [46] INFO  umbraco.presentation.publishingService - [Thread 53] sendTractionEmails has been called with response: False
+2014-11-17 16:37:32,113 [46] INFO  umbraco.presentation.publishingService - [Thread 53] refreshSocialContent has been called with response: False
+2014-11-17 16:37:34,318 [46] INFO  umbraco.presentation.publishingService - [Thread 53] approveSocialContent has been called with response: False
+2014-11-17 16:38:27,663 [46] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2014-11-17 16:38:29,878 [46] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2014-11-17 16:39:27,661 [46] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2014-11-17 16:39:29,830 [46] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2014-11-17 16:40:27,612 [46] INFO  umbraco.presentation.publishingService - [Thread 54] sendEmails has been called with response: False
+2014-11-17 16:40:29,762 [46] INFO  umbraco.presentation.publishingService - [Thread 54] sendTractionEmails has been called with response: False
+2014-11-17 16:41:27,651 [46] INFO  umbraco.presentation.publishingService - [Thread 50] sendEmails has been called with response: False
+2014-11-17 16:41:29,744 [46] INFO  umbraco.presentation.publishingService - [Thread 50] sendTractionEmails has been called with response: False
+2014-11-17 16:42:27,692 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendEmails has been called with response: False
+2014-11-17 16:42:29,910 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendTractionEmails has been called with response: False
+2014-11-17 16:43:27,686 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendEmails has been called with response: False
+2014-11-17 16:43:29,835 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendTractionEmails has been called with response: False
+2014-11-17 16:44:27,667 [46] INFO  umbraco.presentation.publishingService - [Thread 29] sendEmails has been called with response: False
+2014-11-17 16:44:29,882 [46] INFO  umbraco.presentation.publishingService - [Thread 29] sendTractionEmails has been called with response: False
+2014-11-17 16:45:27,698 [46] INFO  umbraco.presentation.publishingService - [Thread 45] sendEmails has been called with response: False
+2014-11-17 16:45:29,901 [46] INFO  umbraco.presentation.publishingService - [Thread 45] sendTractionEmails has been called with response: False
+2014-11-17 16:46:27,735 [46] INFO  umbraco.presentation.publishingService - [Thread 45] sendEmails has been called with response: False
+2014-11-17 16:46:29,913 [46] INFO  umbraco.presentation.publishingService - [Thread 45] sendTractionEmails has been called with response: False
+2014-11-17 16:47:27,725 [46] INFO  umbraco.presentation.publishingService - [Thread 13] sendEmails has been called with response: False
+2014-11-17 16:47:29,944 [46] INFO  umbraco.presentation.publishingService - [Thread 13] sendTractionEmails has been called with response: False
+2014-11-17 16:48:27,749 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendEmails has been called with response: False
+2014-11-17 16:48:29,950 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendTractionEmails has been called with response: False
+2014-11-17 16:49:27,795 [46] INFO  umbraco.presentation.publishingService - [Thread 47] sendEmails has been called with response: False
+2014-11-17 16:49:30,004 [46] INFO  umbraco.presentation.publishingService - [Thread 47] sendTractionEmails has been called with response: False
+2014-11-17 16:50:27,764 [46] INFO  umbraco.presentation.publishingService - [Thread 47] sendEmails has been called with response: False
+2014-11-17 16:50:29,957 [46] INFO  umbraco.presentation.publishingService - [Thread 47] sendTractionEmails has been called with response: False
+2014-11-17 16:51:27,674 [46] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 16:51:29,913 [46] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 16:52:27,809 [46] INFO  umbraco.presentation.publishingService - [Thread 9] sendEmails has been called with response: False
+2014-11-17 16:52:30,033 [46] INFO  umbraco.presentation.publishingService - [Thread 9] sendTractionEmails has been called with response: False
+2014-11-17 16:53:27,688 [46] INFO  umbraco.presentation.publishingService - [Thread 25] sendEmails has been called with response: False
+2014-11-17 16:53:29,807 [46] INFO  umbraco.presentation.publishingService - [Thread 25] sendTractionEmails has been called with response: False
+2014-11-17 16:54:27,794 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendEmails has been called with response: False
+2014-11-17 16:54:29,865 [46] INFO  umbraco.presentation.publishingService - [Thread 34] sendTractionEmails has been called with response: False
+2014-11-17 16:55:27,852 [46] INFO  umbraco.presentation.publishingService - [Thread 9] sendEmails has been called with response: False
+2014-11-17 16:55:30,031 [46] INFO  umbraco.presentation.publishingService - [Thread 9] sendTractionEmails has been called with response: False
+2014-11-17 16:56:27,842 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendEmails has been called with response: False
+2014-11-17 16:56:29,927 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendTractionEmails has been called with response: False
+2014-11-17 16:57:27,717 [46] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2014-11-17 16:57:29,877 [46] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2014-11-17 16:58:27,876 [46] INFO  umbraco.presentation.publishingService - [Thread 22] sendEmails has been called with response: False
+2014-11-17 16:58:30,090 [46] INFO  umbraco.presentation.publishingService - [Thread 22] sendTractionEmails has been called with response: False
+2014-11-17 16:59:27,826 [46] INFO  umbraco.presentation.publishingService - [Thread 10] sendEmails has been called with response: False
+2014-11-17 16:59:30,042 [46] INFO  umbraco.presentation.publishingService - [Thread 10] sendTractionEmails has been called with response: False
+2014-11-17 17:00:27,900 [46] INFO  umbraco.presentation.publishingService - [Thread 57] sendEmails has been called with response: False
+2014-11-17 17:00:30,124 [46] INFO  umbraco.presentation.publishingService - [Thread 57] sendTractionEmails has been called with response: False
+2014-11-17 17:01:27,889 [46] INFO  umbraco.presentation.publishingService - [Thread 29] sendEmails has been called with response: False
+2014-11-17 17:01:29,981 [46] INFO  umbraco.presentation.publishingService - [Thread 29] sendTractionEmails has been called with response: False
+2014-11-17 17:02:27,908 [46] INFO  umbraco.presentation.publishingService - [Thread 30] sendEmails has been called with response: False
+2014-11-17 17:02:30,120 [46] INFO  umbraco.presentation.publishingService - [Thread 30] sendTractionEmails has been called with response: False
+2014-11-17 17:03:27,950 [46] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2014-11-17 17:03:30,181 [46] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2014-11-17 17:04:27,948 [46] INFO  umbraco.presentation.publishingService - [Thread 55] sendEmails has been called with response: False
+2014-11-17 17:04:30,151 [46] INFO  umbraco.presentation.publishingService - [Thread 55] sendTractionEmails has been called with response: False
+2014-11-17 17:05:27,934 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendEmails has been called with response: False
+2014-11-17 17:05:30,136 [46] INFO  umbraco.presentation.publishingService - [Thread 38] sendTractionEmails has been called with response: False
+2014-11-17 17:06:27,984 [46] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 17:06:30,186 [46] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 17:07:27,773 [46] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2014-11-17 17:07:29,854 [46] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2014-11-17 17:08:27,790 [46] INFO  umbraco.presentation.publishingService - [Thread 11] sendEmails has been called with response: False
+2014-11-17 17:08:29,854 [46] INFO  umbraco.presentation.publishingService - [Thread 11] sendTractionEmails has been called with response: False
+2014-11-17 17:09:27,822 [46] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 17:09:29,910 [46] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 17:10:27,822 [46] INFO  umbraco.presentation.publishingService - [Thread 20] sendEmails has been called with response: False
+2014-11-17 17:10:29,903 [46] INFO  umbraco.presentation.publishingService - [Thread 20] sendTractionEmails has been called with response: False
+2014-11-17 17:11:28,010 [46] INFO  umbraco.presentation.publishingService - [Thread 32] sendEmails has been called with response: False
+2014-11-17 17:11:30,234 [46] INFO  umbraco.presentation.publishingService - [Thread 32] sendTractionEmails has been called with response: False
+2014-11-17 17:12:28,033 [46] INFO  umbraco.presentation.publishingService - [Thread 36] sendEmails has been called with response: False
+2014-11-17 17:12:30,258 [46] INFO  umbraco.presentation.publishingService - [Thread 36] sendTractionEmails has been called with response: False
+2014-11-17 17:13:27,993 [46] INFO  umbraco.presentation.publishingService - [Thread 33] sendEmails has been called with response: False
+2014-11-17 17:13:30,194 [46] INFO  umbraco.presentation.publishingService - [Thread 33] sendTractionEmails has been called with response: False
+2014-11-17 17:14:28,039 [46] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-11-17 17:14:30,236 [46] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-11-17 17:15:28,071 [46] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2014-11-17 17:15:30,285 [46] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2014-11-17 17:16:28,051 [46] INFO  umbraco.presentation.publishingService - [Thread 52] sendEmails has been called with response: False
+2014-11-17 17:16:30,256 [46] INFO  umbraco.presentation.publishingService - [Thread 52] sendTractionEmails has been called with response: False
+2014-11-17 17:17:04,675 [46] INFO  umbraco.BusinessLogic.Log - [Thread 52] Log scrubbed.  Removed all items older than 2014-09-18 17:17:04
+2014-11-17 17:17:04,675 [46] INFO  Umbraco.Core.UmbracoApplicationBase - [Thread 52] Application shutdown. Reason: ConfigurationChange
+2014-11-17 17:17:09,917 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Determining hash of code files on disk
+2014-11-17 17:17:09,932 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Hash determined (took 5ms)
+2014-11-17 17:17:09,932 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of umbraco.interfaces.IApplicationStartupHandler
+2014-11-17 17:17:09,963 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of umbraco.interfaces.IApplicationStartupHandler, found 18 (took 28ms)
+2014-11-17 17:17:09,963 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter
+2014-11-17 17:17:09,963 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of Umbraco.Core.PropertyEditors.IPropertyEditorValueConverter, found 11 (took 1ms)
+2014-11-17 17:17:09,963 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of Umbraco.Web.Mvc.SurfaceController
+2014-11-17 17:17:09,963 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of Umbraco.Web.Mvc.SurfaceController, found 13 (took 1ms)
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of Umbraco.Web.WebApi.UmbracoApiController
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of Umbraco.Web.WebApi.UmbracoApiController, found 3 (took 0ms)
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of Umbraco.Core.Media.IThumbnailProvider
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of Umbraco.Core.Media.IThumbnailProvider, found 3 (took 0ms)
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of Umbraco.Core.Media.IImageUrlProvider
+2014-11-17 17:17:09,979 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of Umbraco.Core.Media.IImageUrlProvider, found 1 (took 0ms)
+2014-11-17 17:17:10,075 [22] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 21] Initializing Examine and binding to business logic events
+2014-11-17 17:17:10,186 [22] INFO  Umbraco.Web.Search.ExamineEvents - [Thread 21] Adding examine event handlers for index providers: 3
+2014-11-17 17:17:10,186 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of umbraco.interfaces.IApplication
+2014-11-17 17:17:10,186 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of umbraco.interfaces.IApplication, found 7 (took 0ms)
+2014-11-17 17:17:10,219 [22] ERROR Umbraco.Core.PluginManager - [Thread 21] Error creating type umbraco.BusinessLogic.ApplicationRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\applications.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.Application.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-11-17 17:17:10,219 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Starting resolution types of umbraco.interfaces.ITree
+2014-11-17 17:17:10,219 [22] INFO  Umbraco.Core.PluginManager - [Thread 21] Completed resolution of types of umbraco.interfaces.ITree, found 27 (took 1ms)
+2014-11-17 17:17:10,235 [22] ERROR Umbraco.Core.PluginManager - [Thread 21] Error creating type umbraco.BusinessLogic.ApplicationTreeRegistrar
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.UnauthorizedAccessException: Access to the path 'D:\TFS\Source\Rexona_AUS\Source\RexonaAU\config\trees.config' is denied.
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, Boolean useAsync)
+   at System.Xml.XmlWriterSettings.CreateWriter(String outputFileName)
+   at System.Xml.Linq.XDocument.Save(String fileName, SaveOptions options)
+   at umbraco.BusinessLogic.ApplicationTree.LoadXml(Action`1 callback, Boolean saveAfterCallback)
+   --- End of inner exception stack trace ---
+   at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.RuntimeType.CreateInstanceDefaultCtor(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Umbraco.Core.PluginManager.CreateInstances[T](IEnumerable`1 types, Boolean throwException)
+2014-11-17 17:17:10,502 [22] INFO  umbraco.content - [Thread 56] Loading content from disk cache...
+2014-11-17 17:17:40,116 [22] INFO  Umbraco.Core.PluginManager - [Thread 28] Starting resolution types of Umbraco.Core.Persistence.Mappers.BaseMapper
+2014-11-17 17:17:40,116 [22] INFO  Umbraco.Core.PluginManager - [Thread 28] Completed resolution of types of Umbraco.Core.Persistence.Mappers.BaseMapper, found 17 (took 3ms)
+2014-11-17 17:17:42,451 [22] INFO  umbraco.presentation.publishingService - [Thread 28] sendEmails has been called with response: False
+2014-11-17 17:17:44,473 [22] INFO  umbraco.presentation.publishingService - [Thread 28] sendTractionEmails has been called with response: False
+2014-11-17 17:17:46,500 [22] INFO  umbraco.presentation.publishingService - [Thread 28] refreshSocialContent has been called with response: False
+2014-11-17 17:17:48,545 [22] INFO  umbraco.presentation.publishingService - [Thread 28] approveSocialContent has been called with response: False
+2014-11-17 17:18:42,269 [22] INFO  umbraco.presentation.publishingService - [Thread 27] sendEmails has been called with response: False
+2014-11-17 17:18:44,321 [22] INFO  umbraco.presentation.publishingService - [Thread 27] sendTractionEmails has been called with response: False
+2014-11-17 17:19:42,255 [22] INFO  umbraco.presentation.publishingService - [Thread 30] sendEmails has been called with response: False
+2014-11-17 17:19:44,269 [22] INFO  umbraco.presentation.publishingService - [Thread 30] sendTractionEmails has been called with response: False
+2014-11-17 17:20:42,282 [22] INFO  umbraco.presentation.publishingService - [Thread 30] sendEmails has been called with response: False
+2014-11-17 17:20:44,315 [22] INFO  umbraco.presentation.publishingService - [Thread 30] sendTractionEmails has been called with response: False
+2014-11-17 17:21:42,276 [22] INFO  umbraco.presentation.publishingService - [Thread 12] sendEmails has been called with response: False
+2014-11-17 17:21:44,310 [22] INFO  umbraco.presentation.publishingService - [Thread 12] sendTractionEmails has been called with response: False
+2014-11-17 17:22:42,258 [22] INFO  umbraco.presentation.publishingService - [Thread 23] sendEmails has been called with response: False
+2014-11-17 17:22:44,290 [22] INFO  umbraco.presentation.publishingService - [Thread 23] sendTractionEmails has been called with response: False
+2014-11-17 17:23:42,299 [22] INFO  umbraco.presentation.publishingService - [Thread 28] sendEmails has been called with response: False
+2014-11-17 17:23:44,333 [22] INFO  umbraco.presentation.publishingService - [Thread 28] sendTractionEmails has been called with response: False
+2014-11-17 17:24:42,280 [22] INFO  umbraco.presentation.publishingService - [Thread 38] sendEmails has been called with response: False
+2014-11-17 17:24:44,313 [22] INFO  umbraco.presentation.publishingService - [Thread 38] sendTractionEmails has been called with response: False
+2014-11-17 17:25:42,313 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-11-17 17:25:44,343 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-11-17 17:26:42,308 [22] INFO  umbraco.presentation.publishingService - [Thread 29] sendEmails has been called with response: False
+2014-11-17 17:26:44,341 [22] INFO  umbraco.presentation.publishingService - [Thread 29] sendTractionEmails has been called with response: False
+2014-11-17 17:27:42,336 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 17:27:44,371 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 17:28:42,357 [22] INFO  umbraco.presentation.publishingService - [Thread 36] sendEmails has been called with response: False
+2014-11-17 17:28:44,389 [22] INFO  umbraco.presentation.publishingService - [Thread 36] sendTractionEmails has been called with response: False
+2014-11-17 17:29:42,371 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendEmails has been called with response: False
+2014-11-17 17:29:44,403 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendTractionEmails has been called with response: False
+2014-11-17 17:30:42,331 [22] INFO  umbraco.presentation.publishingService - [Thread 36] sendEmails has been called with response: False
+2014-11-17 17:30:44,363 [22] INFO  umbraco.presentation.publishingService - [Thread 36] sendTractionEmails has been called with response: False
+2014-11-17 17:31:42,341 [22] INFO  umbraco.presentation.publishingService - [Thread 74] sendEmails has been called with response: False
+2014-11-17 17:31:44,373 [22] INFO  umbraco.presentation.publishingService - [Thread 74] sendTractionEmails has been called with response: False
+2014-11-17 17:32:42,351 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendEmails has been called with response: False
+2014-11-17 17:32:44,387 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendTractionEmails has been called with response: False
+2014-11-17 17:33:42,365 [22] INFO  umbraco.presentation.publishingService - [Thread 73] sendEmails has been called with response: False
+2014-11-17 17:33:44,398 [22] INFO  umbraco.presentation.publishingService - [Thread 73] sendTractionEmails has been called with response: False
+2014-11-17 17:34:42,369 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 17:34:44,402 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 17:35:42,379 [22] INFO  umbraco.presentation.publishingService - [Thread 62] sendEmails has been called with response: False
+2014-11-17 17:35:44,412 [22] INFO  umbraco.presentation.publishingService - [Thread 62] sendTractionEmails has been called with response: False
+2014-11-17 17:36:42,380 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendEmails has been called with response: False
+2014-11-17 17:36:44,413 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendTractionEmails has been called with response: False
+2014-11-17 17:37:42,372 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendEmails has been called with response: False
+2014-11-17 17:37:44,387 [22] INFO  umbraco.presentation.publishingService - [Thread 63] sendTractionEmails has been called with response: False
+2014-11-17 17:38:42,401 [22] INFO  umbraco.presentation.publishingService - [Thread 27] sendEmails has been called with response: False
+2014-11-17 17:38:44,432 [22] INFO  umbraco.presentation.publishingService - [Thread 27] sendTractionEmails has been called with response: False
+2014-11-17 17:39:42,402 [22] INFO  umbraco.presentation.publishingService - [Thread 70] sendEmails has been called with response: False
+2014-11-17 17:39:44,448 [22] INFO  umbraco.presentation.publishingService - [Thread 70] sendTractionEmails has been called with response: False
+2014-11-17 17:40:42,390 [22] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2014-11-17 17:40:44,422 [22] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2014-11-17 17:41:42,405 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 17:41:44,422 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 17:42:42,416 [22] INFO  umbraco.presentation.publishingService - [Thread 44] sendEmails has been called with response: False
+2014-11-17 17:42:44,448 [22] INFO  umbraco.presentation.publishingService - [Thread 44] sendTractionEmails has been called with response: False
+2014-11-17 17:43:42,430 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2014-11-17 17:43:44,465 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2014-11-17 17:44:42,448 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-11-17 17:44:44,481 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-11-17 17:45:42,461 [22] INFO  umbraco.presentation.publishingService - [Thread 14] sendEmails has been called with response: False
+2014-11-17 17:45:44,507 [22] INFO  umbraco.presentation.publishingService - [Thread 14] sendTractionEmails has been called with response: False
+2014-11-17 17:46:42,458 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 17:46:44,490 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 17:47:42,463 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendEmails has been called with response: False
+2014-11-17 17:47:44,493 [22] INFO  umbraco.presentation.publishingService - [Thread 24] sendTractionEmails has been called with response: False
+2014-11-17 17:48:42,496 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendEmails has been called with response: False
+2014-11-17 17:48:44,527 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendTractionEmails has been called with response: False
+2014-11-17 17:49:42,501 [22] INFO  umbraco.presentation.publishingService - [Thread 67] sendEmails has been called with response: False
+2014-11-17 17:49:44,534 [22] INFO  umbraco.presentation.publishingService - [Thread 67] sendTractionEmails has been called with response: False
+2014-11-17 17:50:42,523 [22] INFO  umbraco.presentation.publishingService - [Thread 33] sendEmails has been called with response: False
+2014-11-17 17:50:44,558 [22] INFO  umbraco.presentation.publishingService - [Thread 33] sendTractionEmails has been called with response: False
+2014-11-17 17:51:42,529 [22] INFO  umbraco.presentation.publishingService - [Thread 33] sendEmails has been called with response: False
+2014-11-17 17:51:44,562 [22] INFO  umbraco.presentation.publishingService - [Thread 33] sendTractionEmails has been called with response: False
+2014-11-17 17:52:42,544 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendEmails has been called with response: False
+2014-11-17 17:52:44,576 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendTractionEmails has been called with response: False
+2014-11-17 17:53:42,542 [22] INFO  umbraco.presentation.publishingService - [Thread 83] sendEmails has been called with response: False
+2014-11-17 17:53:44,576 [22] INFO  umbraco.presentation.publishingService - [Thread 83] sendTractionEmails has been called with response: False
+2014-11-17 17:54:42,555 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendEmails has been called with response: False
+2014-11-17 17:54:44,582 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendTractionEmails has been called with response: False
+2014-11-17 17:55:42,655 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendEmails has been called with response: False
+2014-11-17 17:55:44,681 [22] INFO  umbraco.presentation.publishingService - [Thread 75] sendTractionEmails has been called with response: False
+2014-11-17 17:56:42,614 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2014-11-17 17:56:44,648 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2014-11-17 17:57:42,660 [22] INFO  umbraco.presentation.publishingService - [Thread 76] sendEmails has been called with response: False
+2014-11-17 17:57:44,693 [22] INFO  umbraco.presentation.publishingService - [Thread 76] sendTractionEmails has been called with response: False
+2014-11-17 17:58:42,678 [22] INFO  umbraco.presentation.publishingService - [Thread 9] sendEmails has been called with response: False
+2014-11-17 17:58:44,710 [22] INFO  umbraco.presentation.publishingService - [Thread 9] sendTractionEmails has been called with response: False
+2014-11-17 17:59:42,660 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 17:59:44,697 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 18:00:42,702 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendEmails has been called with response: False
+2014-11-17 18:00:44,736 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendTractionEmails has been called with response: False
+2014-11-17 18:01:42,720 [22] INFO  umbraco.presentation.publishingService - [Thread 71] sendEmails has been called with response: False
+2014-11-17 18:01:44,748 [22] INFO  umbraco.presentation.publishingService - [Thread 71] sendTractionEmails has been called with response: False
+2014-11-17 18:02:42,708 [22] INFO  umbraco.presentation.publishingService - [Thread 81] sendEmails has been called with response: False
+2014-11-17 18:02:44,749 [22] INFO  umbraco.presentation.publishingService - [Thread 81] sendTractionEmails has been called with response: False
+2014-11-17 18:03:42,689 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendEmails has been called with response: False
+2014-11-17 18:03:44,724 [22] INFO  umbraco.presentation.publishingService - [Thread 82] sendTractionEmails has been called with response: False
+2014-11-17 18:04:42,728 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendEmails has been called with response: False
+2014-11-17 18:04:44,745 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendTractionEmails has been called with response: False
+2014-11-17 18:05:42,749 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendEmails has been called with response: False
+2014-11-17 18:05:44,792 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendTractionEmails has been called with response: False
+2014-11-17 18:06:42,738 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendEmails has been called with response: False
+2014-11-17 18:06:44,773 [22] INFO  umbraco.presentation.publishingService - [Thread 86] sendTractionEmails has been called with response: False
+2014-11-17 18:07:42,742 [22] INFO  umbraco.presentation.publishingService - [Thread 15] sendEmails has been called with response: False
+2014-11-17 18:07:44,765 [22] INFO  umbraco.presentation.publishingService - [Thread 15] sendTractionEmails has been called with response: False
+2014-11-17 18:08:42,749 [22] INFO  umbraco.presentation.publishingService - [Thread 85] sendEmails has been called with response: False
+2014-11-17 18:08:44,792 [22] INFO  umbraco.presentation.publishingService - [Thread 85] sendTractionEmails has been called with response: False
+2014-11-17 18:09:42,763 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendEmails has been called with response: False
+2014-11-17 18:09:44,809 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendTractionEmails has been called with response: False
+2014-11-17 18:10:42,808 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 18:10:44,848 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 18:11:42,800 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendEmails has been called with response: False
+2014-11-17 18:11:44,835 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendTractionEmails has been called with response: False
+2014-11-17 18:12:42,807 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 18:12:44,840 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 18:13:42,805 [22] INFO  umbraco.presentation.publishingService - [Thread 76] sendEmails has been called with response: False
+2014-11-17 18:13:44,830 [22] INFO  umbraco.presentation.publishingService - [Thread 76] sendTractionEmails has been called with response: False
+2014-11-17 18:14:42,824 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:14:44,847 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:15:42,826 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 18:15:44,859 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 18:16:42,846 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:16:44,887 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:17:42,862 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 18:17:44,888 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 18:18:42,868 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 18:18:44,910 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 18:19:42,831 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendEmails has been called with response: False
+2014-11-17 18:19:44,869 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendTractionEmails has been called with response: False
+2014-11-17 18:20:42,878 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendEmails has been called with response: False
+2014-11-17 18:20:44,911 [22] INFO  umbraco.presentation.publishingService - [Thread 56] sendTractionEmails has been called with response: False
+2014-11-17 18:21:42,895 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:21:44,911 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:22:42,900 [22] INFO  umbraco.presentation.publishingService - [Thread 77] sendEmails has been called with response: False
+2014-11-17 18:22:44,926 [22] INFO  umbraco.presentation.publishingService - [Thread 77] sendTractionEmails has been called with response: False
+2014-11-17 18:23:42,938 [22] INFO  umbraco.presentation.publishingService - [Thread 15] sendEmails has been called with response: False
+2014-11-17 18:23:44,970 [22] INFO  umbraco.presentation.publishingService - [Thread 15] sendTractionEmails has been called with response: False
+2014-11-17 18:24:42,864 [22] INFO  umbraco.presentation.publishingService - [Thread 88] sendEmails has been called with response: False
+2014-11-17 18:24:44,865 [22] INFO  umbraco.presentation.publishingService - [Thread 88] sendTractionEmails has been called with response: False
+2014-11-17 18:25:42,869 [22] INFO  umbraco.presentation.publishingService - [Thread 87] sendEmails has been called with response: False
+2014-11-17 18:25:44,863 [22] INFO  umbraco.presentation.publishingService - [Thread 87] sendTractionEmails has been called with response: False
+2014-11-17 18:26:42,852 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendEmails has been called with response: False
+2014-11-17 18:26:44,843 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendTractionEmails has been called with response: False
+2014-11-17 18:27:42,900 [22] INFO  umbraco.presentation.publishingService - [Thread 92] sendEmails has been called with response: False
+2014-11-17 18:27:44,895 [22] INFO  umbraco.presentation.publishingService - [Thread 92] sendTractionEmails has been called with response: False
+2014-11-17 18:28:42,869 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendEmails has been called with response: False
+2014-11-17 18:28:44,878 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendTractionEmails has been called with response: False
+2014-11-17 18:29:42,859 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendEmails has been called with response: False
+2014-11-17 18:29:44,865 [22] INFO  umbraco.presentation.publishingService - [Thread 64] sendTractionEmails has been called with response: False
+2014-11-17 18:30:42,858 [22] INFO  umbraco.presentation.publishingService - [Thread 81] sendEmails has been called with response: False
+2014-11-17 18:30:44,858 [22] INFO  umbraco.presentation.publishingService - [Thread 81] sendTractionEmails has been called with response: False
+2014-11-17 18:31:42,868 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendEmails has been called with response: False
+2014-11-17 18:31:44,865 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendTractionEmails has been called with response: False
+2014-11-17 18:32:42,893 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:32:44,906 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:33:42,964 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendEmails has been called with response: False
+2014-11-17 18:33:45,004 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendTractionEmails has been called with response: False
+2014-11-17 18:34:42,939 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendEmails has been called with response: False
+2014-11-17 18:34:44,965 [22] INFO  umbraco.presentation.publishingService - [Thread 78] sendTractionEmails has been called with response: False
+2014-11-17 18:35:42,977 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendEmails has been called with response: False
+2014-11-17 18:35:45,010 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendTractionEmails has been called with response: False
+2014-11-17 18:36:42,983 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendEmails has been called with response: False
+2014-11-17 18:36:45,011 [22] INFO  umbraco.presentation.publishingService - [Thread 80] sendTractionEmails has been called with response: False
+2014-11-17 18:37:42,970 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendEmails has been called with response: False
+2014-11-17 18:37:44,981 [22] INFO  umbraco.presentation.publishingService - [Thread 79] sendTractionEmails has been called with response: False
+2014-11-17 18:38:42,928 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:38:44,960 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:39:42,913 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendEmails has been called with response: False
+2014-11-17 18:39:44,916 [22] INFO  umbraco.presentation.publishingService - [Thread 43] sendTractionEmails has been called with response: False
+2014-11-17 18:40:42,937 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendEmails has been called with response: False
+2014-11-17 18:40:44,943 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendTractionEmails has been called with response: False
+2014-11-17 18:41:42,947 [22] INFO  umbraco.presentation.publishingService - [Thread 87] sendEmails has been called with response: False
+2014-11-17 18:41:44,954 [22] INFO  umbraco.presentation.publishingService - [Thread 87] sendTractionEmails has been called with response: False
+2014-11-17 18:42:42,951 [22] INFO  umbraco.presentation.publishingService - [Thread 91] sendEmails has been called with response: False
+2014-11-17 18:42:44,954 [22] INFO  umbraco.presentation.publishingService - [Thread 91] sendTractionEmails has been called with response: False
+2014-11-17 18:43:42,973 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendEmails has been called with response: False
+2014-11-17 18:43:44,982 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendTractionEmails has been called with response: False
+2014-11-17 18:44:42,987 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendEmails has been called with response: False
+2014-11-17 18:44:44,992 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendTractionEmails has been called with response: False
+2014-11-17 18:45:43,002 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:45:45,008 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:46:43,018 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:46:45,021 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:47:43,009 [22] INFO  umbraco.presentation.publishingService - [Thread 91] sendEmails has been called with response: False
+2014-11-17 18:47:45,014 [22] INFO  umbraco.presentation.publishingService - [Thread 91] sendTractionEmails has been called with response: False
+2014-11-17 18:48:43,026 [22] INFO  umbraco.presentation.publishingService - [Thread 88] sendEmails has been called with response: False
+2014-11-17 18:48:45,023 [22] INFO  umbraco.presentation.publishingService - [Thread 88] sendTractionEmails has been called with response: False
+2014-11-17 18:49:43,015 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:49:45,018 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:50:43,018 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendEmails has been called with response: False
+2014-11-17 18:50:45,026 [22] INFO  umbraco.presentation.publishingService - [Thread 42] sendTractionEmails has been called with response: False
+2014-11-17 18:51:43,032 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:51:45,029 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:52:43,039 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:52:45,045 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:53:43,034 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:53:45,036 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:54:43,045 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:54:45,050 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:55:43,027 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:55:45,026 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:56:43,035 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendEmails has been called with response: False
+2014-11-17 18:56:45,044 [22] INFO  umbraco.presentation.publishingService - [Thread 95] sendTractionEmails has been called with response: False
+2014-11-17 18:57:43,066 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendEmails has been called with response: False
+2014-11-17 18:57:45,074 [22] INFO  umbraco.presentation.publishingService - [Thread 19] sendTractionEmails has been called with response: False
+2014-11-17 18:58:43,057 [22] INFO  umbraco.presentation.publishingService - [Thread 84] sendEmails has been called with response: False
+2014-11-17 18:58:45,065 [22] INFO  umbraco.presentation.publishingService - [Thread 84] sendTractionEmails has been called with response: False
+2014-11-17 18:59:43,080 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendEmails has been called with response: False
+2014-11-17 18:59:45,082 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendTractionEmails has been called with response: False
+2014-11-17 19:00:43,091 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendEmails has been called with response: False
+2014-11-17 19:00:45,099 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendTractionEmails has been called with response: False
+2014-11-17 19:01:43,118 [22] INFO  umbraco.presentation.publishingService - [Thread 84] sendEmails has been called with response: False
+2014-11-17 19:01:45,139 [22] INFO  umbraco.presentation.publishingService - [Thread 84] sendTractionEmails has been called with response: False
+2014-11-17 19:02:43,111 [22] INFO  umbraco.presentation.publishingService - [Thread 98] sendEmails has been called with response: False
+2014-11-17 19:02:45,122 [22] INFO  umbraco.presentation.publishingService - [Thread 98] sendTractionEmails has been called with response: False
+2014-11-17 19:03:43,114 [22] INFO  umbraco.presentation.publishingService - [Thread 101] sendEmails has been called with response: False
+2014-11-17 19:03:45,122 [22] INFO  umbraco.presentation.publishingService - [Thread 101] sendTractionEmails has been called with response: False
+2014-11-17 19:04:43,139 [22] INFO  umbraco.presentation.publishingService - [Thread 98] sendEmails has been called with response: False
+2014-11-17 19:04:45,141 [22] INFO  umbraco.presentation.publishingService - [Thread 98] sendTractionEmails has been called with response: False
+2014-11-17 19:05:43,105 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendEmails has been called with response: False
+2014-11-17 19:05:45,102 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendTractionEmails has been called with response: False
+2014-11-17 19:06:43,124 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendEmails has been called with response: False
+2014-11-17 19:06:45,126 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendTractionEmails has been called with response: False
+2014-11-17 19:07:43,120 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendEmails has been called with response: False
+2014-11-17 19:07:45,118 [22] INFO  umbraco.presentation.publishingService - [Thread 68] sendTractionEmails has been called with response: False
+2014-11-17 19:08:43,162 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendEmails has been called with response: False
+2014-11-17 19:08:45,162 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendTractionEmails has been called with response: False
+2014-11-17 19:09:43,129 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendEmails has been called with response: False
+2014-11-17 19:09:45,133 [22] INFO  umbraco.presentation.publishingService - [Thread 100] sendTractionEmails has been called with response: False
+2014-11-17 19:10:43,120 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendEmails has been called with response: False
+2014-11-17 19:10:45,112 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendTractionEmails has been called with response: False
+2014-11-17 19:11:43,153 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendEmails has been called with response: False
+2014-11-17 19:11:45,152 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendTractionEmails has been called with response: False
+2014-11-17 19:12:43,150 [22] INFO  umbraco.presentation.publishingService - [Thread 102] sendEmails has been called with response: False
+2014-11-17 19:12:45,155 [22] INFO  umbraco.presentation.publishingService - [Thread 102] sendTractionEmails has been called with response: False
+2014-11-17 19:13:43,163 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendEmails has been called with response: False
+2014-11-17 19:13:45,168 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendTractionEmails has been called with response: False
+2014-11-17 19:14:43,142 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendEmails has been called with response: False
+2014-11-17 19:14:45,138 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendTractionEmails has been called with response: False
+2014-11-17 19:15:43,152 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendEmails has been called with response: False
+2014-11-17 19:15:45,164 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendTractionEmails has been called with response: False
+2014-11-17 19:16:43,173 [22] INFO  umbraco.presentation.publishingService - [Thread 112] sendEmails has been called with response: False
+2014-11-17 19:16:45,181 [22] INFO  umbraco.presentation.publishingService - [Thread 112] sendTractionEmails has been called with response: False
+2014-11-17 19:17:43,143 [22] INFO  umbraco.presentation.publishingService - [Thread 105] sendEmails has been called with response: False
+2014-11-17 19:17:45,141 [22] INFO  umbraco.presentation.publishingService - [Thread 105] sendTractionEmails has been called with response: False
+2014-11-17 19:18:43,188 [22] INFO  umbraco.presentation.publishingService - [Thread 104] sendEmails has been called with response: False
+2014-11-17 19:18:45,242 [22] INFO  umbraco.presentation.publishingService - [Thread 104] sendTractionEmails has been called with response: False
+2014-11-17 19:19:43,186 [22] INFO  umbraco.presentation.publishingService - [Thread 108] sendEmails has been called with response: False
+2014-11-17 19:19:45,185 [22] INFO  umbraco.presentation.publishingService - [Thread 108] sendTractionEmails has been called with response: False
+2014-11-17 19:20:43,190 [22] INFO  umbraco.presentation.publishingService - [Thread 108] sendEmails has been called with response: False
+2014-11-17 19:20:45,189 [22] INFO  umbraco.presentation.publishingService - [Thread 108] sendTractionEmails has been called with response: False
+2014-11-17 19:21:43,169 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendEmails has been called with response: False
+2014-11-17 19:21:45,175 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendTractionEmails has been called with response: False
+2014-11-17 19:22:43,178 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendEmails has been called with response: False
+2014-11-17 19:22:45,190 [22] INFO  umbraco.presentation.publishingService - [Thread 103] sendTractionEmails has been called with response: False
+2014-11-17 19:23:43,206 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendEmails has been called with response: False
+2014-11-17 19:23:45,207 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendTractionEmails has been called with response: False
+2014-11-17 19:24:43,239 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendEmails has been called with response: False
+2014-11-17 19:24:45,236 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendTractionEmails has been called with response: False
+2014-11-17 19:25:43,225 [22] INFO  umbraco.presentation.publishingService - [Thread 105] sendEmails has been called with response: False
+2014-11-17 19:25:45,261 [22] INFO  umbraco.presentation.publishingService - [Thread 105] sendTractionEmails has been called with response: False
+2014-11-17 19:26:43,291 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendEmails has been called with response: False
+2014-11-17 19:26:45,329 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendTractionEmails has been called with response: False
+2014-11-17 19:27:43,223 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendEmails has been called with response: False
+2014-11-17 19:27:45,230 [22] INFO  umbraco.presentation.publishingService - [Thread 106] sendTractionEmails has been called with response: False
+2014-11-17 19:28:43,316 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendEmails has been called with response: False
+2014-11-17 19:28:45,349 [22] INFO  umbraco.presentation.publishingService - [Thread 97] sendTractionEmails has been called with response: False
+2014-11-17 19:29:43,314 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendEmails has been called with response: False
+2014-11-17 19:29:45,359 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendTractionEmails has been called with response: False
+2014-11-17 19:30:43,321 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendEmails has been called with response: False
+2014-11-17 19:30:45,345 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendTractionEmails has been called with response: False
+2014-11-17 19:31:43,328 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendEmails has been called with response: False
+2014-11-17 19:31:45,364 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendTractionEmails has been called with response: False
+2014-11-17 19:32:43,274 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendEmails has been called with response: False
+2014-11-17 19:32:45,311 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendTractionEmails has been called with response: False
+2014-11-17 19:33:43,332 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendEmails has been called with response: False
+2014-11-17 19:33:45,367 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendTractionEmails has been called with response: False
+2014-11-17 19:34:43,342 [22] INFO  umbraco.presentation.publishingService - [Thread 119] sendEmails has been called with response: False
+2014-11-17 19:34:45,377 [22] INFO  umbraco.presentation.publishingService - [Thread 119] sendTractionEmails has been called with response: False
+2014-11-17 19:35:43,354 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendEmails has been called with response: False
+2014-11-17 19:35:45,383 [22] INFO  umbraco.presentation.publishingService - [Thread 113] sendTractionEmails has been called with response: False
+2014-11-17 19:36:43,363 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendEmails has been called with response: False
+2014-11-17 19:36:45,396 [22] INFO  umbraco.presentation.publishingService - [Thread 114] sendTractionEmails has been called with response: False
+2014-11-17 19:37:43,356 [22] INFO  umbraco.presentation.publishingService - [Thread 107] sendEmails has been called with response: False
+2014-11-17 19:37:45,394 [22] INFO  umbraco.presentation.publishingService - [Thread 107] sendTractionEmails has been called with response: False

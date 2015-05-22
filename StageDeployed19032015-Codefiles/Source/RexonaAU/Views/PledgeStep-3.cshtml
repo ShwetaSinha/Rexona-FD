@@ -1,0 +1,136 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using System.Configuration;
+@using RexonaAU.Helpers;
+@{
+    Layout = "_Baselayout.cshtml";
+    Common.SetNoBrowserCacheForpage();
+    Common.CheckUserSessionValidity(CurrentPage.id);
+    string step2Url = uQuery.GetNodesByType("PledgeStep2").FirstOrDefault().NiceUrl;
+}
+
+@{
+    string CheckIfProd = ConfigurationManager.AppSettings["CheckIfProd"];
+    bool CheckIfProdEnvironment = false;
+    bool.TryParse(CheckIfProd, out CheckIfProdEnvironment);
+    if (CheckIfProdEnvironment)
+    {
+        
+    <script type='text/javascript'>
+        // Conversion Name: Conversion Page 5: Confirm Goal
+        // INSTRUCTIONS 
+        // The Conversion Tags should be placed at the top of the <BODY> section of the HTML page. 
+        // In case you want to ensure that the full page loads as a prerequisite for a conversion 
+        // being recorded, place the tag at the bottom of the page. Note, however, that this may 
+        // skew the data in the case of slow-loading pages and in general not recommended. 
+        //
+        // NOTE: It is possible to test if the tags are working correctly before campaign launch 
+        // as follows:  Browse to http://bs.serving-sys.com/Serving/adServer.bs?cn=at, which is 
+        // a page that lets you set your local machine to 'testing' mode.  In this mode, when 
+        // visiting a page that includes an conversion tag, a new window will open, showing you 
+        // the data sent by the conversion tag to the MediaMind servers. 
+        // 
+        // END of instructions (These instruction lines can be deleted from the actual HTML)
+        var ebRand = Math.random() + '';
+        ebRand = ebRand * 1000000;
+        document.write('<scr' + 'ipt src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542147&amp;rnd=' + ebRand + '"></scr' + 'ipt>');
+    </script>
+    <noscript>
+        <img width="1" height="1" style="border: 0" src="HTTPS://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=542147&amp;ns=1" />
+    </noscript>
+
+    }
+    
+}
+<link href="~/stylesheets/setyourgoal.css" rel="stylesheet" />
+<img id="conversionTrackingImage" width="1" height="1" style="border: 0; display: none;" src="" />
+<input id="hdnIsProd" type="hidden" value="@CheckIfProd" />
+<div class="sign-up-hero">
+   @* <div class="row">
+        <div class="large-12 columns">
+            <a href="@step2Url" class="button small breadcrumb pulled-up with-icon icon-left"><i class="fa fa-chevron-left"></i>Back to Take a Photo</a>
+        </div>
+    </div>*@
+    <div class="row">          
+           
+               
+       
+        <div class="large-4 columns">
+             <div class="goal-progress">
+              <div class="goal-state state-1">Set</div>
+              <div class="goal-state state-2"><a href="@step2Url" class="goal-a-text">Photo</a></div>
+              <div class="goal-state active state-3">Confirm</div>
+            </div>
+
+            @*<img src="../../images/step-3.png" alt="Step 3" class="centered pledge-step">*@
+            <h1 class="white">Confirm Goal</h1>
+            <p class="remind">There’s no turning back now. We’re with you for the long haul.</p>
+        </div>
+         
+        <div class="large-7 large-offset-by-one columns">
+            <div class="row">
+                <img src="" alt="" class="step-3-pledge image1">
+            </div>
+            <div class="confirm-buttons">
+               
+                    <a class="button full goalCTA confirm">Confirm and Continue <i class="fa fa-chevron-right"></i></a>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.image1').attr("src", sessionStorage.getItem('imageUrl'));
+        var textToBeSentToYolk = sessionStorage.getItem('textToBeSentToYolk');
+        $('.confirm').click(function () {
+
+
+            if (JSON.parse($('#hdnIsProd').val())) {
+                var ebRand = Math.random() + '';
+                ebRand = ebRand * 1000000;
+                $('#conversionTrackingImage').attr('src', 'HTTP://bs.serving-sys.com/Serving/ActivityServer.bs?cn=as&amp;ActivityID=550102&amp;rnd=' + ebRand);
+            }
+
+            var image = $('.image1').attr("src");
+            var text = textToBeSentToYolk;
+
+            var dataToSendToAjax = new Object();
+
+            dataToSendToAjax.imageURL = image;
+            dataToSendToAjax.text = textToBeSentToYolk;
+
+            startLoad();
+
+            $.ajax({
+                contentType: "application/json; charset=utf-8",
+                type: 'GET',
+                async: true,
+                url: '/umbraco/surface/Pledge/VideoGenerationFromYolk',
+                data: dataToSendToAjax,
+                dataType: 'json',
+                success: function (result) {
+                    if (result.Message == "error") {
+                        endLoad();
+                        new jBox('Notice', {
+                            content: '<strong>Oops.</strong><br><br>Something went wrong. Please try again.',
+                            color: 'red',
+                            theme: 'NoticeBorder'
+                        });
+                        return false;
+                    }
+                    else {
+                        window.location.href = '/dashboard/';
+                    }
+
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+
+        });
+
+    });
+
+</script>

@@ -1,0 +1,175 @@
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using Umbraco.Web
+@model RexonaAU.Models.SignInModel
+
+<script src="~/scripts/knockout-3.0.0.js"></script>
+<script src="~/scripts/knockout.validation.js"></script>
+
+<style>
+    .validationMessage {
+        color: red;
+    }
+</style>
+
+<div class="row">
+    <div class="large-5 columns large-centered">
+        <a class="button expand" id="loginBtn" onclick="LoginWithFacebook();">Log in with Facebook</a>
+    </div>
+</div>
+<div class="row">
+    <div class="large-5 columns large-centered">
+        <hr>
+    </div>
+</div>
+<div class="row sign-up">
+    <div class="large-5 columns large-centered">
+
+        <div class="row">
+            <div class="large-12 columns">
+
+                @using (Html.BeginUmbracoForm<RexonaAU.Controllers.LogOnController>("SignIn"))
+                {
+                    @Html.LabelFor(model => model.EmailAddress)
+                    @Html.TextBoxFor(model => model.EmailAddress, new { data_bind = "value: email"})
+   
+                    @Html.LabelFor(model => model.Password)
+                    @Html.PasswordFor(model => model.Password, new { data_bind = "value: password"})
+                    @Html.AntiForgeryToken() 
+  
+                    <input type="submit" class="button secondary expand" value="Log in" data-bind="click: SummitForm" />
+    
+                }
+                 <h4>@TempData["Status"]</h4>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="large-12 columns">
+                <a href="#" class="forgotten">I've forgotten my password.</a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div id="fb-root"></div>
+  <script src="https://connect.facebook.net/en_US/all.js"></script>
+ <script type="text/javascript">
+
+      function fbAsyncInit() {
+          FB.init({
+              appId: '1430554253884530',
+              status: true, // check login status
+              cookie: true, // enable cookies to allow the server to access the session
+              xfbml: true  // parse XFBML
+          });
+      }
+
+      function LoginWithFacebook() {
+              FB.login(
+                function (response) {
+                     if (response.status == 'connected') {
+                        FB.api('/me', function (response) {
+                           //console.log(response);
+
+                            // Save Facebook User Details to Member
+                             $.ajax({
+                                 url: "@Url.Action("FBLogin", "LogOn")?UserName=" + response.email + "&Email=" + response.email,
+                             contentType: 'application/json; charset=utf-8',
+                             dataType: 'json'
+
+                             })
+                             .success(function (result) {
+                                 window.location = '/dashboard';
+                                 //alert("Inside Success");
+                             })
+                              .error(function (result) {
+                                //  alert("Inside Error");
+                              })
+                            });
+                       }
+
+                   });
+       }
+     </script>
+
+
+<script type="text/javascript">
+
+    var viewModel = null;
+    $(document).ready(function () {
+
+        // to setup ko.validation
+        ko.validation.rules.pattern.message = 'invalid.';
+
+        ko.validation.rules['checked'] = {
+            validator: function (value) {
+                //console.log(value);
+                if (!value) {
+                    return false;
+                }
+                return true;
+            }
+        };
+
+        ko.validation.init({
+            insertMessages: true,
+            messageTemplate: ''
+        });
+
+        ko.validation.configure({
+            registerextenders: true,
+            messagesonmodified: false,
+            parseinputattributes: true,
+            messagetemplate: ''
+        });
+
+        ko.validation.rules['checkedTerms'] = {
+            validator: function (value) {
+                //console.log(value);
+                if (!value)
+                    return false;
+                return true;
+            }
+        }
+
+        var viewModel = function () {
+            var self = this;
+
+          self.email = ko.observable().extend({ required: { message: 'Please Input Your Email Id.' } })
+                   .extend({ minLength: 3 }),
+
+            self.password = ko.observable().extend({ required: { message: 'Please Input Your Password.' } })
+                   .extend({ minLength: 3 }),
+
+            
+
+            self.errors = ko.validation.group(this, { deep: true, observable: false });
+
+
+            self.SummitForm = function () {
+                if (self.errors().length > 0) {
+                    self.errors.showAllMessages();
+                    return;
+                }
+                else {
+                    SignUp();
+                }
+            };
+
+        };
+
+        ko.validation.registerExtenders();
+
+        var vModel = new viewModel();
+        ko.applyBindings(vModel);
+
+
+
+    });
+
+</script>

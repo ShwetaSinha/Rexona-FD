@@ -1,0 +1,138 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using umbraco.NodeFactory;
+@using umbraco.cms.businesslogic.member;
+
+@{
+    Layout = null;
+
+    
+    /* Set Terms & Conditions = "true" for all existing normal users
+    Member[] listOfUsers = Member.GetAll;
+
+    Response.Write("Count Users:" + listOfUsers.Count() + "<br />");
+    Response.Write("----------------------------------" + "<br />");
+    foreach(var entry in listOfUsers)
+    {
+        string responseString = string.Empty;
+        try{
+            umbraco.cms.businesslogic.member.Member member = new umbraco.cms.businesslogic.member.Member(entry.Id);
+            responseString = "firstName: " + member.GetProperty<string>("firstName");
+            responseString += ", lastName: " + member.GetProperty<string>("lastName");
+            responseString += ", facebookConnect: " + member.GetProperty<string>("facebookConnect");
+            responseString += ", terms&Conditions: " + member.GetProperty<string>("termsConditions");
+
+            if (member.GetProperty<string>("facebookConnect") == "0")
+            {
+                Response.Write(responseString + "<br />");
+                * Uncomment below two lines when you want to set below property to 1
+                //member.getProperty("termsConditions").Value = 1;
+                //member.Save();
+            }
+        }
+        catch
+        {
+        }
+    }
+    */
+      
+
+    #region Entry Report
+    /*    
+    List<Node> lstPledgeMembers = uQuery.GetNodesByType("PledgeMember").ToList();
+        
+    foreach (Node entry in lstPledgeMembers.Where(obj => obj.GetProperty<bool>("step3Clear")).OrderBy(a => a.CreateDate))
+    {
+        string responseString = string.Empty;
+        try
+        {
+            umbraco.cms.businesslogic.member.Member member = new umbraco.cms.businesslogic.member.Member(entry.GetProperty<int>("memberId"));
+                        
+            responseString = member.GetProperty<string>("firstName");
+            responseString += "," + member.GetProperty<string>("lastName");
+            responseString += "," + member.GetProperty<string>("displayName");
+            responseString += "," + member.Email;
+            responseString += "," + member.GetProperty<string>("postCode");
+            responseString += "," + member.GetProperty<string>("state");
+
+            DateTime dt;
+            if(DateTime.TryParse(member.GetProperty<string>("birthDate"), out dt))
+            {
+                responseString += "," + dt.ToShortDateString();
+            }
+            else
+            {
+                responseString += ",";
+            }
+            
+            responseString += "," + (member.GetProperty<bool>("subscribedForDoMOre") ? "Yes" : "No");
+            responseString += "," + "Yes";
+
+            responseString += "," + entry.Parent.GetProperty<string>("title");
+            responseString += "," + entry.CreateDate.ToString();
+            
+            Response.Write(responseString + ",<br />");
+            
+        }
+        catch (Exception)
+        {
+            
+        }
+
+    }
+     * */     
+    #endregion
+
+        #region Update S3 URL
+    /*
+    if(Request.QueryString["a"] != null && ! Request.QueryString["a"].Equals("u"))
+    {
+        return;
+    }
+        
+    List<Node> lstArticles = uQuery.GetNodesByType("Article").ToList();
+
+    foreach (Node article in lstArticles.OrderBy(a => a.CreateDate))
+    {
+        try
+        {
+            string fieldValue = article.GetProperty<string>("articleDescription");
+            if (fieldValue.Contains("fdsafdsf"))
+            {   
+                var service = new Umbraco.Core.Services.ContentService();
+                var content = service.GetById(article.Id);
+                content.SetValue("articleDescription", fieldValue.Replace("fdsafasdfsdaf","fdsafsdafsafsd"));
+                
+                service.SaveAndPublish(content);               
+                
+            }
+        }
+              catch (Exception)
+        {
+            
+        }
+
+    }
+    
+    umbraco.library.RefreshContent();
+     * */
+        #endregion
+
+    Node articleMasterNode = uQuery.GetNodesByType("Empowerment").First();
+    
+    umbraco.cms.businesslogic.web.Document articleMaster = new umbraco.cms.businesslogic.web.Document(articleMasterNode.Id);
+    var lstNodes = articleMaster.Children;
+    
+    foreach(umbraco.cms.businesslogic.web.Document n in lstNodes.Where(obj => ! obj.Published))
+    {
+        Response.Write(n.Id +" " + n.Published + "<br />");
+        
+        string fieldValue = n.GetProperty<string>("articleDescription");
+       
+        var service = new Umbraco.Core.Services.ContentService();
+        var content = service.GetById(n.Id);
+        content.SetValue("articleDescription", fieldValue.Replace("fdsafasdfsdaf", "fdsafsdafsafsd"));
+        service.Save(content);      
+    }
+    umbraco.library.RefreshContent();
+    
+}

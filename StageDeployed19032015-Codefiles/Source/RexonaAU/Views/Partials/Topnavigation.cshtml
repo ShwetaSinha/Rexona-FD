@@ -1,0 +1,51 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<IPublishedContent>
+@using umbraco.MacroEngines.Library;
+@using System.Web.Mvc.Html;
+@using Umbraco.Web;
+@using umbraco.NodeFactory;
+
+
+
+@{        
+    var homePage = Model.AncestorOrSelf(1);
+    var nodeClass = (homePage.Id == Model.Id) ? "activePage" : "";
+    //var homeindex = homePage.GetPropertyValue("navigationOrder");
+    //Node node = new Node(1108);
+    //var NavigationItems1 = node.ChildrenAsList.OrderBy(obj => obj.GetProperty<int>("menuItemIndex"));
+    //var NavigationItems = homePage.Children.OrderBy(obj => obj.GetPropertyValue("navigationOrder"));
+    Node homePageNode = new Node(1108);
+    var n = homePageNode.ChildrenAsList;
+    var pages = homePage.Children.Where(showInHeader => showInHeader.GetPropertyValue("showInHeader") != null).OrderBy(navigationOrder => navigationOrder.GetPropertyValue("navigationOrder")).ToList();
+            
+            
+}
+
+<nav class="top-bar" data-topbar="">
+    <ul class="title-area">
+        <li class="name">
+            <h1><a href="@homePage.Url()">@homePage.GetPropertyValue("navigationTitle")</a></h1>
+        </li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+        <ul class="right">
+
+            @foreach (var page in pages)
+            {
+                if (page.Name != "Login")
+                {
+                <li><a href="@page.Url()">@page.GetPropertyValue("navigationTitle")</a></li>
+                }
+                else
+                {
+                <li class="divider"></li>
+                <li class="has-form">
+                    <a href="@page.Url()" class="button">Login</a>
+                </li>
+                }
+            }
+
+        </ul>
+    </section>
+</nav>

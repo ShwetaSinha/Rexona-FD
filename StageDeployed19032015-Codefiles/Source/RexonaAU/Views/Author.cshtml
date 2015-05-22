@@ -1,0 +1,124 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+    var urlHelper = new System.Web.Mvc.UrlHelper(new System.Web.Routing.RequestContext(new HttpContextWrapper(HttpContext.Current), new System.Web.Routing.RouteData()));
+    string ambassadorsLink = uQuery.GetNodesByType("Ambassadors").Count() > 0 ? uQuery.GetNodesByType("Ambassadors").ToList().First().NiceUrl : string.Empty;
+    string AuthorBacktoText = "Back To " + Convert.ToString(Umbraco.Field("ambassadorName")).Split(' ')[0] + "'s Posts";
+    string bgImageUrl = !string.IsNullOrEmpty(Model.Content.GetPropertyValue<string>("backgroundImage")) ? Model.Content.GetPropertyValue<string>("backgroundImage") : string.Empty;
+    
+}
+
+
+
+
+<script src="@urlHelper.Content("~/js/article.js")"></script>
+<script src="@urlHelper.Content("~/js/authorArticles.js")"></script>
+<input type="hidden" id="hdnId" value="@Model.Content.Id" />
+
+<div id="ambassador">
+    <div  class="hero-panel no-p-top" style=" background-image: url('@bgImageUrl'); ">
+        <div class="row">
+
+            <div class="large-6 columns">
+                <a href="@ambassadorsLink" class="button small breadcrumb with-icon icon-left"><i class="fa fa-chevron-left"></i>Back to Ambassadors</a>
+                <input type="hidden" value="@AuthorBacktoText" id="hdnAuthorBackToText" />
+                <div class="row">
+                    <div class="large-10 columns">
+                        <h1 class="contained-title tilted">@Umbraco.Field("ambassadorName")</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="large-12 columns">
+                        <p>@Umbraco.Field("description")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-panel has-border dark-panel">
+
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="connected-panel-container">
+                <div class="connected-panel-heading">
+                    <h2 class="contained-title">@Convert.ToString(Umbraco.Field("ambassadorName")).Split(' ')[0]'s Posts</h2>
+                </div>
+                <div class="connected-panel">
+                    <div class="large-4 columns large-offset-8">
+                        <div class="row">
+                            <div class="small-4 columns">
+                                <label for="right-label" class="right floating-label">Sort By:</label>
+                            </div>
+                            <div class="small-8 columns">
+                                <label class="select">
+                                    <select id="ambassadorDrop">
+                                        <option value="recent" selected>Most Recent</option>
+                                        <option value="popular">Most Popular</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="large-12 columns">
+            <div class="masonry-wall" id="individualarticles" data-bind="foreach: Articles">
+                <div class="item has-badge">
+                    <div class="item-type">
+                        <span>AMBASSADOR</span>
+                        @*<div class="item-badge">
+                            <img src="/images/ais-badge.jpg">
+                        </div>*@
+                    </div>
+                    <div class="item-content">
+                        <!-- ko if: ArticleThumbnail !="false" -->
+                        <div class="item-image">
+                            <a data-bind="attr:{href: ActualArticleURL}">
+                                <img data-bind="attr:{src: ArticleThumbnail}" class="full-on-mobile"></a>
+                        </div>
+                        <!-- /ko -->
+                        <div class="item-details">
+                            <div class="item-heading">
+                                <a data-bind="attr:{href: ActualArticleURL}">
+                                    <h4 data-bind="html: ArticleTitle"></h4>
+                                </a>
+                            </div>
+                            <div class="item-description">
+                                <p data-bind="html: Excerpt"></p>
+                            </div>
+                        </div>
+                        <div class="item-actions">
+                            <div class="item-share">
+                                <a href="#" class="small-link">Share</a>
+                            </div>
+                            <div class="item-rate">
+                                <div data-bind="attr:{id: Id}" class="rating-icon">
+                                    <i class="fa fa-heart"></i>
+                                </div>
+                                <div class="rating-number">
+                                    <span data-bind="html: Hearts"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on('click', '.item-details a,.item-image', function () {
+            sessionStorage.setItem('BackUrlIsAutorPage', true);
+            sessionStorage.setItem('BackToAuthorText', $('#hdnAuthorBackToText').val());
+            sessionStorage.setItem('BackToAuthorUrl', window.location.href);
+        });
+    })
+</script>

@@ -1,0 +1,129 @@
+// default button styling
+.button 
+	font-family: $heading-stack
+	border-radius: 10px
+	text-transform: uppercase
+	// default style (large size)
+	padding: 0.45em 1em
+	font-size: 1.250em // 20px
+	+at($small)
+		width: 100% // full width on mobile
+		//padding: 0.6em 0em!important // make easier to tap on mobile
+
+// firefox fixes
+@-moz-document url-prefix()
+	.button
+		font-size: 1.1em
+
+#home-cta 
+	+at($abovesmall)
+		font-size: 1.1em
+
+.home 
+	.button
+		font-size: 1em
+		padding: 0.75em 1em
+
+
+.share-button
+	+at($abovesmall)
+		font-size: 0.8em!important
+
+.hero-panel .button
+	+at($abovesmall)
+		margin-bottom: 0.1em
+
+.view-more 
+	position: relative
+	top: 3em
+	+at($abovesmall)
+		top: 0
+		margin: 1em 0!important
+
+.hero-panel .breadcrumb
+	margin: 1em 0!important
+
+.button.secondary
+	color: $primary-color!important
+	&:hover 
+		background: darken(#fff, 15%)
+		color: $primary-color!important
+.button.tertiary
+	color: darken(#fff, 20%)
+	background: none
+	+animate(color, 300ms)
+	&:hover
+		color: #fff
+
+// reduce font size for Take a Photo buttons (to prevent icons wrapping)
+.take-a-photo, .confirm-photo
+	.button 
+		font-size: 1em!important
+		padding: 1.3em 1em
+
+// sizes
+.button.tiny 
+	padding: 0.4em 1em
+	font-size: 0.875em // 14px
+.button.tiny.secondary
+	color: $primary-color!important
+	&:hover 
+		color: $primary-color!important
+.button.small 
+	padding: 0.8em 1em
+	font-size: 0.875em // 14px
+	+at($abovesmall)
+		margin-bottom: 1em
+.button.medium
+	font-size: 1.1em
+
+.fb-button 
+	background: #3b5a96
+	&:hover
+		background: darken(#3b5a96, 10%)
+
+// breadcrumb button used for 'back' kind of links
+.button.breadcrumb
+	background: none
+	margin-bottom: 0
+	color: lighten($black, 25%)
+	+animate(color, 300ms)
+	&:hover 
+		color: $black
+	+at($abovesmall)
+		text-align: left
+		margin-bottom: 0.5em
+
+.button.breadcrumb.left-icon
+	padding-left: 0
+	i 
+		padding-left: 0
+
+.hero-panel
+	.button.breadcrumb
+		color: #8a8a8a
+		&:hover 
+			color: lighten(#8a8a8a, 15%)
+
+// submit buttons
+button[type=submit]
+	margin-top: 0.6em
+
+// modifier class for buttons that have icons 
+// you need to pair it with right-icon or left-icon
+.with-icon 
+	i
+		font-weight: 100
+		font-size: 0.9em
+.right-icon
+	i
+		padding: 0 0.5em 0 0.7em
+.left-icon
+	i
+		padding: 0 0.7em 0 0.5em
+
+// buttons in hero panel
+.hero-panel
+	.button 
+		margin-top: 1em
+

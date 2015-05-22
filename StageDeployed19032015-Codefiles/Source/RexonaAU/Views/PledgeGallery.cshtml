@@ -1,0 +1,110 @@
+﻿@using umbraco.NodeFactory;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+    string step1Url = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;
+}
+
+ <div class="hero-panel goal-gallery">
+      <div class="row">
+        <div class="large-6 columns">
+          <div class="row">
+            <div class="large-10 columns">
+              <h1 class="contained-title">Goal Gallery</h1>
+            </div>
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <p class="subheader inverted">Need help choosing your goal? Or maybe you’re just after a little inspiration. Check out the goals others have set for themselves.</p>
+              <a href="@step1Url" class="button with-icon right-icon">Set your goal <i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+<div class="content-panel has-border dark-panel">
+    <div class="row">
+
+        <!-- pledges -->
+        <div class="large-12 columns">
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="connected-panel-container">
+                        <div class="connected-panel-heading">
+                            <h2 class="contained-title">All Goals</h2>
+                        </div>
+                        <div class="connected-panel">
+                            <div class="row">
+                                <div class="large-6 columns"></div>
+                                <div class="large-6 columns">
+                                    <div class="row filter">
+                                        <div class="small-4 columns">
+                                            <label for="right-label" class="right floating-label">Sort By:</label>
+                                        </div>
+                                        <div class="small-8 columns">
+                                            <label class="select" id="filter">
+                                                <select>
+                                                    <option value="recent" selected>Most Recent</option>
+                                                    <option value="popular" >Most Popular</option>
+                                                </select>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="large-12 columns">
+                    <div class="masonry-wall gallery-wall" data-bind="foreach: Pledges">
+
+                        <div class="item is-pledge">
+                            
+                            @*<a href="javascript:void();" style="cursor:default;">*@
+                            <a data-bind="attr:{href: PledgeURL, Id: hrefId}">
+                                <img class="full-on-mobile" data-bind="attr:{src: ImageURL}">
+                            </a>
+                            <div class="item-content inverted">
+                                <div class="item-details" data-bind="visible: ShowJoinLinkAndText">
+                                    <div class="item-description">
+                                        <p><span data-bind="text:PledgeMembers"></span></p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+
+                                    <div class="item-share">
+                                        <a href="javascript:void();" class="small-link">Share</a>
+                                    </div>
+
+                                    <div class="item-join" data-bind="visible: ShowJoinLink && ShowJoinLinkAndText">
+                                        <a href="#" class="small-link">Join</a>
+                                    </div>
+
+                                    <div class="item-rate">
+                                        <div class="rating-icon" data-bind="attr:{Id: Id}">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span data-bind="text: LikeCount"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/gallery.js"></script>
+
+
+   
+

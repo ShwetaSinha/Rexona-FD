@@ -1,0 +1,91 @@
+﻿@using Umbraco.Core;
+@using umbraco.NodeFactory;
+@using Umbraco.Web
+@using Umbraco.Core.Models
+@using umbraco.NodeFactory;
+@using RexonaAU.Models;
+@using System.Linq;
+@using System.Xml;
+@using System.Xml.Linq;
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+}
+
+<div class="hero-panel support">
+    <div class="row">
+        <div class="large-3 columns">
+            <h1 class="contained-title">Support</h1>
+        </div>
+        @* <div class="large-3 large-offset-3 columns">
+            <h2>Contact Us</h2>
+        </div>*@
+        <div class="large-3 columns"></div>
+    </div>
+    <div class="row">
+        <div class="large-6 columns">
+            <p class="subheader">@Umbraco.Field("helpIDescription")</p>
+        </div>
+        @*  <div class="large-6 columns">
+            <p class="subheader">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, excepturi?</p>
+
+            <div class="help-contact-details">
+                <p class="subheader"><a href="mailto:help@rexona.com.au">help@rexona.com.au</a></p>
+                <p class="subheader">02 1234 1234</p>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+<div class="content-panel">
+    <div class="row">
+        <div class="large-7 columns">
+            <h2 class="contained-title inverted">Frequently Asked Questions</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="large-12 columns">
+            <ul class="large-block-grid-2 medium-block-grid-2 small-block-grid-1">
+                @{
+                    var faqSection = Model.Content.HasProperty("frequentlyAskedQuestions") ? Model.Content.GetPropertyValue<string>("frequentlyAskedQuestions") : string.Empty;
+                    List<FAQModel> lstFAQs = new List<FAQModel>();
+                    if (!string.IsNullOrEmpty(faqSection))
+                    {
+                        XElement xmlTree = XElement.Parse(faqSection);
+
+
+                        string question = string.Empty;
+                        string answer = string.Empty;
+                        foreach (XElement xle in xmlTree.Elements())
+                        {
+
+
+                            foreach (XElement xleChi in xle.Elements())
+                            {
+                                if (xleChi.Name.ToString().Equals("Question", StringComparison.OrdinalIgnoreCase))
+                                { question = xleChi.Value; }
+                                if (xleChi.Name.ToString().Equals("Answer", StringComparison.OrdinalIgnoreCase))
+                                { answer = xleChi.Value; }
+                            }
+
+                            lstFAQs.Add(new FAQModel() { Question = question, Answer = answer });
+
+                            question = null; answer = null;
+                        }
+                    }
+                    foreach (FAQModel item in lstFAQs)
+                    {
+
+                    <li>
+                        <h4 class="regular-case">@Html.Raw(item.Question)</h4>
+                        <p>@Html.Raw(item.Answer)</p>
+                    </li>
+                    }
+ }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+

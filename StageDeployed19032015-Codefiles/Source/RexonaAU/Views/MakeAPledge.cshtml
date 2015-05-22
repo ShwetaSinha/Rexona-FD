@@ -1,0 +1,239 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@{
+    Layout = "_Baselayout.cshtml";
+    string step1Url = uQuery.GetNodesByType("PledgeSteps").FirstOrDefault().NiceUrl;
+}
+
+<script type="text/javascript">
+    $(document).foundation();
+</script>
+
+@*Add to css later*@
+<style>
+    #step-two, #step-three {
+        display: none;
+    }
+</style>
+
+
+<div id="step-one">
+    <div class="sign-up-hero">
+        <div class="row">
+            <div class="large-5 columns">
+                <img src="../../images/step-1.png" alt="Step 1" class="centered pledge-step">
+                <h1 class="contained-title">Enter your Goal</h1>
+                <p class="subheader"></p>
+            </div>
+            <div class="large-6 large-offset-by-one columns">
+                <div class="make-a-pledge-form">
+                    @Html.Partial("_CreatePledge", new RexonaAU.Models.PledgeModel())
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sign-up-bottom">
+        <div class="row">
+            <div class="large-5 columns">
+                <h1 class="contained-title inverted">Popular Pledges</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="masonry-wall">
+                     <div class="item is-pledge">
+                            <a href="#">
+                                <img src="/images/pledge-th.jpg" class="full-on-mobile">
+                            </a>
+                            <div class="item-content inverted">
+                                <div class="item-details">
+                                    <div class="item-description">
+                                        <p>1,245 other people have made this goal</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+
+                                    <div class="item-share">
+                                        <a href="#" class="small-link">Share</a>
+                                    </div>
+
+                                    <div class="item-join">
+                                        <a href="#" class="small-link">Join</a>
+                                    </div>
+
+                                    <div class="item-rate">
+                                        <div class="rating-icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <div class="item is-pledge">
+                            <a href="#">
+                                <img src="/images/pledge-th.jpg" class="full-on-mobile">
+                            </a>
+                            <div class="item-content inverted">
+                                <div class="item-details">
+                                    <div class="item-description">
+                                        <p>1,245 other people have made this goal</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+
+                                    <div class="item-share">
+                                        <a href="#" class="small-link">Share</a>
+                                    </div>
+
+                                    <div class="item-join">
+                                        <a href="#" class="small-link">Join</a>
+                                    </div>
+
+                                    <div class="item-rate">
+                                        <div class="rating-icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <div class="item is-pledge">
+                            <a href="#">
+                                <img src="/images/pledge-th.jpg" class="full-on-mobile">
+                            </a>
+                            <div class="item-content inverted">
+                                <div class="item-details">
+                                    <div class="item-description">
+                                        <p>1,245 other people have made this goal</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+
+                                    <div class="item-share">
+                                        <a href="#" class="small-link">Share</a>
+                                    </div>
+
+                                    <div class="item-join">
+                                        <a href="#" class="small-link">Join</a>
+                                    </div>
+
+                                    <div class="item-rate">
+                                        <div class="rating-icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <div class="item is-pledge">
+                            <a href="#">
+                                <img src="/images/pledge-th.jpg" class="full-on-mobile">
+                            </a>
+                            <div class="item-content inverted">
+                                <div class="item-details">
+                                    <div class="item-description">
+                                        <p>1,245 other people have made this goal</p>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+
+                                    <div class="item-share">
+                                        <a href="#" class="small-link">Share</a>
+                                    </div>
+
+                                    <div class="item-join">
+                                        <a href="#" class="small-link">Join</a>
+                                    </div>
+
+                                    <div class="item-rate">
+                                        <div class="rating-icon">
+                                            <i class="fa fa-heart"></i>
+                                        </div>
+                                        <div class="rating-number">
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="step-two">
+    <div class="sign-up-hero">
+        <div class="row">
+            <div class="large-12 columns">
+                <div class="step-2">
+                    <a href="@step1Url" class="button small breadcrumb pulled-up with-icon icon-left"><i class="fa fa-chevron-left"></i>Back to Pledge Details</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="large-5 columns step-2">
+                <img src="../../images/step-2.svg" alt="Step 2" width="159" height="160" class="centered pledge-step">
+                <h1 class="contained-title">Take a Photo</h1>
+                <p class="subheader"></p>
+            </div>
+            <div class="large-5 columns step-3">
+                <img src="../../images/step-3.svg" alt="Step 3" width="159" height="160" class="centered pledge-step">
+                <h1 class="contained-title">Confirm Pledge</h1>
+                <p class="subheader"></p>
+            </div>
+            <div class="large-6 large-offset-by-one columns">
+                <div class="row">
+                    <div class="large-12 columns">
+                        <div class="webcam-container">
+                            <div class="webcam-overlay step-2 on-desktop"></div>
+                            <div class="webcam-visible-wrapper step-2 on-desktop">
+                                <div id="webcam"></div>
+                            </div>
+
+                            <div class="final-pledge" id="the-pledge">
+                                <img src="/images/pledge-logo.png" alt="Rexona" class="pledge-logo step-3">
+                                <span class="i-will step-3">I Will:</span>
+                                <span class="pledge-content step-3">Run a really really long way this year</span>
+                                <span class="pledge-name step-3">Alexandra Stewart-Liberty</span>
+                                <img id="image" class="desktop-target on-desktop">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row step-2">
+                    <div class="take-a-photo">
+                        <div class="large-12 columns">
+                            <a onclick="base64_toimage()" class="button with-icon right-icon centered on-desktop">Take a Photo <i class="fa fa-camera"></i></a>
+                            <a onclick="mobileUpload()" class="button with-icon right-icon centered on-mobile">Add a Photo <i class="fa fa-camera"></i></a>
+                            <input type="file" id="mobile-picker" accept="image/*;capture=camera">
+                        </div>
+                    </div>
+                    <div class="confirm-photo">
+                        <div class="large-6 columns">
+                            <a href="#" class="button medium with-icon left-icon full-width breadcrumb take-another"><i class="fa fa-chevron-left"></i>Take Another</a>
+                        </div>
+                        <div class="large-6 columns">
+                            <a href="#" class="button medium with-icon right-icon full-width use-photo">Use this photo <i class="fa fa-chevron-right"></i></a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row step-3">
+                    <div class="large-12 columns">
+                        <a href="/dashboard/" class="button with-icon right-icon right">Confirm and Continue <i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
